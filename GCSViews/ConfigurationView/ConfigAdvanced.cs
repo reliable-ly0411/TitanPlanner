@@ -60,7 +60,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             prd.DoWork += dialogue =>
             {
-                prd.UpdateProgressAndStatus(-1, "Downloading updated data");
+                prd.UpdateProgressAndStatus(-1, UiText.Translate("Downloading updated data"));
                 ParameterMetaDataParser.GetParameterInformation(
                     ConfigurationManager.AppSettings["ParameterLocationsBleeding"] + ";" +
                     ConfigurationManager.AppSettings["ParameterLocations"] + ";"
@@ -88,7 +88,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void but_anonlog_Click(object sender, System.EventArgs e)
         {
-            CustomMessageBox.Show("This is beta, please confirm the output file");
+            CustomMessageBox.Show(UiText.Translate("This is beta, please confirm the output file"));
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "tlog or bin/log|*.tlog;*.bin;*.log";

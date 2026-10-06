@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_Button_axis
     {
@@ -110,7 +111,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownpwmmin);
             this.Name = "Joy_Button_axis";
-            this.Text = "Joy_Button_axis";
+            this.Text = UiText.Translate("Joy_Button_axis");
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownpwmmin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownpwmmax)).EndInit();
             this.ResumeLayout(false);

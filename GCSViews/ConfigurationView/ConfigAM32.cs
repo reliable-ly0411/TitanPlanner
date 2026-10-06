@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 using MissionPlanner.Controls;
 using Microsoft.Web.WebView2.WinForms;
 using System;
@@ -42,7 +43,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 _hasNavigated = true;
 
-                Common.MessageShowAgain("AM32 Configurator", "Make sure to disconnect from Mission Planner before using AM32 configurator.");
+                Common.MessageShowAgain("AM32 Configurator", UiText.Translate("Make sure to disconnect from Mission Planner before using AM32 configurator."));
 
                 try
                 {

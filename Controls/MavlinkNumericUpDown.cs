@@ -136,8 +136,8 @@ namespace MissionPlanner.Controls
             if (decimal.Parse(value) > base.Maximum)
             {
                 if (
-                    CustomMessageBox.Show(ParamName + " Value out of range\nDo you want to accept the new value?",
-                        "Out of range", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+                    CustomMessageBox.Show(ParamName + UiText.Translate(" Value out of range\nDo you want to accept the new value?"),
+                        UiText.Translate("Out of range"), MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
                 {
                     base.Maximum = decimal.Parse(value);
                     base.Value = decimal.Parse(value);

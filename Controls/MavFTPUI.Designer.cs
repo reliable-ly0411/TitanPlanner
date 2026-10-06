@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class MavFTPUI
     {
@@ -121,16 +122,16 @@
             // 
             // columnHeaderName
             // 
-            this.columnHeaderName.Text = "Name";
+            this.columnHeaderName.Text = UiText.Translate("Name");
             this.columnHeaderName.Width = 83;
             // 
             // columnHeaderType
             // 
-            this.columnHeaderType.Text = "Type";
+            this.columnHeaderType.Text = UiText.Translate("Type");
             // 
             // columnHeaderSize
             // 
-            this.columnHeaderSize.Text = "Size";
+            this.columnHeaderSize.Text = UiText.Translate("Size");
             // 
             // contextMenuStrip1
             // 
@@ -150,49 +151,49 @@
             // 
             this.downloadBurstToolStripMenuItem.Name = "downloadBurstToolStripMenuItem";
             this.downloadBurstToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.downloadBurstToolStripMenuItem.Text = "Download Burst";
+            this.downloadBurstToolStripMenuItem.Text = UiText.Translate("Download Burst");
             this.downloadBurstToolStripMenuItem.Click += new System.EventHandler(this.DownloadBurstToolStripMenuItem_Click);
             // 
             // downloadToolStripMenuItem
             // 
             this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
             this.downloadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.downloadToolStripMenuItem.Text = "Download";
+            this.downloadToolStripMenuItem.Text = UiText.Translate("Download");
             this.downloadToolStripMenuItem.Click += new System.EventHandler(this.DownloadToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
             this.uploadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Text = UiText.Translate("Upload");
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.UploadToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Text = UiText.Translate("&Delete");
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             this.renameToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.renameToolStripMenuItem.Text = "&Rename";
+            this.renameToolStripMenuItem.Text = UiText.Translate("&Rename");
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItem_Click);
             // 
             // newFolderToolStripMenuItem
             // 
             this.newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
             this.newFolderToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.newFolderToolStripMenuItem.Text = "New Folder";
+            this.newFolderToolStripMenuItem.Text = UiText.Translate("New Folder");
             this.newFolderToolStripMenuItem.Click += new System.EventHandler(this.NewFolderToolStripMenuItem_Click);
             // 
             // getCRC32ToolStripMenuItem
             // 
             this.getCRC32ToolStripMenuItem.Name = "getCRC32ToolStripMenuItem";
             this.getCRC32ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.getCRC32ToolStripMenuItem.Text = "GetCRC32";
+            this.getCRC32ToolStripMenuItem.Text = UiText.Translate("GetCRC32");
             this.getCRC32ToolStripMenuItem.Click += new System.EventHandler(this.GetCRC32ToolStripMenuItem_Click);
             // 
             // statusStrip1

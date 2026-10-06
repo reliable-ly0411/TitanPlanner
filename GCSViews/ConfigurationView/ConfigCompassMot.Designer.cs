@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigCompassMot
     {
@@ -44,7 +45,7 @@
             this.BUT_compassmot.Name = "BUT_compassmot";
             this.BUT_compassmot.Size = new System.Drawing.Size(75, 23);
             this.BUT_compassmot.TabIndex = 0;
-            this.BUT_compassmot.Text = "Start";
+            this.BUT_compassmot.Text = UiText.Translate("Start");
             this.BUT_compassmot.UseVisualStyleBackColor = true;
             this.BUT_compassmot.Click += new System.EventHandler(this.BUT_compassmot_Click);
             // 
@@ -67,7 +68,7 @@
             this.lbl_start.Name = "lbl_start";
             this.lbl_start.Size = new System.Drawing.Size(29, 13);
             this.lbl_start.TabIndex = 2;
-            this.lbl_start.Text = "Start";
+            this.lbl_start.Text = UiText.Translate("Start");
             this.lbl_start.Visible = false;
             // 
             // lbl_finish
@@ -77,7 +78,7 @@
             this.lbl_finish.Name = "lbl_finish";
             this.lbl_finish.Size = new System.Drawing.Size(34, 13);
             this.lbl_finish.TabIndex = 3;
-            this.lbl_finish.Text = "Finish";
+            this.lbl_finish.Text = UiText.Translate("Finish");
             this.lbl_finish.Visible = false;
             // 
             // lbl_status
@@ -87,7 +88,7 @@
             this.lbl_status.Name = "lbl_status";
             this.lbl_status.Size = new System.Drawing.Size(132, 13);
             this.lbl_status.TabIndex = 4;
-            this.lbl_status.Text = "Compass Motor Calibration";
+            this.lbl_status.Text = UiText.Translate("Compass Motor Calibration");
             // 
             // zedGraphControl1
             // 

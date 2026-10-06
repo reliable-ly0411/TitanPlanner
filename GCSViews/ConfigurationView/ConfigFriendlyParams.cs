@@ -21,7 +21,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private void BUT_Find_Click(object sender, EventArgs e)
         {
             InputBox.TextChanged += InputBox_TextChanged;
-            if (InputBox.Show("Search For", "Enter a single word to search for", ref searchfor) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Search For"), UiText.Translate("Enter a single word to search for"), ref searchfor) == DialogResult.OK)
             {
                 filterList(searchfor);
             }

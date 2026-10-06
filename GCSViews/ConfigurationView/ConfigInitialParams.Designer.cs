@@ -1,4 +1,5 @@
-﻿
+﻿using MissionPlanner.Utilities;
+
 namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigInitialParams
@@ -66,7 +67,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Airscrew size in inch:";
+            this.label1.Text = UiText.Translate("Airscrew size in inch:");
             // 
             // label2
             // 
@@ -75,7 +76,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Battery cellcount:";
+            this.label2.Text = UiText.Translate("Battery cellcount:");
             // 
             // label3
             // 
@@ -84,7 +85,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(163, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Battery cell fully charged voltage:";
+            this.label3.Text = UiText.Translate("Battery cell fully charged voltage:");
             // 
             // label4
             // 
@@ -93,7 +94,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(176, 13);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Battery cell fully discharged voltage:";
+            this.label4.Text = UiText.Translate("Battery cell fully discharged voltage:");
             // 
             // cb_tmotor
             // 
@@ -102,7 +103,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.cb_tmotor.Name = "cb_tmotor";
             this.cb_tmotor.Size = new System.Drawing.Size(154, 17);
             this.cb_tmotor.TabIndex = 5;
-            this.cb_tmotor.Text = "Using T-Motor Flame ESC?";
+            this.cb_tmotor.Text = UiText.Translate("Using T-Motor Flame ESC?");
             this.cb_tmotor.UseVisualStyleBackColor = true;
             // 
             // t_prop
@@ -143,7 +144,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.btn_docalc.Name = "btn_docalc";
             this.btn_docalc.Size = new System.Drawing.Size(236, 23);
             this.btn_docalc.TabIndex = 12;
-            this.btn_docalc.Text = "Calculate Initial Parameters";
+            this.btn_docalc.Text = UiText.Translate("Calculate Initial Parameters");
             this.btn_docalc.UseVisualStyleBackColor = true;
             this.btn_docalc.Click += new System.EventHandler(this.btn_docalc_Click);
             // 
@@ -167,7 +168,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 13);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Battery Chemistry";
+            this.label5.Text = UiText.Translate("Battery Chemistry");
             // 
             // cb_suggested
             // 
@@ -176,7 +177,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.cb_suggested.Name = "cb_suggested";
             this.cb_suggested.Size = new System.Drawing.Size(346, 17);
             this.cb_suggested.TabIndex = 15;
-            this.cb_suggested.Text = "Add suggested settings for 4.0 and up (Battery failsafe and Fence) ?";
+            this.cb_suggested.Text = UiText.Translate("Add suggested settings for 4.0 and up (Battery failsafe and Fence) ?");
             this.cb_suggested.UseVisualStyleBackColor = true;
             // 
             // linkLabel1
@@ -197,7 +198,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(377, 13);
             this.label6.TabIndex = 17;
-            this.label6.Text = "You can find a detailed description of initial parameter settings and tuning here" +
+            this.label6.Text = UiText.Translate("You can find a detailed description of initial parameter settings and tuning here") +
     ".";
             // 
             // label7
@@ -207,7 +208,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 18;
-            this.label7.Text = "PLEASE READ IT !";
+            this.label7.Text = UiText.Translate("PLEASE READ IT !");
             // 
             // ConfigInitialParams
             // 

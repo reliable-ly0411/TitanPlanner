@@ -3122,7 +3122,7 @@ namespace MissionPlanner.Controls
                 //DrawRectangle((Pen)Pens.Black, 0, this.Height - bottomsize, this.Width, bottomsize);
 
                 if (isNaN)
-                    drawstring("NaN Error " + DateTime.Now, font, this.Height / 30 + 10,
+                    drawstring(UiText.Translate("NaN Error ") + DateTime.Now, font, this.Height / 30 + 10,
                         (SolidBrush) Brushes.Red, 50, 50);
 
                 // custom user items
@@ -3254,7 +3254,7 @@ namespace MissionPlanner.Controls
                             }
                             else
                             {
-                                drawstring("Vibe", font, fontsize + 2, (SolidBrush)Brushes.Red, vibehitzone.X, vibehitzone.Y);
+                                drawstring(UiText.Translate("Vibe"), font, fontsize + 2, (SolidBrush)Brushes.Red, vibehitzone.X, vibehitzone.Y);
                             }
                         }
                         else
@@ -3265,7 +3265,7 @@ namespace MissionPlanner.Controls
                             }
                             else
                             {
-                                drawstring("Vibe", font, fontsize + 2, (SolidBrush)Brushes.Orange, vibehitzone.X, vibehitzone.Y);
+                                drawstring(UiText.Translate("Vibe"), font, fontsize + 2, (SolidBrush)Brushes.Orange, vibehitzone.X, vibehitzone.Y);
                             }
 
                         }
@@ -3278,7 +3278,7 @@ namespace MissionPlanner.Controls
                         }
                         else
                         {
-                            drawstring("Vibe", font, fontsize + 2, _whiteBrush, vibehitzone.X, vibehitzone.Y);
+                            drawstring(UiText.Translate("Vibe"), font, fontsize + 2, _whiteBrush, vibehitzone.X, vibehitzone.Y);
                         }
                     }
                 }

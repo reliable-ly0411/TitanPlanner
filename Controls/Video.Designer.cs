@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class Video
     {
@@ -45,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(714, 439);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Video";
-            this.Text = "Video";
+            this.Text = UiText.Translate("Video");
             this.Load += new System.EventHandler(this.Video_Load);
             this.ResumeLayout(false);
 

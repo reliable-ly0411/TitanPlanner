@@ -38,8 +38,8 @@ namespace MissionPlanner.Log
             zg1.GraphPane.YAxis.Title.IsVisible = false;
             zg1.GraphPane.Y2Axis.Title.Text = "";
             zg1.GraphPane.Title.IsVisible = true;
-            zg1.GraphPane.Title.Text = "Mavlink Log Graph";
-            zg1.GraphPane.XAxis.Title.Text = "Time (sec)";
+            zg1.GraphPane.Title.Text = UiText.Translate("Mavlink Log Graph");
+            zg1.GraphPane.XAxis.Title.Text = UiText.Translate("Time (sec)");
 
             zg1.GraphPane.XAxis.Type = AxisType.Date;
             zg1.GraphPane.XAxis.Scale.Format = "HH:mm:ss";
@@ -65,14 +65,14 @@ namespace MissionPlanner.Log
 
                     if (Control.ModifierKeys == Keys.Shift)
                     {
-                        InputBox.Show("Alt offset",
-                            "Please enter your offset altitude",
+                        InputBox.Show(UiText.Translate("Alt offset"),
+                            UiText.Translate("Please enter your offset altitude"),
                             ref offsetalt);
 
                         float temp = 0;
                         if (!float.TryParse(offsetalt, out temp))
                         {
-                            CustomMessageBox.Show("Bad Offset", "Error");
+                            CustomMessageBox.Show(UiText.Translate("Bad Offset"), UiText.Translate("Error"));
                             return;
                         }
                     }
@@ -90,7 +90,7 @@ namespace MissionPlanner.Log
                             catch (Exception ex)
                             {
                                 log.Debug(ex.ToString());
-                                CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                                CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                                 return;
                             }
 
@@ -167,8 +167,8 @@ namespace MissionPlanner.Log
                             }
                             else
                             {
-                                InputBox.Show("Relative Alt",
-                                    "Please enter your home altitude, or press cancel to use absolute alt",
+                                InputBox.Show(UiText.Translate("Relative Alt"),
+                                    UiText.Translate("Please enter your home altitude, or press cancel to use absolute alt"),
                                     ref basealtstring);
                             }
 
@@ -228,7 +228,7 @@ namespace MissionPlanner.Log
                             catch (Exception ex)
                             {
                                 log.Debug(ex.ToString());
-                                CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                                CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                                 return;
                             }
 
@@ -297,7 +297,7 @@ namespace MissionPlanner.Log
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    this.Text = "Log - " + Path.GetFileName(openFileDialog1.FileName);
+                    this.Text = UiText.Translate("Log - ") + Path.GetFileName(openFileDialog1.FileName);
 
                     List<string> fields = await GetLogFileValidFields(openFileDialog1.FileName).ConfigureAwait(true);
 
@@ -421,7 +421,7 @@ namespace MissionPlanner.Log
                 catch (Exception ex)
                 {
                     log.Debug(ex.ToString());
-                    CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                    CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                     return options;
                 }
 
@@ -615,7 +615,7 @@ namespace MissionPlanner.Log
             }
             catch
             {
-                CustomMessageBox.Show("Bad PacketName");
+                CustomMessageBox.Show(UiText.Translate("Bad PacketName"));
                 return;
             }
 
@@ -675,7 +675,7 @@ namespace MissionPlanner.Log
             }
             else
             {
-                CustomMessageBox.Show("Compile Failed");
+                CustomMessageBox.Show(UiText.Translate("Compile Failed"));
                 return;
             }
 
@@ -1009,7 +1009,7 @@ namespace MissionPlanner.Log
                 Name = "select",
                 Width = 50,
                 Height = 500,
-                Text = "Graph This",
+                Text = UiText.Translate("Graph This"),
                 TopLevel = true
             };
 
@@ -1057,7 +1057,7 @@ namespace MissionPlanner.Log
                             catch (Exception ex)
                             {
                                 log.Debug(ex.ToString());
-                                CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                                CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                                 return;
                             }
 
@@ -1140,7 +1140,7 @@ namespace MissionPlanner.Log
                                 catch (Exception ex)
                                 {
                                     log.Debug(ex.ToString());
-                                    CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                                    CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                                     return;
                                 }
 
@@ -1178,11 +1178,11 @@ namespace MissionPlanner.Log
                                 mine.logplaybackfile = null;
                             }
 
-                            CustomMessageBox.Show("File Saved with log file");
+                            CustomMessageBox.Show(UiText.Translate("File Saved with log file"));
                         }
                         catch
                         {
-                            CustomMessageBox.Show("Error Extracting params");
+                            CustomMessageBox.Show(UiText.Translate("Error Extracting params"));
                         }
                     }
                 }
@@ -1222,7 +1222,7 @@ namespace MissionPlanner.Log
                             catch (Exception ex)
                             {
                                 log.Debug(ex.ToString());
-                                CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                                CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                                 return;
                             }
 
@@ -1320,11 +1320,11 @@ namespace MissionPlanner.Log
                             {
                                 if (wplists == 0)
                                 {
-                                    CustomMessageBox.Show("No Waypoint found in file!");
+                                    CustomMessageBox.Show(UiText.Translate("No Waypoint found in file!"));
                                 }
                                 else
                                 {
-                                    CustomMessageBox.Show("File Saved with log file!");
+                                    CustomMessageBox.Show(UiText.Translate("File Saved with log file!"));
                                 }
                             }
                         }
@@ -1468,7 +1468,7 @@ namespace MissionPlanner.Log
                             catch (Exception ex)
                             {
                                 log.Debug(ex.ToString());
-                                CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                                CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                                 return;
                             }
 

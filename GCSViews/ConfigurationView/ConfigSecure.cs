@@ -126,7 +126,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             MainV2.instance.DeviceChanged += Instance_DeviceChanged;
 
-            CustomMessageBox.Show("Please re-power to autopilot");
+            CustomMessageBox.Show(UiText.Translate("Please re-power to autopilot"));
             UpdateStatus("Please re-power to autopilot", 100);
         }
 
@@ -183,7 +183,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             var resp = await httpclient.GetAsync(sncheck + "?SN=" + this.textBox1.Text);
             if (!resp.IsSuccessStatusCode)
             {
-                CustomMessageBox.Show(resp.ReasonPhrase, "Error");
+                CustomMessageBox.Show(resp.ReasonPhrase, UiText.Translate("Error"));
                 UpdateStatus(resp.ReasonPhrase, 0);
                 return;
             }
@@ -264,7 +264,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 else
                 {
                     UpdateStatus("Firmware Uploading FAILED", (int)0);
-                    CustomMessageBox.Show("Web request failed: " + fwresp.ReasonPhrase);
+                    CustomMessageBox.Show(UiText.Translate("Web request failed: ") + fwresp.ReasonPhrase);
                     Console.WriteLine(await fwresp.Content.ReadAsStringAsync());
                 }
             }

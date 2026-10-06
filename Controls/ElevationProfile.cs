@@ -43,7 +43,7 @@ namespace MissionPlanner.Controls
 
             if (planlocs.Count <= 1)
             {
-                CustomMessageBox.Show("Please plan something first", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Please plan something first"), Strings.ERROR);
                 return;
             }
 
@@ -231,7 +231,7 @@ namespace MissionPlanner.Controls
 
             if (list.Count < 2 || coords.Length > (2048 - 256))
             {
-                CustomMessageBox.Show("Too many/few WP's or to Big a Distance " + (distance / 1000) + "km", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Too many/few WP's or to Big a Distance ") + (distance / 1000) + "km", Strings.ERROR);
                 return answer;
             }
 
@@ -269,7 +269,7 @@ namespace MissionPlanner.Controls
             }
             catch
             {
-                CustomMessageBox.Show("Error getting GE data", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Error getting GE data"), Strings.ERROR);
             }
 
             return answer;
@@ -280,9 +280,9 @@ namespace MissionPlanner.Controls
             GraphPane myPane = zgc.GraphPane;
 
             // Set the titles and axis labels
-            myPane.Title.Text = "Elevation above ground";
-            myPane.XAxis.Title.Text = "Distance (" + CurrentState.DistanceUnit + ")";
-            myPane.YAxis.Title.Text = "Elevation (" + CurrentState.AltUnit + ")";
+            myPane.Title.Text = UiText.Translate("Elevation above ground");
+            myPane.XAxis.Title.Text = UiText.Translate("Distance (") + CurrentState.DistanceUnit + ")";
+            myPane.YAxis.Title.Text = UiText.Translate("Elevation (") + CurrentState.AltUnit + ")";
 
             LineItem myCurve;
 

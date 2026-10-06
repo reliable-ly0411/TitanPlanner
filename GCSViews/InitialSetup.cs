@@ -170,12 +170,12 @@ namespace MissionPlanner.GCSViews
                         isConnected);
                     AddBackstageViewPage(typeof(ConfigFirmwareManifest), rm.GetString("backstageViewPagefw.Text"),
                         isDisConnected);
-                    AddBackstageViewPage(typeof(ConfigFirmware), rm.GetString("backstageViewPagefw.Text") + " Legacy",
+                    AddBackstageViewPage(typeof(ConfigFirmware), rm.GetString("backstageViewPagefw.Text") + UiText.Translate(" Legacy"),
                         isDisConnected);
                 }
             }
 
-            AddBackstageViewPage(typeof(ConfigSecureAP), "Secure",
+            AddBackstageViewPage(typeof(ConfigSecureAP), UiText.Translate("Secure"),
                 isDisConnected);
 
 
@@ -216,7 +216,7 @@ namespace MissionPlanner.GCSViews
             }
             if (MainV2.DisplayConfiguration.displayServoOutput)
             {
-                AddBackstageViewPage(typeof(ConfigRadioOutput), "Servo Output", isConnected && gotAllParams, mand);
+                AddBackstageViewPage(typeof(ConfigRadioOutput), UiText.Translate("Servo Output"), isConnected && gotAllParams, mand);
 
             }
             if (MainV2.DisplayConfiguration.displaySerialPorts)
@@ -225,7 +225,7 @@ namespace MissionPlanner.GCSViews
             }
             if (MainV2.DisplayConfiguration.displayEscCalibration)
             {
-                AddBackstageViewPage(typeof(ConfigESCCalibration), "ESC Calibration", isConnected && gotAllParams, mand);
+                AddBackstageViewPage(typeof(ConfigESCCalibration), UiText.Translate("ESC Calibration"), isConnected && gotAllParams, mand);
             }
             if (MainV2.DisplayConfiguration.displayFlightModes)
             {
@@ -242,7 +242,7 @@ namespace MissionPlanner.GCSViews
             }
 
             if (MainV2.DisplayConfiguration.displayHWIDs)
-                AddBackstageViewPage(typeof(ConfigHWIDs), "HW ID", isConnected && gotAllParams, mand);
+                AddBackstageViewPage(typeof(ConfigHWIDs), UiText.Translate("HW ID"), isConnected && gotAllParams, mand);
 
             var opt = AddBackstageViewPage(typeof(ConfigOptional), rm.GetString("backstageViewPageopt.Text"));
             if (MainV2.DisplayConfiguration.displayRTKInject)
@@ -255,7 +255,7 @@ namespace MissionPlanner.GCSViews
                 AddBackstageViewPage(typeof(ConfigSerialInjectGPS), rtcmStr, true, opt);
             }
 
-            AddBackstageViewPage(typeof(ConfigCubeID), "CubeID Update",
+            AddBackstageViewPage(typeof(ConfigCubeID), UiText.Translate("CubeID Update"),
     isConnected, opt);
 
             if (MainV2.DisplayConfiguration.displaySikRadio)
@@ -267,7 +267,7 @@ namespace MissionPlanner.GCSViews
                 AddBackstageViewPage(typeof(ConfigADSB), "ADSB", isConnected && gotAllParams, mand);
 
             if (MainV2.DisplayConfiguration.displayGPSOrder)
-                AddBackstageViewPage(typeof(ConfigGPSOrder), "CAN GPS Order", isConnected && gotAllParams, opt);
+                AddBackstageViewPage(typeof(ConfigGPSOrder), UiText.Translate("CAN GPS Order"), isConnected && gotAllParams, opt);
 
             if (MainV2.DisplayConfiguration.displayBattMonitor)
             {
@@ -280,7 +280,7 @@ namespace MissionPlanner.GCSViews
             }
             if (MainV2.DisplayConfiguration.displayJoystick)
             {
-                AddBackstageViewPage(typeof(Joystick.JoystickSetup), "Joystick", true, opt);
+                AddBackstageViewPage(typeof(Joystick.JoystickSetup), UiText.Translate("Joystick"), true, opt);
             }
 
             if (MainV2.DisplayConfiguration.displayCompassMotorCalib)
@@ -333,25 +333,25 @@ namespace MissionPlanner.GCSViews
             }
             if (MainV2.DisplayConfiguration.displayAntennaTracker)
             {
-                AddBackstageViewPage(typeof(Antenna.TrackerUI), "Antenna Tracker", true, opt);
+                AddBackstageViewPage(typeof(Antenna.TrackerUI), UiText.Translate("Antenna Tracker"), true, opt);
             }
             if (MainV2.DisplayConfiguration.displayFFTSetup)
             {
-                AddBackstageViewPage(typeof(ConfigFFT), "FFT Setup", isConnected && gotAllParams, opt);
+                AddBackstageViewPage(typeof(ConfigFFT), UiText.Translate("FFT Setup"), isConnected && gotAllParams, opt);
             }
 
             if (MainV2.DisplayConfiguration.isAdvancedMode)
             {
-                var adv = AddBackstageViewPage(typeof(ConfigAdvanced), "Advanced");
+                var adv = AddBackstageViewPage(typeof(ConfigAdvanced), UiText.Translate("Advanced"));
 
                 if (MainV2.DisplayConfiguration.displayTerminal)
                 {
-                    AddBackstageViewPage(typeof(ConfigTerminal), "Terminal", true, adv);
+                    AddBackstageViewPage(typeof(ConfigTerminal), UiText.Translate("Terminal"), true, adv);
                 }
 
                 if (MainV2.DisplayConfiguration.displayREPL)
                 {
-                    AddBackstageViewPage(typeof(ConfigREPL), "Script REPL", isConnected, adv);
+                    AddBackstageViewPage(typeof(ConfigREPL), UiText.Translate("Script REPL"), isConnected, adv);
                 }
             }
 

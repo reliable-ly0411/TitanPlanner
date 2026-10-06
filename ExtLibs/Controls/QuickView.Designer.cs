@@ -1,4 +1,5 @@
-﻿
+﻿using MissionPlanner.Utilities;
+
 namespace MissionPlanner.Controls
 {
     partial class QuickView
@@ -36,7 +37,7 @@ namespace MissionPlanner.Controls
             this.SuspendLayout();
 
      
-            this.toolTip1.SetToolTip(this, "Double click to change");
+            this.toolTip1.SetToolTip(this, UiText.Translate("Double click to change"));
             // 
             // QuickView
             // 

@@ -347,13 +347,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 // allow scanning multiple ports
                 else
                 {
-                    CustomMessageBox.Show("Failed to discover board id. Please reconnect via usb and try again.", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to discover board id. Please reconnect via usb and try again."), Strings.ERROR);
                     return;
                 }
                 */
             }
 
-            CustomMessageBox.Show("Failed to detect port to upload to (Unknown VID/PID or Board String)\r\nPlease try Disconnect/Reconnect and upload while on this screen", Strings.ERROR);
+            CustomMessageBox.Show(UiText.Translate("Failed to detect port to upload to (Unknown VID/PID or Board String)\r\nPlease try Disconnect/Reconnect and upload while on this screen"), Strings.ERROR);
             return;
         }
 
@@ -439,7 +439,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         else if (fd.FileName.ToLower().EndsWith(".hex"))
                         {
                             DFU.Progress = fw_Progress1;
-                            if (CustomMessageBox.Show("Do you want to upload this via DFU?", "", CustomMessageBox.MessageBoxButtons.OKCancel) == CustomMessageBox.DialogResult.OK)
+                            if (CustomMessageBox.Show(UiText.Translate("Do you want to upload this via DFU?"), "", CustomMessageBox.MessageBoxButtons.OKCancel) == CustomMessageBox.DialogResult.OK)
                             {
                                 DFU.Flash(fd.FileName);
                                 return;
@@ -448,14 +448,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         else if(fd.FileName.ToLower().EndsWith(".bin"))
                         {
                             DFU.Progress = fw_Progress1;
-                            if (CustomMessageBox.Show("Flashing image to 0x08000000", "", CustomMessageBox.MessageBoxButtons.OKCancel) == CustomMessageBox.DialogResult.OK)
+                            if (CustomMessageBox.Show(UiText.Translate("Flashing image to 0x08000000"), "", CustomMessageBox.MessageBoxButtons.OKCancel) == CustomMessageBox.DialogResult.OK)
                                 DFU.Flash(fd.FileName, 0x08000000);
                             return;
                         }
                         else if (fd.FileName.ToLower().EndsWith(".px4") || fd.FileName.ToLower().EndsWith(".apj"))
                         {
                             if (solo.Solo.is_solo_alive &&
-                                CustomMessageBox.Show("Solo", "Is this a Solo?",
+                                CustomMessageBox.Show("Solo", UiText.Translate("Is this a Solo?"),
                                     CustomMessageBox.MessageBoxButtons.YesNo) == CustomMessageBox.DialogResult.Yes)
                             {
                                 boardtype = BoardDetect.boards.solo;
@@ -519,7 +519,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (MainV2.comPort.BaseStream.IsOpen)
                 {
                     MainV2.comPort.doReboot(true, false);
-                    CustomMessageBox.Show("Please ignore the unplug and plug back in when uploading flight firmware.");
+                    CustomMessageBox.Show(UiText.Translate("Please ignore the unplug and plug back in when uploading flight firmware."));
                 }
                 else
                 {
@@ -528,7 +528,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Failed to connect and send the reboot command", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to connect and send the reboot command"), Strings.ERROR);
             }
         }
 
@@ -541,21 +541,21 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (mav.BaseStream == null || !mav.BaseStream.IsOpen)
             {
-                CustomMessageBox.Show("Failed to find device on mavlink");
+                CustomMessageBox.Show(UiText.Translate("Failed to find device on mavlink"));
                 return;
             }
 
-            if (CustomMessageBox.Show("Are you sure you want to upgrade the bootloader? This can brick your board",
-                    "BL Update", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
-                if (CustomMessageBox.Show("Are you sure you want to upgrade the bootloader? This can brick your board, Please allow 5 mins for this process",
-                        "BL Update", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to upgrade the bootloader? This can brick your board"),
+                    UiText.Translate("BL Update"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
+                if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to upgrade the bootloader? This can brick your board, Please allow 5 mins for this process"),
+                        UiText.Translate("BL Update"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
                     if (mav.doCommand(MAVLink.MAV_CMD.FLASH_BOOTLOADER, 0, 0, 0, 0, 290876, 0, 0))
                     {
-                        CustomMessageBox.Show("Upgraded bootloader");
+                        CustomMessageBox.Show(UiText.Translate("Upgraded bootloader"));
                     }
                     else
                     {
-                        CustomMessageBox.Show("Failed to upgrade bootloader");
+                        CustomMessageBox.Show(UiText.Translate("Failed to upgrade bootloader"));
                     }
 
             mav?.Close();

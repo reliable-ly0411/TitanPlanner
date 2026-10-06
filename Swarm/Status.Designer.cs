@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Swarm
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Swarm
 {
     partial class Status
     {
@@ -59,7 +60,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Armed";
+            this.label2.Text = UiText.Translate("Armed");
             // 
             // label3
             // 
@@ -68,7 +69,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Mode";
+            this.label3.Text = UiText.Translate("Mode");
             // 
             // lbl_gps
             // 
@@ -86,7 +87,7 @@
             this.lbl_armed.Name = "lbl_armed";
             this.lbl_armed.Size = new System.Drawing.Size(37, 13);
             this.lbl_armed.TabIndex = 4;
-            this.lbl_armed.Text = "Armed";
+            this.lbl_armed.Text = UiText.Translate("Armed");
             // 
             // lbl_mode
             // 
@@ -95,7 +96,7 @@
             this.lbl_mode.Name = "lbl_mode";
             this.lbl_mode.Size = new System.Drawing.Size(34, 13);
             this.lbl_mode.TabIndex = 5;
-            this.lbl_mode.Text = "Mode";
+            this.lbl_mode.Text = UiText.Translate("Mode");
             // 
             // lbl_mav
             // 
@@ -113,7 +114,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Guided";
+            this.label4.Text = UiText.Translate("Guided");
             // 
             // lbl_guided
             // 
@@ -138,7 +139,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Location";
+            this.label6.Text = UiText.Translate("Location");
             // 
             // lbl_spd
             // 
@@ -156,7 +157,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 12;
-            this.label8.Text = "Speed";
+            this.label8.Text = UiText.Translate("Speed");
             // 
             // Status
             // 

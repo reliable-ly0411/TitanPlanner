@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class PrearmStatus
     {
@@ -62,7 +63,7 @@
             this.Name = "PrearmStatus";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.ShowIcon = false;
-            this.Text = "Prearm Checks";
+            this.Text = UiText.Translate("Prearm Checks");
             this.ResumeLayout(false);
             this.PerformLayout();
 

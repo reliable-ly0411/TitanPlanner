@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Swarm.SRB
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Swarm.SRB
 {
     partial class Control
     {
@@ -58,7 +59,7 @@
             this.but_start.Name = "but_start";
             this.but_start.Size = new System.Drawing.Size(75, 23);
             this.but_start.TabIndex = 0;
-            this.but_start.Text = "Start";
+            this.but_start.Text = UiText.Translate("Start");
             this.but_start.UseVisualStyleBackColor = true;
             this.but_start.Click += new System.EventHandler(this.but_start_Click);
             // 
@@ -68,7 +69,7 @@
             this.but_z.Name = "but_z";
             this.but_z.Size = new System.Drawing.Size(75, 23);
             this.but_z.TabIndex = 1;
-            this.but_z.Text = "Start Z";
+            this.but_z.Text = UiText.Translate("Start Z");
             this.but_z.UseVisualStyleBackColor = true;
             this.but_z.Click += new System.EventHandler(this.but_z_Click);
             // 
@@ -78,7 +79,7 @@
             this.but_land.Name = "but_land";
             this.but_land.Size = new System.Drawing.Size(75, 23);
             this.but_land.TabIndex = 2;
-            this.but_land.Text = "Start Land";
+            this.but_land.Text = UiText.Translate("Start Land");
             this.but_land.UseVisualStyleBackColor = true;
             this.but_land.Click += new System.EventHandler(this.but_land_Click);
             // 
@@ -88,7 +89,7 @@
             this.but_stop.Name = "but_stop";
             this.but_stop.Size = new System.Drawing.Size(75, 23);
             this.but_stop.TabIndex = 3;
-            this.but_stop.Text = "Stop";
+            this.but_stop.Text = UiText.Translate("Stop");
             this.but_stop.UseVisualStyleBackColor = true;
             this.but_stop.Click += new System.EventHandler(this.but_stop_Click);
             // 
@@ -112,7 +113,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "TakeOffAlt";
+            this.label1.Text = UiText.Translate("TakeOffAlt");
             // 
             // label2
             // 
@@ -121,7 +122,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "MinOffset";
+            this.label2.Text = UiText.Translate("MinOffset");
             // 
             // num_minoffset
             // 
@@ -143,7 +144,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "MaxOffset";
+            this.label3.Text = UiText.Translate("MaxOffset");
             // 
             // num_maxoffset
             // 
@@ -206,7 +207,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 15;
-            this.label8.Text = "Z speed";
+            this.label8.Text = UiText.Translate("Z speed");
             // 
             // num_zspeed
             // 
@@ -243,7 +244,7 @@
             this.Controls.Add(this.but_z);
             this.Controls.Add(this.but_start);
             this.Name = "Control";
-            this.Text = "Control";
+            this.Text = UiText.Translate("Control");
             ((System.ComponentModel.ISupportInitialize)(this.num_TakeOffAlt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_minoffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_maxoffset)).EndInit();

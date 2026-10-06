@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigSerial
     {
@@ -77,7 +78,7 @@
             this.myLabel1.Name = "myLabel1";
             this.myLabel1.resize = false;
             this.myLabel1.TabIndex = 0;
-            this.myLabel1.Text = "Port Name";
+            this.myLabel1.Text = UiText.Translate("Port Name");
             this.myLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             //
             // myLabel2
@@ -90,7 +91,7 @@
             this.myLabel2.Name = "myLabel2";
             this.myLabel2.resize = false;
             this.myLabel2.TabIndex = 1;
-            this.myLabel2.Text = "Speed";
+            this.myLabel2.Text = UiText.Translate("Speed");
             this.myLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             //
             // myLabel3
@@ -103,7 +104,7 @@
             this.myLabel3.Name = "myLabel3";
             this.myLabel3.resize = false;
             this.myLabel3.TabIndex = 2;
-            this.myLabel3.Text = "Protocol";
+            this.myLabel3.Text = UiText.Translate("Protocol");
             this.myLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             //
             // myLabel4
@@ -116,7 +117,7 @@
             this.myLabel4.Name = "myLabel4";
             this.myLabel4.resize = false;
             this.myLabel4.TabIndex = 3;
-            this.myLabel4.Text = "Options";
+            this.myLabel4.Text = UiText.Translate("Options");
             this.myLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ConfigSerial

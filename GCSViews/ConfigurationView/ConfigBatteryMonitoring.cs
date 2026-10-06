@@ -84,7 +84,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT_CAPACITY Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT_CAPACITY Failed"), Strings.ERROR);
             }
         }
 
@@ -150,7 +150,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT_MONITOR,BATT_VOLT_PIN,BATT_CURR_PIN Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT_MONITOR,BATT_VOLT_PIN,BATT_CURR_PIN Failed"), Strings.ERROR);
             }
         }
 
@@ -189,7 +189,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (MainV2.comPort.MAV.param.ContainsKey("BATT_MONITOR") &&
                     (MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 3 ||
                      MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 4)) {
-                   CustomMessageBox.Show("Set BATT_VOLT_MULT Failed", Strings.ERROR);
+                   CustomMessageBox.Show(UiText.Translate("Set BATT_VOLT_MULT Failed"), Strings.ERROR);
                 }
             }
         }
@@ -213,7 +213,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (MainV2.comPort.MAV.param.ContainsKey("BATT_MONITOR") &&
                     (MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 3 ||
                      MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 4)) {
-                  CustomMessageBox.Show("Set BATT_VOLT_MULT Failed", Strings.ERROR);
+                  CustomMessageBox.Show(UiText.Translate("Set BATT_VOLT_MULT Failed"), Strings.ERROR);
                 }
             }
         }
@@ -237,7 +237,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (MainV2.comPort.MAV.param.ContainsKey("BATT_MONITOR") &&
                     (MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 3 ||
                      MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 4)) {
-                  CustomMessageBox.Show("Set BATT_AMP_PERVOLT Failed", Strings.ERROR);
+                  CustomMessageBox.Show(UiText.Translate("Set BATT_AMP_PERVOLT Failed"), Strings.ERROR);
                 }
             }
         }
@@ -435,7 +435,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT_????_PIN Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT_????_PIN Failed"), Strings.ERROR);
             }
         }
 
@@ -467,7 +467,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbattery"] != null)
                     speechstring = Settings.Instance["speechbattery"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechbattery"] = speechstring;
 
@@ -475,7 +475,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatteryvolt"] != null)
                     speechstring = Settings.Instance["speechbatteryvolt"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What Voltage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What Voltage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatteryvolt"] = speechstring;
 
@@ -483,7 +483,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatterypercent"] != null)
                     speechstring = Settings.Instance["speechbatterypercent"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What percentage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What percentage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatterypercent"] = speechstring;
             }
@@ -536,7 +536,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (MainV2.comPort.MAV.param.ContainsKey("BATT_MONITOR") &&
                     (MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 3 ||
                      MainV2.comPort.MAV.param["BATT_MONITOR"].Value == 4)) {
-                  CustomMessageBox.Show("Set BATT_AMP_PERVOLT Failed", Strings.ERROR);
+                  CustomMessageBox.Show(UiText.Translate("Set BATT_AMP_PERVOLT Failed"), Strings.ERROR);
                 }
             }
         }

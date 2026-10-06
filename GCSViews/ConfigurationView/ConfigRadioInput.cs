@@ -309,11 +309,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             // Combined dialog - merge the two calibration setup messages
             CustomMessageBox.Show(
-                "Radio Calibration Setup:\n\n" +
-                "1. Ensure your transmitter is on and receiver is powered and connected\n" +
-                "2. Ensure your motor does not have power/no props!!!\n\n" +
-                "After clicking OK, move all RC sticks and switches to their\nextreme positions so the red bars hit the limits.\n\n" +
-                "Click 'Click when Done' button when finished moving sticks.");
+                UiText.Translate("Radio Calibration Setup:\n\n") +
+                UiText.Translate("1. Ensure your transmitter is on and receiver is powered and connected\n") +
+                UiText.Translate("2. Ensure your motor does not have power/no props!!!\n\n") +
+                UiText.Translate("After clicking OK, move all RC sticks and switches to their\nextreme positions so the red bars hit the limits.\n\n") +
+                UiText.Translate("Click 'Click when Done' button when finished moving sticks."));
 
             var oldrc = MainV2.comPort.MAV.cs.raterc;
             var oldatt = MainV2.comPort.MAV.cs.rateattitude;
@@ -361,11 +361,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             else
             {
-                CustomMessageBox.Show("Bad channel 1 input, canceling");
+                CustomMessageBox.Show(UiText.Translate("Bad channel 1 input, canceling"));
                 return;
             }
 
-            CustomMessageBox.Show("Ensure all your sticks are centered and throttle is down, and click ok to continue");
+            CustomMessageBox.Show(UiText.Translate("Ensure all your sticks are centered and throttle is down, and click ok to continue"));
 
             MainV2.comPort.MAV.cs.UpdateCurrentSettings(currentStateBindingSource.UpdateDataSource(MainV2.comPort.MAV.cs), true, MainV2.comPort);
 
@@ -400,7 +400,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch
                 {
                     if (MainV2.comPort.MAV.param.ContainsKey("RC" + (a + 1).ToString("0") + "_MIN"))
-                        CustomMessageBox.Show("Failed to set Channel " + (a + 1));
+                        CustomMessageBox.Show(UiText.Translate("Failed to set Channel ") + (a + 1));
                 }
 
                 data = data + "CH" + (a + 1) + " " + rcmin[a] + " | " + rcmax[a] + "\n";
@@ -420,8 +420,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
 
             CustomMessageBox.Show(
-                "Here are the detected radio options\nNOTE Channels not connected are displayed as 1500 +-2\nNormal values are around 1100 | 1900\nChannel:Min | Max \n" +
-                data, "Radio");
+                UiText.Translate("Here are the detected radio options\nNOTE Channels not connected are displayed as 1500 +-2\nNormal values are around 1100 | 1900\nChannel:Min | Max \n") +
+                data, UiText.Translate("Radio"));
 
             BUT_Calibrateradio.Text = Strings.Completed;
         }

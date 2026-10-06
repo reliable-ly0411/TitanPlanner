@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using MissionPlanner.Utilities;
+using log4net;
 using MissionPlanner.Controls;
 using MissionPlanner.test;
 using Newtonsoft.Json;
@@ -127,7 +128,7 @@ namespace MissionPlanner.Utilities
             // Special-case windowed 3D map: set title/icon to match main app
             if (ctl is MissionPlanner.Controls.Map3D)
             {
-                frm.Text = "3D Map";
+                frm.Text = UiText.Translate("3D Map");
                 frm.TopMost = true;
                 try
                 {

@@ -229,7 +229,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     list += item + " ";
                 }
-                Common.MessageShowAgain("No matching Params", "Missing " + missed + " params\n" + list);
+                Common.MessageShowAgain("No matching Params", UiText.Translate("Missing ") + missed + UiText.Translate(" params\n") + list);
             }
         }
 
@@ -281,7 +281,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // Disable button and show writing status
             string originalText = BUT_writePIDS.Text;
             BUT_writePIDS.Enabled = false;
-            BUT_writePIDS.Text = "Writing...";
+            BUT_writePIDS.Text = UiText.Translate("Writing...");
             BUT_writePIDS.Refresh();
 
             try
@@ -292,7 +292,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     if (MainV2.comPort.BaseStream == null || !MainV2.comPort.BaseStream.IsOpen)
                     {
-                        CustomMessageBox.Show("Your are not connected", Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Translate("Your are not connected"), Strings.ERROR);
                         return;
                     }
 
@@ -335,27 +335,27 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch
                 {
                     error++;
-                    CustomMessageBox.Show("Set " + value + " Failed");
+                    CustomMessageBox.Show(UiText.Translate("Set ") + value + UiText.Translate(" Failed"));
                 }
             }
 
             //Check if reboot is required
             if (reboot)
             {
-               CustomMessageBox.Show("Reboot is required for some parameters to take effect.", "Reboot Required");
+               CustomMessageBox.Show(UiText.Translate("Reboot is required for some parameters to take effect."), UiText.Translate("Reboot Required"));
             }
 
             if (MainV2.comPort.MAV.param.TotalReceived != MainV2.comPort.MAV.param.TotalReported )
             {
                 if (MainV2.comPort.MAV.cs.armed)
                 {
-                    CustomMessageBox.Show("The number of available parameters changed, until full param refresh is done, some parameters will not be available.", "Params");
+                    CustomMessageBox.Show(UiText.Translate("The number of available parameters changed, until full param refresh is done, some parameters will not be available."), UiText.Translate("Params"));
                     //Hack the number of reported params to keep params list available
                     MainV2.comPort.MAV.param.TotalReported = MainV2.comPort.MAV.param.TotalReceived;
                 }
                 else
                 {
-                    CustomMessageBox.Show("The number of available parameters changed. A full param refresh will be done to show all params.", "Params");
+                    CustomMessageBox.Show(UiText.Translate("The number of available parameters changed. A full param refresh will be done to show all params."), UiText.Translate("Params"));
                     //Click on refresh button
                     BUT_rerequestparams_Click(BUT_rerequestparams, null);
                 }
@@ -463,7 +463,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     {
                         CustomMessageBox.Show(
                             Params[Command.Index, e.RowIndex].Value +
-                            " is marked as ReadOnly, and will not be changed", "ReadOnly",
+                            UiText.Translate(" is marked as ReadOnly, and will not be changed"), UiText.Translate("ReadOnly"),
                             MessageBoxButtons.OK);
                         Params.CellValueChanged -= Params_CellValueChanged;
                         Params[e.ColumnIndex, e.RowIndex].Value = cellEditValue;
@@ -480,7 +480,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         if (
                             CustomMessageBox.Show(
                                 Params[Command.Index, e.RowIndex].Value +
-                                " value is out of range. Do you want to continue?", "Out of range",
+                                UiText.Translate(" value is out of range. Do you want to continue?"), UiText.Translate("Out of range"),
                                 MessageBoxButtons.YesNo) == (int)DialogResult.No)
                         {
                             Params.CellValueChanged -= Params_CellValueChanged;
@@ -987,7 +987,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private void BUT_reset_params_Click(object sender, EventArgs e)
         {
             if (
-                CustomMessageBox.Show("This will reset all params to their default value\nAre you sure?", "Reset",
+                CustomMessageBox.Show(UiText.Translate("This will reset all params to their default value\nAre you sure?"), UiText.Translate("Reset"),
                     MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
                 try
@@ -999,7 +999,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
 
                     CustomMessageBox.Show(
-                        "Your board is now rebooting, You will be required to reconnect to the autopilot.");
+                        UiText.Translate("Your board is now rebooting, You will be required to reconnect to the autopilot."));
                 }
                 catch (Exception ex)
                 {
@@ -1106,11 +1106,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Invalid command");
+                CustomMessageBox.Show(UiText.Translate("Invalid command"));
                 return;
             }
 
-            CustomMessageBox.Show("Parameters committed to non-volatile memory");
+            CustomMessageBox.Show(UiText.Translate("Parameters committed to non-volatile memory"));
             return;
         }
 
@@ -1158,7 +1158,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void BUT_reboot_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show("Are you sure you want to reboot the autopilot?", "Reboot", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to reboot the autopilot?"), UiText.Translate("Reboot"), MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
                 try
                 {
@@ -1196,7 +1196,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // (this is better than trying to cram the bitmask checkboxes into the small cell)
             if (bitmask.Count > 0)
             {
-                optionsControl = new MyButton() { Text = "Set Bitmask" };
+                optionsControl = new MyButton() { Text = UiText.Translate("Set Bitmask") };
                 optionsControl.Click += (s, a) =>
                 {
                     var mcb = new MavlinkCheckBoxBitMask();

@@ -287,7 +287,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                      temp.desc.ToLower().Contains("arducopter quad")
                 )
             {
-                pictureBoxQuad.Text = temp.name += " Quad";
+                pictureBoxQuad.Text = temp.name += UiText.Translate(" Quad");
                 pictureBoxQuad.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-tri".ToLower()) ||
@@ -295,7 +295,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                      temp.name.ToLower().Contains("arducopter tri") ||
                      temp.desc.ToLower().Contains("arducopter tri"))
             {
-                pictureBoxTri.Text = temp.name += " Tri";
+                pictureBoxTri.Text = temp.name += UiText.Translate(" Tri");
                 pictureBoxTri.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-hexa".ToLower()) ||
@@ -303,7 +303,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                      temp.name.ToLower().Contains("arducopter hexa") ||
                      temp.desc.ToLower().Contains("arducopter hexa"))
             {
-                pictureBoxHexa.Text = temp.name += " Hexa";
+                pictureBoxHexa.Text = temp.name += UiText.Translate(" Hexa");
                 pictureBoxHexa.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-y6".ToLower()) ||
@@ -320,7 +320,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                      temp.desc.ToLower().Contains("arducopter heli") ||
                      temp.urlfmuv2.ToLower().Contains("-heli"))
             {
-                pictureBoxHeli.Text = temp.name += " heli";
+                pictureBoxHeli.Text = temp.name += UiText.Translate(" heli");
                 pictureBoxHeli.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-octaquad-".ToLower()) ||
@@ -328,7 +328,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                      temp.name.ToLower().Contains("arducopter octa quad") ||
                      temp.desc.ToLower().Contains("arducopter octa quad"))
             {
-                pictureBoxOctaQuad.Text = temp.name += " Octa Quad";
+                pictureBoxOctaQuad.Text = temp.name += UiText.Translate(" Octa Quad");
                 pictureBoxOctaQuad.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-octa-".ToLower()) ||
@@ -336,7 +336,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                      temp.name.ToLower().Contains("arducopter octa") ||
                      temp.desc.ToLower().Contains("arducopter octa"))
             {
-                pictureBoxOcta.Text = temp.name += " Octa";
+                pictureBoxOcta.Text = temp.name += UiText.Translate(" Octa");
                 pictureBoxOcta.Tag = temp;
             }
             else if (temp.url2560_2.ToLower().Contains("antennatracker") ||
@@ -355,19 +355,19 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             else if (temp.urlpx4v2.ToLower().Contains("copter") && !temp.urlpx4v2.ToLower().Contains("heli") ||
                      temp.urlfmuv3.ToLower().Contains("copter") && !temp.urlfmuv3.ToLower().Contains("heli"))
             {
-                pictureBoxOcta.Text = temp.name + " Octa";
+                pictureBoxOcta.Text = temp.name + UiText.Translate(" Octa");
                 pictureBoxOcta.Tag = temp;
-                pictureBoxOctaQuad.Text = temp.name + " Octa Quad";
+                pictureBoxOctaQuad.Text = temp.name + UiText.Translate(" Octa Quad");
                 pictureBoxOctaQuad.Tag = temp;
-                pictureBoxHeli.Text = temp.name + " heli";
+                pictureBoxHeli.Text = temp.name + UiText.Translate(" heli");
                 pictureBoxHeli.Tag = temp;
                 pictureBoxY6.Text = temp.name + " Y6";
                 pictureBoxY6.Tag = temp;
-                pictureBoxHexa.Text = temp.name + " Hexa";
+                pictureBoxHexa.Text = temp.name + UiText.Translate(" Hexa");
                 pictureBoxHexa.Tag = temp;
-                pictureBoxTri.Text = temp.name + " Tri";
+                pictureBoxTri.Text = temp.name + UiText.Translate(" Tri");
                 pictureBoxTri.Tag = temp;
-                pictureBoxQuad.Text = temp.name + " Quad";
+                pictureBoxQuad.Text = temp.name + UiText.Translate(" Quad");
                 pictureBoxQuad.Tag = temp;
             }
             else if (temp.urlpx4v2.ToLower().Contains("rover") ||
@@ -540,7 +540,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         if (fd.FileName.ToLower().EndsWith(".px4") || fd.FileName.ToLower().EndsWith(".apj"))
                         {
                             if (solo.Solo.is_solo_alive &&
-                                CustomMessageBox.Show("Solo", "Is this a Solo?",
+                                CustomMessageBox.Show("Solo", UiText.Translate("Is this a Solo?"),
                                     CustomMessageBox.MessageBoxButtons.YesNo) == CustomMessageBox.DialogResult.Yes)
                             {
                                 boardtype = BoardDetect.boards.solo;
@@ -612,7 +612,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Can not open url https://firmware.ardupilot.org/", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Can not open url https://firmware.ardupilot.org/"), Strings.ERROR);
             }
         }
 
@@ -625,7 +625,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (MainV2.comPort.BaseStream.IsOpen)
                 {
                     MainV2.comPort.doReboot(true, false);
-                    CustomMessageBox.Show("Please ignore the unplug and plug back in when uploading flight firmware.");
+                    CustomMessageBox.Show(UiText.Translate("Please ignore the unplug and plug back in when uploading flight firmware."));
                 }
                 else
                 {
@@ -634,7 +634,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Failed to connect and send the reboot command", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to connect and send the reboot command"), Strings.ERROR);
             }
         }
 

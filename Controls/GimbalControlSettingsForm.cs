@@ -270,7 +270,7 @@ namespace MissionPlanner.Controls
                 }
                 clashMessage.AppendLine();
                 clashMessage.AppendLine("Are you sure you want to use this binding?");
-                return CustomMessageBox.Show(clashMessage.ToString(), "Key Binding Clash", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                return CustomMessageBox.Show(clashMessage.ToString(), UiText.Translate("Key Binding Clash"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             }
 
             return (int)DialogResult.Yes;

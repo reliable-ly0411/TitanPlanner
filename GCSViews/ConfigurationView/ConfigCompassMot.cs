@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Controls;
+﻿using MissionPlanner.Utilities;
+using MissionPlanner.Controls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -67,7 +68,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Compassmot requires AC 3.2+", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Compassmot requires AC 3.2+"), Strings.ERROR);
                 }
                 incompassmot = true;
             }
@@ -121,13 +122,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private void setupgraph()
         {
             zedGraphControl1.GraphPane.YAxis.Title.IsVisible = true;
-            zedGraphControl1.GraphPane.YAxis.Title.Text = "Interference %";
+            zedGraphControl1.GraphPane.YAxis.Title.Text = UiText.Translate("Interference %");
             zedGraphControl1.GraphPane.Title.IsVisible = true;
-            zedGraphControl1.GraphPane.Title.Text = "Compass Motor Calibration";
-            zedGraphControl1.GraphPane.XAxis.Title.Text = "Throttle %";
+            zedGraphControl1.GraphPane.Title.Text = UiText.Translate("Compass Motor Calibration");
+            zedGraphControl1.GraphPane.XAxis.Title.Text = UiText.Translate("Throttle %");
 
             zedGraphControl1.GraphPane.Y2Axis.Title.IsVisible = true;
-            zedGraphControl1.GraphPane.Y2Axis.Title.Text = "Amps";
+            zedGraphControl1.GraphPane.Y2Axis.Title.Text = UiText.Translate("Amps");
             zedGraphControl1.GraphPane.Y2Axis.IsVisible = true;
 
 

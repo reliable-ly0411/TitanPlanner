@@ -153,7 +153,7 @@ namespace MissionPlanner
 
             var removed = MainMap.Manager.PrimaryCache.DeleteOlderThan(DateTime.Now, Custom.Instance.DbId);
 
-            CustomMessageBox.Show("Removed " + removed + " images");
+            CustomMessageBox.Show(UiText.Translate("Removed ") + removed + UiText.Translate(" images"));
 
             log.InfoFormat("Removed {0} images", removed);
 
@@ -661,7 +661,7 @@ namespace MissionPlanner
 
         private void but_reboot_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Are you sure?"), "", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
                 MainV2.comPort.doReboot(false, true);
         }
 
@@ -671,7 +671,7 @@ namespace MissionPlanner
 
             var currentQNH = MainV2.comPort.GetParam(paramname).ToString();
 
-            if (InputBox.Show("QNH", "Enter the QNH in pascals (103040 = 1030.4 hPa)", ref currentQNH) ==
+            if (InputBox.Show("QNH", UiText.Translate("Enter the QNH in pascals (103040 = 1030.4 hPa)"), ref currentQNH) ==
                 DialogResult.OK)
             {
                 var newQNH = double.Parse(currentQNH);
@@ -691,7 +691,7 @@ namespace MissionPlanner
             var render = new vlcrender();
 
             var url = render.playurl;
-            if (InputBox.Show("enter url", "enter url", ref url) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("enter url"), UiText.Translate("enter url"), ref url) == DialogResult.OK)
             {
                 render.playurl = url;
                 try
@@ -712,7 +712,7 @@ namespace MissionPlanner
             var removed = ((PureImageCache)MyImageCache.Instance).DeleteOlderThan(DateTime.Now.AddDays(-30),
                 FlightData.instance.gMapControl1.MapProvider.DbId);
 
-            CustomMessageBox.Show("Removed " + removed + " images");
+            CustomMessageBox.Show(UiText.Translate("Removed ") + removed + UiText.Translate(" images"));
 
             log.InfoFormat("Removed {0} images", removed);
         }
@@ -728,7 +728,7 @@ namespace MissionPlanner
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 int a = 10;
-                InputBox.Show("How Many", "Enter how many pieces to split into", ref a);
+                InputBox.Show(UiText.Translate("How Many"), UiText.Translate("Enter how many pieces to split into"), ref a);
                 new DFLogBuffer(openFileDialog1.FileName).SplitLog(a);
             }            
         }
@@ -875,7 +875,7 @@ namespace MissionPlanner
         private void but_td_Click(object sender, EventArgs e)
         {
             string path = "@SYS/threads.txt";
-            if (InputBox.Show("path", "path", ref path) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("path"), UiText.Translate("path"), ref path) == DialogResult.OK)
             {
                 if (MainV2.comPort.BaseStream.IsOpen)
                 {
@@ -893,7 +893,7 @@ namespace MissionPlanner
             UserControl ctl = new UserControl() { Width = 1100, Height = 600, AutoSize = true };
 
             FlowLayoutPanel flp = new FlowLayoutPanel() { Dock = DockStyle.Fill, AutoScroll = true };
-            var lbl2 = new Label() { Text = "Click on line to zoom to it", AutoSize = true };
+            var lbl2 = new Label() { Text = UiText.Translate("Click on line to zoom to it"), AutoSize = true };
             flp.Controls.Add(lbl2);
             string line = "";
 
@@ -914,7 +914,7 @@ namespace MissionPlanner
             }
 
             ctl.Controls.Add(flp);
-            var butt = new MyButton() { Text = "Open DEM Dir", Dock = DockStyle.Top };
+            var butt = new MyButton() { Text = UiText.Translate("Open DEM Dir"), Dock = DockStyle.Top };
             butt.Click += (a, ev) =>
             {
                 System.Diagnostics.Process.Start(srtm.datadirectory);
@@ -946,7 +946,7 @@ namespace MissionPlanner
             if (ofd.CheckFileExists)
             {
                 string options = "GPS;ATT;NTUN;CTUN;MODE;BAT";
-                InputBox.Show("DashWare Types", "Enter Messages you want eg PARM;NTUN;CTUN", ref options);
+                InputBox.Show(UiText.Translate("DashWare Types"), UiText.Translate("Enter Messages you want eg PARM;NTUN;CTUN"), ref options);
 
                 var split = options.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -966,22 +966,22 @@ namespace MissionPlanner
 
         private void but_blupdate_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show("Are you sure you want to upgrade the bootloader? This can brick your board",
-                "BL Update", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int) DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to upgrade the bootloader? This can brick your board"),
+                UiText.Translate("BL Update"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int) DialogResult.Yes)
                 if (CustomMessageBox.Show(
-                    "Are you sure you want to upgrade the bootloader? This can brick your board, Please allow 5 mins for this process",
-                    "BL Update", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int) DialogResult.Yes)
+                    UiText.Translate("Are you sure you want to upgrade the bootloader? This can brick your board, Please allow 5 mins for this process"),
+                    UiText.Translate("BL Update"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int) DialogResult.Yes)
                     try
                     {
                         if (MainV2.comPort.doCommand((byte) MainV2.comPort.sysidcurrent,
                             (byte) MainV2.comPort.compidcurrent, MAVLink.MAV_CMD.FLASH_BOOTLOADER, 0, 0, 0, 0, 290876,
                             0, 0))
                         {
-                            CustomMessageBox.Show("Upgraded bootloader");
+                            CustomMessageBox.Show(UiText.Translate("Upgraded bootloader"));
                         }
                         else
                         {
-                            CustomMessageBox.Show("Failed to upgrade bootloader");
+                            CustomMessageBox.Show(UiText.Translate("Failed to upgrade bootloader"));
                         }
                     }
                     catch (Exception ex)
@@ -998,7 +998,7 @@ namespace MissionPlanner
 
         private void but_anonlog_Click(object sender, EventArgs e)
         {
-            CustomMessageBox.Show("This is beta, please confirm the output file");
+            CustomMessageBox.Show(UiText.Translate("This is beta, please confirm the output file"));
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "tlog or bin/log|*.tlog;*.bin;*.log";
@@ -1031,7 +1031,7 @@ namespace MissionPlanner
             cmb.DataSource = Enum.GetNames(typeof(MAVLink.MAVLINK_MSG_ID)).ToSortedList((s, s1) => s.CompareTo(s1));
             cmb.Width += 50;
             Button but = new Button();
-            but.Text = "Set";
+            but.Text = UiText.Translate("Set");
             ComboBox cmbrate = new ComboBox();
             cmbrate.DataSource = Enumerable.Range(0, 200).ToList();
 
@@ -1057,7 +1057,7 @@ namespace MissionPlanner
             };
 
             Button but2 = new Button();
-            but2.Text = "Set All";
+            but2.Text = UiText.Translate("Set All");
             but2.Click += (o, args) =>
             {
                 var rate = double.Parse(cmbrate.Text.ToString());
@@ -1102,7 +1102,7 @@ namespace MissionPlanner
 
         private void but_disablearmswitch_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Are you sure?"), "", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {   
                 var target_system = (byte)MainV2.comPort.sysidcurrent;
                 if (target_system == 0) {
@@ -1118,7 +1118,7 @@ namespace MissionPlanner
         private void but_hwids_Click(object sender, EventArgs e)
         {
             string value = "0";
-            if (InputBox.Show("hwid", "Enter the ID number", ref value, false, true) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("hwid"), UiText.Translate("Enter the ID number"), ref value, false, true) == DialogResult.OK)
             {
                 StringBuilder sb = new StringBuilder();
                 var items = value.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -1148,7 +1148,7 @@ namespace MissionPlanner
         private void but_packetbytes_Click(object sender, EventArgs e)
         {
             string input = "";
-            InputBox.Show("input", "enter the hex byte data", ref input, false, true);
+            InputBox.Show(UiText.Translate("input"), UiText.Translate("enter the hex byte data"), ref input, false, true);
 
             var ishex = input.Contains("0x") || input.ToLower().Any(a => a >= 'a' && a <= 'f');
 
@@ -1170,7 +1170,7 @@ namespace MissionPlanner
 
             var currentQNH = MainV2.comPort.GetParam(paramname).ToString();
             //338.6388 pa => 100' = 30.48m
-            CustomMessageBox.Show("use at your own risk!!!");
+            CustomMessageBox.Show(UiText.Translate("use at your own risk!!!"));
 
             NumericUpDown mavlinkNumericUpDown = new NumericUpDown();
             mavlinkNumericUpDown.Minimum = -100;
@@ -1227,10 +1227,10 @@ namespace MissionPlanner
 
         private void but_lockup_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show("Lockup the autopilot??? this can cause a CRASH!!!!!!",
-                    "Lockup", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
-                if (CustomMessageBox.Show("Lockup the autopilot??? this can cause a CRASH!!!!!!",
-                        "Lockup", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Lockup the autopilot??? this can cause a CRASH!!!!!!"),
+                    UiText.Translate("Lockup"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
+                if (CustomMessageBox.Show(UiText.Translate("Lockup the autopilot??? this can cause a CRASH!!!!!!"),
+                        UiText.Translate("Lockup"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == (int)DialogResult.Yes)
                     MainV2.comPort.doCommand(MainV2.comPort.MAV.sysid, MainV2.comPort.MAV.compid,
                         MAVLink.MAV_CMD.PREFLIGHT_REBOOT_SHUTDOWN,
                         42, 24, 71, 93, 0, 0, 0, false);
@@ -1239,7 +1239,7 @@ namespace MissionPlanner
         private void but_hexmavlink_Click(object sender, EventArgs e)
         {
             string input = "";
-            InputBox.Show("", "enter the hex value 'fd0500001a0c1'", ref input);
+            InputBox.Show("", UiText.Translate("enter the hex value 'fd0500001a0c1'"), ref input);
 
             var packet = StringToByteArray(input);
 
@@ -1264,7 +1264,7 @@ namespace MissionPlanner
 
         private void but_paramrestore_Click(object sender, EventArgs e)
         {
-            CustomMessageBox.Show("This process make take a some time");
+            CustomMessageBox.Show(UiText.Translate("This process make take a some time"));
 
             using (var ofd = new OpenFileDialog
             {
@@ -1287,7 +1287,7 @@ namespace MissionPlanner
                         List<string> fails = new List<string>();
                         var set = 0;
                         var alreadyset = 0;
-                        dialogue.UpdateProgressAndStatus(-1, "Get All by Name");
+                        dialogue.UpdateProgressAndStatus(-1, UiText.Translate("Get All by Name"));
                         // prefeed
                         foreach (var d in param2)
                         {
@@ -1295,7 +1295,7 @@ namespace MissionPlanner
                                 requireresponce: false);
                         }
 
-                        dialogue.UpdateProgressAndStatus(-1, "Set Enable's");
+                        dialogue.UpdateProgressAndStatus(-1, UiText.Translate("Set Enable's"));
                         // enables
                         foreach (var d in param2.Where(a=>a.Key.ToLower().Contains("enable")))
                         {
@@ -1312,7 +1312,7 @@ namespace MissionPlanner
 
                         foreach (var d in param2)
                         {
-                            dialogue.UpdateProgressAndStatus(-1, "Set " + d.Key);
+                            dialogue.UpdateProgressAndStatus(-1, UiText.Translate("Set ") + d.Key);
                             if (dialogue.doWorkArgs.CancelRequested)
                             {
                                 dialogue.doWorkArgs.CancelAcknowledged = true;
@@ -1348,12 +1348,12 @@ namespace MissionPlanner
                         }
 
                         if (fails.Count > 0)
-                            CustomMessageBox.Show("Set " + set + " params \nAlready Set " 
-                                                  + alreadyset + " params \nFailed to set " 
+                            CustomMessageBox.Show(UiText.Translate("Set ") + set + UiText.Translate(" params \nAlready Set ")
+                                                  + alreadyset + UiText.Translate(" params \nFailed to set ")
                                                   + fails.Aggregate((a, b) => a + "\n" + b));
                         else
-                            CustomMessageBox.Show("Set " + set + " params \nAlready Set "
-                                                  + alreadyset + " params");
+                            CustomMessageBox.Show(UiText.Translate("Set ") + set + UiText.Translate(" params \nAlready Set ")
+                                                  + alreadyset + UiText.Translate(" params"));
 
                     };
 
@@ -1376,18 +1376,18 @@ namespace MissionPlanner
         private void but_signfw_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "APJ File";
+            ofd.Title = UiText.Translate("APJ File");
             ofd.Filter = "*.apj|*.apj";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 OpenFileDialog ofd2 = new OpenFileDialog();
-                ofd2.Title = "Param File";
+                ofd2.Title = UiText.Translate("Param File");
                 ofd2.Filter = "*.param|*.param|*.parm|*.parm";
                 if (ofd2.ShowDialog() == DialogResult.OK)
                 {
                     apj_tool.Process(ofd.FileName, ofd2.FileName);
 
-                    CustomMessageBox.Show("The new APJ has been saved with the source APJ");
+                    CustomMessageBox.Show(UiText.Translate("The new APJ has been saved with the source APJ"));
                 }
             }
         }

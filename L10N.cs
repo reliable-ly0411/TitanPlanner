@@ -18,8 +18,8 @@ namespace MissionPlanner
 
         public static CultureInfo GetConfigLang()
         {
-            if (Settings.Instance["language"] == null)
-                return CultureInfo.CurrentUICulture;
+            if (string.IsNullOrEmpty(Settings.Instance["language"]))
+                return CultureInfo.GetCultureInfo("zh-Hans");
             else
                 return CultureInfoEx.GetCultureInfo(Settings.Instance["language"]);
         }

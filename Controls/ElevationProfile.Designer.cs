@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class ElevationProfile
     {
@@ -56,8 +57,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(507, 13);
             this.label1.TabIndex = 31;
-            this.label1.Text = "NOTE: The ground height data is pulled from Google Earth at 100m intervals. You u" +
-                "se this at your own risk";
+            this.label1.Text = UiText.Translate("NOTE: The ground height data is pulled from Google Earth at 100m intervals. You use this at your own risk");
             // 
             // ElevationProfile
             // 
@@ -69,7 +69,7 @@
             this.Controls.Add(this.zg1);
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "ElevationProfile";
-            this.Text = "ElevationProfile";
+            this.Text = UiText.Translate("ElevationProfile");
             this.Load += new System.EventHandler(this.ElevationProfile_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -151,7 +151,7 @@ namespace MissionPlanner
 
             using (ProgressReporterSphere prd = new ProgressReporterSphere())
             {
-                prd.btnCancel.Text = "Done";
+                prd.btnCancel.Text = UiText.Translate("Done");
 
                 Utilities.ThemeManager.ApplyThemeTo(prd);
 
@@ -322,7 +322,7 @@ namespace MissionPlanner
                 catch (Exception ex)
                 {
                     log.Debug(ex.ToString());
-                    CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                    CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                     return;
                 }
 
@@ -978,7 +978,7 @@ namespace MissionPlanner
                 catch (Exception ex)
                 {
                     log.Debug(ex.ToString());
-                    CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                    CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                     return new double[] { 0 };
                 }
 
@@ -1069,7 +1069,7 @@ namespace MissionPlanner
 
             if (data.Count < 10)
             {
-                CustomMessageBox.Show("Log does not contain enough data");
+                CustomMessageBox.Show(UiText.Translate("Log does not contain enough data"));
                 throw new Exception("Not Enough Data");
             }
 
@@ -1308,19 +1308,19 @@ namespace MissionPlanner
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Setting new offsets for compass #1 failed");
+                    CustomMessageBox.Show(UiText.Translate("Setting new offsets for compass #1 failed"));
                     return;
                 }
 
                 CustomMessageBox.Show(
-                    "New offsets for compass #1 are " + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
-                    ofs[2].ToString("0") + "\nThese have been saved for you.", "New Mag Offsets");
+                    UiText.Translate("New offsets for compass #1 are ") + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
+                    ofs[2].ToString("0") + UiText.Translate("\nThese have been saved for you."), UiText.Translate("New Mag Offsets"));
             }
             else
             {
                 CustomMessageBox.Show(
-                    "New offsets for compass #1 are " + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
-                    ofs[2].ToString("0") + "\n\nPlease write these down for manual entry", "New Mag Offsets");
+                    UiText.Translate("New offsets for compass #1 are ") + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
+                    ofs[2].ToString("0") + UiText.Translate("\n\nPlease write these down for manual entry"), UiText.Translate("New Mag Offsets"));
             }
         }
 
@@ -1363,19 +1363,19 @@ namespace MissionPlanner
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Setting new offsets for compass #2 failed");
+                    CustomMessageBox.Show(UiText.Translate("Setting new offsets for compass #2 failed"));
                     return;
                 }
 
                 CustomMessageBox.Show(
-                    "New offsets for compass #2 are " + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
-                    ofs[2].ToString("0") + "\nThese have been saved for you.", "New Mag Offsets");
+                    UiText.Translate("New offsets for compass #2 are ") + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
+                    ofs[2].ToString("0") + UiText.Translate("\nThese have been saved for you."), UiText.Translate("New Mag Offsets"));
             }
             else
             {
                 CustomMessageBox.Show(
-                    "New offsets for compass #2 are " + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
-                    ofs[2].ToString("0") + "\n\nPlease write these down for manual entry", "New Mag Offsets");
+                    UiText.Translate("New offsets for compass #2 are ") + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
+                    ofs[2].ToString("0") + UiText.Translate("\n\nPlease write these down for manual entry"), UiText.Translate("New Mag Offsets"));
             }
         }
 
@@ -1406,19 +1406,19 @@ namespace MissionPlanner
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Setting new offsets for compass #3 failed");
+                    CustomMessageBox.Show(UiText.Translate("Setting new offsets for compass #3 failed"));
                     return;
                 }
 
                 CustomMessageBox.Show(
-                    "New offsets for compass #3 are " + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
-                    ofs[2].ToString("0") + "\nThese have been saved for you.", "New Mag Offsets");
+                    UiText.Translate("New offsets for compass #3 are ") + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
+                    ofs[2].ToString("0") + UiText.Translate("\nThese have been saved for you."), UiText.Translate("New Mag Offsets"));
             }
             else
             {
                 CustomMessageBox.Show(
-                    "New compass3 offsets are " + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
-                    ofs[2].ToString("0") + "\n\nPlease write these down for manual entry", "New Mag Offsets");
+                    UiText.Translate("New compass3 offsets are ") + ofs[0].ToString("0") + " " + ofs[1].ToString("0") + " " +
+                    ofs[2].ToString("0") + UiText.Translate("\n\nPlease write these down for manual entry"), UiText.Translate("New Mag Offsets"));
             }
         }
 

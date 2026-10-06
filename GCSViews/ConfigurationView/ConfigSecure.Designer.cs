@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigSecure
     {
@@ -66,7 +67,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(431, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "CubeOrange Only - DO NOT USE  UNLESS YOU UNDERSTAND THE CONSEQUENCE";
+            this.label1.Text = UiText.Translate("CubeOrange Only - DO NOT USE  UNLESS YOU UNDERSTAND THE CONSEQUENCE");
             // 
             // progressBar1
             // 
@@ -93,7 +94,7 @@
             this.groupBox1.Size = new System.Drawing.Size(143, 83);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Always";
+            this.groupBox1.Text = UiText.Translate("Always");
             // 
             // groupBox2
             // 
@@ -104,7 +105,7 @@
             this.groupBox2.Size = new System.Drawing.Size(142, 83);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "One Time";
+            this.groupBox2.Text = UiText.Translate("One Time");
             // 
             // groupBox3
             // 
@@ -114,7 +115,7 @@
             this.groupBox3.Size = new System.Drawing.Size(141, 53);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Firmware";
+            this.groupBox3.Text = UiText.Translate("Firmware");
             // 
             // label3
             // 
@@ -123,7 +124,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Device SN";
+            this.label3.Text = UiText.Translate("Device SN");
             // 
             // timer1
             // 
@@ -155,7 +156,7 @@
             this.but_firmware.Name = "but_firmware";
             this.but_firmware.Size = new System.Drawing.Size(122, 23);
             this.but_firmware.TabIndex = 5;
-            this.but_firmware.Text = "Get Firmware";
+            this.but_firmware.Text = UiText.Translate("Get Firmware");
             this.but_firmware.UseVisualStyleBackColor = true;
             this.but_firmware.Click += new System.EventHandler(this.but_firmware_Click);
             // 
@@ -166,7 +167,7 @@
             this.but_dfu.Name = "but_dfu";
             this.but_dfu.Size = new System.Drawing.Size(122, 23);
             this.but_dfu.TabIndex = 4;
-            this.but_dfu.Text = "Enter DFU Mode";
+            this.but_dfu.Text = UiText.Translate("Enter DFU Mode");
             this.but_dfu.UseVisualStyleBackColor = true;
             this.but_dfu.Click += new System.EventHandler(this.but_dfu_Click);
             // 
@@ -177,7 +178,7 @@
             this.but_bootloader.Name = "but_bootloader";
             this.but_bootloader.Size = new System.Drawing.Size(122, 23);
             this.but_bootloader.TabIndex = 2;
-            this.but_bootloader.Text = "Get Bootloader";
+            this.but_bootloader.Text = UiText.Translate("Get Bootloader");
             this.but_bootloader.UseVisualStyleBackColor = true;
             this.but_bootloader.Click += new System.EventHandler(this.but_bootloader_Click);
             // 
@@ -187,7 +188,7 @@
             this.but_login.Name = "but_login";
             this.but_login.Size = new System.Drawing.Size(122, 23);
             this.but_login.TabIndex = 0;
-            this.but_login.Text = "Login";
+            this.but_login.Text = UiText.Translate("Login");
             this.but_login.UseVisualStyleBackColor = true;
             this.but_login.Click += new System.EventHandler(this.but_login_Click);
             // 
@@ -198,7 +199,7 @@
             this.but_getsn.Name = "but_getsn";
             this.but_getsn.Size = new System.Drawing.Size(122, 23);
             this.but_getsn.TabIndex = 1;
-            this.but_getsn.Text = "Enter Bootloader Mode";
+            this.but_getsn.Text = UiText.Translate("Enter Bootloader Mode");
             this.but_getsn.UseVisualStyleBackColor = true;
             this.but_getsn.Click += new System.EventHandler(this.but_getsn_Click);
             // 
@@ -209,7 +210,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Fw SHA";
+            this.label5.Text = UiText.Translate("Fw SHA");
             // 
             // ConfigSecure
             // 

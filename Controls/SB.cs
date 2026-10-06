@@ -17,13 +17,13 @@ namespace MissionPlanner.Controls
             Label link = new Label() { Text = l2, AutoSize = true };
 
 
-            Label nameLabel = new Label() { Text = "Enter your name (optional): ", AutoSize = true };
+            Label nameLabel = new Label() { Text = UiText.Translate("Enter your name (optional): "), AutoSize = true };
             TextBox nameTextBox = new TextBox()
             { Width = TextRenderer.MeasureText("thisismyname andmysurname", frm.Font).Width };
-            Label emailLabel = new Label() { Text = "Enter your email (optional): ", AutoSize = true };
+            Label emailLabel = new Label() { Text = UiText.Translate("Enter your email (optional): "), AutoSize = true };
             TextBox emailTextBox = new TextBox()
             { Width = TextRenderer.MeasureText("thisisatest@thisdomain.com.fre.do", frm.Font).Width };
-            MyButton submitButton = new MyButton() { Text = "Service Bulletin" };
+            MyButton submitButton = new MyButton() { Text = UiText.Translate("Service Bulletin") };
             frm.Controls.Add(flp);
 
             flp.Controls.Add(lb1);

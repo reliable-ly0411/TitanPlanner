@@ -54,7 +54,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     }
                     catch(Exception ex)
                     {
-                        CustomMessageBox.Show("Error reading SerialOptionRules.json file: " + ex.Message);
+                        CustomMessageBox.Show(UiText.Translate("Error reading SerialOptionRules.json file: ") + ex.Message);
                     }
                 }
                 var baudOptions = ParameterMetaDataRepository.GetParameterOptionsInt("SERIAL1_BAUD", MainV2.comPort.MAV.cs.firmware.ToString());
@@ -94,7 +94,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 prd.doWorkArgs.ForceExit = false;
                 Action<string, int> progress = delegate (string message, int i)
                 {
-                    prd.UpdateProgressAndStatus(i, "Trying to download uarts.txt\r\nFrom FC");
+                    prd.UpdateProgressAndStatus(i, UiText.Translate("Trying to download uarts.txt\r\nFrom FC"));
                 };
                 _mavftp.Progress += progress;
 
@@ -209,7 +209,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 //Port Name Label
                 Label label = new Label();
-                label.Text = "SERIAL PORT " + i.ToString() + "\n" + uartName;
+                label.Text = UiText.Translate("SERIAL PORT ") + i.ToString() + "\n" + uartName;
                 label.Location = new Point(0, 0);
                 label.Size = new Size(100, 40);
                 label.Anchor = AnchorStyles.None;
@@ -321,7 +321,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 var bitmask = ParameterMetaDataRepository.GetParameterBitMaskInt(param_name, MainV2.comPort.MAV.cs.firmware.ToString());
                 if (bitmask.Count > 0)
                 {
-                    MyButton optionsControl = new MyButton() { Text = "Set Bitmask", Height = 24, Anchor = AnchorStyles.None };
+                    MyButton optionsControl = new MyButton() { Text = UiText.Translate("Set Bitmask"), Height = 24, Anchor = AnchorStyles.None };
                     optionsControl.Click += (s, a) =>
                     {
                         var mcb = new MavlinkCheckBoxBitMask();
@@ -366,7 +366,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             //Add the message to the bottom of the table
             noteLabel = new Label()
             {
-                Text = "Note: Changes to the serial port settings will not take effect until the board is rebooted.",
+                Text = UiText.Translate("Note: Changes to the serial port settings will not take effect until the board is rebooted."),
                 Anchor = AnchorStyles.None,
                 Dock = DockStyle.Fill,
                 AutoSize = true,
@@ -436,7 +436,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             if (mavlinkPorts >= 4)
             {
-                noteLabel.Text = noteLabel.Text + "\r\nWarning: Maximum number of Mavlink ports are 5 including the USB port!";
+                noteLabel.Text = noteLabel.Text + UiText.Translate("\r\nWarning: Maximum number of Mavlink ports are 5 including the USB port!");
             }
        }
 
@@ -486,7 +486,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 bool ans = MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, param_name, val);
                 if (!ans)
                 {
-                    CustomMessageBox.Show("Unable to set parameter " + param_name);
+                    CustomMessageBox.Show(UiText.Translate("Unable to set parameter ") + param_name);
                     return false;
                 }
                 else
@@ -496,7 +496,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             else
             {
-                Common.MessageShowAgain("Parameter not found", "Parameter " + param_name + " not found");
+                Common.MessageShowAgain("Parameter not found", UiText.Translate("Parameter ") + param_name + UiText.Translate(" not found"));
                 return false;
             }
         }

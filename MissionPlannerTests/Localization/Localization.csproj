@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>MissionPlanner.Utilities</RootNamespace>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs.txt" Link="Program.cs" />
+    <Compile Include="../../ExtLibs/Utilities/UiText.cs" Link="UiText.cs" />
+    <EmbeddedResource Include="../../ExtLibs/Utilities/Resources/UiText.resx" Link="Resources/UiText.resx" />
+    <EmbeddedResource Include="../../ExtLibs/Utilities/Resources/UiText.zh-Hans.resx" Link="Resources/UiText.zh-Hans.resx" />
+    <Content Include="../../localization/zh-Hans/*translations.json" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Swarm.WaypointLeader
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Swarm.WaypointLeader
 {
     partial class WPControl
     {
@@ -68,7 +69,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(75, 20);
             this.numericUpDown1.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.numericUpDown1, "the seperation between the drones in the air");
+            this.toolTip1.SetToolTip(this.numericUpDown1, UiText.Translate("the seperation between the drones in the air"));
             this.numericUpDown1.Value = new decimal(new int[] {
             5,
             0,
@@ -83,7 +84,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Line Seperation";
+            this.label1.Text = UiText.Translate("Line Seperation");
             // 
             // label2
             // 
@@ -92,7 +93,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Lead";
+            this.label2.Text = UiText.Translate("Lead");
             // 
             // numericUpDown2
             // 
@@ -106,7 +107,7 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(75, 20);
             this.numericUpDown2.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.numericUpDown2, "the amount of lead the master air drone will be infront of the ground master");
+            this.toolTip1.SetToolTip(this.numericUpDown2, UiText.Translate("the amount of lead the master air drone will be infront of the ground master"));
             this.numericUpDown2.Value = new decimal(new int[] {
             20,
             0,
@@ -127,7 +128,7 @@
             this.PNL_status.Name = "PNL_status";
             this.PNL_status.Size = new System.Drawing.Size(758, 173);
             this.PNL_status.TabIndex = 14;
-            this.toolTip1.SetToolTip(this.PNL_status, "status of all the connected devices");
+            this.toolTip1.SetToolTip(this.PNL_status, UiText.Translate("status of all the connected devices"));
             // 
             // txt_mode
             // 
@@ -145,7 +146,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 13);
             this.label3.TabIndex = 19;
-            this.label3.Text = "User Offline trig";
+            this.label3.Text = UiText.Translate("User Offline trig");
             // 
             // num_useroffline
             // 
@@ -159,8 +160,7 @@
             this.num_useroffline.Name = "num_useroffline";
             this.num_useroffline.Size = new System.Drawing.Size(75, 20);
             this.num_useroffline.TabIndex = 18;
-            this.toolTip1.SetToolTip(this.num_useroffline, "the distance the groundmaster can go over to trigger the drones to switch to retu" +
-        "rn to home");
+            this.toolTip1.SetToolTip(this.num_useroffline, UiText.Translate("the distance the groundmaster can go over to trigger the drones to switch to return to home"));
             this.num_useroffline.Value = new decimal(new int[] {
             10,
             0,
@@ -190,8 +190,7 @@
             this.num_rtl_alt.Name = "num_rtl_alt";
             this.num_rtl_alt.Size = new System.Drawing.Size(75, 20);
             this.num_rtl_alt.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.num_rtl_alt, "the distance the groundmaster can go over to trigger the drones to switch to retu" +
-        "rn to home");
+            this.toolTip1.SetToolTip(this.num_rtl_alt, UiText.Translate("the distance the groundmaster can go over to trigger the drones to switch to return to home"));
             this.num_rtl_alt.Value = new decimal(new int[] {
             2,
             0,
@@ -205,8 +204,8 @@
             this.but_rth.Name = "but_rth";
             this.but_rth.Size = new System.Drawing.Size(75, 23);
             this.but_rth.TabIndex = 17;
-            this.but_rth.Text = "set mode rth";
-            this.toolTip1.SetToolTip(this.but_rth, "set the mode to return to home");
+            this.but_rth.Text = UiText.Translate("set mode rth");
+            this.toolTip1.SetToolTip(this.but_rth, UiText.Translate("set the mode to return to home"));
             this.but_rth.UseVisualStyleBackColor = true;
             this.but_rth.Click += new System.EventHandler(this.but_rth_Click);
             // 
@@ -216,8 +215,8 @@
             this.but_resetmode.Name = "but_resetmode";
             this.but_resetmode.Size = new System.Drawing.Size(75, 23);
             this.but_resetmode.TabIndex = 16;
-            this.but_resetmode.Text = "Reset Mode";
-            this.toolTip1.SetToolTip(this.but_resetmode, "Reset the internal state back so you can begin again");
+            this.but_resetmode.Text = UiText.Translate("Reset Mode");
+            this.toolTip1.SetToolTip(this.but_resetmode, UiText.Translate("Reset the internal state back so you can begin again"));
             this.but_resetmode.UseVisualStyleBackColor = true;
             this.but_resetmode.Click += new System.EventHandler(this.but_resetmode_Click);
             // 
@@ -227,8 +226,8 @@
             this.but_airmaster.Name = "but_airmaster";
             this.but_airmaster.Size = new System.Drawing.Size(75, 37);
             this.but_airmaster.TabIndex = 13;
-            this.but_airmaster.Text = "Set Air Master";
-            this.toolTip1.SetToolTip(this.but_airmaster, "set the air master drone");
+            this.but_airmaster.Text = UiText.Translate("Set Air Master");
+            this.toolTip1.SetToolTip(this.but_airmaster, UiText.Translate("set the air master drone"));
             this.but_airmaster.UseVisualStyleBackColor = true;
             this.but_airmaster.Click += new System.EventHandler(this.but_airmaster_Click);
             // 
@@ -238,8 +237,8 @@
             this.but_start.Name = "but_start";
             this.but_start.Size = new System.Drawing.Size(75, 23);
             this.but_start.TabIndex = 8;
-            this.but_start.Text = "Start";
-            this.toolTip1.SetToolTip(this.but_start, "start/stop sending commands to the drones");
+            this.but_start.Text = UiText.Translate("Start");
+            this.toolTip1.SetToolTip(this.but_start, UiText.Translate("start/stop sending commands to the drones"));
             this.but_start.UseVisualStyleBackColor = true;
             this.but_start.Click += new System.EventHandler(this.but_start_Click);
             // 
@@ -249,8 +248,8 @@
             this.but_master.Name = "but_master";
             this.but_master.Size = new System.Drawing.Size(75, 37);
             this.but_master.TabIndex = 3;
-            this.but_master.Text = "Set Ground Master";
-            this.toolTip1.SetToolTip(this.but_master, "set the ground master drone");
+            this.but_master.Text = UiText.Translate("Set Ground Master");
+            this.toolTip1.SetToolTip(this.but_master, UiText.Translate("set the ground master drone"));
             this.but_master.UseVisualStyleBackColor = true;
             this.but_master.Click += new System.EventHandler(this.but_master_Click);
             // 
@@ -260,8 +259,8 @@
             this.but_setmoderltland.Name = "but_setmoderltland";
             this.but_setmoderltland.Size = new System.Drawing.Size(75, 44);
             this.but_setmoderltland.TabIndex = 26;
-            this.but_setmoderltland.Text = "RTL (abandon mission)";
-            this.toolTip1.SetToolTip(this.but_setmoderltland, "set the mode to return to home");
+            this.but_setmoderltland.Text = UiText.Translate("RTL (abandon mission)");
+            this.toolTip1.SetToolTip(this.but_setmoderltland, UiText.Translate("set the mode to return to home"));
             this.but_setmoderltland.UseVisualStyleBackColor = true;
             this.but_setmoderltland.Click += new System.EventHandler(this.but_setmoderltland_Click);
             // 
@@ -277,8 +276,7 @@
             this.num_wpnav_accel.Name = "num_wpnav_accel";
             this.num_wpnav_accel.Size = new System.Drawing.Size(75, 20);
             this.num_wpnav_accel.TabIndex = 27;
-            this.toolTip1.SetToolTip(this.num_wpnav_accel, "the distance the groundmaster can go over to trigger the drones to switch to retu" +
-        "rn to home");
+            this.toolTip1.SetToolTip(this.num_wpnav_accel, UiText.Translate("the distance the groundmaster can go over to trigger the drones to switch to return to home"));
             this.num_wpnav_accel.Value = new decimal(new int[] {
             1,
             0,
@@ -304,7 +302,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 23;
-            this.label4.Text = "alt seperation";
+            this.label4.Text = UiText.Translate("alt seperation");
             // 
             // zedGraphControl1
             // 
@@ -330,7 +328,7 @@
             this.chk_alt_interleave.Name = "chk_alt_interleave";
             this.chk_alt_interleave.Size = new System.Drawing.Size(88, 17);
             this.chk_alt_interleave.TabIndex = 25;
-            this.chk_alt_interleave.Text = "Alt Interleave";
+            this.chk_alt_interleave.Text = UiText.Translate("Alt Interleave");
             this.chk_alt_interleave.UseVisualStyleBackColor = true;
             this.chk_alt_interleave.CheckedChanged += new System.EventHandler(this.chk_alt_interleave_CheckedChanged);
             // 
@@ -370,7 +368,7 @@
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.but_master);
             this.Name = "WPControl";
-            this.Text = "WPControl";
+            this.Text = UiText.Translate("WPControl");
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WPControl_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

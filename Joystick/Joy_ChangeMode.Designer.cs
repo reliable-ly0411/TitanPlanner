@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_ChangeMode
     {
@@ -47,7 +48,7 @@
             this.ClientSize = new System.Drawing.Size(148, 43);
             this.Controls.Add(this.comboBox1);
             this.Name = "Joy_ChangeMode";
-            this.Text = "Joy_ChangeMode";
+            this.Text = UiText.Translate("Joy_ChangeMode");
             this.ResumeLayout(false);
 
         }

@@ -210,7 +210,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (!MainV2.comPort.BaseStream.IsOpen)
                 {
                     if (CustomMessageBox.Show(
-                            "You are not currently connected via mavlink. Please make sure the device is already in slcan mode or this is the slcan serialport.",
+                            UiText.Translate("You are not currently connected via mavlink. Please make sure the device is already in slcan mode or this is the slcan serialport."),
                             "SLCAN", CustomMessageBox.MessageBoxButtons.OKCancel) != CustomMessageBox.DialogResult.OK)
                         return;
                 }
@@ -222,7 +222,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         "CAN_SLCAN_CPORT", canport, true);
                     if (cport == 0)
                     {
-                        CustomMessageBox.Show("Reboot required" + " after setting CPORT. Please reboot!",
+                        CustomMessageBox.Show(UiText.Translate("Reboot required") + UiText.Translate(" after setting CPORT. Please reboot!"),
                             Strings.ERROR);
                         return;
                     }
@@ -345,7 +345,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                               DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".can";
 
             var prd = new ProgressReporterDialogue();
-            prd.UpdateProgressAndStatus(-1, "Trying to connect");
+            prd.UpdateProgressAndStatus(-1, UiText.Translate("Trying to connect"));
             prd.DoWork += sender => can.StartSLCAN(port.BaseStream);
             prd.btnCancel.Click += (sender, args) =>
             {
@@ -515,7 +515,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     can.NodeInfo[nodeID].hardware_version.major + "." + can.NodeInfo[nodeID].hardware_version.minor,
                     CultureInfo.InvariantCulture);
 
-            if (CustomMessageBox.Show("Do you want to search the internet for an update?", "Update",
+            if (CustomMessageBox.Show(UiText.Translate("Do you want to search the internet for an update?"), UiText.Translate("Update"),
                     CustomMessageBox.MessageBoxButtons.YesNo) == CustomMessageBox.DialogResult.Yes)
             {
                 var url = can.LookForUpdate(devicename, hwversion, beta);
@@ -539,7 +539,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                         prd.DoWork += dialogue =>
                         {
-                            prd.UpdateProgressAndStatus(5, "Download FW");
+                            prd.UpdateProgressAndStatus(5, UiText.Translate("Download FW"));
                             var tempfile = Path.GetTempFileName();
                             Download.getFilefromNet(url, tempfile);
 
@@ -553,7 +553,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                             DroneCAN.DroneCAN.FileSendCompleteArgs file = (p, s) =>
                             {
-                                prd.UpdateProgressAndStatus(100, "File send complete");
+                                prd.UpdateProgressAndStatus(100, UiText.Translate("File send complete"));
                             };
                             DroneCAN.DroneCAN.FileSendProgressArgs fileprog = (n, f, p) =>
                             {
@@ -608,7 +608,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     DroneCAN.DroneCAN.FileSendCompleteArgs file = (p, s) =>
                     {
-                        prd.UpdateProgressAndStatus(100, "File send complete");
+                        prd.UpdateProgressAndStatus(100, UiText.Translate("File send complete"));
                     };
                     DroneCAN.DroneCAN.FileSendProgressArgs fileprog = (n, f, p) =>
                     {
@@ -701,7 +701,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             cmb_interfacetype.Enabled = true;
             cmb_networkinterface.Enabled = true;
-            but_connect.Text = "Connect";
+            but_connect.Text = UiText.Translate("Connect");
             isConnected = false;
         }
 
@@ -743,13 +743,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 menu_passthrough.Checked = false;
                 listener.Stop();
-                CustomMessageBox.Show("Stop", "Disabled forwarding");
+                CustomMessageBox.Show(UiText.Translate("Stop"), UiText.Translate("Disabled forwarding"));
                 listener = null;
                 return;
             }
 
             var port = 500;
-            if (InputBox.Show("Enter TCP Port", "Enter TCP Port", ref port) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Enter TCP Port"), UiText.Translate("Enter TCP Port"), ref port) == DialogResult.OK)
             {
                 menu_passthrough.Checked = true;
 
@@ -854,7 +854,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     }
                     catch (Exception exception)
                     {
-                        CustomMessageBox.Show(Strings.ERROR, "Forwarder problem " + exception.ToString());
+                        CustomMessageBox.Show(Strings.ERROR, UiText.Translate("Forwarder problem ") + exception.ToString());
                         if (listener != null)
                             listener.Stop();
                         listener = null;
@@ -917,11 +917,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             var paneltop = new Panel() { Width = (int)(320 * 2.3), Height = 600 };
 
-            var panel = new FlowLayoutPanel() { Text = "DroneCAN Messages", AutoScroll = true, Dock = DockStyle.Fill };
+            var panel = new FlowLayoutPanel() { Text = UiText.Translate("DroneCAN Messages"), AutoScroll = true, Dock = DockStyle.Fill };
 
             paneltop.Controls.Add(panel);
 
-            var cball = new CheckBox() { Text = "ALL", Width = 320 };
+            var cball = new CheckBox() { Text = UiText.Translate("ALL"), Width = 320 };
             cball.CheckedChanged += (s, e2) =>
             {
                 // update custom
@@ -993,7 +993,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 menu_passthrough4.Checked = false;
                 listener.Stop();
-                CustomMessageBox.Show("Stop", "Disabled forwarding");
+                CustomMessageBox.Show(UiText.Translate("Stop"), UiText.Translate("Disabled forwarding"));
                 listener = null;
                 return;
             }
@@ -1004,12 +1004,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             var baudrate = 230400;
             var target_node =
                 byte.Parse(myDataGridView1.CurrentRow.Cells[iDDataGridViewTextBoxColumn.Index].Value.ToString());
-            if (InputBox.Show("Enter TCP Port", "Enter TCP Port", ref port) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Enter TCP Port"), UiText.Translate("Enter TCP Port"), ref port) != DialogResult.OK)
             {
                 return;
             }
 
-            if (InputBox.Show("Enter Baudrate", "Enter Baudrate", ref baudrate) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Enter Baudrate"), UiText.Translate("Enter Baudrate"), ref baudrate) != DialogResult.OK)
             {
                 return;
             }
@@ -1198,7 +1198,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 catch (Exception exception)
                 {
-                    CustomMessageBox.Show(Strings.ERROR, "Forwarder problem " + exception.ToString());
+                    CustomMessageBox.Show(Strings.ERROR, UiText.Translate("Forwarder problem ") + exception.ToString());
                     if (listener != null)
                         listener.Stop();
                     listener = null;
@@ -1452,7 +1452,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             p.Controls.Add(dgvcanstats);
             p.Controls.Add(dgvstats);
             var frm = p.ShowUserControl();
-            frm.Text = "Stats";
+            frm.Text = UiText.Translate("Stats");
             frm.StartPosition = FormStartPosition.CenterScreen;
 
             can.MessageReceived += mrd;
@@ -1510,7 +1510,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             if (inter == null)
             {
-                CustomMessageBox.Show("No network interfaces found");
+                CustomMessageBox.Show(UiText.Translate("No network interfaces found"));
                 return;
             }
             BusInUse = bus;
@@ -1519,7 +1519,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             var p = inter.GetIPProperties().GetIPv4Properties();
             if (p == null)
             {
-                CustomMessageBox.Show("No IPv4 properties found");
+                CustomMessageBox.Show(UiText.Translate("No IPv4 properties found"));
                 return;
             }
 
@@ -1646,7 +1646,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (selected == null)
             {
-                CustomMessageBox.Show("Please select an interface type");
+                CustomMessageBox.Show(UiText.Translate("Please select an interface type"));
                 return;
             }
 
@@ -1655,7 +1655,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             cmb_interfacetype.Enabled = false;
             cmb_networkinterface.Enabled = false;
-            but_connect.Text = "Disconnect";
+            but_connect.Text = UiText.Translate("Disconnect");
             isConnected = true;
 
             var type = (ConnectionTypes)selected;
@@ -1746,7 +1746,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             ).FirstOrDefault();
             if (option != default(APFirmware.FirmwareInfo))
             {
-                Common.MessageShowAgain("New firmware", "New firmware for " + devicename + " " + option.MavFirmwareVersion + " " + option.GitSha + "\nUpdate bellow");
+                Common.MessageShowAgain("New firmware", UiText.Translate("New firmware for ") + devicename + " " + option.MavFirmwareVersion + " " + option.GitSha + UiText.Translate("\nUpdate bellow"));
             }
         }
     }

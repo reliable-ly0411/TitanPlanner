@@ -351,7 +351,7 @@ namespace MissionPlanner.Controls
                 Font = new Font("Segoe UI", 8F),
                 ForeColor = textColor,
                 BackColor = Color.Transparent,
-                Text = "Sats: --: ---",
+                Text = UiText.Translate("Sats: --: ---"),
                 Location = new Point(32, 0),
                 Margin = new Padding(0),
                 Padding = new Padding(0)
@@ -409,7 +409,7 @@ namespace MissionPlanner.Controls
                 {
                     var confirmResult = Common.MessageShowAgain(
                         "Arm Vehicle",
-                        "Please confirm you'd like to ARM the vehicle.",
+                        UiText.Translate("Please confirm you'd like to ARM the vehicle."),
                         true,
                         "ArmVehicleConfirmation");
 
@@ -430,8 +430,8 @@ namespace MissionPlanner.Controls
                 if (!result)
                 {
                     if (CustomMessageBox.Show(
-                            action + " failed.\n" + sb.ToString() + "\nForce " + action +
-                            " can bypass safety checks,\nwhich can lead to the vehicle crashing\nand causing serious injuries.\n\nDo you wish to Force " +
+                            action + UiText.Translate(" failed.\n") + sb.ToString() + UiText.Translate("\nForce ") + action +
+                            UiText.Translate(" can bypass safety checks,\nwhich can lead to the vehicle crashing\nand causing serious injuries.\n\nDo you wish to Force ") +
                             action + "?", Strings.ERROR, CustomMessageBox.MessageBoxButtons.YesNo,
                             CustomMessageBox.MessageBoxIcon.Exclamation, "Force " + action, "Cancel") ==
                         CustomMessageBox.DialogResult.Yes)
@@ -446,7 +446,7 @@ namespace MissionPlanner.Controls
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show($"Failed to arm/disarm: {ex.Message}", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Format($"Failed to arm/disarm: {ex.Message}"), Strings.ERROR);
             }
         }
 
@@ -757,7 +757,7 @@ namespace MissionPlanner.Controls
                 {
                     if (MainV2.comPort.MAV.cs.failsafe)
                     {
-                        if (CustomMessageBox.Show("You are in failsafe, are you sure?", "Failsafe",
+                        if (CustomMessageBox.Show(UiText.Translate("You are in failsafe, are you sure?"), UiText.Translate("Failsafe"),
                             MessageBoxButtons.YesNo) != (int)DialogResult.Yes)
                         {
                             return;
@@ -768,7 +768,7 @@ namespace MissionPlanner.Controls
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show($"Failed to set mode: {ex.Message}", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Format($"Failed to set mode: {ex.Message}"), Strings.ERROR);
             }
         }
 
@@ -954,7 +954,7 @@ namespace MissionPlanner.Controls
                 _modeDropdown.CurrentMode = "";
                 UpdateArmButtonAppearance(false);
                 // Reset GPS display
-                _gpsSatsLabel.Text = "Sats: --: ---";
+                _gpsSatsLabel.Text = UiText.Translate("Sats: --: ---");
                 _gpsDopLabel.Text = "H: -- | V: --";
                 try { _gpsSatsLabel.ForeColor = ThemeManager.TextColor; } catch { _gpsSatsLabel.ForeColor = Color.White; }
                 // Clear pinned modes and close popup when disconnecting
@@ -999,11 +999,11 @@ namespace MissionPlanner.Controls
             if (hasGps2)
             {
                 string fixType2 = GetFixTypeString((int)gpsStatus2);
-                _gpsSatsLabel.Text = $"1: {satCount:0} {fixType} | 2: {satCount2:0} {fixType2}";
+                _gpsSatsLabel.Text = $"1: {satCount:0} {UiText.Translate(fixType)} | 2: {satCount2:0} {UiText.Translate(fixType2)}";
             }
             else
             {
-                _gpsSatsLabel.Text = $"Sats: {satCount:0}: {fixType}";
+                _gpsSatsLabel.Text = UiText.Format($"Sats: {satCount:0}: {fixType}");
             }
 
             _gpsDopLabel.Text = $"H: {hdop:0.0} | V: {vdop:0.0}";
@@ -1490,7 +1490,7 @@ namespace MissionPlanner.Controls
                 if (_isArmed != value)
                 {
                     _isArmed = value;
-                    Text = _isArmed ? "ARMED" : "DISARMED";
+                    Text = _isArmed ? UiText.Translate("ARMED") : UiText.Translate("DISARMED");
                     Invalidate();
                 }
             }
@@ -1501,7 +1501,7 @@ namespace MissionPlanner.Controls
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             Cursor = Cursors.Hand;
-            Text = "DISARMED";
+            Text = UiText.Translate("DISARMED");
         }
 
         public override string Text
@@ -1674,7 +1674,7 @@ namespace MissionPlanner.Controls
             // Course
             _courseLabel = new Label
             {
-                Text = "Course: --",
+                Text = UiText.Translate("Course: --"),
                 Font = new Font("Segoe UI", 9F),
                 ForeColor = textColor,
                 AutoSize = true,
@@ -1740,12 +1740,12 @@ namespace MissionPlanner.Controls
 
         public void UpdateValues(int satCount, string gpsLock, int satCount2, string gpsLock2, float hdop, float vdop, float course)
         {
-            _gps1Label.Text = $"GPS1: {satCount} sats, {gpsLock}";
-            _gps2Label.Text = $"GPS2: {satCount2} sats, {gpsLock2}";
+            _gps1Label.Text = UiText.Format($"GPS1: {satCount} sats, {UiText.Translate(gpsLock)}");
+            _gps2Label.Text = UiText.Format($"GPS2: {satCount2} sats, {UiText.Translate(gpsLock2)}");
             _gps2Label.Visible = satCount2 > 0 || gpsLock2 != "No GPS";
             _hdopLabel.Text = $"HDOP: {hdop:0.00}";
             _vdopLabel.Text = $"VDOP: {vdop:0.00}";
-            _courseLabel.Text = $"Course: {course:0.0}°";
+            _courseLabel.Text = UiText.Format($"Course: {course:0.0}°");
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class DroneCANFileUI
     {
@@ -120,16 +121,16 @@
             // 
             // columnHeaderName
             // 
-            this.columnHeaderName.Text = "Name";
+            this.columnHeaderName.Text = UiText.Translate("Name");
             this.columnHeaderName.Width = 83;
             // 
             // columnHeaderType
             // 
-            this.columnHeaderType.Text = "Type";
+            this.columnHeaderType.Text = UiText.Translate("Type");
             // 
             // columnHeaderSize
             // 
-            this.columnHeaderSize.Text = "Size";
+            this.columnHeaderSize.Text = UiText.Translate("Size");
             // 
             // contextMenuStrip1
             // 
@@ -148,21 +149,21 @@
             // 
             this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
             this.downloadToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.downloadToolStripMenuItem.Text = "Download";
+            this.downloadToolStripMenuItem.Text = UiText.Translate("Download");
             this.downloadToolStripMenuItem.Click += new System.EventHandler(this.DownloadToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
             this.uploadToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Text = UiText.Translate("Upload");
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.UploadToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Text = UiText.Translate("&Delete");
             this.deleteToolStripMenuItem.Visible = false;
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
@@ -170,7 +171,7 @@
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
             this.renameToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.renameToolStripMenuItem.Text = "&Rename";
+            this.renameToolStripMenuItem.Text = UiText.Translate("&Rename");
             this.renameToolStripMenuItem.Visible = false;
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.RenameToolStripMenuItem_Click);
             // 
@@ -178,7 +179,7 @@
             // 
             this.newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
             this.newFolderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.newFolderToolStripMenuItem.Text = "New Folder";
+            this.newFolderToolStripMenuItem.Text = UiText.Translate("New Folder");
             this.newFolderToolStripMenuItem.Visible = false;
             this.newFolderToolStripMenuItem.Click += new System.EventHandler(this.NewFolderToolStripMenuItem_Click);
             // 
@@ -186,7 +187,7 @@
             // 
             this.getCRC32ToolStripMenuItem.Name = "getCRC32ToolStripMenuItem";
             this.getCRC32ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.getCRC32ToolStripMenuItem.Text = "GetCRC32";
+            this.getCRC32ToolStripMenuItem.Text = UiText.Translate("GetCRC32");
             this.getCRC32ToolStripMenuItem.Visible = false;
             this.getCRC32ToolStripMenuItem.Click += new System.EventHandler(this.GetCRC32ToolStripMenuItem_Click);
             // 

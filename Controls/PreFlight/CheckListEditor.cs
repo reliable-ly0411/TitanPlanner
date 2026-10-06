@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace MissionPlanner.Controls.PreFlight
 
             if (DesignMode)
             {
-                _parent.CheckListItems.Add(new CheckListItem() { Description = "desc", Name = "name", Text = "text" });
+                _parent.CheckListItems.Add(new CheckListItem() { Description = "desc", Name = "name", Text = UiText.Translate("text") });
             }
                         
             reload();
@@ -183,8 +184,8 @@ namespace MissionPlanner.Controls.PreFlight
             if (addButtonClick == true)
             {
                 //set the text for the textboxes accordingly.
-                wrnctl.TXT_desc.Text = "add description";
-                wrnctl.TXT_text.Text = "add value";
+                wrnctl.TXT_desc.Text = UiText.Translate("add description");
+                wrnctl.TXT_text.Text = UiText.Translate("add value");
                 //Set the item's child to null if the Add button has been clicked
                 item.Child = null;
             }
@@ -650,11 +651,11 @@ namespace MissionPlanner.Controls.PreFlight
             for (int i = 0; i < panel1.Controls.Count; i++)
             {
                 //if the place holder text is the text in the textboxes, then the relevant event handlers are used.
-                if (wrnctlDescList[i].Text == "add description")
+                if (wrnctlDescList[i].Text == UiText.Translate("add description"))
                 {
                     wrnctlDescList[i].Enter += new EventHandler(TXT_desc_Enter);
                 }
-                if (wrnctlTextList[i].Text == "add value")
+                if (wrnctlTextList[i].Text == UiText.Translate("add value"))
                 {
                     wrnctlTextList[i].Enter += new EventHandler(TXT_text_Enter);
                 }

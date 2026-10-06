@@ -83,14 +83,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 // Assign Volt Pin label at Sensor label position
                 if (label1 != null)
                 {
-                    label1.Text = "Volt Pin:";
+                    label1.Text = UiText.Translate("Volt Pin:");
                     label1.Location = sensorLabelLoc;
                     label1.Visible = true;
                 }
                 // Assign Curr Pin label at HW Ver label position
                 if (label2 != null)
                 {
-                    label2.Text = "Curr Pin:";
+                    label2.Text = UiText.Translate("Curr Pin:");
                     label2.Location = hwVerLabelLoc;
                     label2.Visible = true;
                 }
@@ -263,7 +263,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set " + P("CAPACITY") + " Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set ") + P("CAPACITY") + UiText.Translate(" Failed"), Strings.ERROR);
             }
         }
 
@@ -333,7 +333,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set " + P("MONITOR") + "," + P("VOLT_PIN") + "," + P("CURR_PIN") + " Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set ") + P("MONITOR") + "," + P("VOLT_PIN") + "," + P("CURR_PIN") + UiText.Translate(" Failed"), Strings.ERROR);
             }
         }
 
@@ -375,7 +375,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     (MainV2.comPort.MAV.param[P("MONITOR")].Value == 3 ||
                      MainV2.comPort.MAV.param[P("MONITOR")].Value == 4))
                 {
-                    CustomMessageBox.Show("Set " + P("VOLT_MULT") + " Failed", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Set ") + P("VOLT_MULT") + UiText.Translate(" Failed"), Strings.ERROR);
                 }
             }
         }
@@ -402,7 +402,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     (MainV2.comPort.MAV.param[P("MONITOR")].Value == 3 ||
                      MainV2.comPort.MAV.param[P("MONITOR")].Value == 4))
                 {
-                    CustomMessageBox.Show("Set " + P("VOLT_MULT") + " Failed", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Set ") + P("VOLT_MULT") + UiText.Translate(" Failed"), Strings.ERROR);
                 }
             }
         }
@@ -429,7 +429,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     (MainV2.comPort.MAV.param[P("MONITOR")].Value == 3 ||
                      MainV2.comPort.MAV.param[P("MONITOR")].Value == 4))
                 {
-                    CustomMessageBox.Show("Set " + (_prefix == "BATT" ? P("AMP_PERVOLT") : P("AMP_PERVOL")) + " Failed", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Set ") + (_prefix == "BATT" ? P("AMP_PERVOLT") : P("AMP_PERVOL")) + UiText.Translate(" Failed"), Strings.ERROR);
                 }
             }
         }
@@ -618,7 +618,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set " + P("????_PIN") + " Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set ") + P("????_PIN") + UiText.Translate(" Failed"), Strings.ERROR);
             }
         }
 
@@ -646,7 +646,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbattery"] != null)
                     speechstring = Settings.Instance["speechbattery"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechbattery"] = speechstring;
 
@@ -654,7 +654,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatteryvolt"] != null)
                     speechstring = Settings.Instance["speechbatteryvolt"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What Voltage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What Voltage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatteryvolt"] = speechstring;
 
@@ -662,7 +662,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatterypercent"] != null)
                     speechstring = Settings.Instance["speechbatterypercent"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What percentage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What percentage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatterypercent"] = speechstring;
             }
@@ -715,7 +715,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set " + (_prefix == "BATT" ? P("AMP_PERVOLT") : P("AMP_PERVOL")) + " Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set ") + (_prefix == "BATT" ? P("AMP_PERVOLT") : P("AMP_PERVOL")) + UiText.Translate(" Failed"), Strings.ERROR);
             }
         }
     }

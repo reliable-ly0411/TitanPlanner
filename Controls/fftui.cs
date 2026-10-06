@@ -43,7 +43,7 @@ namespace MissionPlanner.Controls
                     { Color.Red, Color.Green, Color.Black, Color.Violet, Color.Blue, Color.Orange };
 
                 int hz = 8000;
-                InputBox.Show("fft sample rate", "nter source file sample rate", ref hz);
+                InputBox.Show(UiText.Translate("fft sample rate"), UiText.Translate("nter source file sample rate"), ref hz);
 
                 double[] buffer = new double[1 << bins];
 
@@ -82,8 +82,8 @@ namespace MissionPlanner.Controls
 
                         curve.GetRange(out xMin, out xMax, out yMin, out yMax, true, false, zedGraphControl1.GraphPane);
 
-                        zedGraphControl1.GraphPane.XAxis.Title.Text = "Freq Hz";
-                        zedGraphControl1.GraphPane.YAxis.Title.Text = "Amplitude";
+                        zedGraphControl1.GraphPane.XAxis.Title.Text = UiText.Translate("Freq Hz");
+                        zedGraphControl1.GraphPane.YAxis.Title.Text = UiText.Translate("Amplitude");
                         zedGraphControl1.GraphPane.Title.Text = "FFT - " + hz;
                         zedGraphControl1.GraphPane.Y2Axis.IsVisible = true;
                         zedGraphControl1.GraphPane.CurveList.Clear();
@@ -330,11 +330,11 @@ namespace MissionPlanner.Controls
 
                     ctls[controlindex].GraphPane.Legend.IsVisible = false;
 
-                    ctls[controlindex].GraphPane.XAxis.Title.Text = "Freq Hz";
-                    ctls[controlindex].GraphPane.YAxis.Title.Text = "Amplitude";
+                    ctls[controlindex].GraphPane.XAxis.Title.Text = UiText.Translate("Freq Hz");
+                    ctls[controlindex].GraphPane.YAxis.Title.Text = UiText.Translate("Amplitude");
                     ctls[controlindex].GraphPane.Title.Text = "FFT " + datashead[controlindex] + " - " +
                                                               Path.GetFileName(ofd.FileName) + " - " + samplerate +
-                                                              "hz input";
+                                                              UiText.Translate("hz input");
 
                     ctls[controlindex].GraphPane.CurveList.Clear();
 
@@ -525,11 +525,11 @@ namespace MissionPlanner.Controls
 
                     ctls[controlindex].GraphPane.Legend.IsVisible = true;
 
-                    ctls[controlindex].GraphPane.XAxis.Title.Text = "Freq Hz";
-                    ctls[controlindex].GraphPane.YAxis.Title.Text = "Amplitude";
+                    ctls[controlindex].GraphPane.XAxis.Title.Text = UiText.Translate("Freq Hz");
+                    ctls[controlindex].GraphPane.YAxis.Title.Text = UiText.Translate("Amplitude");
                     ctls[controlindex].GraphPane.Title.Text = "FFT " + sensordata.type + " - " +
                                                               Path.GetFileName(ofd.FileName) + " - " + samplerate +
-                                                              "hz input";
+                                                              UiText.Translate("hz input");
 
                     ctls[controlindex].GraphPane.CurveList.Clear();
 
@@ -742,11 +742,11 @@ namespace MissionPlanner.Controls
 
                     ctls[controlindex].GraphPane.Legend.IsVisible = true;
 
-                    ctls[controlindex].GraphPane.XAxis.Title.Text = "Freq Hz";
-                    ctls[controlindex].GraphPane.YAxis.Title.Text = "Amplitude";
+                    ctls[controlindex].GraphPane.XAxis.Title.Text = UiText.Translate("Freq Hz");
+                    ctls[controlindex].GraphPane.YAxis.Title.Text = UiText.Translate("Amplitude");
                     ctls[controlindex].GraphPane.Title.Text = "FFT " + sensordata.type + " - " +
                                                               Path.GetFileName(ofd.FileName) + " - " + samplerate +
-                                                              "hz input";
+                                                              UiText.Translate("hz input");
 
                     ctls[controlindex].GraphPane.CurveList.Clear();
 
@@ -946,11 +946,11 @@ namespace MissionPlanner.Controls
 
                     ctl.GraphPane.Legend.IsVisible = true;
 
-                    ctl.GraphPane.XAxis.Title.Text = "Freq Hz";
-                    ctl.GraphPane.YAxis.Title.Text = "Amplitude";
+                    ctl.GraphPane.XAxis.Title.Text = UiText.Translate("Freq Hz");
+                    ctl.GraphPane.YAxis.Title.Text = UiText.Translate("Amplitude");
                     ctl.GraphPane.Title.Text = "FFT " + sensordata.type + " - " +
                                                Path.GetFileName(ofd.FileName) + " - " + samplerate +
-                                               "hz input";
+                                               UiText.Translate("hz input");
 
                     ctl.GraphPane.CurveList.Clear();
 

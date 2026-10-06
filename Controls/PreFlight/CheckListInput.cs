@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -126,7 +127,7 @@ namespace MissionPlanner.Controls.PreFlight
             this.TXT_text.Name = "TXT_text";
             this.TXT_text.Size = new System.Drawing.Size(236, 20);
             this.TXT_text.TabIndex = 4;
-            this.TXT_text.Text = "{name} is {value}";
+            this.TXT_text.Text = UiText.Translate("{name} is {value}");
             this.TXT_text.TextChanged += new System.EventHandler(this.TXT_warningtext_TextChanged);
             // 
             // but_addchild

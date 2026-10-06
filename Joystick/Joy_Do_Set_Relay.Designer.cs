@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_Do_Set_Relay
     {
@@ -53,7 +54,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Relay No#";
+            this.label1.Text = UiText.Translate("Relay No#");
             // 
             // Joy_Do_Set_Relay
             // 
@@ -63,7 +64,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "Joy_Do_Set_Relay";
-            this.Text = "Joy_Do_Set_Relay";
+            this.Text = UiText.Translate("Joy_Do_Set_Relay");
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

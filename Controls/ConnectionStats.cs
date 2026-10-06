@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -167,11 +168,11 @@ namespace MissionPlanner.Controls
             myPane.CurveList.Clear();
 
             // Set titles
-            myPane.Title.Text = "Link Bandwidth";
+            myPane.Title.Text = UiText.Translate("Link Bandwidth");
             myPane.Title.FontSpec.Size = 10;
-            myPane.XAxis.Title.Text = "Time (s)";
+            myPane.XAxis.Title.Text = UiText.Translate("Time (s)");
             myPane.XAxis.Title.FontSpec.Size = 9;
-            myPane.YAxis.Title.Text = "Bytes/s";
+            myPane.YAxis.Title.Text = UiText.Translate("Bytes/s");
             myPane.YAxis.Title.FontSpec.Size = 9;
 
             // Configure margins for compact display

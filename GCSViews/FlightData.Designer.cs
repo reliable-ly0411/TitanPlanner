@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 using System.Windows.Forms;
 
 namespace MissionPlanner.GCSViews
@@ -663,7 +664,7 @@ namespace MissionPlanner.GCSViews
             // editQuickViewToolStripMenuItem
             //
             this.editQuickViewToolStripMenuItem.Name = "editQuickViewToolStripMenuItem";
-            this.editQuickViewToolStripMenuItem.Text = "Edit";
+            this.editQuickViewToolStripMenuItem.Text = UiText.Translate("Edit");
             this.editQuickViewToolStripMenuItem.Click += new System.EventHandler(this.editQuickViewToolStripMenuItem_Click);
             //
             // setViewCountToolStripMenuItem
@@ -686,28 +687,28 @@ namespace MissionPlanner.GCSViews
             // moveLeftToolStripMenuItem
             //
             this.moveLeftToolStripMenuItem.Name = "moveLeftToolStripMenuItem";
-            this.moveLeftToolStripMenuItem.Text = "Move Left";
+            this.moveLeftToolStripMenuItem.Text = UiText.Translate("Move Left");
             resources.ApplyResources(this.moveLeftToolStripMenuItem, "moveLeftToolStripMenuItem");
             this.moveLeftToolStripMenuItem.Click += new System.EventHandler(this.moveLeftToolStripMenuItem_Click);
             //
             // moveRightToolStripMenuItem
             //
             this.moveRightToolStripMenuItem.Name = "moveRightToolStripMenuItem";
-            this.moveRightToolStripMenuItem.Text = "Move Right";
+            this.moveRightToolStripMenuItem.Text = UiText.Translate("Move Right");
             resources.ApplyResources(this.moveRightToolStripMenuItem, "moveRightToolStripMenuItem");
             this.moveRightToolStripMenuItem.Click += new System.EventHandler(this.moveRightToolStripMenuItem_Click);
             //
             // moveUpToolStripMenuItem
             //
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Text = "Move Up";
+            this.moveUpToolStripMenuItem.Text = UiText.Translate("Move Up");
             resources.ApplyResources(this.moveUpToolStripMenuItem, "moveUpToolStripMenuItem");
             this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             //
             // moveDownToolStripMenuItem
             //
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Text = "Move Down";
+            this.moveDownToolStripMenuItem.Text = UiText.Translate("Move Down");
             resources.ApplyResources(this.moveDownToolStripMenuItem, "moveDownToolStripMenuItem");
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             //
@@ -719,13 +720,13 @@ namespace MissionPlanner.GCSViews
             // resetQuickViewToolStripMenuItem
             //
             this.resetToolStripMenuItem.Name = "resetQuickViewToolStripMenuItem";
-            this.resetToolStripMenuItem.Text = "Reset";
+            this.resetToolStripMenuItem.Text = UiText.Translate("Reset");
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetQuickViewToolStripMenuItem_Click);
             //
             // resetAllQuickViewToolStripMenuItem
             //
             this.resetAllToolStripMenuItem.Name = "resetAllQuickViewToolStripMenuItem";
-            this.resetAllToolStripMenuItem.Text = "Reset All";
+            this.resetAllToolStripMenuItem.Text = UiText.Translate("Reset All");
             this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.resetAllQuickViewToolStripMenuItem_Click);
             //
             // bindingSourceQuickTab
@@ -2300,7 +2301,7 @@ namespace MissionPlanner.GCSViews
             this.grpDataflash.Padding = new System.Windows.Forms.Padding(6);
             this.grpDataflash.TabIndex = 0;
             this.grpDataflash.TabStop = false;
-            this.grpDataflash.Text = "Dataflash Logs";
+            this.grpDataflash.Text = UiText.Translate("Dataflash Logs");
             //
             // grpTelemetry
             //
@@ -2312,7 +2313,7 @@ namespace MissionPlanner.GCSViews
             this.grpTelemetry.Padding = new System.Windows.Forms.Padding(6);
             this.grpTelemetry.TabIndex = 1;
             this.grpTelemetry.TabStop = false;
-            this.grpTelemetry.Text = "Telemetry Logs";
+            this.grpTelemetry.Text = UiText.Translate("Telemetry Logs");
             //
             // tableLayoutPaneltlogs
             //

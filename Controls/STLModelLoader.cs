@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -75,7 +76,7 @@ namespace MissionPlanner.Controls
 
                 if (string.IsNullOrEmpty(stlContent))
                 {
-                    MessageBox.Show("STL resource not found for vehicle type", "STL Load Error");
+                    MessageBox.Show(UiText.Translate("STL resource not found for vehicle type"), UiText.Translate("STL Load Error"));
                     return false;
                 }
 
@@ -85,7 +86,7 @@ namespace MissionPlanner.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading STL: " + ex.Message, "STL Load Error");
+                MessageBox.Show(UiText.Translate("Error loading STL: ") + ex.Message, UiText.Translate("STL Load Error"));
                 return false;
             }
         }

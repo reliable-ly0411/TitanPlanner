@@ -114,7 +114,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 LBL_compass1_offset.ForeColor = Color.Green;
 
 
-            LBL_compass1_offset.Text = "OFFSETS  X: " +
+            LBL_compass1_offset.Text = UiText.Translate("OFFSETS  X: ") +
                                        offset1_x.ToString() +
                                        ",   Y: " + offset1_y.ToString() +
                                        ",   Z: " + offset1_z.ToString();
@@ -157,7 +157,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     LBL_compass2_offset.ForeColor = Color.Green;
 
 
-                LBL_compass2_offset.Text = "OFFSETS  X: " +
+                LBL_compass2_offset.Text = UiText.Translate("OFFSETS  X: ") +
                                            offset2_x.ToString() +
                                            ",   Y: " + offset2_y.ToString() +
                                            ",   Z: " + offset2_z.ToString();
@@ -203,7 +203,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     LBL_compass3_offset.ForeColor = Color.Green;
 
 
-                LBL_compass3_offset.Text = "OFFSETS  X: " +
+                LBL_compass3_offset.Text = UiText.Translate("OFFSETS  X: ") +
                                            offset3_x.ToString() +
                                            ",   Y: " + offset3_y.ToString() +
                                            ",   Z: " + offset3_z.ToString();
@@ -270,7 +270,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch
             {
                 CustomMessageBox.Show(
-                    "Webpage open failed... do you have a virus?\nhttp://www.magnetic-declination.com/", "Mag");
+                    UiText.Translate("Webpage open failed... do you have a virus?\nhttp://www.magnetic-declination.com/"), UiText.Translate("Mag"));
             }
         }
 
@@ -363,7 +363,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             var minthro = "30";
             if (DialogResult.Cancel ==
-                InputBox.Show("Min Throttle", "Use only data above this throttle percent.", ref minthro))
+                InputBox.Show(UiText.Translate("Min Throttle"), UiText.Translate("Use only data above this throttle percent."), ref minthro))
                 return;
 
             var ans = 0;
@@ -392,7 +392,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 if (MainV2.comPort.MAV.param["COMPASS_AUTODEC"] == null)
                 {
-                    CustomMessageBox.Show("Not Available on " + MainV2.comPort.MAV.cs.firmware);
+                    CustomMessageBox.Show(UiText.Translate("Not Available on ") + MainV2.comPort.MAV.cs.firmware);
                 }
                 else
                 {
@@ -401,7 +401,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set COMPASS_AUTODEC Failed");
+                CustomMessageBox.Show(UiText.Translate("Set COMPASS_AUTODEC Failed"));
             }
         }
 
@@ -459,7 +459,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Exception ex)
             {
                 this.LogError(ex);
-                CustomMessageBox.Show("Failed to start MAG CAL, check the autopilot is still responding.\n" + ex.ToString(), Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to start MAG CAL, check the autopilot is still responding.\n") + ex.ToString(), Strings.ERROR);
                 return;
             }
 
@@ -604,7 +604,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 BUT_OBmagcalcancel.Enabled = false;
                 BUT_OBmagcalaccept.Enabled = false;
                 timer1.Stop();
-                CustomMessageBox.Show("Please reboot the autopilot");
+                CustomMessageBox.Show(UiText.Translate("Please reboot the autopilot"));
             }
 
         }
@@ -633,7 +633,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 MainV2.comPort.setParam((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, "COMPASS_LEARN", 1);
 
                 if (
-                    CustomMessageBox.Show("is the FW version greater than APM:copter 3.01 or APM:Plane 2.74?", "",
+                    CustomMessageBox.Show(UiText.Translate("is the FW version greater than APM:copter 3.01 or APM:Plane 2.74?"), "",
                         MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
                 {
                     CMB_compass1_orient.SelectedIndex = (int)Rotation.ROTATION_NONE;
@@ -713,7 +713,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 if (MainV2.comPort.MAV.param["COMPASS_LEARN"] == null)
                 {
-                    CustomMessageBox.Show("Not Available on " + MainV2.comPort.MAV.cs.firmware);
+                    CustomMessageBox.Show(UiText.Translate("Not Available on ") + MainV2.comPort.MAV.cs.firmware);
                 }
                 else
                 {
@@ -722,7 +722,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set COMPASS_LEARN Failed");
+                CustomMessageBox.Show(UiText.Translate("Set COMPASS_LEARN Failed"));
             }
         }
 
@@ -758,7 +758,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private void but_largemagcal_Click(object sender, EventArgs e)
         {
             double value = 0;
-            if (InputBox.Show("MagCal Yaw", "Enter current heading in degrees\nNOTE: gps lock is required. Heading is true, not magnetic", ref value) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("MagCal Yaw"), UiText.Translate("Enter current heading in degrees\nNOTE: gps lock is required. Heading is true, not magnetic"), ref value) == DialogResult.OK)
             {
                 try
                 {

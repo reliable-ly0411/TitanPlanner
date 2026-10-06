@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Text;
@@ -277,7 +278,7 @@ namespace MissionPlanner.MsgBox
                     var but = new MyButton
                                   {
                                       Size = new Size(75, 23),
-                                      Text = "OK",
+                                      Text = UiText.Translate("OK"),
                                       Left = msgBoxFrm.Width - 100 - FORM_X_MARGIN,
                                       Top = msgBoxFrm.Height - 40 - FORM_Y_MARGIN - titleHeight
                                   };
@@ -295,7 +296,7 @@ namespace MissionPlanner.MsgBox
                     var butyes = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = YesText,
+                        Text = UiText.Translate(YesText),
                         Left = msgBoxFrm.Width - 75 * 2 - FORM_X_MARGIN * 2,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };
@@ -307,7 +308,7 @@ namespace MissionPlanner.MsgBox
                     var butno = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = NoText,
+                        Text = UiText.Translate(NoText),
                         Left = msgBoxFrm.Width - 75 - FORM_X_MARGIN,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };
@@ -325,7 +326,7 @@ namespace MissionPlanner.MsgBox
                     var butok = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = "OK",
+                        Text = UiText.Translate("OK"),
                         Left = msgBoxFrm.Width - 75 * 2 - FORM_X_MARGIN * 2,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };
@@ -337,7 +338,7 @@ namespace MissionPlanner.MsgBox
                     var butcancel = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = "Cancel",
+                        Text = UiText.Translate("Cancel"),
                         Left = msgBoxFrm.Width - 75 - FORM_X_MARGIN,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };

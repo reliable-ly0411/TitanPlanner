@@ -419,7 +419,7 @@ S15: MAX_WINDOW=131
                     }
                     catch (Exception ex)
                     {
-                        MsgBox.CustomMessageBox.Show("Error copying file\n" + ex, "ERROR");
+                        MsgBox.CustomMessageBox.Show(UiText.Translate("Error copying file\n") + ex, UiText.Translate("ERROR"));
                         return false;
                     }
                     return true;
@@ -749,7 +749,7 @@ S15: MAX_WINDOW=131
                         }
                         if (!cmdanswer.Contains("OK"))
                         {
-                            MsgBox.CustomMessageBox.Show("Set Command error");
+                            MsgBox.CustomMessageBox.Show(UiText.Translate("Set Command error"));
                         }
 
                     }
@@ -763,7 +763,7 @@ S15: MAX_WINDOW=131
                         }
                         else
                         {
-                            MsgBox.CustomMessageBox.Show("Set Command error");
+                            MsgBox.CustomMessageBox.Show(UiText.Translate("Set Command error"));
                         }
                     }
                 }
@@ -892,7 +892,7 @@ S15: MAX_WINDOW=131
 
                 EnableConfigControls(false, false);
                 EnableProgrammingControls(false);
-                lbl_status.Text = "Connecting";
+                lbl_status.Text = UiText.Translate("Connecting");
 
                 if (Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
                 {
@@ -901,7 +901,7 @@ S15: MAX_WINDOW=131
 
                     Session.Port.DiscardInBuffer();
 
-                    lbl_status.Text = "Doing Command";
+                    lbl_status.Text = UiText.Translate("Doing Command");
 
 
                     if (RTI.Text != "")
@@ -946,8 +946,8 @@ S15: MAX_WINDOW=131
                             else
                             {
                                 //Complain that encryption key invalid.
-                                lbl_status.Text = "Fail";
-                                MsgBox.CustomMessageBox.Show("Encryption key not valid hex number <= " + MaxKeyLength.ToString() + " hex numerals");
+                                lbl_status.Text = UiText.Translate("Fail");
+                                MsgBox.CustomMessageBox.Show(UiText.Translate("Encryption key not valid hex number <= ") + MaxKeyLength.ToString() + UiText.Translate(" hex numerals"));
                             }
                         }
                         if (GetIsEncryptionEnabled(ENCRYPTION_LEVEL))
@@ -963,8 +963,8 @@ S15: MAX_WINDOW=131
                             else
                             {
                                 //Complain that encryption key invalid.
-                                lbl_status.Text = "Fail";
-                                MsgBox.CustomMessageBox.Show("Encryption key not valid hex number <= " + MaxKeyLength.ToString() + " hex numerals");
+                                lbl_status.Text = UiText.Translate("Fail");
+                                MsgBox.CustomMessageBox.Show(UiText.Translate("Encryption key not valid hex number <= ") + MaxKeyLength.ToString() + UiText.Translate(" hex numerals"));
                             }
                         }
 
@@ -982,14 +982,14 @@ S15: MAX_WINDOW=131
                         var cmdwriteanswer = doCommand(Session.Port, "AT&W");
                         if (!cmdwriteanswer.Contains("OK"))
                         {
-                            MsgBox.CustomMessageBox.Show("Failed to save parameters");
+                            MsgBox.CustomMessageBox.Show(UiText.Translate("Failed to save parameters"));
                         }
 
                         // return to normal mode
                         doCommand(Session.Port, "ATZ");
                     }
 
-                    lbl_status.Text = "Done";
+                    lbl_status.Text = UiText.Translate("Done");
                     EnableConfigControls(true, true);
                 }
                 else
@@ -997,8 +997,8 @@ S15: MAX_WINDOW=131
                     // return to normal mode
                     doCommand(Session.Port, "ATZ");
 
-                    lbl_status.Text = "Fail";
-                    MsgBox.CustomMessageBox.Show("Failed to enter command mode");
+                    lbl_status.Text = UiText.Translate("Fail");
+                    MsgBox.CustomMessageBox.Show(UiText.Translate("Failed to enter command mode"));
                     EnableConfigControls(true, false);
                 }
 
@@ -1485,7 +1485,7 @@ S15: MAX_WINDOW=131
 
             EnableConfigControls(false, false);
             EnableProgrammingControls(false);
-            lbl_status.Text = "Connecting";
+            lbl_status.Text = UiText.Translate("Connecting");
 
             //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Putting into AT CMD mode");
 
@@ -1505,7 +1505,7 @@ S15: MAX_WINDOW=131
 
                     Session.Port.DiscardInBuffer();
 
-                    lbl_status.Text = "Doing Command ATI & RTI";
+                    lbl_status.Text = UiText.Translate("Doing Command ATI & RTI");
 
                     //Set the text box to show the radio version
                     int multipoint_fix = -1;    //If this radio has multipoint firmware, the index within returned strings to use for returned values, otherwise -1.
@@ -1685,7 +1685,7 @@ S15: MAX_WINDOW=131
                     //System.Diagnostics.Debug.WriteLine(SW.ElapsedMilliseconds.ToString() + ":  Done ATI7 cmd");
 
 
-                    lbl_status.Text = "Doing Command ATI5";
+                    lbl_status.Text = UiText.Translate("Doing Command ATI5");
 
                     var answer = doCommand(Session.Port, "ATI5", true); //Session.ATCClient.DoQueryWithMultiLineResponse("ATI5");// doCommand(Session.Port, "ATI5", true);
 
@@ -1806,7 +1806,7 @@ S15: MAX_WINDOW=131
                             SetupComboForMavlink(RMAVLINK, true);
                         }
 
-                        lbl_status.Text = "Doing Command RTI5";
+                        lbl_status.Text = UiText.Translate("Doing Command RTI5");
 
                         answer = doCommand(Session.Port, "RTI5", true);
 
@@ -1820,7 +1820,7 @@ S15: MAX_WINDOW=131
 
                         if ((RemoteFWVer != null) &&  (LocalFWVer != RemoteFWVer) && UsedAltRanges)
                         {
-                            MsgBox.CustomMessageBox.Show("The ranges and options shown for the remote modem may not be accurate.  To ensure accurate, use the same firmware version in both the local and remote modems");
+                            MsgBox.CustomMessageBox.Show(UiText.Translate("The ranges and options shown for the remote modem may not be accurate.  To ensure accurate, use the same firmware version in both the local and remote modems"));
                         }
 
                         items = answer.Split('\n');
@@ -1864,11 +1864,11 @@ S15: MAX_WINDOW=131
 
                     if (SomeSettingsInvalid)
                     {
-                        lbl_status.Text = "Done.  Some settings in modem were invalid.";
+                        lbl_status.Text = UiText.Translate("Done.  Some settings in modem were invalid.");
                     }
                     else
                     {
-                        lbl_status.Text = "Done";
+                        lbl_status.Text = UiText.Translate("Done");
                     }
                     EnableConfigControls(true, true);
 
@@ -1879,8 +1879,8 @@ S15: MAX_WINDOW=131
                     // off hook
                     Session.PutIntoTransparentMode();
 
-                    lbl_status.Text = "Fail";
-                    MsgBox.CustomMessageBox.Show("Failed to enter command mode.  Try power-cycling modem.");
+                    lbl_status.Text = UiText.Translate("Fail");
+                    MsgBox.CustomMessageBox.Show(UiText.Translate("Failed to enter command mode.  Try power-cycling modem."));
                     EnableConfigControls(true, false);
                 }
 
@@ -1894,8 +1894,8 @@ S15: MAX_WINDOW=131
             }
             catch (Exception ex)
             {
-                lbl_status.Text = "Error";
-                MsgBox.CustomMessageBox.Show("Error during read " + ex);
+                lbl_status.Text = UiText.Translate("Error");
+                MsgBox.CustomMessageBox.Show(UiText.Translate("Error during read ") + ex);
             }
             _AlreadyInEncCheckChangedEvtHdlr = false;
 
@@ -1942,7 +1942,7 @@ S15: MAX_WINDOW=131
 
             comPort.DiscardInBuffer();
 
-            lbl_status.Text = "Doing Command " + cmd;
+            lbl_status.Text = UiText.Translate("Doing Command ") + cmd;
             log.Info("Doing Command " + cmd);
             comPort.ReadTimeout = 1000;
 
@@ -2089,11 +2089,11 @@ S15: MAX_WINDOW=131
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MsgBox.CustomMessageBox.Show(@"The Sik Radios have 2 status LEDs, one red and one green.
+            MsgBox.CustomMessageBox.Show(UiText.Translate(@"The Sik Radios have 2 status LEDs, one red and one green.
 green LED blinking - searching for another radio 
 green LED solid - link is established with another radio 
 red LED flashing - transmitting data 
-red LED solid - in firmware update mode");
+red LED solid - in firmware update mode"));
         }
 
         void DoCommandShowErrorIfNotOK(ICommsSerial Port, string cmd, string ErrorMsg)
@@ -2114,7 +2114,7 @@ red LED solid - in firmware update mode");
                 return;
             }
 
-            lbl_status.Text = "Connecting";
+            lbl_status.Text = UiText.Translate("Connecting");
 
             if (Session.PutIntoATCommandMode() == RFD.RFD900.TSession.TMode.AT_COMMAND)
             {
@@ -2125,13 +2125,13 @@ red LED solid - in firmware update mode");
 
                     Session.Port.DiscardInBuffer();
 
-                    lbl_status.Text = "Doing Command RTI & AT&F";
+                    lbl_status.Text = UiText.Translate("Doing Command RTI & AT&F");
 
                     doCommand(Session.Port, "RT&F");
 
                     doCommand(Session.Port, "RT&W");
 
-                    lbl_status.Text = "Reset";
+                    lbl_status.Text = UiText.Translate("Reset");
 
                     doCommand(Session.Port, "RTZ");
 
@@ -2142,13 +2142,13 @@ red LED solid - in firmware update mode");
 
                 Session.Port.DiscardInBuffer();
 
-                lbl_status.Text = "Doing Command ATI & AT&F";
+                lbl_status.Text = UiText.Translate("Doing Command ATI & AT&F");
 
                 DoCommandShowErrorIfNotOK(Session.Port, "AT&F", "Failed to reset parameters to factory defaults");
 
                 DoCommandShowErrorIfNotOK(Session.Port, "AT&W", "Failed to write parameters to EEPROM");
 
-                lbl_status.Text = "Reset";
+                lbl_status.Text = UiText.Translate("Reset");
                 doCommand(Session.Port, "ATZ");
 
                 //Session must be ended because modem rebooted.
@@ -2159,8 +2159,8 @@ red LED solid - in firmware update mode");
                 // off hook
                 Session.PutIntoTransparentMode();
 
-                lbl_status.Text = "Fail";
-                MsgBox.CustomMessageBox.Show("Failed to enter command mode.  Try power-cycling modem.");
+                lbl_status.Text = UiText.Translate("Fail");
+                MsgBox.CustomMessageBox.Show(UiText.Translate("Failed to enter command mode.  Try power-cycling modem."));
             }
         }
 
@@ -2265,7 +2265,7 @@ red LED solid - in firmware update mode");
                 if (RFD900 == null)
                 {
                     UpdateStatus("Unknown modem");
-                    MsgBox.CustomMessageBox.Show("Couldn't communicate with modem.  Try power-cycling modem.");
+                    MsgBox.CustomMessageBox.Show(UiText.Translate("Couldn't communicate with modem.  Try power-cycling modem."));
                     EndSession();
                 }
                 else
@@ -2332,7 +2332,7 @@ red LED solid - in firmware update mode");
         private void Progressbar_Click(object sender, EventArgs e)
         {
             beta = !beta;
-            MsgBox.CustomMessageBox.Show("Beta set to " + beta);
+            MsgBox.CustomMessageBox.Show(UiText.Translate("Beta set to ") + beta);
         }
 
         private void linkLabel_mavlink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -2381,7 +2381,7 @@ red LED solid - in firmware update mode");
 
         private void SetPPMFailSafe(string SetCmd, string SaveCmd)
         {
-            lbl_status.Text = "Connecting";
+            lbl_status.Text = UiText.Translate("Connecting");
             RFD.RFD900.TSession Session = GetSession();
 
             if (Session == null)
@@ -2395,7 +2395,7 @@ red LED solid - in firmware update mode");
                 //Session.Port.DiscardInBuffer();
                 //doCommand(Session.Port, "AT&T", false, 1);
 
-                lbl_status.Text = "Doing Command";
+                lbl_status.Text = UiText.Translate("Doing Command");
 
                 Session.Port.DiscardInBuffer();
                 bool Result = Session.ATCClient.DoCommand(SetCmd);
@@ -2408,11 +2408,11 @@ red LED solid - in firmware update mode");
 
                 if (Result)
                 {
-                    lbl_status.Text = "Done";
+                    lbl_status.Text = UiText.Translate("Done");
                 }
                 else
                 {
-                    lbl_status.Text = "Fail";
+                    lbl_status.Text = UiText.Translate("Fail");
                 }
             }
             else
@@ -2420,8 +2420,8 @@ red LED solid - in firmware update mode");
                 // off hook
                 //doCommand(Session.Port, "ATO");
 
-                lbl_status.Text = "Fail";
-                MsgBox.CustomMessageBox.Show("Failed to enter command mode");
+                lbl_status.Text = UiText.Translate("Fail");
+                MsgBox.CustomMessageBox.Show(UiText.Translate("Failed to enter command mode"));
             }
         }
 
@@ -2447,7 +2447,7 @@ red LED solid - in firmware update mode");
                 }
                 catch
                 {
-                    MsgBox.CustomMessageBox.Show("Invalid ComPort or in use");
+                    MsgBox.CustomMessageBox.Show(UiText.Translate("Invalid ComPort or in use"));
                     return null;
                 }
             }
@@ -2580,7 +2580,7 @@ red LED solid - in firmware update mode");
                 //BUT_getcurrent_Click(this, null);
                 //txt_aeskey.Text = doCommand(Session.Port, "AT&E?").Trim();
                 EncKeyTextBox.Text = RemoveMultiPointLocalNodeID(doCommand(Session.Port, EncKeyQuery).Trim()).Trim();
-                lbl_status.Text = "Done.";
+                lbl_status.Text = UiText.Translate("Done.");
             }
             finally
             {
@@ -2653,11 +2653,11 @@ red LED solid - in firmware update mode");
             {
                 if (ToSave.SaveToFile(dlgSave.FileName))
                 {
-                    System.Windows.Forms.MessageBox.Show("Saved settings to " + dlgSave.FileName + " OK");
+                    System.Windows.Forms.MessageBox.Show(UiText.Translate("Saved settings to ") + dlgSave.FileName + UiText.Translate(" OK"));
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Failed to save settings to " + dlgSave.FileName);
+                    System.Windows.Forms.MessageBox.Show(UiText.Translate("Failed to save settings to ") + dlgSave.FileName);
                 }
             }
         }
@@ -2683,7 +2683,7 @@ red LED solid - in firmware update mode");
 
                 if (x == null)
                 {
-                    System.Windows.Forms.MessageBox.Show("Failed to load settings from " + dlgOpen.FileName);
+                    System.Windows.Forms.MessageBox.Show(UiText.Translate("Failed to load settings from ") + dlgOpen.FileName);
                 }
                 else
                 {

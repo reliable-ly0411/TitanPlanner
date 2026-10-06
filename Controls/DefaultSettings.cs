@@ -65,7 +65,7 @@ namespace MissionPlanner.Controls
 
             if (CMB_paramfiles.SelectedValue == null)
             {
-                CustomMessageBox.Show("Please select an option first");
+                CustomMessageBox.Show(UiText.Translate("Please select an option first"));
                 return;
             }
 
@@ -83,7 +83,7 @@ namespace MissionPlanner.Controls
                 ThemeManager.ApplyThemeTo(paramCompareForm);
                 if (paramCompareForm.ShowDialog() == DialogResult.OK)
                 {
-                    CustomMessageBox.Show("Loaded parameters!", "Loaded");
+                    CustomMessageBox.Show(UiText.Translate("Loaded parameters!"), UiText.Translate("Loaded"));
                 }
 
                 if (OnChange != null)
@@ -96,7 +96,7 @@ namespace MissionPlanner.Controls
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to load file.\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Failed to load file.\n") + ex);
             }
         }
 

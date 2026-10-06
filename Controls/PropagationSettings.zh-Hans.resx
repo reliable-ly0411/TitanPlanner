@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+    <data name="chk_ele.Text" xml:space="preserve"><value>高程</value></data>
+  <data name="chk_terrain.Text" xml:space="preserve"><value>地形</value></data>
+  <data name="chk_rf.Text" xml:space="preserve"><value>射频地图</value></data>
+  <data name="chk_dronedist.Text" xml:space="preserve"><value>飞行器剩余距离</value></data>
+  <data name="chk_homedist.Text" xml:space="preserve"><value>距起飞点剩余距离</value></data>
+  <data name="cb_showscale.Text" xml:space="preserve"><value>显示比例尺</value></data>
+  <data name="label3.Text" xml:space="preserve"><value>高度筛选</value></data>
+  <data name="label91.Text" xml:space="preserve"><value>高程</value></data>
+  <data name="label2.Text" xml:space="preserve"><value>最大高度</value></data>
+  <data name="label89.Text" xml:space="preserve"><value>净空 [m]</value></data>
+  <data name="label100.Text" xml:space="preserve"><value>无线电传播</value></data>
+  <data name="label113.Text" xml:space="preserve"><value>剩余公里数</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>最低高度</value></data>
+  <data name="label109.Text" xml:space="preserve"><value>方位角步长</value></data>
+  <data name="label90.Text" xml:space="preserve"><value>分辨率</value></data>
+  <data name="label110.Text" xml:space="preserve"><value>收敛</value></data>
+  <data name="label111.Text" xml:space="preserve"><value>范围 [km]</value></data>
+  <data name="label112.Text" xml:space="preserve"><value>基准高度 [m]</value></data>
+  <data name="label114.Text" xml:space="preserve"><value>容差</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>地图叠加层</value></data>
+  <data name="chk_setalt.Text" xml:space="preserve"><value>高度筛选</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>无线电传播设置</value></data>
+</root>

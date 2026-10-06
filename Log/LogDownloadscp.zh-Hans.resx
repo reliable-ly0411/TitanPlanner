@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+    <data name="label1.Text" xml:space="preserve"><value>日志文件：</value></data>
+  <data name="LabelStatus.Text" xml:space="preserve"><value>注意：提交支持请求时，请附上 .bin 文件</value></data>
+  <data name="label2.Text" xml:space="preserve"><value>输出：</value></data>
+  <data name="BUT_DLall.Text" xml:space="preserve"><value>下载全部日志</value></data>
+  <data name="BUT_clearlogs.Text" xml:space="preserve"><value>清除日志</value></data>
+  <data name="BUT_clearlogs.ToolTip" xml:space="preserve"><value>删除已连接无人机上的所有日志。</value></data>
+  <data name="BUT_firstperson.Text" xml:space="preserve"><value>第一人称KML</value></data>
+  <data name="BUT_firstperson.ToolTip" xml:space="preserve"><value>将日志文件转换为 KML 第一人称视角格式。</value></data>
+  <data name="BUT_DLthese.Text" xml:space="preserve"><value>下载这些日志</value></data>
+  <data name="BUT_DLthese.ToolTip" xml:space="preserve"><value>下载上方列表中勾选的日志。</value></data>
+  <data name="BUT_bintolog.Text" xml:space="preserve"><value>.bin 转为 .log</value></data>
+  <data name="BUT_bintolog.ToolTip" xml:space="preserve"><value>将二进制日志文件 (.bin) 转换为文本格式 (.log)。</value></data>
+  <data name="BUT_redokml.Text" xml:space="preserve"><value>重新创建KML</value></data>
+  <data name="BUT_redokml.ToolTip" xml:space="preserve"><value>将日志文件转换为 KML 格式。</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>日志</value></data>
+</root>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -353,4 +353,12 @@
   <data name="label42.Text" xml:space="preserve">
     <value>请设置通道7为相机触发器</value>
   </data>
+  <data name="label5.Text" xml:space="preserve"><value>俯仰</value></data>
+  <data name="label6.Text" xml:space="preserve"><value>横滚</value></data>
+  <data name="LNK_wiki.Text" xml:space="preserve"><value>维基文档</value></data>
+  <data name="label15.Text" xml:space="preserve"><value>平摇</value></data>
+  <data name="label25.Text" xml:space="preserve"><value>DSMX对频</value></data>
+  <data name="label30.Text" xml:space="preserve"><value>DSMX对频</value></data>
+  <data name="label43.Text" xml:space="preserve"><value>类型</value></data>
+  <data name="label44.Text" xml:space="preserve"><value>注意：云台类型将在飞控下次重启后生效</value></data>
 </root>

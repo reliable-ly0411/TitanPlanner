@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class ThemeEditor
     {
@@ -62,7 +63,7 @@
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(55, 13);
             this.lblItemName.TabIndex = 3;
-            this.lblItemName.Text = "ItemName";
+            this.lblItemName.Text = UiText.Translate("ItemName");
             // 
             // lblColorName
             // 
@@ -71,7 +72,7 @@
             this.lblColorName.Name = "lblColorName";
             this.lblColorName.Size = new System.Drawing.Size(59, 13);
             this.lblColorName.TabIndex = 5;
-            this.lblColorName.Text = "ColorName";
+            this.lblColorName.Text = UiText.Translate("ColorName");
             // 
             // colorPatch
             // 
@@ -89,7 +90,7 @@
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(92, 23);
             this.btnCopy.TabIndex = 6;
-            this.btnCopy.Text = "Create Copy";
+            this.btnCopy.Text = UiText.Translate("Create Copy");
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
@@ -99,7 +100,7 @@
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(92, 23);
             this.btnPreview.TabIndex = 8;
-            this.btnPreview.Text = "Preview Colors";
+            this.btnPreview.Text = UiText.Translate("Preview Colors");
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
@@ -115,7 +116,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Theme Name:";
+            this.label4.Text = UiText.Translate("Theme Name:");
             // 
             // lblThemeName
             // 
@@ -136,7 +137,7 @@
             this.groupBox1.Size = new System.Drawing.Size(209, 201);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selected Item";
+            this.groupBox1.Text = UiText.Translate("Selected Item");
             // 
             // btnCancel
             // 
@@ -144,7 +145,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 23);
             this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = UiText.Translate("Cancel");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -154,7 +155,7 @@
             this.btnSaveApply.Name = "btnSaveApply";
             this.btnSaveApply.Size = new System.Drawing.Size(92, 23);
             this.btnSaveApply.TabIndex = 13;
-            this.btnSaveApply.Text = "Save && Apply";
+            this.btnSaveApply.Text = UiText.Translate("Save && Apply");
             this.btnSaveApply.UseVisualStyleBackColor = true;
             this.btnSaveApply.Click += new System.EventHandler(this.btnSaveApply_Click);
             // 
@@ -164,7 +165,7 @@
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(92, 23);
             this.btnRestore.TabIndex = 14;
-            this.btnRestore.Text = "Restore Theme";
+            this.btnRestore.Text = UiText.Translate("Restore Theme");
             this.btnRestore.UseVisualStyleBackColor = true;
             this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
@@ -175,7 +176,7 @@
             this.cbIconSet.Name = "cbIconSet";
             this.cbIconSet.Size = new System.Drawing.Size(103, 17);
             this.cbIconSet.TabIndex = 15;
-            this.cbIconSet.Text = "Dark menuicons";
+            this.cbIconSet.Text = UiText.Translate("Dark menuicons");
             this.cbIconSet.UseVisualStyleBackColor = true;
             this.cbIconSet.CheckedChanged += new System.EventHandler(this.cbIconSet_CheckedChanged);
             // 
@@ -196,7 +197,7 @@
             this.Controls.Add(this.listboxThemeItems);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ThemeEditor";
-            this.Text = "ThemeEditor";
+            this.Text = UiText.Translate("ThemeEditor");
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

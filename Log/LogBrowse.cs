@@ -186,7 +186,7 @@ namespace MissionPlanner.Log
             if (keyData == (Keys.Control | Keys.G))
             {
                 string lineno = "0";
-                InputBox.Show("Line no", "Enter Line Number", ref lineno);
+                InputBox.Show(UiText.Translate("Line no"), UiText.Translate("Enter Line Number"), ref lineno);
 
                 int line = int.Parse(lineno);
 
@@ -196,7 +196,7 @@ namespace MissionPlanner.Log
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Line Doesn't Exist");
+                    CustomMessageBox.Show(UiText.Translate("Line Doesn't Exist"));
                 }
 
                 return true;
@@ -393,7 +393,7 @@ namespace MissionPlanner.Log
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to read File: " + ex.ToString());
+                CustomMessageBox.Show(UiText.Translate("Failed to read File: ") + ex.ToString());
                 return;
             }
 
@@ -402,7 +402,7 @@ namespace MissionPlanner.Log
 
         void LoadLog2(String FileName, DFLogBuffer logdata, int colcount)
         {
-            this.Text = "Log Browser - " + Path.GetFileName(FileName);
+            this.Text = UiText.Translate("Log Browser - ") + Path.GetFileName(FileName);
 
             CreateChart(zg1);
             chk_time_CheckedChanged(null, null);
@@ -1016,8 +1016,8 @@ namespace MissionPlanner.Log
             GraphPane myPane = zgc.GraphPane;
 
             // Set the titles and axis labels
-            myPane.Title.Text = "Value Graph";
-            myPane.XAxis.Title.Text = "Line Number";
+            myPane.Title.Text = UiText.Translate("Value Graph");
+            myPane.XAxis.Title.Text = UiText.Translate("Line Number");
             myPane.YAxis.Title.Text = "";
             myPane.YAxis.Title.FontSpec.Size += 2;
             myPane.Y2Axis.Title.FontSpec.Size += 2;
@@ -1081,7 +1081,7 @@ namespace MissionPlanner.Log
 
             if (col == 0)
             {
-                CustomMessageBox.Show("Please pick another column, Highlight the cell you wish to graph",
+                CustomMessageBox.Show(UiText.Translate("Please pick another column, Highlight the cell you wish to graph"),
                     Strings.ERROR);
                 return;
             }
@@ -1267,7 +1267,7 @@ namespace MissionPlanner.Log
                     }
                     catch (Exception ex)
                     {
-                        CustomMessageBox.Show("Failed to graph item: " + ex.Message, Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Translate("Failed to graph item: ") + ex.Message, Strings.ERROR);
                     }
                 });
             }
@@ -1561,7 +1561,7 @@ main()
                         log.Info("Bad Data : " + type + " " + col + " " + a);
                         if (error >= 500)
                         {
-                            CustomMessageBox.Show("There is to much bad data - failing");
+                            CustomMessageBox.Show(UiText.Translate("There is to much bad data - failing"));
                             break;
                         }
                     }
@@ -2838,9 +2838,9 @@ main()
             opt.Location = mp;
 
             opt.Combobox.DataSource = options;
-            opt.Button1.Text = "Filter";
+            opt.Button1.Text = UiText.Translate("Filter");
             opt.Button1.DialogResult = DialogResult.OK;
-            opt.Button2.Text = "Cancel";
+            opt.Button2.Text = UiText.Translate("Cancel");
             opt.Button2.DialogResult = DialogResult.Cancel;
 
             var dr = opt.ShowDialog(this);
@@ -3006,9 +3006,9 @@ main()
 
             opt.Combobox.DataSource = list.ToArray();
             opt.Button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            opt.Button1.Text = "Remove";
+            opt.Button1.Text = UiText.Translate("Remove");
             opt.Button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            opt.Button2.Text = "Cancel";
+            opt.Button2.Text = UiText.Translate("Cancel");
 
             if (opt.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
@@ -3541,7 +3541,7 @@ main()
             {
                 zg1.GraphPane.XAxis.Type = AxisType.Date;
                 zg1.GraphPane.XAxis.Scale.Format = "HH:mm:ss.fff";
-                zg1.GraphPane.XAxis.Title.Text = "Time (sec)";
+                zg1.GraphPane.XAxis.Title.Text = UiText.Translate("Time (sec)");
                 zg1.GraphPane.XAxis.Scale.MajorUnit = DateUnit.Minute;
                 zg1.GraphPane.XAxis.Scale.MinorUnit = DateUnit.Second;
                 zg1.GraphPane.YAxis.Title.Text = "";
@@ -3553,8 +3553,8 @@ main()
                 zg1.GraphPane.XAxis.Type = AxisType.Linear;
                 zg1.GraphPane.XAxis.Scale.Format = "f0";
                 zg1.GraphPane.XAxis.Scale.MagAuto = false;
-                zg1.GraphPane.Title.Text = "Value Graph";
-                zg1.GraphPane.XAxis.Title.Text = "Line Number";
+                zg1.GraphPane.Title.Text = UiText.Translate("Value Graph");
+                zg1.GraphPane.XAxis.Title.Text = UiText.Translate("Line Number");
                 zg1.GraphPane.YAxis.Title.Text = "";
             }
 
@@ -3706,7 +3706,7 @@ main()
                 }
                 catch (Exception ex)
                 {
-                    CustomMessageBox.Show("Failed to read File: " + ex.ToString());
+                    CustomMessageBox.Show(UiText.Translate("Failed to read File: ") + ex.ToString());
                     return;
                 }
 

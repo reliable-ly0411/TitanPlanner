@@ -106,7 +106,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 File.WriteAllText(sfd.FileName.Replace(".pem", "_public_key.dat"), "PUBLIC_KEYV1:" + Convert.ToBase64String(((Ed25519PublicKeyParameters)keyPair.Public).GetEncoded()));
 
                 txt_pubkey.Text = Convert.ToBase64String(((Ed25519PublicKeyParameters)keyPair.Public).GetEncoded());
-                CustomMessageBox.Show("Protect your private key, if lost there is no method to get it back.");
+                CustomMessageBox.Show(UiText.Translate("Protect your private key, if lost there is no method to get it back."));
             }
         }
     }

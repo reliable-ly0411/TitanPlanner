@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class OptionForm
     {
@@ -48,7 +49,7 @@
             this.myButton1.Name = "myButton1";
             this.myButton1.Size = new System.Drawing.Size(75, 23);
             this.myButton1.TabIndex = 1;
-            this.myButton1.Text = "Accept";
+            this.myButton1.Text = UiText.Translate("Accept");
             this.myButton1.UseVisualStyleBackColor = true;
             this.myButton1.Click += new System.EventHandler(this.myButton1_Click);
             // 
@@ -59,7 +60,7 @@
             this.myButton2.Name = "myButton2";
             this.myButton2.Size = new System.Drawing.Size(75, 23);
             this.myButton2.TabIndex = 2;
-            this.myButton2.Text = "Cancel";
+            this.myButton2.Text = UiText.Translate("Cancel");
             this.myButton2.UseVisualStyleBackColor = true;
             this.myButton2.Click += new System.EventHandler(this.myButton2_Click);
             // 
@@ -77,7 +78,7 @@
             this.Controls.Add(this.comboBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OptionForm";
-            this.Text = "OptionForm";
+            this.Text = UiText.Translate("OptionForm");
             this.ResumeLayout(false);
 
         }

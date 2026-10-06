@@ -185,8 +185,8 @@ namespace MissionPlanner.Controls
                 if (presetFilename == DefaultPresetName)
                 {
                     CustomMessageBox.Show(
-                        $"The name \"{DefaultPresetName}\" is reserved.\nPlease choose a different name.",
-                        "Reserved Name",
+                        UiText.Format($"The name \"{DefaultPresetName}\" is reserved.\nPlease choose a different name."),
+                        UiText.Translate("Reserved Name"),
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
                     continue;
@@ -329,8 +329,8 @@ namespace MissionPlanner.Controls
                 else if (isDirty)
                 {
                     CustomMessageBox.Show(
-                        "Changes to the built-in preset must be saved as a new profile.",
-                        "Save Required",
+                        UiText.Translate("Changes to the built-in preset must be saved as a new profile."),
+                        UiText.Translate("Save Required"),
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     if (!TrySaveAs())

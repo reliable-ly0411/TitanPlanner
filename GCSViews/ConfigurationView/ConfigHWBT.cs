@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using MissionPlanner.Utilities;
+using log4net;
 using MissionPlanner.Comms;
 using MissionPlanner.Controls;
 using System;
@@ -106,7 +107,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 catch (Exception)
                 {
-                    CustomMessageBox.Show(Strings.SelectComport + " Invalid port", Strings.ERROR);
+                    CustomMessageBox.Show(Strings.SelectComport + UiText.Translate(" Invalid port"), Strings.ERROR);
                     return;
                 }
             }

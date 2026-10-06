@@ -114,7 +114,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.BUT_new.Name = "BUT_new";
             this.BUT_new.Size = new System.Drawing.Size(75, 23);
             this.BUT_new.TabIndex = 2;
-            this.BUT_new.Text = "New Layout";
+            this.BUT_new.Text = UiText.Translate("New Layout");
             this.BUT_new.UseVisualStyleBackColor = true;
             this.BUT_new.Click += new System.EventHandler(this.BUT_new_Click);
             // 
@@ -124,7 +124,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.BUT_load.Name = "BUT_load";
             this.BUT_load.Size = new System.Drawing.Size(75, 23);
             this.BUT_load.TabIndex = 3;
-            this.BUT_load.Text = "Load";
+            this.BUT_load.Text = UiText.Translate("Load");
             this.BUT_load.UseVisualStyleBackColor = true;
             this.BUT_load.Click += new System.EventHandler(this.BUT_load_Click);
             // 
@@ -135,7 +135,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.BUT_save.Name = "BUT_save";
             this.BUT_save.Size = new System.Drawing.Size(75, 23);
             this.BUT_save.TabIndex = 5;
-            this.BUT_save.Text = "Save";
+            this.BUT_save.Text = UiText.Translate("Save");
             this.BUT_save.UseVisualStyleBackColor = true;
             this.BUT_save.Click += new System.EventHandler(this.BUT_save_Click);
             // 
@@ -168,7 +168,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.BUT_addstep.Name = "BUT_addstep";
             this.BUT_addstep.Size = new System.Drawing.Size(75, 23);
             this.BUT_addstep.TabIndex = 7;
-            this.BUT_addstep.Text = "Add Step";
+            this.BUT_addstep.Text = UiText.Translate("Add Step");
             this.BUT_addstep.UseVisualStyleBackColor = true;
             this.BUT_addstep.Click += new System.EventHandler(this.BUT_addstep_Click);
             // 
@@ -178,7 +178,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.BUT_runstep.Name = "BUT_runstep";
             this.BUT_runstep.Size = new System.Drawing.Size(75, 23);
             this.BUT_runstep.TabIndex = 8;
-            this.BUT_runstep.Text = "Run Step";
+            this.BUT_runstep.Text = UiText.Translate("Run Step");
             this.BUT_runstep.UseVisualStyleBackColor = true;
             this.BUT_runstep.Click += new System.EventHandler(this.BUT_runstep_Click);
             // 
@@ -197,7 +197,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.BUT_resetstep.Name = "BUT_resetstep";
             this.BUT_resetstep.Size = new System.Drawing.Size(75, 23);
             this.BUT_resetstep.TabIndex = 10;
-            this.BUT_resetstep.Text = "Reset";
+            this.BUT_resetstep.Text = UiText.Translate("Reset");
             this.BUT_resetstep.UseVisualStyleBackColor = true;
             this.BUT_resetstep.Click += new System.EventHandler(this.BUT_resetstep_Click);
             // 
@@ -230,7 +230,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.but_takeoff.Name = "but_takeoff";
             this.but_takeoff.Size = new System.Drawing.Size(59, 23);
             this.but_takeoff.TabIndex = 12;
-            this.but_takeoff.Text = "Takeoff";
+            this.but_takeoff.Text = UiText.Translate("Takeoff");
             this.but_takeoff.UseVisualStyleBackColor = true;
             this.but_takeoff.Click += new System.EventHandler(this.but_takeoff_Click);
             // 
@@ -240,7 +240,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.but_setimage.Name = "but_setimage";
             this.but_setimage.Size = new System.Drawing.Size(75, 23);
             this.but_setimage.TabIndex = 14;
-            this.but_setimage.Text = "set image";
+            this.but_setimage.Text = UiText.Translate("set image");
             this.but_setimage.UseVisualStyleBackColor = true;
             this.but_setimage.Click += new System.EventHandler(this.but_setimage_Click);
             // 
@@ -261,7 +261,7 @@ namespace MissionPlanner.Swarm.Sequence
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.grid);
             this.Name = "LayoutEditor";
-            this.Text = "Layout Editor";
+            this.Text = UiText.Translate("Layout Editor");
             ((System.ComponentModel.ISupportInitialize)(this.layoutsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stepsBindingSource)).EndInit();
@@ -279,7 +279,7 @@ namespace MissionPlanner.Swarm.Sequence
         private void BUT_new_Click(object sender, EventArgs e)
         {
             string name = "Layout X";
-            InputBox.Show("", "Layout Name", ref name);
+            InputBox.Show("", UiText.Translate("Layout Name"), ref name);
 
             var newworkingLayout = new Layout() { Id = name };
 

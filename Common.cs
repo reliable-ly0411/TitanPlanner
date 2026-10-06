@@ -335,7 +335,7 @@ namespace MissionPlanner
                 MinimizeBox = false,
                 Padding = new Padding(0),
                 StartPosition = FormStartPosition.CenterParent,
-                Text = title,
+                Text = UiText.Translate(title),
             };
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainV2));
             try { form.Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon"); } catch { /* ignore */ }

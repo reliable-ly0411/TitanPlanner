@@ -193,7 +193,7 @@ namespace MissionPlanner.Controls
             this.Invoke((MethodInvoker)delegate
             {
                 this.progressBar1.Visible = false;
-                this.lblProgressMessage.Text = "Cancelled";
+                this.lblProgressMessage.Text = UiText.Translate("Cancelled");
                 this.btnClose.Visible = true;
             });
         }
@@ -241,7 +241,7 @@ namespace MissionPlanner.Controls
                 {
                     this.Invoke((MethodInvoker)delegate
                                                     {
-                                                        this.Text = "Error";
+                                                        this.Text = UiText.Translate("Error");
                                                         this.lblProgressMessage.Left = 65;
                                                         this.lblProgressMessage.Text = errMessage;
                                                         this.imgWarning.Visible = true;
@@ -268,7 +268,7 @@ namespace MissionPlanner.Controls
             // * Set the progress bar to marquee, we don't know how long the worker will take to cancel
             // * Signal the worker.
             this.btnCancel.Visible = false;
-            this.lblProgressMessage.Text = "Cancelling...";
+            this.lblProgressMessage.Text = UiText.Translate("Cancelling...");
             this.progressBar1.Style = ProgressBarStyle.Marquee;
 
             doWorkArgs.CancelRequested = true;

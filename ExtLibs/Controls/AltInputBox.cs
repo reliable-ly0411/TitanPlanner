@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MissionPlanner.Utilities;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -90,12 +91,12 @@ namespace MissionPlanner.Controls
 
             // OK Button
             buttonOk.Size = new Size(75, 23);
-            buttonOk.Text = "OK";
+            buttonOk.Text = UiText.Translate("OK");
             buttonOk.DialogResult = DialogResult.OK;
 
             // Cancel Button
             buttonCancel.Size = new Size(75, 23);
-            buttonCancel.Text = "Cancel";
+            buttonCancel.Text = UiText.Translate("Cancel");
             buttonCancel.DialogResult = DialogResult.Cancel;
 
             // Add controls to the form

@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Log
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Log
 {
     partial class LogIndex
     {
@@ -105,72 +106,72 @@
             this.olvColumnDate.AspectName = "Date";
             this.olvColumnDate.AspectToStringFormat = "{0:yyyy/MM/dd hh\\:mm}";
             this.olvColumnDate.CellPadding = null;
-            this.olvColumnDate.Text = "Date";
+            this.olvColumnDate.Text = UiText.Translate("Date");
             this.olvColumnDate.Width = 100;
             // 
             // olvColumndir
             // 
             this.olvColumndir.AspectName = "Directory";
             this.olvColumndir.CellPadding = null;
-            this.olvColumndir.Text = "Directory";
+            this.olvColumndir.Text = UiText.Translate("Directory");
             this.olvColumndir.Width = 258;
             // 
             // olvColumnFrame
             // 
             this.olvColumnFrame.AspectName = "Frame";
             this.olvColumnFrame.CellPadding = null;
-            this.olvColumnFrame.Text = "Frame";
+            this.olvColumnFrame.Text = UiText.Translate("Frame");
             // 
             // olvColumnSysid
             // 
             this.olvColumnSysid.AspectName = "Aircraft";
             this.olvColumnSysid.CellPadding = null;
-            this.olvColumnSysid.Text = "Aircraft";
+            this.olvColumnSysid.Text = UiText.Translate("Aircraft");
             // 
             // olvColumnduration
             // 
             this.olvColumnduration.AspectName = "Duration";
             this.olvColumnduration.AspectToStringFormat = "{0:hh\\:mm\\:ss}";
             this.olvColumnduration.CellPadding = null;
-            this.olvColumnduration.Text = "Duration";
+            this.olvColumnduration.Text = UiText.Translate("Duration");
             this.olvColumnduration.Width = 100;
             // 
             // olvColumnName
             // 
             this.olvColumnName.AspectName = "Name";
             this.olvColumnName.CellPadding = null;
-            this.olvColumnName.Text = "FileName";
+            this.olvColumnName.Text = UiText.Translate("FileName");
             this.olvColumnName.Width = 178;
             // 
             // olvColumnSize
             // 
             this.olvColumnSize.AspectName = "Size";
             this.olvColumnSize.CellPadding = null;
-            this.olvColumnSize.Text = "Size";
+            this.olvColumnSize.Text = UiText.Translate("Size");
             // 
             // olvColumnHome
             // 
             this.olvColumnHome.AspectName = "Home";
             this.olvColumnHome.CellPadding = null;
-            this.olvColumnHome.Text = "Home";
+            this.olvColumnHome.Text = UiText.Translate("Home");
             // 
             // olvColumnTimeInAir
             // 
             this.olvColumnTimeInAir.AspectName = "TimeInAir";
             this.olvColumnTimeInAir.CellPadding = null;
-            this.olvColumnTimeInAir.Text = "TimeInAir, sec";
+            this.olvColumnTimeInAir.Text = UiText.Translate("TimeInAir, sec");
             // 
             // olvColumnDistTraveled
             // 
             this.olvColumnDistTraveled.AspectName = "DistTraveled";
             this.olvColumnDistTraveled.CellPadding = null;
-            this.olvColumnDistTraveled.Text = "DistTraveled, m";
+            this.olvColumnDistTraveled.Text = UiText.Translate("DistTraveled, m");
             // 
             // olvColumnCamMSG
             // 
             this.olvColumnCamMSG.AspectName = "CamMSG";
             this.olvColumnCamMSG.CellPadding = null;
-            this.olvColumnCamMSG.Text = "CamMSG";
+            this.olvColumnCamMSG.Text = UiText.Translate("CamMSG");
             // 
             // BUT_changedir
             // 
@@ -179,7 +180,7 @@
             this.BUT_changedir.Name = "BUT_changedir";
             this.BUT_changedir.Size = new System.Drawing.Size(99, 23);
             this.BUT_changedir.TabIndex = 1;
-            this.BUT_changedir.Text = "Custom Directory";
+            this.BUT_changedir.Text = UiText.Translate("Custom Directory");
             this.BUT_changedir.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.BUT_changedir.UseVisualStyleBackColor = true;
             this.BUT_changedir.Click += new System.EventHandler(this.BUT_changedir_Click);
@@ -191,7 +192,7 @@
             this.btnDeleteLog.Name = "btnDeleteLog";
             this.btnDeleteLog.Size = new System.Drawing.Size(104, 23);
             this.btnDeleteLog.TabIndex = 2;
-            this.btnDeleteLog.Text = "Delete selected";
+            this.btnDeleteLog.Text = UiText.Translate("Delete selected");
             this.btnDeleteLog.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.btnDeleteLog.UseVisualStyleBackColor = true;
             this.btnDeleteLog.Click += new System.EventHandler(this.btnDeleteLog_Click);
@@ -203,7 +204,7 @@
             this.lbStats.resize = false;
             this.lbStats.Size = new System.Drawing.Size(372, 23);
             this.lbStats.TabIndex = 3;
-            this.lbStats.Text = "Selected: 0";
+            this.lbStats.Text = UiText.Translate("Selected: 0");
             // 
             // but_defaultlogdir
             // 
@@ -212,7 +213,7 @@
             this.but_defaultlogdir.Name = "but_defaultlogdir";
             this.but_defaultlogdir.Size = new System.Drawing.Size(99, 23);
             this.but_defaultlogdir.TabIndex = 4;
-            this.but_defaultlogdir.Text = "Default Log Dir";
+            this.but_defaultlogdir.Text = UiText.Translate("Default Log Dir");
             this.but_defaultlogdir.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_defaultlogdir.UseVisualStyleBackColor = true;
             this.but_defaultlogdir.Click += new System.EventHandler(this.but_defaultlogdir_Click);
@@ -226,7 +227,7 @@
             this.Controls.Add(this.BUT_changedir);
             this.Controls.Add(this.objectListView1);
             this.Name = "LogIndex";
-            this.Text = "LogIndex";
+            this.Text = UiText.Translate("LogIndex");
             this.Load += new System.EventHandler(this.LogIndex_Load);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);

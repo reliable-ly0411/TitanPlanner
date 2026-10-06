@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigCubeID
     {
@@ -46,7 +47,7 @@
             this.but_upfw.Name = "but_upfw";
             this.but_upfw.Size = new System.Drawing.Size(120, 23);
             this.but_upfw.TabIndex = 0;
-            this.but_upfw.Text = "Upload Firmware";
+            this.but_upfw.Text = UiText.Translate("Upload Firmware");
             this.but_upfw.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_upfw.UseVisualStyleBackColor = true;
             this.but_upfw.Click += new System.EventHandler(this.but_upfw_Click);
@@ -58,9 +59,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(346, 52);
             this.label1.TabIndex = 1;
-            this.label1.Text = "To use this feature\r\nPlease enable serial passthough to the port the CubeID is co" +
-    "nnected to.\r\nSet param SERIAL_PASSTIMO to 0\r\nSet param SERIAL_PASS2 to the telem" +
-    " port\r\n";
+            this.label1.Text = UiText.Translate("To use this feature\r\nPlease enable serial passthough to the port the CubeID is connected to.\r\nSet param SERIAL_PASSTIMO to 0\r\nSet param SERIAL_PASS2 to the telem port\r\n");
             // 
             // label2
             // 
@@ -110,8 +109,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(314, 26);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Select the ODID device from the dropdown in the top right corner\r\nthen click the " +
-    "Update Firmware button";
+            this.label4.Text = UiText.Translate("Select the ODID device from the dropdown in the top right corner\r\nthen click the Update Firmware button");
             // 
             // CHK_forcebaud
             // 
@@ -122,7 +120,7 @@
             this.CHK_forcebaud.Name = "CHK_forcebaud";
             this.CHK_forcebaud.Size = new System.Drawing.Size(113, 17);
             this.CHK_forcebaud.TabIndex = 7;
-            this.CHK_forcebaud.Text = "Force 57600 baud";
+            this.CHK_forcebaud.Text = UiText.Translate("Force 57600 baud");
             this.CHK_forcebaud.UseVisualStyleBackColor = true;
             // 
             // but_customfw
@@ -131,7 +129,7 @@
             this.but_customfw.Name = "but_customfw";
             this.but_customfw.Size = new System.Drawing.Size(109, 23);
             this.but_customfw.TabIndex = 8;
-            this.but_customfw.Text = "Upload Custom Firmware";
+            this.but_customfw.Text = UiText.Translate("Upload Custom Firmware");
             this.but_customfw.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_customfw.UseVisualStyleBackColor = true;
             this.but_customfw.Click += new System.EventHandler(this.but_customfw_Click);

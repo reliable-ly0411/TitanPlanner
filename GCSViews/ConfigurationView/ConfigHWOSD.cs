@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Controls;
+﻿using MissionPlanner.Utilities;
+using MissionPlanner.Controls;
 using System;
 using System.Windows.Forms;
 
@@ -64,7 +65,7 @@ SR0_RC_CHAN,0
             }
             catch
             {
-                CustomMessageBox.Show("Failed to set OSD rates.");
+                CustomMessageBox.Show(UiText.Translate("Failed to set OSD rates."));
             }
         }
     }

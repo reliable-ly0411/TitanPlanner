@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -558,4 +558,97 @@
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="RRTSCTS.ToolTip" xml:space="preserve"><value>启用或禁用硬件流控制</value></data>
+  <data name="RMAX_FREQ.ToolTip" xml:space="preserve"><value>最高频率，单位 kHz </value></data>
+  <data name="RNUM_CHANNELS.ToolTip" xml:space="preserve"><value>跳频通道数 </value></data>
+  <data name="RDUTY_CYCLE.ToolTip" xml:space="preserve"><value>允许发射的时间百分比</value></data>
+  <data name="RLBT_RSSI.ToolTip" xml:space="preserve"><value>先听后发阈值</value></data>
+  <data name="RMIN_FREQ.ToolTip" xml:space="preserve"><value>最低频率，单位 kHz </value></data>
+  <data name="RGPO1_1R_COUT.ToolTip" xml:space="preserve"><value>GPI1_1R/COUT 将 GPIO 1.1 设为遥控 (PPM) 输出</value></data>
+  <data name="RGPI1_1R_CIN.ToolTip" xml:space="preserve"><value>GPI1_1R/CIN 将 GPIO 1.1 设为遥控 (PPM) 输入</value></data>
+  <data name="RSERIAL_SPEED.ToolTip" xml:space="preserve"><value>串口波特率以取整的 kbps 表示，例如 57 表示 57600。
+</value></data>
+  <data name="RAIR_SPEED.ToolTip" xml:space="preserve"><value>AIR_SPEED 是电台间的空中数据速率，单位为 kbps。例如 128 表示 128 kbps，最大 192，最小 2。不建议低于 16，否则跳频和时分复用同步耗时过长。</value></data>
+  <data name="RNETID.ToolTip" xml:space="preserve"><value>NETID 是 16 位网络 ID，用于生成跳频序列并确认数据包来自正确的电台。请确保与附近同类型电台使用不同的 NETID。</value></data>
+  <data name="RTXPOWER.ToolTip" xml:space="preserve"><value>TXPOWER 是发射功率，单位为 dBm。20 dBm 等于 100 mW。近距离测试时可设置为较低值。
+</value></data>
+  <data name="RECC.ToolTip" xml:space="preserve"><value>ECC 用于启用或禁用 Golay 纠错码，默认关闭。启用后，数据包发送字节数翻倍，空中有效带宽减半，但每 12 位数据可纠正最多 3 位错误。适合远距离通信，通常配合较低的空中数据速率使用。Golay 解码每传输字节耗时 20 微秒（每用户数据字节 40 微秒），在最高数据速率下也会受到 CPU 限制。因此通常在 128 kbps 或更低速率下使用。
+</value></data>
+  <data name="ROPPRESEND.ToolTip" xml:space="preserve"><value>OPPRESEND 用于启用或禁用“机会重传”。启用后，若串口输入缓冲区少于 256 字节，电台会将数据包发送两次。第二次发送会标记为重传；如果接收端已正确收到第一次数据包，就会丢弃重复包。这能显著改善链路质量，尤其是上行命令。
+</value></data>
+  <data name="RTSCTS.ToolTip" xml:space="preserve"><value>启用或禁用硬件流控制</value></data>
+  <data name="MAX_FREQ.ToolTip" xml:space="preserve"><value>最高频率，单位 kHz </value></data>
+  <data name="NUM_CHANNELS.ToolTip" xml:space="preserve"><value>跳频通道数 </value></data>
+  <data name="LBT_RSSI.ToolTip" xml:space="preserve"><value>先听后发阈值</value></data>
+  <data name="MIN_FREQ.ToolTip" xml:space="preserve"><value>最低频率，单位 kHz </value></data>
+  <data name="DUTY_CYCLE.ToolTip" xml:space="preserve"><value>允许发射的时间百分比</value></data>
+  <data name="GPO1_1R_COUT.ToolTip" xml:space="preserve"><value>GPI1_1R/COUT 将 GPIO 1.1 设为遥控 (PPM) 输出</value></data>
+  <data name="GPI1_1R_CIN.ToolTip" xml:space="preserve"><value>GPI1_1R/CIN 将 GPIO 1.1 设为遥控 (PPM) 输入</value></data>
+  <data name="SERIAL_SPEED.ToolTip" xml:space="preserve"><value>串口波特率以取整的 kbps 表示，例如 57 表示 57600。
+</value></data>
+  <data name="AIR_SPEED.ToolTip" xml:space="preserve"><value>AIR_SPEED 是电台间的空中数据速率，单位为 kbps。例如 128 表示 128 kbps，最大 192，最小 2。不建议低于 16，否则跳频和时分复用同步耗时过长。</value></data>
+  <data name="NETID.ToolTip" xml:space="preserve"><value>NETID 是 16 位网络 ID，用于生成跳频序列并确认数据包来自正确的电台。请确保与附近同类型电台使用不同的 NETID。</value></data>
+  <data name="TXPOWER.ToolTip" xml:space="preserve"><value>TXPOWER 是发射功率，单位为 dBm。20 dBm 等于 100 mW。近距离测试时可设置为较低值。
+</value></data>
+  <data name="ECC.ToolTip" xml:space="preserve"><value>ECC 用于启用或禁用 Golay 纠错码，默认关闭。启用后，数据包发送字节数翻倍，空中有效带宽减半，但每 12 位数据可纠正最多 3 位错误。适合远距离通信，通常配合较低的空中数据速率使用。Golay 解码每传输字节耗时 20 微秒（每用户数据字节 40 微秒），在最高数据速率下也会受到 CPU 限制。因此通常在 128 kbps 或更低速率下使用。
+</value></data>
+  <data name="OPPRESEND.ToolTip" xml:space="preserve"><value>OPPRESEND 用于启用或禁用“机会重传”。启用后，若串口输入缓冲区少于 256 字节，电台会将数据包发送两次。第二次发送会标记为重传；如果接收端已正确收到第一次数据包，就会丢弃重复包。这能显著改善链路质量，尤其是上行命令。
+</value></data>
+  <data name="ENCRYPTION_LEVEL.ToolTip" xml:space="preserve"><value>AES 加密级别</value></data>
+  <data name="RENCRYPTION_LEVEL.ToolTip" xml:space="preserve"><value>AES 加密级别</value></data>
+  <data name="FSFRAMELOSS.ToolTip" xml:space="preserve"><value>SBUS 或 PPM 连续丢失多少个输出帧后进入失控保护。</value></data>
+  <data name="RFSFRAMELOSS.ToolTip" xml:space="preserve"><value>SBUS 或 PPM 连续丢失多少个输出帧后进入失控保护。</value></data>
+  <data name="groupBoxLocal.Text" xml:space="preserve"><value>本地</value></data>
+  <data name="label54.Text" xml:space="preserve"><value>丢帧失控保护</value></data>
+  <data name="label49.Text" xml:space="preserve"><value>国家：</value></data>
+  <data name="label45.Text" xml:space="preserve"><value>速率/频段</value></data>
+  <data name="btnRandom.Text" xml:space="preserve"><value>随机</value></data>
+  <data name="lblDESTID.Text" xml:space="preserve"><value>目标 ID</value></data>
+  <data name="lblNODEID.Text" xml:space="preserve"><value>节点 ID</value></data>
+  <data name="lblNETID.Text" xml:space="preserve"><value>网络 ID</value></data>
+  <data name="lblTXPOWER.Text" xml:space="preserve"><value>发射功率</value></data>
+  <data name="lblOPPRESEND.Text" xml:space="preserve"><value>机会重传</value></data>
+  <data name="lblANT_MODE.Text" xml:space="preserve"><value>天线模式</value></data>
+  <data name="lblSER_BRK_DETMS.Text" xml:space="preserve"><value>中断检测</value></data>
+  <data name="lblGLOBAL_RETRIES.Text" xml:space="preserve"><value>全局重试次数</value></data>
+  <data name="lblMAX_RETRIES.Text" xml:space="preserve"><value>最大重试次数</value></data>
+  <data name="lblMAX_DATA.Text" xml:space="preserve"><value>最大数据量</value></data>
+  <data name="lblENCRYPTION_LEVEL.Text" xml:space="preserve"><value>AES 加密</value></data>
+  <data name="label35.Text" xml:space="preserve"><value>AES 密钥</value></data>
+  <data name="lblMAX_WINDOW.Text" xml:space="preserve"><value>最大窗口 (ms)</value></data>
+  <data name="lblMIN_FREQ.Text" xml:space="preserve"><value>最低频率</value></data>
+  <data name="lblLBT_RSSI.Text" xml:space="preserve"><value>先听后发 RSSI</value></data>
+  <data name="lblDUTY_CYCLE.Text" xml:space="preserve"><value>占空比</value></data>
+  <data name="lblNUM_CHANNELS.Text" xml:space="preserve"><value>通道数</value></data>
+  <data name="lblMAX_FREQ.Text" xml:space="preserve"><value>最高频率</value></data>
+  <data name="btnRemoteLoadFromFile.Text" xml:space="preserve"><value>从文件加载…</value></data>
+  <data name="btnRemoteSaveToFile.Text" xml:space="preserve"><value>保存到文件…</value></data>
+  <data name="lblRFSFRAMELOSS.Text" xml:space="preserve"><value>丢帧失控保护</value></data>
+  <data name="BUT_SetPPMFailSafeRemote.Text" xml:space="preserve"><value>设置 PPM 失控保护</value></data>
+  <data name="BUT_SetPPMFailSafeRemote.ToolTip" xml:space="preserve"><value>记录默认 PPM 流，用于 PPM 输出（飞行器端）</value></data>
+  <data name="label50.Text" xml:space="preserve"><value>国家：</value></data>
+  <data name="label46.Text" xml:space="preserve"><value>速率/频段</value></data>
+  <data name="lblRDESTID.Text" xml:space="preserve"><value>目标 ID</value></data>
+  <data name="lblRNODEID.Text" xml:space="preserve"><value>节点 ID</value></data>
+  <data name="lblROPPRESEND.Text" xml:space="preserve"><value>机会重传</value></data>
+  <data name="lblRTXPOWER.Text" xml:space="preserve"><value>发射功率</value></data>
+  <data name="lblRNETID.Text" xml:space="preserve"><value>网络 ID</value></data>
+  <data name="lblRANT_MODE.Text" xml:space="preserve"><value>天线模式</value></data>
+  <data name="lblRSER_BRK_DETMS.Text" xml:space="preserve"><value>中断检测</value></data>
+  <data name="lblRGLOBAL_RETRIES.Text" xml:space="preserve"><value>全局重试次数</value></data>
+  <data name="lblRMAX_RETRIES.Text" xml:space="preserve"><value>最大重试次数</value></data>
+  <data name="lblRMAX_DATA.Text" xml:space="preserve"><value>最大数据量</value></data>
+  <data name="label38.Text" xml:space="preserve"><value>AES 密钥</value></data>
+  <data name="lblRENCRYPTION_LEVEL.Text" xml:space="preserve"><value>AES 加密</value></data>
+  <data name="lblRMAX_WINDOW.Text" xml:space="preserve"><value>最大窗口 (ms)</value></data>
+  <data name="lblRMIN_FREQ.Text" xml:space="preserve"><value>最低频率</value></data>
+  <data name="lblRMAX_FREQ.Text" xml:space="preserve"><value>最高频率</value></data>
+  <data name="lblRNUM_CHANNELS.Text" xml:space="preserve"><value>通道数</value></data>
+  <data name="lblRDUTY_CYCLE.Text" xml:space="preserve"><value>占空比</value></data>
+  <data name="lblRLBT_RSSI.Text" xml:space="preserve"><value>先听后发 RSSI</value></data>
+  <data name="groupBoxRemote.Text" xml:space="preserve"><value>远端</value></data>
+  <data name="BUT_SetPPMFailSafe.Text" xml:space="preserve"><value>设置 PPM 失控保护</value></data>
+  <data name="BUT_SetPPMFailSafe.ToolTip" xml:space="preserve"><value>记录默认 PPM 流，用于 PPM 输出（飞行器端）</value></data>
+  <data name="btnSaveToFile.Text" xml:space="preserve"><value>保存到文件…</value></data>
+  <data name="btnLoadFromFile.Text" xml:space="preserve"><value>从文件加载…</value></data>
 </root>

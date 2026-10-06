@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Swarm
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Swarm
 {
     partial class Grid
     {
@@ -46,7 +47,7 @@
             // 
             this.changeAltToolStripMenuItem.Name = "changeAltToolStripMenuItem";
             this.changeAltToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.changeAltToolStripMenuItem.Text = "Change Alt";
+            this.changeAltToolStripMenuItem.Text = UiText.Translate("Change Alt");
             this.changeAltToolStripMenuItem.Click += new System.EventHandler(this.changeAltToolStripMenuItem_Click);
             // 
             // CHK_vertical
@@ -57,7 +58,7 @@
             this.CHK_vertical.Name = "CHK_vertical";
             this.CHK_vertical.Size = new System.Drawing.Size(61, 17);
             this.CHK_vertical.TabIndex = 1;
-            this.CHK_vertical.Text = "Vertical";
+            this.CHK_vertical.Text = UiText.Translate("Vertical");
             this.CHK_vertical.UseVisualStyleBackColor = true;
             this.CHK_vertical.CheckedChanged += new System.EventHandler(this.CHK_vertical_CheckedChanged);
             // 

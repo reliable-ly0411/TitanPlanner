@@ -1,3 +1,5 @@
+> **简体中文补丁：** 本 fork 已补齐中文界面资源和动态显示文本。使用方法、构建说明及验证边界见 [README.zh-CN.md](README.zh-CN.md)。当前交付为源码补丁，完整 Windows GUI 验收尚未完成。
+
 # Mission Planner - Titan Dynamics Edition
 
 <p align="center">

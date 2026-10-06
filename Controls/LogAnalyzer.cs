@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Windows.Forms;
 
 namespace MissionPlanner.Controls
@@ -27,7 +28,7 @@ Skipped Lines {9}
 
             foreach (var item in analysis.results)
             {
-                textBox1.Text += "Test: " + item.name + " = " + item.status + " - " + item.message + "\r\n";
+                textBox1.Text += UiText.Translate("Test: ") + item.name + " = " + item.status + " - " + item.message + "\r\n";
             }
         }
     }

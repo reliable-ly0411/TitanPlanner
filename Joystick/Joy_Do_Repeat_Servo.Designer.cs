@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_Do_Repeat_Servo
     {
@@ -49,7 +50,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Servo No#";
+            this.label1.Text = UiText.Translate("Servo No#");
             // 
             // numericUpDown1
             // 
@@ -66,7 +67,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Pwm Value";
+            this.label2.Text = UiText.Translate("Pwm Value");
             // 
             // numericUpDown2
             // 
@@ -98,7 +99,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Rep Time";
+            this.label3.Text = UiText.Translate("Rep Time");
             // 
             // numericUpDown3
             // 
@@ -115,7 +116,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Delay (ms)";
+            this.label4.Text = UiText.Translate("Delay (ms)");
             // 
             // numericUpDown4
             // 
@@ -139,7 +140,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "Joy_Do_Repeat_Servo";
-            this.Text = "Joy_Do_Repeat_Servo";
+            this.Text = UiText.Translate("Joy_Do_Repeat_Servo");
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Windows.Forms;
 
 namespace MissionPlanner.Grid
@@ -47,7 +48,7 @@ namespace MissionPlanner.Grid
                 else
                 {
                     if (
-                        CustomMessageBox.Show("No polygon defined. Load a file?", "Load File", MessageBoxButtons.YesNo) ==
+                        CustomMessageBox.Show(UiText.Translate("No polygon defined. Load a file?"), UiText.Translate("Load File"), MessageBoxButtons.YesNo) ==
                         (int)DialogResult.Yes)
                     {
                         gridui.LoadGrid();
@@ -55,7 +56,7 @@ namespace MissionPlanner.Grid
                     }
                     else
                     {
-                        CustomMessageBox.Show("Please define a polygon.", "Error");
+                        CustomMessageBox.Show(UiText.Translate("Please define a polygon."), UiText.Translate("Error"));
                     }
                 }
             }

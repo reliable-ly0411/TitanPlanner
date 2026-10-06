@@ -667,8 +667,11 @@ namespace MissionPlanner
 
             speech_armed_only = Settings.Instance.GetBoolean("speech_armed_only", false);
 
-            // force language to be loaded
-            L10N.GetConfigLang();
+            // 必须在创建控件前设置 UI 语言；数值文化保持不变，避免影响坐标与协议。
+            var uiCulture = L10N.GetConfigLang();
+            Thread.CurrentThread.CurrentUICulture = uiCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = uiCulture;
+            Strings.Culture = uiCulture;
 
             ShowAirports = true;
 
@@ -707,7 +710,7 @@ namespace MissionPlanner
                 var extra = toDisplay.Count - lines.Count;
 
                 var builder = new StringBuilder();
-                builder.AppendLine("Params written:");
+                builder.AppendLine(UiText.Translate("Params written:"));
                 foreach (var name in lines)
                 {
                     builder.AppendLine($"{name}");
@@ -715,7 +718,7 @@ namespace MissionPlanner
 
                 if (extra > 0)
                 {
-                    builder.AppendLine($"+{extra} more...");
+                    builder.AppendLine(UiText.Format($"+{extra} more..."));
                 }
 
                 var toast = new ParamWriteToast(builder.ToString().TrimEnd(), this);
@@ -934,7 +937,7 @@ namespace MissionPlanner
                 //System.ArgumentException: Font 'Arial' does not support style 'Regular'.
 
                 log.Fatal(e);
-                CustomMessageBox.Show($"{e}\n\n Font Issues? Please install this http://www.microsoft.com/en-us/download/details.aspx?id=16083");
+                CustomMessageBox.Show(UiText.Format($"{e}\n\n Font Issues? Please install this http://www.microsoft.com/en-us/download/details.aspx?id=16083"));
                 //splash.Close();
                 //this.Close();
                 Application.Exit();
@@ -942,7 +945,7 @@ namespace MissionPlanner
             catch (Exception e)
             {
                 log.Fatal(e);
-                CustomMessageBox.Show($"A Major error has occured : {e}");
+                CustomMessageBox.Show(UiText.Format($"A Major error has occured : {e}"));
                 Application.Exit();
             }
 
@@ -1105,7 +1108,7 @@ namespace MissionPlanner
 
             if (CurrentState.rateattitudebackup == 0) // initilised to 10, configured above from save
             {
-                CustomMessageBox.Show("NOTE: your attitude rate is 0, the hud will not work\nChange in Configuration > Planner > Telemetry Rates");
+                CustomMessageBox.Show(UiText.Translate("NOTE: your attitude rate is 0, the hud will not work\nChange in Configuration > Planner > Telemetry Rates"));
             }
 
             // create log dir if it doesnt exist
@@ -1139,7 +1142,7 @@ namespace MissionPlanner
 
                     if (Framework < 4.0)
                     {
-                        CustomMessageBox.Show("This program requires .NET Framework 4.0. You currently have " + Framework);
+                        CustomMessageBox.Show(UiText.Translate("This program requires .NET Framework 4.0. You currently have ") + Framework);
                     }
                 }
                 catch (Exception ex)
@@ -1402,14 +1405,14 @@ namespace MissionPlanner
             else
             {
                 var pw = "";
-                if (InputBox.Show("Enter Password", "Please enter your password", ref pw, true) ==
+                if (InputBox.Show(UiText.Translate("Enter Password"), UiText.Translate("Please enter your password"), ref pw, true) ==
                     System.Windows.Forms.DialogResult.OK)
                 {
                     bool ans = Password.ValidatePassword(pw);
 
                     if (ans == false)
                     {
-                        CustomMessageBox.Show("Bad Password", "Bad Password");
+                        CustomMessageBox.Show(UiText.Translate("Bad Password"), UiText.Translate("Bad Password"));
                     }
                 }
 
@@ -1434,14 +1437,14 @@ namespace MissionPlanner
             else
             {
                 var pw = "";
-                if (InputBox.Show("Enter Password", "Please enter your password", ref pw, true) ==
+                if (InputBox.Show(UiText.Translate("Enter Password"), UiText.Translate("Please enter your password"), ref pw, true) ==
                     System.Windows.Forms.DialogResult.OK)
                 {
                     bool ans = Password.ValidatePassword(pw);
 
                     if (ans == false)
                     {
-                        CustomMessageBox.Show("Bad Password", "Bad Password");
+                        CustomMessageBox.Show(UiText.Translate("Bad Password"), UiText.Translate("Bad Password"));
                     }
                 }
 
@@ -1566,7 +1569,7 @@ namespace MissionPlanner
                     Comms.CommsSerialScan.Scan(true);
                     DateTime deadline = DateTime.Now.AddSeconds(50);
                     ProgressReporterDialogue prd = new ProgressReporterDialogue();
-                    prd.UpdateProgressAndStatus(-1, "Waiting for ports");
+                    prd.UpdateProgressAndStatus(-1, UiText.Translate("Waiting for ports"));
                     prd.DoWork += sender =>
                     {
                         while (Comms.CommsSerialScan.foundport == false || Comms.CommsSerialScan.run == 1)
@@ -1783,7 +1786,7 @@ namespace MissionPlanner
                                     {
                                         Common.MessageShowAgain(Strings.NewFirmware + "-" + item.VehicleType + " " + ver2,
                                             Strings.NewFirmwareA + item.VehicleType + " " + ver2 + Strings.Pleaseup +
-                                            "[link;https://discuss.ardupilot.org/tags/stable-release;Release Notes]");
+                                            UiText.Translate("[link;https://discuss.ardupilot.org/tags/stable-release;Release Notes]"));
                                         break;
                                     }
 
@@ -1811,7 +1814,7 @@ namespace MissionPlanner
                     Settings.Instance[_connectionControl.CMB_serialport.Text.Replace(" ","_") + "_BAUD"] =
                         _connectionControl.CMB_baudrate.Text;
 
-                    this.Text = titlebar + " " + comPort.MAV.VersionString + " on " + comPort.MAV.SerialString;
+                    this.Text = titlebar + " " + comPort.MAV.VersionString + UiText.Translate(" on ") + comPort.MAV.SerialString;
 
                     // refresh config window if needed
                     if (MyView.current != null && showui)
@@ -1906,7 +1909,7 @@ namespace MissionPlanner
                     log.Warn(ex2);
                 }
 
-                CustomMessageBox.Show($"Can not establish a connection\n\n{ex.Message}");
+                CustomMessageBox.Show(UiText.Format($"Can not establish a connection\n\n{ex.Message}"));
                 return;
             }
         }
@@ -2974,7 +2977,7 @@ namespace MissionPlanner
                                         (Action)
                                         delegate
                                         {
-                                            CustomMessageBox.Show("Failed to update home location (" +
+                                            CustomMessageBox.Show(UiText.Translate("Failed to update home location (") +
                                                                   MainV2.comPort.MAV.sysid + ")");
                                         });
                                 }
@@ -3569,7 +3572,7 @@ namespace MissionPlanner
                         if (!GStreamer.GstLaunchExists)
                         {
                             if (CustomMessageBox.Show(
-                                    "A video stream has been detected, but gstreamer has not been configured/installed.\nDo you want to install/config it now?",
+                                    UiText.Translate("A video stream has been detected, but gstreamer has not been configured/installed.\nDo you want to install/config it now?"),
                                     "GStreamer", System.Windows.Forms.MessageBoxButtons.YesNo) ==
                                 (int) System.Windows.Forms.DialogResult.Yes)
                             {
@@ -3724,8 +3727,8 @@ namespace MissionPlanner
                                 ExtraConnectionList.Add(new AutoConnect.ConnectionInfo("ZeroConf " + zeroconfHost.DisplayName, false, port, AutoConnect.ProtocolType.Udp, AutoConnect.ConnectionFormat.MAVLink, AutoConnect.Direction.Outbound, ip));
 
                             if (CustomMessageBox.Show(
-                                    "A Mavlink stream has been detected, " + zeroconfHost.DisplayName + "(" +
-                                    zeroconfHost.Id + "). Would you like to connect to it?",
+                                    UiText.Translate("A Mavlink stream has been detected, ") + zeroconfHost.DisplayName + "(" +
+                                    zeroconfHost.Id + UiText.Translate("). Would you like to connect to it?"),
                                     "Mavlink", System.Windows.Forms.MessageBoxButtons.YesNo) ==
                                 (int) System.Windows.Forms.DialogResult.Yes)
                             {
@@ -3849,7 +3852,7 @@ namespace MissionPlanner
             if (winXp)
             {
                 Common.MessageShowAgain("Windows XP",
-                    "This is the last version that will support Windows XP, please update your OS");
+                    UiText.Translate("This is the last version that will support Windows XP, please update your OS"));
 
                 // invalidate update url
                 System.Configuration.ConfigurationManager.AppSettings["UpdateLocationVersion"] =
@@ -3913,7 +3916,7 @@ namespace MissionPlanner
                         }
                         catch (Exception ex)
                         {
-                            CustomMessageBox.Show("Start script failed: " + ex.ToString(), Strings.ERROR);
+                            CustomMessageBox.Show(UiText.Translate("Start script failed: ") + ex.ToString(), Strings.ERROR);
                         }
                     });
                 }
@@ -3946,7 +3949,7 @@ namespace MissionPlanner
                     }
                     else
                     {
-                        CustomMessageBox.Show("Failed to start joystick");
+                        CustomMessageBox.Show(UiText.Translate("Failed to start joystick"));
                     }
                 }
 
@@ -3997,7 +4000,7 @@ namespace MissionPlanner
                     if (!GStreamer.GstLaunchExists)
                     {
                         if (CustomMessageBox.Show(
-                                "A video stream has been detected, but gstreamer has not been configured/installed.\nDo you want to install/config it now?",
+                                UiText.Translate("A video stream has been detected, but gstreamer has not been configured/installed.\nDo you want to install/config it now?"),
                                 "GStreamer", System.Windows.Forms.MessageBoxButtons.YesNo) ==
                             (int) System.Windows.Forms.DialogResult.Yes)
                         {
@@ -4428,7 +4431,7 @@ namespace MissionPlanner
             {
                 if (comPort.BaseStream.IsOpen)
                 {
-                    if (CustomMessageBox.Show("Are you sure you want to reboot the autopilot?", "Reboot",
+                    if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to reboot the autopilot?"), UiText.Translate("Reboot"),
                             MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
                     {
                         try
@@ -4483,13 +4486,13 @@ namespace MissionPlanner
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Invalid command");
+                    CustomMessageBox.Show(UiText.Translate("Invalid command"));
                     return true;
                 }
 
                 //read
                 ///////MainV2.comPort.doCommand(MAVLink09.MAV_CMD.PREFLIGHT_STORAGE, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-                CustomMessageBox.Show("Done MAV_ACTION_STORAGE_WRITE");
+                CustomMessageBox.Show(UiText.Translate("Done MAV_ACTION_STORAGE_WRITE"));
                 return true;
             }
 
@@ -4520,6 +4523,9 @@ namespace MissionPlanner
             if (ci != null && !Thread.CurrentThread.CurrentUICulture.Equals(ci))
             {
                 Thread.CurrentThread.CurrentUICulture = ci;
+                CultureInfo.DefaultThreadCurrentUICulture = ci;
+                Strings.Culture = ci;
+                L10N.ConfigLang = ci;
                 Settings.Instance["language"] = ci.Name;
                 //System.Threading.Thread.CurrentThread.CurrentCulture = ci;
 
@@ -4738,7 +4744,7 @@ namespace MissionPlanner
             }
             catch
             {
-                CustomMessageBox.Show("Link open failed. check your default webpage association");
+                CustomMessageBox.Show(UiText.Translate("Link open failed. check your default webpage association"));
             }
         }
 
@@ -4984,7 +4990,7 @@ namespace MissionPlanner
             }
             catch
             {
-                CustomMessageBox.Show("Failed to open url");
+                CustomMessageBox.Show(UiText.Translate("Failed to open url"));
             }
         }
 

@@ -56,13 +56,13 @@ namespace MissionPlanner.Controls
 
             string name = "";
 
-            if (InputBox.Show("Name", "Please enter a friendly name", ref name) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Name"), UiText.Translate("Please enter a friendly name"), ref name) == DialogResult.OK)
             {
                 dataGridView1[FName.Index, row].Value = name;
 
                 string pass = "";
 
-                if (InputBox.Show("Input Seed", "Please enter your pass phrase/sentence\nNumbers, Lower Case, Upper Case, Symbols, and 12+ chars long using atleast 2 of each", ref pass) == DialogResult.OK)
+                if (InputBox.Show(UiText.Translate("Input Seed"), UiText.Translate("Please enter your pass phrase/sentence\nNumbers, Lower Case, Upper Case, Symbols, and 12+ chars long using atleast 2 of each"), ref pass) == DialogResult.OK)
                 {
                     var input = InputBox.value;
                     {
@@ -100,11 +100,11 @@ namespace MissionPlanner.Controls
                         score += len == n ? -len : 0;
 
                         if(score <= 40)
-                            CustomMessageBox.Show("Password Strength: " + score + " WEAK - it will be added, but please pick a better password");
+                            CustomMessageBox.Show(UiText.Translate("Password Strength: ") + score + UiText.Translate(" WEAK - it will be added, but please pick a better password"));
                         else if (score <= 60)
-                            CustomMessageBox.Show("Password Strength: " + score + " Good");
+                            CustomMessageBox.Show(UiText.Translate("Password Strength: ") + score + UiText.Translate(" Good"));
                         else if (score > 60)
-                            CustomMessageBox.Show("Password Strength: " + score + " Strong");
+                            CustomMessageBox.Show(UiText.Translate("Password Strength: ") + score + UiText.Translate(" Strong"));
                     }
                     MAVAuthKeys.AddKey(dataGridView1[FName.Index, row].Value.ToString(), input);
                 }
@@ -148,7 +148,7 @@ namespace MissionPlanner.Controls
                 }
             }
             
-            lbl_sgnpkts.Text = "Using Key: " + name + ", Signed Packets: " + MainV2.comPort.Mavlink2Signed.ToString();
+            lbl_sgnpkts.Text = UiText.Translate("Using Key: ") + name + UiText.Translate(", Signed Packets: ") + MainV2.comPort.Mavlink2Signed.ToString();
         }
     }
 }

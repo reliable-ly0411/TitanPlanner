@@ -322,8 +322,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
 
             string groupBoxTitle = string.IsNullOrEmpty(rotationInfo)
-                ? $"Motor {motorLetter}"
-                : $"Motor {motorLetter} ({rotationInfo})";
+                ? UiText.Format($"Motor {motorLetter}")
+                : UiText.Format($"Motor {motorLetter} ({rotationInfo})");
 
             var groupBox = new GroupBox
             {
@@ -350,7 +350,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // Motor number label
             var motorLabel = new Label
             {
-                Text = $"Motor {motorNumber}",
+                Text = UiText.Format($"Motor {motorNumber}"),
                 Dock = DockStyle.Fill,
                 TextAlign = ContentAlignment.MiddleLeft
             };
@@ -367,10 +367,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             servoSelector.MouseWheel += (s, ev) => ((HandledMouseEventArgs)ev).Handled = true;
 
             // Populate servo selector with Servo 1-16 options
-            servoSelector.Items.Add(new ComboBoxItem { Text = "Not assigned", Value = 0 });
+            servoSelector.Items.Add(new ComboBoxItem { Text = UiText.Translate("Not assigned"), Value = 0 });
             for (int i = 1; i <= MAX_SERVO_CHANNELS; i++)
             {
-                servoSelector.Items.Add(new ComboBoxItem { Text = $"Servo {i}", Value = i });
+                servoSelector.Items.Add(new ComboBoxItem { Text = UiText.Format($"Servo {i}"), Value = i });
             }
             servoSelector.DisplayMember = "Text";
 
@@ -392,7 +392,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // Spin button
             var spinButton = new MyButton
             {
-                Text = "Spin",
+                Text = UiText.Translate("Spin"),
                 Dock = DockStyle.Fill
             };
             spinButton.Tag = motorIdx;
@@ -521,7 +521,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     }
                     catch (Exception ex)
                     {
-                        CustomMessageBox.Show($"Failed to clear {paramName}: " + ex.Message, Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Format($"Failed to clear {paramName}: ") + ex.Message, Strings.ERROR);
                     }
                 }
                 return;
@@ -593,7 +593,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Exception ex)
             {
                 _updatingServoSelectors = false;
-                CustomMessageBox.Show($"Failed to set {newParamName}: " + ex.Message, Strings.ERROR);
+                CustomMessageBox.Show(UiText.Format($"Failed to set {newParamName}: ") + ex.Message, Strings.ERROR);
             }
         }
 
@@ -628,7 +628,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (servoChannel <= 0)
             {
-                CustomMessageBox.Show($"Motor {(char)('A' + tag.MotorIndex - 1)} is not assigned to a servo channel.", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Format($"Motor {(char)('A' + tag.MotorIndex - 1)} is not assigned to a servo channel."), Strings.ERROR);
                 return;
             }
 
@@ -644,7 +644,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show($"Failed to set {paramName}: " + ex.Message, Strings.ERROR);
+                CustomMessageBox.Show(UiText.Format($"Failed to set {paramName}: ") + ex.Message, Strings.ERROR);
             }
         }
 
@@ -663,7 +663,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to test motor\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Failed to test motor\n") + ex);
             }
         }
 
@@ -684,7 +684,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (currentServoChannel == 0)
             {
-                CustomMessageBox.Show("Please assign a servo output first before using Smart Assign.", "No Servo Assigned");
+                CustomMessageBox.Show(UiText.Translate("Please assign a servo output first before using Smart Assign."), UiText.Translate("No Servo Assigned"));
                 return;
             }
 
@@ -698,14 +698,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to test motor\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Failed to test motor\n") + ex);
                 return;
             }
 
             // Show dialog asking which motor actually spun
             using (var dialog = new Form())
             {
-                dialog.Text = "Smart Assign";
+                dialog.Text = UiText.Translate("Smart Assign");
                 dialog.Size = new Size(350, 180);
                 dialog.FormBorderStyle = FormBorderStyle.FixedDialog;
                 dialog.StartPosition = FormStartPosition.CenterParent;
@@ -714,7 +714,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 var label = new Label
                 {
-                    Text = $"Servo {currentServoChannel} was activated.\nWhich motor actually spun?",
+                    Text = UiText.Format($"Servo {currentServoChannel} was activated.\nWhich motor actually spun?"),
                     Location = new Point(20, 20),
                     Size = new Size(300, 40)
                 };
@@ -747,7 +747,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                     comboBox.Items.Add(new ComboBoxItem
                     {
-                        Text = $"Motor {letter} (Motor {motorNumber})",
+                        Text = UiText.Format($"Motor {letter} (Motor {motorNumber})"),
                         Value = i
                     });
                 }
@@ -756,7 +756,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 var okButton = new MyButton
                 {
-                    Text = "OK",
+                    Text = UiText.Translate("OK"),
                     DialogResult = DialogResult.OK,
                     Location = new Point(130, 105),
                     Size = new Size(80, 30)
@@ -833,7 +833,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                                 }
                                 catch (Exception ex)
                                 {
-                                    CustomMessageBox.Show($"Failed to set {paramName}: " + ex.Message, Strings.ERROR);
+                                    CustomMessageBox.Show(UiText.Format($"Failed to set {paramName}: ") + ex.Message, Strings.ERROR);
                                 }
                                 finally
                                 {
@@ -969,7 +969,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
             }
 
-            FrameClass.Text = $"Class: {className}, Type: {typeName}";
+            FrameClass.Text = UiText.Format($"Class: {className}, Type: {typeName}");
 
             lookup_frame_layout(frame_class, frame_type);
             UpdateFrameImage(frame_class, frame_type);
@@ -1103,12 +1103,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         0,
                         0))
                 {
-                    CustomMessageBox.Show("Command was denied by the autopilot");
+                    CustomMessageBox.Show(UiText.Translate("Command was denied by the autopilot"));
                 }
             }
             catch
             {
-                CustomMessageBox.Show(Strings.ErrorCommunicating + "\nMotor: " + motor, Strings.ERROR);
+                CustomMessageBox.Show(Strings.ErrorCommunicating + UiText.Translate("\nMotor: ") + motor, Strings.ERROR);
             }
         }
 
@@ -1120,7 +1120,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Bad default system association", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Bad default system association"), Strings.ERROR);
             }
         }
 
@@ -1139,7 +1139,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to set MOT_SPIN_ARM: " + ex.Message, Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to set MOT_SPIN_ARM: ") + ex.Message, Strings.ERROR);
             }
         }
 
@@ -1158,7 +1158,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to set MOT_SPIN_MIN: " + ex.Message, Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to set MOT_SPIN_MIN: ") + ex.Message, Strings.ERROR);
             }
         }
     }

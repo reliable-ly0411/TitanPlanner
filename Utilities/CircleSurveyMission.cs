@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Controls;
+﻿using MissionPlanner.Utilities;
+using MissionPlanner.Controls;
 using MissionPlanner.GCSViews;
 
 namespace MissionPlanner.Utilities
@@ -14,12 +15,12 @@ namespace MissionPlanner.Utilities
             int photos = 50;
             int startheading = 0;
 
-            InputBox.Show("", "startalt", ref startalt);
-            InputBox.Show("", "endalt", ref endalt);
-            InputBox.Show("", "seperation", ref seperation);
-            InputBox.Show("", "radius", ref radius);
-            InputBox.Show("", "photos", ref photos);
-            InputBox.Show("", "start heading", ref startheading);
+            InputBox.Show("", UiText.Translate("startalt"), ref startalt);
+            InputBox.Show("", UiText.Translate("endalt"), ref endalt);
+            InputBox.Show("", UiText.Translate("seperation"), ref seperation);
+            InputBox.Show("", UiText.Translate("radius"), ref radius);
+            InputBox.Show("", UiText.Translate("photos"), ref photos);
+            InputBox.Show("", UiText.Translate("start heading"), ref startheading);
 
             MainV2.instance.FlightPlanner.quickadd = true;
 

@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigTradHeli4
     {
@@ -138,7 +139,7 @@
             this.groupBoxservo.Size = new System.Drawing.Size(444, 256);
             this.groupBoxservo.TabIndex = 0;
             this.groupBoxservo.TabStop = false;
-            this.groupBoxservo.Text = "Servo Setup";
+            this.groupBoxservo.Text = UiText.Translate("Servo Setup");
             // 
             // tableLayoutPanel4
             // 
@@ -481,7 +482,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Reversed";
+            this.label6.Text = UiText.Translate("Reversed");
             // 
             // label5
             // 
@@ -491,7 +492,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(27, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Trim";
+            this.label5.Text = UiText.Translate("Trim");
             // 
             // label4
             // 
@@ -501,7 +502,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Max";
+            this.label4.Text = UiText.Translate("Max");
             // 
             // label3
             // 
@@ -511,7 +512,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Min";
+            this.label3.Text = UiText.Translate("Min");
             // 
             // label1
             // 
@@ -521,7 +522,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Servo";
+            this.label1.Text = UiText.Translate("Servo");
             // 
             // label2
             // 
@@ -531,7 +532,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Function";
+            this.label2.Text = UiText.Translate("Function");
             // 
             // label8
             // 
@@ -833,7 +834,7 @@
             this.groupBoxswash.Size = new System.Drawing.Size(200, 100);
             this.groupBoxswash.TabIndex = 1;
             this.groupBoxswash.TabStop = false;
-            this.groupBoxswash.Text = "Swashplate Setup";
+            this.groupBoxswash.Text = UiText.Translate("Swashplate Setup");
             // 
             // tableLayoutPanel5
             // 
@@ -860,7 +861,7 @@
             this.groupBoxthrot.Size = new System.Drawing.Size(200, 100);
             this.groupBoxthrot.TabIndex = 1;
             this.groupBoxthrot.TabStop = false;
-            this.groupBoxthrot.Text = "Throttle Settings";
+            this.groupBoxthrot.Text = UiText.Translate("Throttle Settings");
             // 
             // tableLayoutPanel3
             // 
@@ -887,7 +888,7 @@
             this.groupBoxgover.Size = new System.Drawing.Size(200, 100);
             this.groupBoxgover.TabIndex = 1;
             this.groupBoxgover.TabStop = false;
-            this.groupBoxgover.Text = "Governor Settings";
+            this.groupBoxgover.Text = UiText.Translate("Governor Settings");
             // 
             // tableLayoutPanel2
             // 
@@ -914,7 +915,7 @@
             this.groupBoxmisc.Size = new System.Drawing.Size(200, 100);
             this.groupBoxmisc.TabIndex = 1;
             this.groupBoxmisc.TabStop = false;
-            this.groupBoxmisc.Text = "Misc Settings";
+            this.groupBoxmisc.Text = UiText.Translate("Misc Settings");
             // 
             // tableLayoutPanel1
             // 

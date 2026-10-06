@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 using ICSharpCode.SharpZipLib.Zip;
 using log4net;
 using MissionPlanner.Controls;
@@ -62,7 +63,7 @@ namespace MissionPlanner.Utilities
                 {
                     if (!File.Exists(runner))
                     {
-                        CustomMessageBox.Show("Failed to download LogAnalyzer");
+                        CustomMessageBox.Show(UiText.Translate("Failed to download LogAnalyzer"));
                         return "";
                     }
                 }
@@ -71,7 +72,7 @@ namespace MissionPlanner.Utilities
 
             if (!File.Exists(runner))
             {
-                CustomMessageBox.Show("Failed to download LogAnalyzer");
+                CustomMessageBox.Show(UiText.Translate("Failed to download LogAnalyzer"));
                 return "";
             }
 
@@ -106,7 +107,7 @@ namespace MissionPlanner.Utilities
             }
             catch
             {
-                CustomMessageBox.Show("Failed to start LogAnalyzer");
+                CustomMessageBox.Show(UiText.Translate("Failed to start LogAnalyzer"));
             }
 
             Loading.Close();

@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Controls;
+﻿using MissionPlanner.Utilities;
+using MissionPlanner.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +82,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show(Strings.ERROR, "Failed to set param " + ex.ToString());
+                CustomMessageBox.Show(Strings.ERROR, UiText.Translate("Failed to set param ") + ex.ToString());
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_Mount_Mode
     {
@@ -58,7 +59,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Name = "Joy_Mount_Mode";
-            this.Text = "Joy_ChangeMode";
+            this.Text = UiText.Translate("Joy_ChangeMode");
             this.ResumeLayout(false);
             this.PerformLayout();
 

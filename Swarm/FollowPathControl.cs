@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -34,7 +35,7 @@ namespace MissionPlanner.Swarm
             CMB_mavs.ValueMember = "Value";
             CMB_mavs.DisplayMember = "Key";
 
-            MessageBox.Show("this is beta, use at own risk");
+            MessageBox.Show(UiText.Translate("this is beta, use at own risk"));
 
             MissionPlanner.Utilities.Tracking.AddPage(this.GetType().ToString(), this.Text);
         }
@@ -136,7 +137,7 @@ namespace MissionPlanner.Swarm
 
                 if (DateTime.Now > deadline)
                 {
-                    CustomMessageBox.Show("Timeout waiting for autoscan/no mavlink device connected");
+                    CustomMessageBox.Show(UiText.Translate("Timeout waiting for autoscan/no mavlink device connected"));
                     return;
                 }
             }
@@ -169,7 +170,7 @@ namespace MissionPlanner.Swarm
                     if (ctl is Status && ctl.Tag == port)
                     {
                         exists = true;
-                        ((Status)ctl).GPS.Text = port.MAV.cs.gpsstatus >= 3 ? "OK" : "Bad";
+                        ((Status)ctl).GPS.Text = port.MAV.cs.gpsstatus >= 3 ? UiText.Translate("OK") : UiText.Translate("Bad");
                         ((Status)ctl).Armed.Text = port.MAV.cs.armed.ToString();
                         ((Status)ctl).Mode.Text = port.MAV.cs.mode;
                         ((Status)ctl).MAV.Text = port.ToString();

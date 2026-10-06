@@ -79,7 +79,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             if (MainV2.comPort.BaseStream == null || !MainV2.comPort.BaseStream.IsOpen)
             {
-                CustomMessageBox.Show("Your are not connected", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Your are not connected"), Strings.ERROR);
                 return false;
             }
 
@@ -123,7 +123,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!CheckConnected())
                 return;
 
-            var dialog = new ProgressReporterDialogue() { StartPosition = FormStartPosition.CenterScreen, Text = "Updating Parameters..." };
+            var dialog = new ProgressReporterDialogue() { StartPosition = FormStartPosition.CenterScreen, Text = UiText.Translate("Updating Parameters...") };
 
             var errors = new List<string>();
             int responseCount = 0;
@@ -184,7 +184,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             ICollection <(byte Screen, byte Index, string Name)> result = null;
 
-            var dialog = new ProgressReporterDialogue() { StartPosition = FormStartPosition.CenterScreen, Text = "Fetching Param Names" };
+            var dialog = new ProgressReporterDialogue() { StartPosition = FormStartPosition.CenterScreen, Text = UiText.Translate("Fetching Param Names") };
 
             CancellationTokenSource cts = new CancellationTokenSource();
 
@@ -238,7 +238,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void DiscardChanges()
         {
-            if ((int)DialogResult.OK == CustomMessageBox.Show("Are you sure?", MessageBoxButtons: MessageBoxButtons.OKCancel))
+            if ((int)DialogResult.OK == CustomMessageBox.Show(UiText.Translate("Are you sure?"), MessageBoxButtons: MessageBoxButtons.OKCancel))
             {
                 foreach (var p in osdSettings)
                     p.DiscardChange();
@@ -250,7 +250,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!osdSettings.Any(o => o.Changed))
             {
                 if (!silent)
-                    CustomMessageBox.Show("No Changes to Write!");
+                    CustomMessageBox.Show(UiText.Translate("No Changes to Write!"));
 
                 return;
             }
@@ -258,7 +258,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!CheckConnected())
                 return;
 
-            var dialog = new ProgressReporterDialogue() { StartPosition = FormStartPosition.CenterScreen, Text = "Writing changes..." };
+            var dialog = new ProgressReporterDialogue() { StartPosition = FormStartPosition.CenterScreen, Text = UiText.Translate("Writing changes...") };
 
             CancellationTokenSource cts = new CancellationTokenSource();
             var cancellationToken = cts.Token;
@@ -295,14 +295,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!silent && null != failed)
             {
                 var failedParamsEnum = string.Join(", ", failed.Take(3)) + (failed.Count > 3 ? "..." : "");
-                CustomMessageBox.Show($"Write Failed for {failed.Count} params: {failedParamsEnum}");
+                CustomMessageBox.Show(UiText.Format($"Write Failed for {failed.Count} params: {failedParamsEnum}"));
             }
         }
 
         private void RefreshParameters()
         {
             if (osdSettings.Any(o => o.Changed)
-                && (int)DialogResult.No == CustomMessageBox.Show("This will reset your changes. Continue?", MessageBoxButtons: MessageBoxButtons.YesNo))
+                && (int)DialogResult.No == CustomMessageBox.Show(UiText.Translate("This will reset your changes. Continue?"), MessageBoxButtons: MessageBoxButtons.YesNo))
                 return;
 
             if (!MainV2.comPort.BaseStream.IsOpen)

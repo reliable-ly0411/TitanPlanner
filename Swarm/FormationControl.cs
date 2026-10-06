@@ -46,7 +46,7 @@ namespace MissionPlanner.Swarm
 
             this.MouseWheel += new MouseEventHandler(FollowLeaderControl_MouseWheel);
 
-            MessageBox.Show("this is beta, use at own risk");
+            MessageBox.Show(UiText.Translate("this is beta, use at own risk"));
 
             MissionPlanner.Utilities.Tracking.AddPage(this.GetType().ToString(), this.Text);
         }
@@ -210,7 +210,7 @@ namespace MissionPlanner.Swarm
 
                 if (DateTime.Now > deadline)
                 {
-                    CustomMessageBox.Show("Timeout waiting for autoscan/no mavlink device connected");
+                    CustomMessageBox.Show(UiText.Translate("Timeout waiting for autoscan/no mavlink device connected"));
                     return;
                 }
             }
@@ -256,7 +256,7 @@ namespace MissionPlanner.Swarm
         {
             if (mav == SwarmInterface.Leader)
             {
-                CustomMessageBox.Show("Can not move Leader");
+                CustomMessageBox.Show(UiText.Translate("Can not move Leader"));
                 ico.z = 0;
             }
             else
@@ -325,7 +325,7 @@ namespace MissionPlanner.Swarm
                         if (ctl is Status && ctl.Tag == mav)
                         {
                             exists = true;
-                            ((Status)ctl).GPS.Text = mav.cs.gpsstatus >= 3 ? "OK" : "Bad";
+                            ((Status)ctl).GPS.Text = mav.cs.gpsstatus >= 3 ? UiText.Translate("OK") : UiText.Translate("Bad");
                             ((Status)ctl).Armed.Text = mav.cs.armed.ToString();
                             ((Status)ctl).Mode.Text = mav.cs.mode;
                             ((Status)ctl).MAV.Text = mav.ToString();

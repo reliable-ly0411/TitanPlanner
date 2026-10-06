@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Windows.Forms;
 
 namespace MissionPlanner.Warnings
@@ -152,7 +153,7 @@ namespace MissionPlanner.Warnings
             this.TXT_warningtext.Name = "TXT_warningtext";
             this.TXT_warningtext.Size = new System.Drawing.Size(236, 20);
             this.TXT_warningtext.TabIndex = 4;
-            this.TXT_warningtext.Text = "WARNING: {name} is {value}";
+            this.TXT_warningtext.Text = UiText.Translate("WARNING: {name} is {value}");
             this.TXT_warningtext.TextChanged += new System.EventHandler(this.TXT_warningtext_TextChanged);
             //
             // but_addchild
@@ -182,7 +183,7 @@ namespace MissionPlanner.Warnings
             this.CB_type.Name = "cbType";
             this.CB_type.Size = new System.Drawing.Size(122, 17);
             this.CB_type.TabIndex = 7;
-            this.CB_type.Text = "QuickPanel Coloring";
+            this.CB_type.Text = UiText.Translate("QuickPanel Coloring");
             this.CB_type.UseVisualStyleBackColor = true;
             this.CB_type.CheckedChanged += new System.EventHandler(this.CB_type_CheckedChanged);
             //
@@ -318,7 +319,7 @@ namespace MissionPlanner.Warnings
             {
                 //It is regular SpeakAndText item
                 but_addchild.Enabled = true;
-                TXT_warningtext.Text = "WARNING: {name} is {value}";
+                TXT_warningtext.Text = UiText.Translate("WARNING: {name} is {value}");
                 TXT_warningtext.Enabled = true;
                 NUM_repeattime.Value = 10;
                 NUM_repeattime.Enabled = true;

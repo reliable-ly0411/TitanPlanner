@@ -805,12 +805,12 @@ namespace MissionPlanner.Grid
                     area = area / 43560f;
                     if (area < 640f)
                     {
-                        lbl_area.Text = area.ToString("0.##") + " acres";
+                        lbl_area.Text = area.ToString("0.##") + UiText.Translate(" acres");
                     }
                     else
                     {
                         area = area / 640f;
-                        lbl_area.Text = area.ToString("0.##") + " miles^2";
+                        lbl_area.Text = area.ToString("0.##") + UiText.Translate(" miles^2");
                     }
                 }
 
@@ -823,7 +823,7 @@ namespace MissionPlanner.Grid
                 else
                 {
                     distance = distance / 5280f;
-                    lbl_distance.Text = distance.ToString("0.##") + " miles";
+                    lbl_distance.Text = distance.ToString("0.##") + UiText.Translate(" miles");
                 }
 
                 lbl_spacing.Text = (NUM_spacing.Value * 3.2808399m).ToString("#.#") + " ft";
@@ -971,7 +971,7 @@ namespace MissionPlanner.Grid
 
             if (polygon.Count == 0)
             {
-                CustomMessageBox.Show("Please define a polygon!");
+                CustomMessageBox.Show(UiText.Translate("Please define a polygon!"));
                 return 0;
             }
 
@@ -1160,7 +1160,7 @@ namespace MissionPlanner.Grid
             marker = new GMapMarkerRect(point);
             marker.ToolTip = new GMapToolTip(marker);
             marker.ToolTipMode = MarkerTooltipMode.Always;
-            marker.ToolTipText = "Line: " + dist;
+            marker.ToolTipText = UiText.Translate("Line: ") + dist;
             routesOverlay.Markers.Add(marker);
         }
 
@@ -1570,7 +1570,7 @@ namespace MissionPlanner.Grid
 
             string camname = "Default";
 
-            if (MissionPlanner.Controls.InputBox.Show("Camera Name", "Please and a camera name", ref camname) != System.Windows.Forms.DialogResult.OK)
+            if (MissionPlanner.Controls.InputBox.Show(UiText.Translate("Camera Name"), UiText.Translate("Please and a camera name"), ref camname) != System.Windows.Forms.DialogResult.OK)
                 return;
 
             CMB_camera.Text = camname;
@@ -1594,7 +1594,7 @@ namespace MissionPlanner.Grid
                 camera.sensorheight = float.Parse(TXT_sensheight.Text);
                 camera.sensorwidth = float.Parse(TXT_senswidth.Text);
             }
-            catch { CustomMessageBox.Show("One of your entries is not a valid number"); return; }
+            catch { CustomMessageBox.Show(UiText.Translate("One of your entries is not a valid number")); return; }
 
             cameras[CMB_camera.Text] = camera;
 
@@ -1609,7 +1609,7 @@ namespace MissionPlanner.Grid
 
                 if (NUM_split.Value > 1 && CHK_toandland.Checked != true)
                 {
-                    CustomMessageBox.Show("You must use Land/RTL to split a mission", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("You must use Land/RTL to split a mission"), Strings.ERROR);
                     return;
                 }
 
@@ -1889,7 +1889,7 @@ namespace MissionPlanner.Grid
             }
             else
             {
-                CustomMessageBox.Show("Bad Grid", "Error");
+                CustomMessageBox.Show(UiText.Translate("Bad Grid"), UiText.Translate("Error"));
             }
         }
 
@@ -1925,7 +1925,7 @@ namespace MissionPlanner.Grid
             if (CMB_startfrom.Text == Utilities.Grid.StartPosition.Point.ToString())
             {
                 int pnt = 1;
-                InputBox.Show("Enter point #", "Please enter a boundary point number", ref pnt);
+                InputBox.Show(UiText.Translate("Enter point #"), UiText.Translate("Please enter a boundary point number"), ref pnt);
 
                 if(list.Count > pnt)
                     Utilities.Grid.StartPointLatLngAlt = list[pnt - 1];

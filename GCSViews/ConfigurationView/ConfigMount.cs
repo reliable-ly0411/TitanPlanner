@@ -162,7 +162,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to set Param\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Failed to set Param\n") + ex);
                 Enabled = false;
             }
         }
@@ -366,7 +366,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to set Param\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Failed to set Param\n") + ex);
             }
         }
 

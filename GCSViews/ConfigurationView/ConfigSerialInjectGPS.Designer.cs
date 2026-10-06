@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigSerialInjectGPS
     {
@@ -733,14 +734,14 @@
             resources.ApplyResources(this.Use, "Use");
             this.Use.Name = "Use";
             this.Use.ReadOnly = true;
-            this.Use.Text = "Use";
+            this.Use.Text = UiText.Translate("Use");
             // 
             // Delete
             // 
             resources.ApplyResources(this.Delete, "Delete");
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
-            this.Delete.Text = "Delete";
+            this.Delete.Text = UiText.Translate("Delete");
             // 
             // ConfigSerialInjectGPS
             // 

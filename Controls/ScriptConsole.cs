@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Windows.Forms;
 
 namespace MissionPlanner.Controls
@@ -19,7 +20,7 @@ namespace MissionPlanner.Controls
             //Make the title unique
             //in the future it might be nice to show if the script is running
             //or stopped in the title too.
-            Text = Text + " - Run " + consoleNumber++;
+            Text = Text + UiText.Translate(" - Run ") + consoleNumber++;
         }
 
         /// <summary>

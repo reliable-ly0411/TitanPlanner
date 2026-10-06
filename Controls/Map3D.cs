@@ -2297,7 +2297,7 @@ namespace MissionPlanner.Controls
             this.btn_configure.Name = "btn_configure";
             this.btn_configure.Size = new System.Drawing.Size(70, 28);
             this.btn_configure.TabIndex = 0;
-            this.btn_configure.Text = "Settings";
+            this.btn_configure.Text = UiText.Translate("Settings");
             this.btn_configure.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.btn_configure.UseVisualStyleBackColor = true;
             this.btn_configure.Click += new System.EventHandler(this.btn_configure_Click);
@@ -2364,7 +2364,7 @@ namespace MissionPlanner.Controls
         {
             using (var dialog = new Form())
             {
-                dialog.Text = "3D Map Settings";
+                dialog.Text = UiText.Translate("3D Map Settings");
                 dialog.FormBorderStyle = FormBorderStyle.FixedDialog;
                 dialog.StartPosition = FormStartPosition.CenterParent;
                 dialog.MaximizeBox = false;
@@ -2412,25 +2412,25 @@ namespace MissionPlanner.Controls
 
                 // Numeric inputs
                 var numZoom = new NumericUpDown { Minimum = 6, Maximum = 24, Value = Math.Max(6, Math.Min(24, zoom)) };
-                addRow("Map Zoom:", numZoom);
+                addRow(UiText.Translate("Map Zoom:"), numZoom);
 
                 var numDist = new NumericUpDown { Minimum = (decimal)0.1, Maximum = 100, DecimalPlaces = 2, Increment = (decimal)0.05, Value = (decimal)Math.Max(0.1, Math.Min(100, _cameraDist)) };
-                addRow("Camera Dist:", numDist);
+                addRow(UiText.Translate("Camera Dist:"), numDist);
 
                 var numHeight = new NumericUpDown { Minimum = -100, Maximum = 100, DecimalPlaces = 2, Increment = (decimal)0.05, Value = (decimal)Math.Max(-100, Math.Min(100, _cameraHeight)) };
-                addRow("Camera Height:", numHeight);
+                addRow(UiText.Translate("Camera Height:"), numHeight);
 
                 var numFOV = new NumericUpDown { Minimum = 30, Maximum = 120, Increment = 5, Value = (decimal)Math.Max(30, Math.Min(120, _cameraFOV)) };
-                addRow("Camera FoV:", numFOV);
+                addRow(UiText.Translate("Camera FoV:"), numFOV);
 
                 var numScale = new NumericUpDown { Minimum = (decimal)0.1, Maximum = 10, DecimalPlaces = 2, Increment = (decimal)0.05, Value = (decimal)Math.Max(0.1, Math.Min(10, _planeScaleMultiplier)) };
-                addRow("MAV Scale (m):", numScale);
+                addRow(UiText.Translate("MAV Scale (m):"), numScale);
 
                 var numMarkerSize = new NumericUpDown { Minimum = 10, Maximum = 500, DecimalPlaces = 0, Increment = 10, Value = (decimal)Math.Max(10, Math.Min(500, _waypointMarkerSize)) };
-                addRow("WP Marker Size:", numMarkerSize);
+                addRow(UiText.Translate("WP Marker Size:"), numMarkerSize);
 
                 var numADSBSize = new NumericUpDown { Minimum = 50, Maximum = 2000, DecimalPlaces = 0, Increment = 50, Value = (decimal)Math.Max(50, Math.Min(2000, _adsbCircleSize)) };
-                addRow("ADSB Size:", numADSBSize);
+                addRow(UiText.Translate("ADSB Size:"), numADSBSize);
 
                 // Color picker
                 Color selectedColor = _planeColor;
@@ -2448,7 +2448,7 @@ namespace MissionPlanner.Controls
                         }
                     }
                 };
-                addRow("MAV Color:", pnlColor);
+                addRow(UiText.Translate("MAV Color:"), pnlColor);
 
                 // STL file picker
                 string selectedSTLPath = _stlLoader.CustomSTLPath;
@@ -2459,7 +2459,7 @@ namespace MissionPlanner.Controls
                     using (var openDialog = new OpenFileDialog())
                     {
                         openDialog.Filter = "STL Files (*.stl)|*.stl|All Files (*.*)|*.*";
-                        openDialog.Title = "Select Plane STL File";
+                        openDialog.Title = UiText.Translate("Select Plane STL File");
                         if (!string.IsNullOrEmpty(selectedSTLPath) && File.Exists(selectedSTLPath))
                             openDialog.InitialDirectory = Path.GetDirectoryName(selectedSTLPath);
                         if (openDialog.ShowDialog() == DialogResult.OK)
@@ -2469,25 +2469,25 @@ namespace MissionPlanner.Controls
                         }
                     }
                 };
-                addRow("STL File:", btnSTL);
+                addRow(UiText.Translate("STL File:"), btnSTL);
 
                 // Checkboxes
-                var chkHeading = new CheckBox { Text = "Heading Line (Red)", Checked = _showHeadingLine };
+                var chkHeading = new CheckBox { Text = UiText.Translate("Heading Line (Red)"), Checked = _showHeadingLine };
                 addCheckboxRow(chkHeading);
 
-                var chkNavBearing = new CheckBox { Text = "Nav Bearing Line (Orange)", Checked = _showNavBearingLine };
+                var chkNavBearing = new CheckBox { Text = UiText.Translate("Nav Bearing Line (Orange)"), Checked = _showNavBearingLine };
                 addCheckboxRow(chkNavBearing);
 
-                var chkGpsHeading = new CheckBox { Text = "GPS Heading Line (Black)", Checked = _showGpsHeadingLine };
+                var chkGpsHeading = new CheckBox { Text = UiText.Translate("GPS Heading Line (Black)"), Checked = _showGpsHeadingLine };
                 addCheckboxRow(chkGpsHeading);
 
-                var chkTurnRadius = new CheckBox { Text = "Turn Radius Arc (Pink)", Checked = _showTurnRadius };
+                var chkTurnRadius = new CheckBox { Text = UiText.Translate("Turn Radius Arc (Pink)"), Checked = _showTurnRadius };
                 addCheckboxRow(chkTurnRadius);
 
-                var chkTrail = new CheckBox { Text = "Flight Path Trail", Checked = _showTrail };
+                var chkTrail = new CheckBox { Text = UiText.Translate("Flight Path Trail"), Checked = _showTrail };
                 addCheckboxRow(chkTrail);
 
-                var chkFPV = new CheckBox { Text = "FPV Mode (camera at aircraft)", Checked = _fpvMode };
+                var chkFPV = new CheckBox { Text = UiText.Translate("FPV Mode (camera at aircraft)"), Checked = _fpvMode };
                 chkFPV.CheckedChanged += (s, ev) =>
                 {
                     numDist.Enabled = !chkFPV.Checked;
@@ -2497,7 +2497,7 @@ namespace MissionPlanner.Controls
                 numHeight.Enabled = !_fpvMode;
                 addCheckboxRow(chkFPV);
 
-                var chkDiskCache = new CheckBox { Text = "Disk Cache Tiles", Checked = _diskCacheTiles };
+                var chkDiskCache = new CheckBox { Text = UiText.Translate("Disk Cache Tiles"), Checked = _diskCacheTiles };
                 addCheckboxRow(chkDiskCache);
 
                 // Button panel - centered
@@ -2509,10 +2509,10 @@ namespace MissionPlanner.Controls
                     Margin = new Padding(0, 10, 0, 0)
                 };
 
-                var btnSave = new MyButton { Text = "Save", Width = 75, Margin = new Padding(10, 0, 0, 0) };
+                var btnSave = new MyButton { Text = UiText.Translate("Save"), Width = 75, Margin = new Padding(10, 0, 0, 0) };
                 btnSave.Click += (s, ev) => { dialog.Close(); };
 
-                var btnReset = new MyButton { Text = "Reset", Width = 75, Margin = new Padding(10, 0, 0, 0) };
+                var btnReset = new MyButton { Text = UiText.Translate("Reset"), Width = 75, Margin = new Padding(10, 0, 0, 0) };
                 btnReset.Click += (s, ev) =>
                 {
                     numZoom.Value = 17;
@@ -2525,7 +2525,7 @@ namespace MissionPlanner.Controls
                     selectedColor = Color.Red;
                     pnlColor.BackColor = Color.Red;
                     selectedSTLPath = "";
-                    btnSTL.Text = "Default";
+                    btnSTL.Text = UiText.Translate("Default");
                     chkHeading.Checked = true;
                     chkNavBearing.Checked = true;
                     chkGpsHeading.Checked = true;

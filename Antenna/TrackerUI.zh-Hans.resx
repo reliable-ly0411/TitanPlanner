@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -232,4 +232,8 @@
   <data name="label14.Text" xml:space="preserve">
     <value>中点的PWM</value>
   </data>
+  <data name="label15.Text" xml:space="preserve"><value>速度</value></data>
+  <data name="label16.Text" xml:space="preserve"><value>加速度</value></data>
+  <data name="label17.Text" xml:space="preserve"><value>加速度</value></data>
+  <data name="label18.Text" xml:space="preserve"><value>速度</value></data>
 </root>

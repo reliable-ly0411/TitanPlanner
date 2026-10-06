@@ -1,4 +1,5 @@
-﻿using Flurl;
+﻿using MissionPlanner.Utilities;
+using Flurl;
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace MissionPlanner.Utilities
             this.myLabel1.Name = "myLabel1";
             this.myLabel1.Size = new System.Drawing.Size(75, 23);
             this.myLabel1.TabIndex = 0;
-            this.myLabel1.Text = "Username";
+            this.myLabel1.Text = UiText.Translate("Username");
             // 
             // txt_username
             // 
@@ -92,7 +93,7 @@ namespace MissionPlanner.Utilities
             this.myLabel3.Name = "myLabel3";
             this.myLabel3.Size = new System.Drawing.Size(75, 23);
             this.myLabel3.TabIndex = 2;
-            this.myLabel3.Text = "Password";
+            this.myLabel3.Text = UiText.Translate("Password");
             // 
             // txt_password
             // 
@@ -109,7 +110,7 @@ namespace MissionPlanner.Utilities
             this.myLabel2.Name = "myLabel2";
             this.myLabel2.Size = new System.Drawing.Size(75, 23);
             this.myLabel2.TabIndex = 1;
-            this.myLabel2.Text = "Server";
+            this.myLabel2.Text = UiText.Translate("Server");
             // 
             // cmb_server
             // 
@@ -128,7 +129,7 @@ namespace MissionPlanner.Utilities
             this.but_verify.Name = "but_verify";
             this.but_verify.Size = new System.Drawing.Size(75, 23);
             this.but_verify.TabIndex = 6;
-            this.but_verify.Text = "Verify";
+            this.but_verify.Text = UiText.Translate("Verify");
             this.but_verify.UseVisualStyleBackColor = true;
             this.but_verify.Click += new System.EventHandler(this.but_verify_Click);
             // 
@@ -139,7 +140,7 @@ namespace MissionPlanner.Utilities
             this.chk_enable.Name = "chk_enable";
             this.chk_enable.Size = new System.Drawing.Size(65, 17);
             this.chk_enable.TabIndex = 8;
-            this.chk_enable.Text = "Enabled";
+            this.chk_enable.Text = UiText.Translate("Enabled");
             this.chk_enable.UseVisualStyleBackColor = true;
             this.chk_enable.CheckedChanged += new System.EventHandler(this.chk_enable_CheckedChanged);
             // 
@@ -172,11 +173,11 @@ namespace MissionPlanner.Utilities
             var ans = await AirMarket.ValidateCredentials(txt_username.Text, txt_password.Text, cmb_server.Text).ConfigureAwait(true);
             if (ans == false)
             {
-                CustomMessageBox.Show("Username or password invalid");
+                CustomMessageBox.Show(UiText.Translate("Username or password invalid"));
             }
             else
             {
-                CustomMessageBox.Show("Success checking credentials");
+                CustomMessageBox.Show(UiText.Translate("Success checking credentials"));
             }
         }
 

@@ -1,4 +1,5 @@
-﻿
+﻿using MissionPlanner.Utilities;
+
 using System.Windows.Forms;
 using MissionPlanner.Controls;
 
@@ -105,7 +106,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(132, 16);
             this.label7.TabIndex = 153;
-            this.label7.Text = "Equidistant";
+            this.label7.Text = UiText.Translate("Equidistant");
             // 
             // label6
             // 
@@ -114,7 +115,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 16);
             this.label6.TabIndex = 152;
-            this.label6.Text = "Max";
+            this.label6.Text = UiText.Translate("Max");
             // 
             // label5
             // 
@@ -123,7 +124,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 16);
             this.label5.TabIndex = 151;
-            this.label5.Text = "Trim";
+            this.label5.Text = UiText.Translate("Trim");
             // 
             // label4
             // 
@@ -132,7 +133,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 16);
             this.label4.TabIndex = 150;
-            this.label4.Text = "Min";
+            this.label4.Text = UiText.Translate("Min");
             // 
             // label3
             // 
@@ -140,7 +141,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(160, 13);
             this.label3.TabIndex = 149;
-            this.label3.Text = "Function";
+            this.label3.Text = UiText.Translate("Function");
             // 
             // label2
             // 
@@ -149,7 +150,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 16);
             this.label2.TabIndex = 148;
-            this.label2.Text = "Reverse";
+            this.label2.Text = UiText.Translate("Reverse");
             // 
             // label1
             // 
@@ -158,7 +159,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 16);
             this.label1.TabIndex = 147;
-            this.label1.Text = "Position";
+            this.label1.Text = UiText.Translate("Position");
             // 
             // timer1
             // 

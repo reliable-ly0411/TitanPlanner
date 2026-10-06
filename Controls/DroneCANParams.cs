@@ -44,7 +44,7 @@ namespace MissionPlanner.Controls
 
             InitializeComponent();
 
-            this.Text = "UAVCAN Params - " + node;
+            this.Text = UiText.Translate("UAVCAN Params - ") + node;
 
             Params.CellValidating += CellValidatingEvtHdlr;
         }
@@ -244,7 +244,7 @@ namespace MissionPlanner.Controls
                 //If it's the value column, but the new value isn't in min-to-max range...
                 if (GetIsValue(e) && !GetIsInRange(e))
                 {
-                    CustomMessageBox.Show("Invalid value \"" + Params.EditingControl.Text + "\"");
+                    CustomMessageBox.Show(UiText.Translate("Invalid value \"") + Params.EditingControl.Text + "\"");
                     //Replace the editor's text with the existing cell text.
                     Params.EditingControl.Text = Params[e.ColumnIndex, e.RowIndex].Value.ToString();
                 }
@@ -259,15 +259,15 @@ namespace MissionPlanner.Controls
             try
             {
                 if (!_can.SaveConfig(_node))
-                    CustomMessageBox.Show("Failed to save");
+                    CustomMessageBox.Show(UiText.Translate("Failed to save"));
             }
             catch
             {
-                CustomMessageBox.Show("Invalid command");
+                CustomMessageBox.Show(UiText.Translate("Invalid command"));
                 return;
             }
 
-            CustomMessageBox.Show("Parameters committed to non-volatile memory");
+            CustomMessageBox.Show(UiText.Translate("Parameters committed to non-volatile memory"));
             return;
         }
 
@@ -348,7 +348,7 @@ namespace MissionPlanner.Controls
         private void BUT_reset_params_Click(object sender, EventArgs e)
         {
             if (
-                CustomMessageBox.Show("This will reset all params to their default value\nAre you sure?", "Reset",
+                CustomMessageBox.Show(UiText.Translate("This will reset all params to their default value\nAre you sure?"), UiText.Translate("Reset"),
                     MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
                 try
@@ -360,7 +360,7 @@ namespace MissionPlanner.Controls
 
 
                     CustomMessageBox.Show(
-                        "Your board is now rebooting, You will be required to reconnect to the autopilot.");
+                        UiText.Translate("Your board is now rebooting, You will be required to reconnect to the autopilot."));
                 }
                 catch (Exception ex)
                 {
@@ -405,7 +405,7 @@ namespace MissionPlanner.Controls
 
         private void BUT_writePIDS_Click(object sender, EventArgs e)
         {
-            if (Common.MessageShowAgain("Write Raw Params", "Are you Sure?") != DialogResult.OK)
+            if (Common.MessageShowAgain("Write Raw Params", UiText.Translate("Are you Sure?")) != DialogResult.OK)
                 return;
 
             // sort with enable at the bottom - this ensures params are set before the function is disabled
@@ -459,16 +459,16 @@ namespace MissionPlanner.Controls
                 {
                     log.Error(ex);
                     failed++;
-                    CustomMessageBox.Show("Set " + value + " Failed " + ex.ToString());
+                    CustomMessageBox.Show(UiText.Translate("Set ") + value + UiText.Translate(" Failed ") + ex.ToString());
                 }
             }
 
             _can.SaveConfig(_node);
 
             if (failed > 0)
-                CustomMessageBox.Show("Some Parameters Failed to be saved.", "Saved");
+                CustomMessageBox.Show(UiText.Translate("Some Parameters Failed to be saved."), UiText.Translate("Saved"));
             else
-                CustomMessageBox.Show("Parameters successfully saved.", "Saved");
+                CustomMessageBox.Show(UiText.Translate("Parameters successfully saved."), UiText.Translate("Saved"));
         }
 
         private void chk_modified_CheckedChanged(object sender, EventArgs e)
@@ -578,7 +578,7 @@ namespace MissionPlanner.Controls
                 {
                     list += item + " ";
                 }
-                Common.MessageShowAgain("No matching Params", "Missing " + missed + " params\n" + list);
+                Common.MessageShowAgain("No matching Params", UiText.Translate("Missing ") + missed + UiText.Translate(" params\n") + list);
             }
         }
         private void OnParamsOnSortCompare(object sender, DataGridViewSortCompareEventArgs args)

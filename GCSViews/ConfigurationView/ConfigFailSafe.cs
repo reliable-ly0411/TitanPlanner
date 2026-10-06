@@ -87,7 +87,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _timer.Interval = 100;
             _timer.Start();
 
-            CustomMessageBox.Show("Ensure your props are not on the Plane/Quad", "FailSafe", MessageBoxButtons.OK,
+            CustomMessageBox.Show(UiText.Translate("Ensure your props are not on the Plane/Quad"), UiText.Translate("FailSafe"), MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
         }
 

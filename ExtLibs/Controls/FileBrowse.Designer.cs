@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class FileBrowse
     {
@@ -57,7 +58,7 @@
             this.myButton1.Name = "myButton1";
             this.myButton1.Size = new System.Drawing.Size(75, 20);
             this.myButton1.TabIndex = 1;
-            this.myButton1.Text = "Browse";
+            this.myButton1.Text = UiText.Translate("Browse");
             this.myButton1.UseVisualStyleBackColor = true;
             this.myButton1.Click += new System.EventHandler(this.myButton1_Click);
             // 

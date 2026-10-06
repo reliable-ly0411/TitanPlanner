@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigHWIDs
     {
@@ -70,7 +71,7 @@
             // paramNameDataGridViewTextBoxColumn
             // 
             this.paramNameDataGridViewTextBoxColumn.DataPropertyName = "ParamName";
-            this.paramNameDataGridViewTextBoxColumn.HeaderText = "ParamName";
+            this.paramNameDataGridViewTextBoxColumn.HeaderText = UiText.Translate("ParamName");
             this.paramNameDataGridViewTextBoxColumn.Name = "paramNameDataGridViewTextBoxColumn";
             this.paramNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.paramNameDataGridViewTextBoxColumn.Width = 150;
@@ -78,35 +79,35 @@
             // devIDDataGridViewTextBoxColumn
             // 
             this.devIDDataGridViewTextBoxColumn.DataPropertyName = "DevID";
-            this.devIDDataGridViewTextBoxColumn.HeaderText = "DevID";
+            this.devIDDataGridViewTextBoxColumn.HeaderText = UiText.Translate("DevID");
             this.devIDDataGridViewTextBoxColumn.Name = "devIDDataGridViewTextBoxColumn";
             this.devIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // busTypeDataGridViewTextBoxColumn
             // 
             this.busTypeDataGridViewTextBoxColumn.DataPropertyName = "BusType";
-            this.busTypeDataGridViewTextBoxColumn.HeaderText = "BusType";
+            this.busTypeDataGridViewTextBoxColumn.HeaderText = UiText.Translate("BusType");
             this.busTypeDataGridViewTextBoxColumn.Name = "busTypeDataGridViewTextBoxColumn";
             this.busTypeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // busDataGridViewTextBoxColumn
             // 
             this.busDataGridViewTextBoxColumn.DataPropertyName = "Bus";
-            this.busDataGridViewTextBoxColumn.HeaderText = "Bus";
+            this.busDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Bus");
             this.busDataGridViewTextBoxColumn.Name = "busDataGridViewTextBoxColumn";
             this.busDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Address");
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // devTypeDataGridViewTextBoxColumn
             // 
             this.devTypeDataGridViewTextBoxColumn.DataPropertyName = "DevType";
-            this.devTypeDataGridViewTextBoxColumn.HeaderText = "DevType";
+            this.devTypeDataGridViewTextBoxColumn.HeaderText = UiText.Translate("DevType");
             this.devTypeDataGridViewTextBoxColumn.Name = "devTypeDataGridViewTextBoxColumn";
             this.devTypeDataGridViewTextBoxColumn.ReadOnly = true;
             // 

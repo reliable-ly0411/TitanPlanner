@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using MissionPlanner.Utilities;
+using log4net;
 using MissionPlanner.Controls;
 using System;
 using System.Reflection;
@@ -153,7 +154,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 _incalibrate = false;
                 Log.Error("Exception on level", ex);
-                CustomMessageBox.Show("Failed to level", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to level"), Strings.ERROR);
             }
         }
 
@@ -234,7 +235,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Exception ex)
             {
                 Log.Error("Exception on level", ex);
-                CustomMessageBox.Show("Failed to level", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to level"), Strings.ERROR);
             }
         }
 
@@ -256,7 +257,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Exception ex)
             {
                 Log.Error("Exception on simple accelerometer calibration", ex);
-                CustomMessageBox.Show("Failed to simple accelerometer calibration", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to simple accelerometer calibration"), Strings.ERROR);
             }
         }
     }

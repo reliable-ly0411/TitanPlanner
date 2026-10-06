@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 namespace MissionPlanner.Controls
 {
     partial class DisplayThisForm
@@ -38,7 +39,7 @@ namespace MissionPlanner.Controls
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "DisplayThisForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Display This";
+            this.Text = UiText.Translate("Display This");
             this.Load += new System.EventHandler(this.DisplayThisForm_Load);
             this.ResumeLayout(false);
         }

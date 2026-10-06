@@ -387,8 +387,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     if ((float)changes[value] > (float)MainV2.comPort.MAV.param[value] * 2.0f)
                         if (
-                            CustomMessageBox.Show(value + " has more than doubled the last input. Are you sure?",
-                                "Large Value", MessageBoxButtons.YesNo) == (int)DialogResult.No)
+                            CustomMessageBox.Show(value + UiText.Translate(" has more than doubled the last input. Are you sure?"),
+                                UiText.Translate("Large Value"), MessageBoxButtons.YesNo) == (int)DialogResult.No)
                         {
                             try
                             {
@@ -409,7 +409,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                     if (MainV2.comPort.BaseStream == null || !MainV2.comPort.BaseStream.IsOpen)
                     {
-                        CustomMessageBox.Show("You are not connected", Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Translate("You are not connected"), Strings.ERROR);
                         return;
                     }
 
@@ -517,7 +517,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 var warning = ParamChanges47.changedByNewParamWarning(mnud.ParamName);
                 if (warning != null)
                 {
-                    lblUnitWarning.Text = "Change in 4.7: " + warning;
+                    lblUnitWarning.Text = UiText.Translate("Change in 4.7: ") + warning;
                     lblUnitWarning.Visible = true;
                     lblUnitWarning.ForeColor = Color.Red;
                     return;

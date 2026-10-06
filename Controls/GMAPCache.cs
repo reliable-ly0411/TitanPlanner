@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -71,7 +72,7 @@ namespace MissionPlanner.Controls
                 buttonColumn = new DataGridViewButtonColumn();
                 buttonColumn.HeaderText = "";
                 //buttonColumn.Name = "Status Request";
-                buttonColumn.Text = "Remove 30+days";
+                buttonColumn.Text = UiText.Translate("Remove 30+days");
                 buttonColumn.UseColumnTextForButtonValue = true;
 
                 myDataGridView1.Columns.Add(buttonColumn);
@@ -82,7 +83,7 @@ namespace MissionPlanner.Controls
                 buttonColumn2 = new DataGridViewButtonColumn();
                 buttonColumn2.HeaderText = "";
                 //buttonColumn.Name = "Status Request";
-                buttonColumn2.Text = "Remove All";
+                buttonColumn2.Text = UiText.Translate("Remove All");
                 buttonColumn2.UseColumnTextForButtonValue = true;
 
                 myDataGridView1.Columns.Add(buttonColumn2);
@@ -104,7 +105,7 @@ namespace MissionPlanner.Controls
                 var removed = ((PureImageCache) MyImageCache.Instance).DeleteOlderThan(DateTime.Now.AddDays(-30),
                     GMapProviders.List.First(a => a.Name == dir).DbId);
 
-                CustomMessageBox.Show("Removed " + removed + " images");
+                CustomMessageBox.Show(UiText.Translate("Removed ") + removed + UiText.Translate(" images"));
 
                 Activate();
             }
@@ -116,7 +117,7 @@ namespace MissionPlanner.Controls
                 var removed = ((PureImageCache) MyImageCache.Instance).DeleteOlderThan(DateTime.Now.AddDays(0),
                     GMapProviders.List.First(a => a.Name == dir).DbId);
 
-                CustomMessageBox.Show("Removed " + removed + " images");
+                CustomMessageBox.Show(UiText.Translate("Removed ") + removed + UiText.Translate(" images"));
 
                 Activate();
             }

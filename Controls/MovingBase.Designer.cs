@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class MovingBase
     {
@@ -75,7 +76,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(187, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Pick the Nmea gps port and baud rate\r\n";
+            this.label1.Text = UiText.Translate("Pick the Nmea gps port and baud rate\r\n");
             // 
             // LBL_location
             // 
@@ -118,7 +119,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Select your update rate\r\n";
+            this.label2.Text = UiText.Translate("Select your update rate\r\n");
             // 
             // BUT_connect
             // 
@@ -126,7 +127,7 @@
             this.BUT_connect.Name = "BUT_connect";
             this.BUT_connect.Size = new System.Drawing.Size(75, 23);
             this.BUT_connect.TabIndex = 1;
-            this.BUT_connect.Text = "Connect";
+            this.BUT_connect.Text = UiText.Translate("Connect");
             this.BUT_connect.UseVisualStyleBackColor = true;
             this.BUT_connect.Click += new System.EventHandler(this.BUT_connect_Click);
             // 
@@ -137,7 +138,7 @@
             this.CHK_updateRallyPnt.Name = "CHK_updateRallyPnt";
             this.CHK_updateRallyPnt.Size = new System.Drawing.Size(123, 17);
             this.CHK_updateRallyPnt.TabIndex = 8;
-            this.CHK_updateRallyPnt.Text = "Update Rally Point 0";
+            this.CHK_updateRallyPnt.Text = UiText.Translate("Update Rally Point 0");
             this.CHK_updateRallyPnt.UseVisualStyleBackColor = true;
             this.CHK_updateRallyPnt.CheckedChanged += new System.EventHandler(this.CHK_updateRallyPnt_CheckedChanged);
             // 
@@ -148,7 +149,7 @@
             this.chk_relalt.Name = "chk_relalt";
             this.chk_relalt.Size = new System.Drawing.Size(77, 17);
             this.chk_relalt.TabIndex = 9;
-            this.chk_relalt.Text = "RelativeAlt";
+            this.chk_relalt.Text = UiText.Translate("RelativeAlt");
             this.chk_relalt.UseVisualStyleBackColor = true;
             // 
             // MovingBase
@@ -166,7 +167,7 @@
             this.Controls.Add(this.CMB_serialport);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MovingBase";
-            this.Text = "MovingBase";
+            this.Text = UiText.Translate("MovingBase");
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialOutput_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

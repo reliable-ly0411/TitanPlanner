@@ -84,7 +84,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT2_CAPACITY Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT2_CAPACITY Failed"), Strings.ERROR);
             }
         }
 
@@ -114,7 +114,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT2_VOLT_MULT Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT2_VOLT_MULT Failed"), Strings.ERROR);
             }
         }
 
@@ -128,7 +128,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT2_VOLT_MULT Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT2_VOLT_MULT Failed"), Strings.ERROR);
             }
         }
 
@@ -142,7 +142,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT2_AMP_PERVOL Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT2_AMP_PERVOL Failed"), Strings.ERROR);
             }
         }
 
@@ -181,7 +181,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbattery"] != null)
                     speechstring = Settings.Instance["speechbattery"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechbattery"] = speechstring;
 
@@ -189,7 +189,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatteryvolt"] != null)
                     speechstring = Settings.Instance["speechbatteryvolt"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What Voltage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What Voltage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatteryvolt"] = speechstring;
 
@@ -197,7 +197,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatterypercent"] != null)
                     speechstring = Settings.Instance["speechbatterypercent"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What percentage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What percentage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatterypercent"] = speechstring;
             }
@@ -247,7 +247,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Set BATT2_AMP_PERVOL Failed", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Set BATT2_AMP_PERVOL Failed"), Strings.ERROR);
             }
         }
     }

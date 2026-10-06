@@ -26,7 +26,7 @@ namespace MissionPlanner.Controls
         public myGMAP()
             : base()
         {
-            this.Text = "Map";
+            this.Text = UiText.Translate("Map");
             IgnoreMarkerOnMouseWheel = true;
             GestureHappened += MyGMAP_GestureHappened;
         }

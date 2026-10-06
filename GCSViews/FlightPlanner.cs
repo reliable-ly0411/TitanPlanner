@@ -368,7 +368,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Please fix your default alt value");
+                CustomMessageBox.Show(UiText.Translate("Please fix your default alt value"));
                 TXT_DefaultAlt.Text = (50 * CurrentState.multiplieralt).ToString("0");
             }
         }
@@ -650,7 +650,7 @@ namespace MissionPlanner.GCSViews
                 else
                 {
                     if (
-                        CustomMessageBox.Show("This will clear your existing points, Continue?", "Confirm",
+                        CustomMessageBox.Show(UiText.Translate("This will clear your existing points, Continue?"), UiText.Translate("Confirm"),
                             MessageBoxButtons.OKCancel) != (int) DialogResult.OK)
                     {
                         return;
@@ -661,11 +661,11 @@ namespace MissionPlanner.GCSViews
             IProgressReporterDialogue frmProgressReporter = new ProgressReporterDialogue
             {
                 StartPosition = FormStartPosition.CenterScreen,
-                Text = "Receiving WP's"
+                Text = UiText.Translate("Receiving WP's")
             };
 
             frmProgressReporter.DoWork += getWPs;
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Receiving WP's");
+            frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Receiving WP's"));
 
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
@@ -684,7 +684,7 @@ namespace MissionPlanner.GCSViews
             if ((altmode) CMB_altmode.SelectedValue == altmode.Absolute)
             {
                 if ((int) DialogResult.No ==
-                    CustomMessageBox.Show("Absolute Alt is selected are you sure?", "Alt Mode",
+                    CustomMessageBox.Show(UiText.Translate("Absolute Alt is selected are you sure?"), UiText.Translate("Alt Mode"),
                         MessageBoxButtons.YesNo))
                 {
                     CMB_altmode.SelectedValue = (int) altmode.Relative;
@@ -703,7 +703,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Your home location is invalid", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Your home location is invalid"), Strings.ERROR);
                 return;
             }
 
@@ -717,7 +717,7 @@ namespace MissionPlanner.GCSViews
                     {
                         if (!double.TryParse(Commands[b, a].Value.ToString(), out answer))
                         {
-                            CustomMessageBox.Show("There are errors in your mission");
+                            CustomMessageBox.Show(UiText.Translate("There are errors in your mission"));
                             return;
                         }
                     }
@@ -736,8 +736,8 @@ namespace MissionPlanner.GCSViews
                             cmd != (ushort) MAVLink.MAV_CMD.LAND &&
                             cmd != (ushort) MAVLink.MAV_CMD.RETURN_TO_LAUNCH)
                         {
-                            CustomMessageBox.Show("Low alt on WP#" + (a + 1) +
-                                                  "\nPlease reduce the alt warning, or increase the altitude");
+                            CustomMessageBox.Show(UiText.Translate("Low alt on WP#") + (a + 1) +
+                                                  UiText.Translate("\nPlease reduce the alt warning, or increase the altitude"));
                             return;
                         }
                     }
@@ -749,12 +749,12 @@ namespace MissionPlanner.GCSViews
             IProgressReporterDialogue frmProgressReporter = new ProgressReporterDialogue
             {
                 StartPosition = FormStartPosition.CenterScreen,
-                Text = "Sending WP's"
+                Text = UiText.Translate("Sending WP's")
             };
 
             frmProgressReporter.DoWork += saveWPs;
 
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Sending WP's");
+            frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Sending WP's"));
 
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
@@ -877,7 +877,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Failed to get fence point", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to get fence point"), Strings.ERROR);
                 }
 
                 return;
@@ -885,13 +885,13 @@ namespace MissionPlanner.GCSViews
 
             if (MainV2.comPort.MAV.param["FENCE_ACTION"] == null || MainV2.comPort.MAV.param["FENCE_TOTAL"] == null)
             {
-                CustomMessageBox.Show("Not Supported");
+                CustomMessageBox.Show(UiText.Translate("Not Supported"));
                 return;
             }
 
             if (int.Parse(MainV2.comPort.MAV.param["FENCE_TOTAL"].ToString()) <= 1)
             {
-                CustomMessageBox.Show("Nothing to download");
+                CustomMessageBox.Show(UiText.Translate("Nothing to download"));
                 return;
             }
 
@@ -909,7 +909,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Failed to get fence point", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to get fence point"), Strings.ERROR);
                     return;
                 }
             }
@@ -920,7 +920,7 @@ namespace MissionPlanner.GCSViews
                     GMarkerGoogleType.red)
                 {
                     ToolTipMode = MarkerTooltipMode.OnMouseOver,
-                    ToolTipText = "GeoFence Return"
+                    ToolTipText = UiText.Translate("GeoFence Return")
                 });
             geofencepolygon.Points.RemoveAt(0);
 
@@ -965,13 +965,13 @@ namespace MissionPlanner.GCSViews
 
             if (MainV2.comPort.MAV.param["RALLY_TOTAL"] == null)
             {
-                CustomMessageBox.Show("Not Supported");
+                CustomMessageBox.Show(UiText.Translate("Not Supported"));
                 return;
             }
 
             if (int.Parse(MainV2.comPort.MAV.param["RALLY_TOTAL"].ToString()) < 1)
             {
-                CustomMessageBox.Show("Rally points - Nothing to download");
+                CustomMessageBox.Show(UiText.Translate("Rally points - Nothing to download"));
                 return;
             }
 
@@ -989,12 +989,12 @@ namespace MissionPlanner.GCSViews
                     {
                         Alt = (int) plla.plla.Alt,
                         ToolTipMode = MarkerTooltipMode.OnMouseOver,
-                        ToolTipText = "Rally Point" + "\nAlt: " + (plla.plla.Alt * CurrentState.multiplieralt)
+                        ToolTipText = UiText.Translate("Rally Point") + UiText.Translate("\nAlt: ") + (plla.plla.Alt * CurrentState.multiplieralt)
                     });
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Failed to get rally point", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to get rally point"), Strings.ERROR);
                     return;
                 }
             }
@@ -1043,7 +1043,7 @@ namespace MissionPlanner.GCSViews
         }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Can't open file! " + ex);
+                CustomMessageBox.Show(UiText.Translate("Can't open file! ") + ex);
             }
         }
 
@@ -1127,7 +1127,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("A invalid entry has been detected\n" + ex.Message, Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("A invalid entry has been detected\n") + ex.Message, Strings.ERROR);
             }
 
             // remove more than 40 revisions
@@ -1148,7 +1148,7 @@ namespace MissionPlanner.GCSViews
         {
             if (selectedrow > Commands.RowCount)
             {
-                CustomMessageBox.Show("Invalid coord, How did you do this?");
+                CustomMessageBox.Show(UiText.Translate("Invalid coord, How did you do this?"));
                 return;
             }
 
@@ -1207,9 +1207,9 @@ namespace MissionPlanner.GCSViews
 
                     if (pass == false)
                     {
-                        CustomMessageBox.Show("You must have a home altitude");
+                        CustomMessageBox.Show(UiText.Translate("You must have a home altitude"));
                         string homealt = "100";
-                        if (DialogResult.Cancel == InputBox.Show("Home Alt", "Home Altitude", ref homealt))
+                        if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Home Alt"), UiText.Translate("Home Altitude"), ref homealt))
                             return;
                         TXT_homealt.Text = homealt;
                     }
@@ -1217,14 +1217,14 @@ namespace MissionPlanner.GCSViews
                     int results1;
                     if (!int.TryParse(TXT_DefaultAlt.Text, out results1))
                     {
-                        CustomMessageBox.Show("Your default alt is not valid");
+                        CustomMessageBox.Show(UiText.Translate("Your default alt is not valid"));
                         return;
                     }
 
                     if (results1 == 0)
                     {
                         string defalt = "100";
-                        if (DialogResult.Cancel == InputBox.Show("Default Alt", "Default Altitude", ref defalt))
+                        if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Default Alt"), UiText.Translate("Default Altitude"), ref defalt))
                             return;
                         TXT_DefaultAlt.Text = defalt;
                     }
@@ -1275,7 +1275,7 @@ namespace MissionPlanner.GCSViews
                 }
                 else
                 {
-                    CustomMessageBox.Show("Invalid Home or wp Alt");
+                    CustomMessageBox.Show(UiText.Translate("Invalid Home or wp Alt"));
                     cell.Style.BackColor = Color.Red;
                 }
             }
@@ -1339,7 +1339,7 @@ namespace MissionPlanner.GCSViews
                 }
 
                 lbl_prevdist.Text = rm.GetString("lbl_prevdist.Text") + ": " + FormatDistance(lastdist, true) +
-                                    " AZ: " +
+                                    UiText.Translate(" AZ: ") +
                                     lastbearing.ToString("0");
 
                 // 0 is home
@@ -1473,7 +1473,7 @@ namespace MissionPlanner.GCSViews
                     }
                     catch (FormatException)
                     {
-                        CustomMessageBox.Show(Strings.InvalidNumberEntered + "\n" + "WP Radius or Loiter Radius",
+                        CustomMessageBox.Show(Strings.InvalidNumberEntered + "\n" + UiText.Translate("WP Radius or Loiter Radius"),
                             Strings.ERROR);
                     }
 
@@ -1777,7 +1777,7 @@ namespace MissionPlanner.GCSViews
                 PointLatLng point = new PointLatLng(lat, lng);
                 GMarkerGoogle m = new GMarkerGoogle(point, GMarkerGoogleType.red);
                 m.ToolTipMode = MarkerTooltipMode.Never;
-                m.ToolTipText = "grid" + tag;
+                m.ToolTipText = UiText.Translate("grid") + tag;
                 m.Tag = "grid" + tag;
 
                 //MissionPlanner.GMapMarkerRectWPRad mBorders = new MissionPlanner.GMapMarkerRectWPRad(point, (int)float.Parse(TXT_WPRad.Text), MainMap);
@@ -1835,8 +1835,8 @@ namespace MissionPlanner.GCSViews
             double areasqf = aream2 * 10.7639;
 
             CustomMessageBox.Show(
-                "Area: " + aream2.ToString("0") + " m2\n\t" + areaa.ToString("0.00") + " Acre\n\t" +
-                areaha.ToString("0.00") + " Hectare\n\t" + areasqf.ToString("0") + " sqf", "Area");
+                UiText.Translate("Area: ") + aream2.ToString("0") + " m2\n\t" + areaa.ToString("0.00") + UiText.Translate(" Acre\n\t") +
+                areaha.ToString("0.00") + UiText.Translate(" Hectare\n\t") + areasqf.ToString("0") + UiText.Translate(" sqf"), UiText.Translate("Area"));
         }
 
         /// <summary>
@@ -1902,7 +1902,7 @@ namespace MissionPlanner.GCSViews
                         }
                         catch
                         {
-                            CustomMessageBox.Show("Error opening File", Strings.ERROR);
+                            CustomMessageBox.Show(UiText.Translate("Error opening File"), Strings.ERROR);
                             return;
                         }
                     }
@@ -1917,7 +1917,7 @@ namespace MissionPlanner.GCSViews
                         }
                         catch
                         {
-                            CustomMessageBox.Show("Error opening File", Strings.ERROR);
+                            CustomMessageBox.Show(UiText.Translate("Error opening File"), Strings.ERROR);
                             return;
                         }
                     }
@@ -1949,7 +1949,7 @@ namespace MissionPlanner.GCSViews
                         }
                     }
 
-                    lbl_wpfile.Text = "Loaded " + Path.GetFileName(file);
+                    lbl_wpfile.Text = UiText.Translate("Loaded ") + Path.GetFileName(file);
                 }
             }
         }
@@ -1964,7 +1964,7 @@ namespace MissionPlanner.GCSViews
             if ((altmode) CMB_altmode.SelectedValue == altmode.Absolute)
             {
                 if ((int) DialogResult.No ==
-                    CustomMessageBox.Show("Absolute Alt is selected are you sure?", "Alt Mode",
+                    CustomMessageBox.Show(UiText.Translate("Absolute Alt is selected are you sure?"), UiText.Translate("Alt Mode"),
                         MessageBoxButtons.YesNo))
                 {
                     CMB_altmode.SelectedValue = (int) altmode.Relative;
@@ -1973,7 +1973,7 @@ namespace MissionPlanner.GCSViews
 
             if ((MAVLink.MAV_MISSION_TYPE) cmb_missiontype.SelectedValue != MAVLink.MAV_MISSION_TYPE.MISSION)
             {
-                CustomMessageBox.Show("Only available for missions");
+                CustomMessageBox.Show(UiText.Translate("Only available for missions"));
                 return;
             }
 
@@ -1988,7 +1988,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Your home location is invalid", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Your home location is invalid"), Strings.ERROR);
                 return;
             }
 
@@ -2002,7 +2002,7 @@ namespace MissionPlanner.GCSViews
                     {
                         if (!double.TryParse(Commands[b, a].Value.ToString(), out answer))
                         {
-                            CustomMessageBox.Show("There are errors in your mission");
+                            CustomMessageBox.Show(UiText.Translate("There are errors in your mission"));
                             return;
                         }
                     }
@@ -2021,8 +2021,8 @@ namespace MissionPlanner.GCSViews
                             cmd != (ushort) MAVLink.MAV_CMD.LAND &&
                             cmd != (ushort) MAVLink.MAV_CMD.RETURN_TO_LAUNCH)
                         {
-                            CustomMessageBox.Show("Low alt on WP#" + (a + 1) +
-                                                  "\nPlease reduce the alt warning, or increase the altitude");
+                            CustomMessageBox.Show(UiText.Translate("Low alt on WP#") + (a + 1) +
+                                                  UiText.Translate("\nPlease reduce the alt warning, or increase the altitude"));
                             return;
                         }
                     }
@@ -2034,12 +2034,12 @@ namespace MissionPlanner.GCSViews
             IProgressReporterDialogue frmProgressReporter = new ProgressReporterDialogue
             {
                 StartPosition = FormStartPosition.CenterScreen,
-                Text = "Sending WP's"
+                Text = UiText.Translate("Sending WP's")
             };
 
             frmProgressReporter.DoWork += saveWPsFast;
 
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Sending WP's");
+            frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Sending WP's"));
 
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
@@ -2058,7 +2058,7 @@ namespace MissionPlanner.GCSViews
 
             if (polygon.Count == 0)
             {
-                CustomMessageBox.Show("Please define a polygon!");
+                CustomMessageBox.Show(UiText.Translate("Please define a polygon!"));
                 return 0;
             }
 
@@ -2188,7 +2188,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Failed to set FENCE_ENABLE");
+                CustomMessageBox.Show(UiText.Translate("Failed to set FENCE_ENABLE"));
                 return;
             }
 
@@ -2199,7 +2199,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Failed to set FENCE_ACTION");
+                CustomMessageBox.Show(UiText.Translate("Failed to set FENCE_ACTION"));
                 return;
             }
 
@@ -2210,7 +2210,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Failed to set FENCE_TOTAL");
+                CustomMessageBox.Show(UiText.Translate("Failed to set FENCE_TOTAL"));
                 return;
             }
 
@@ -2259,10 +2259,10 @@ namespace MissionPlanner.GCSViews
                 BUT_Add.Visible = false;
                 processToScreen(MainV2.comPort.MAV.fencepoints.Select(a => (Locationwp) a.Value).ToList());
 
-                Common.MessageShowAgain("FlightPlan Fence", "Please use the Polygon drawing tool to draw " +
-                                                            "Inclusion and Exclusion areas (round circle to the left)," +
-                                                            " once drawn use the same icon to convert it to a inclusion " +
-                                                            "or exclusion fence");
+                Common.MessageShowAgain("FlightPlan Fence", UiText.Translate("Please use the Polygon drawing tool to draw ") +
+                                                            UiText.Translate("Inclusion and Exclusion areas (round circle to the left),") +
+                                                            UiText.Translate(" once drawn use the same icon to convert it to a inclusion ") +
+                                                            UiText.Translate("or exclusion fence"));
             }
             else
             {
@@ -2282,7 +2282,7 @@ namespace MissionPlanner.GCSViews
                     (GMapProvider) comboBoxMapType.SelectedItem == MapboxUser.Instance)
                 {
                     var url = Settings.Instance["MapBoxURL", ""];
-                    InputBox.Show("Enter MapBox Share URL", "Enter MapBox Share URL", ref url);
+                    InputBox.Show(UiText.Translate("Enter MapBox Share URL"), UiText.Translate("Enter MapBox Share URL"), ref url);
                     var match = Regex.Matches(url, @"\/styles\/[^\/]+\/([^\/]+)\/([^\/\.]+).*access_token=([^#&=]+)");
                     if (match != null)
                     {
@@ -2306,7 +2306,7 @@ namespace MissionPlanner.GCSViews
             catch (Exception ex)
             {
                 log.Error(ex);
-                CustomMessageBox.Show("Map change failed. try zooming out first.");
+                CustomMessageBox.Show(UiText.Translate("Map change failed. try zooming out first."));
             }
         }
 
@@ -2352,7 +2352,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception)
             {
-                CustomMessageBox.Show("Row error");
+                CustomMessageBox.Show(UiText.Translate("Row error"));
             }
         }
 
@@ -2384,7 +2384,7 @@ namespace MissionPlanner.GCSViews
                 catch (Exception ex)
                 {
                     log.Error(ex);
-                    CustomMessageBox.Show("Invalid Lat/Long, please fix", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Invalid Lat/Long, please fix"), Strings.ERROR);
                 }
             }
 
@@ -2607,7 +2607,7 @@ namespace MissionPlanner.GCSViews
                 if (((ComboBox) sender).Text == "UNKNOWN")
                 {
                     string cmdid = "-1";
-                    if (InputBox.Show("Mavlink ID", "Please enter the command ID", ref cmdid) == DialogResult.OK)
+                    if (InputBox.Show(UiText.Translate("Mavlink ID"), UiText.Translate("Please enter the command ID"), ref cmdid) == DialogResult.OK)
                     {
                         if (cmdid != "-1")
                         {
@@ -2697,7 +2697,7 @@ namespace MissionPlanner.GCSViews
                 polygonsoverlay.Markers.Add(new GMarkerGoogle(MouseDownStart, GMarkerGoogleType.red));
                 MainMap.Invalidate();
                 Common.MessageShowAgain("Measure Dist",
-                    "You can now pan/zoom around.\nClick this option again to get the distance.");
+                    UiText.Translate("You can now pan/zoom around.\nClick this option again to get the distance."));
             }
             else
             {
@@ -2714,11 +2714,11 @@ namespace MissionPlanner.GCSViews
 
                 polygonsoverlay.Markers.Add(new GMarkerGoogle(MouseDownStart, GMarkerGoogleType.red));
                 MainMap.Invalidate();
-                CustomMessageBox.Show("Distance: " +
+                CustomMessageBox.Show(UiText.Translate("Distance: ") +
                                       FormatDistance(
                                           MainMap.MapProvider.Projection.GetDistance(startmeasure, MouseDownStart),
                                           true) +
-                                      " AZ: " +
+                                      UiText.Translate(" AZ: ") +
                                       (MainMap.MapProvider.Projection.GetBearing(startmeasure, MouseDownStart)
                                           .ToString("0")));
                 polygonsoverlay.Polygons.Remove(line);
@@ -2924,24 +2924,24 @@ namespace MissionPlanner.GCSViews
         public void createSplineCircleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string RadiusIn = "50";
-            if (DialogResult.Cancel == InputBox.Show("Radius", "Radius", ref RadiusIn))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Radius"), UiText.Translate("Radius"), ref RadiusIn))
                 return;
 
             string minaltin = "5";
-            if (DialogResult.Cancel == InputBox.Show("min alt", "Min Alt", ref minaltin))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("min alt"), UiText.Translate("Min Alt"), ref minaltin))
                 return;
 
             string maxaltin = "20";
-            if (DialogResult.Cancel == InputBox.Show("max alt", "Max Alt", ref maxaltin))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("max alt"), UiText.Translate("Max Alt"), ref maxaltin))
                 return;
 
             string altstepin = "5";
-            if (DialogResult.Cancel == InputBox.Show("alt step", "alt step", ref altstepin))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("alt step"), UiText.Translate("alt step"), ref altstepin))
                 return;
 
 
             string startanglein = "0";
-            if (DialogResult.Cancel == InputBox.Show("angle", "Angle of first point (whole degrees)", ref startanglein))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("angle"), UiText.Translate("Angle of first point (whole degrees)"), ref startanglein))
                 return;
 
             int Points = 4;
@@ -2952,25 +2952,25 @@ namespace MissionPlanner.GCSViews
             int altstep = 5;
             if (!int.TryParse(RadiusIn, out Radius))
             {
-                CustomMessageBox.Show("Bad Radius");
+                CustomMessageBox.Show(UiText.Translate("Bad Radius"));
                 return;
             }
 
             if (!int.TryParse(minaltin, out minalt))
             {
-                CustomMessageBox.Show("Bad min alt");
+                CustomMessageBox.Show(UiText.Translate("Bad min alt"));
                 return;
             }
 
             if (!int.TryParse(maxaltin, out maxalt))
             {
-                CustomMessageBox.Show("Bad maxalt");
+                CustomMessageBox.Show(UiText.Translate("Bad maxalt"));
                 return;
             }
 
             if (!int.TryParse(altstepin, out altstep))
             {
-                CustomMessageBox.Show("Bad alt step");
+                CustomMessageBox.Show(UiText.Translate("Bad alt step"));
                 return;
             }
 
@@ -3030,19 +3030,19 @@ namespace MissionPlanner.GCSViews
         public void createWpCircleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string RadiusIn = "50";
-            if (DialogResult.Cancel == InputBox.Show("Radius", "Radius", ref RadiusIn))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Radius"), UiText.Translate("Radius"), ref RadiusIn))
                 return;
 
             string Pointsin = "20";
-            if (DialogResult.Cancel == InputBox.Show("Points", "Number of points to generate Circle", ref Pointsin))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Points"), UiText.Translate("Number of points to generate Circle"), ref Pointsin))
                 return;
 
             string Directionin = "1";
-            if (DialogResult.Cancel == InputBox.Show("Points", "Direction of circle (-1 or 1)", ref Directionin))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Points"), UiText.Translate("Direction of circle (-1 or 1)"), ref Directionin))
                 return;
 
             string startanglein = "0";
-            if (DialogResult.Cancel == InputBox.Show("angle", "Angle of first point (whole degrees)", ref startanglein))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("angle"), UiText.Translate("Angle of first point (whole degrees)"), ref startanglein))
                 return;
 
             int Points = 0;
@@ -3052,7 +3052,7 @@ namespace MissionPlanner.GCSViews
 
             if (!int.TryParse(RadiusIn, out Radius))
             {
-                CustomMessageBox.Show("Bad Radius");
+                CustomMessageBox.Show(UiText.Translate("Bad Radius"));
                 return;
             }
 
@@ -3060,19 +3060,19 @@ namespace MissionPlanner.GCSViews
 
             if (!int.TryParse(Pointsin, out Points))
             {
-                CustomMessageBox.Show("Bad Point value");
+                CustomMessageBox.Show(UiText.Translate("Bad Point value"));
                 return;
             }
 
             if (!int.TryParse(Directionin, out Direction))
             {
-                CustomMessageBox.Show("Bad Direction value");
+                CustomMessageBox.Show(UiText.Translate("Bad Direction value"));
                 return;
             }
 
             if (!int.TryParse(startanglein, out startangle))
             {
-                CustomMessageBox.Show("Bad start angle value");
+                CustomMessageBox.Show(UiText.Translate("Bad start angle value"));
                 return;
             }
 
@@ -3200,7 +3200,7 @@ namespace MissionPlanner.GCSViews
                     catch (Exception ex)
                     {
                         log.Error(ex);
-                        CustomMessageBox.Show("error selecting wp, please try again.");
+                        CustomMessageBox.Show(UiText.Translate("error selecting wp, please try again."));
                     }
                 }
                 else if (int.TryParse(CurentRectMarker.InnerMarker.Tag.ToString().Replace("grid", ""), out no))
@@ -3214,7 +3214,7 @@ namespace MissionPlanner.GCSViews
                     catch (Exception ex)
                     {
                         log.Error(ex);
-                        CustomMessageBox.Show("Remove point Failed. Please try again.");
+                        CustomMessageBox.Show(UiText.Translate("Remove point Failed. Please try again."));
                     }
                 }
             }
@@ -3236,7 +3236,7 @@ namespace MissionPlanner.GCSViews
                     catch (Exception ex)
                     {
                         log.Error(ex);
-                        CustomMessageBox.Show("error selecting wp, please try again.");
+                        CustomMessageBox.Show(UiText.Translate("error selecting wp, please try again."));
                     }
                 }
 
@@ -3327,11 +3327,11 @@ namespace MissionPlanner.GCSViews
             string easting = "578994";
             string northing = "6126244";
 
-            if (InputBox.Show("Zone", "Enter Zone. (eg 50S, 11N)", ref zone) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Zone"), UiText.Translate("Enter Zone. (eg 50S, 11N)"), ref zone) != DialogResult.OK)
                 return;
-            if (InputBox.Show("Easting", "Easting", ref easting) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Easting"), UiText.Translate("Easting"), ref easting) != DialogResult.OK)
                 return;
-            if (InputBox.Show("Northing", "Northing", ref northing) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Northing"), UiText.Translate("Northing"), ref northing) != DialogResult.OK)
                 return;
 
             string newzone = zone.ToLower().Replace('s', ' ');
@@ -3374,7 +3374,7 @@ namespace MissionPlanner.GCSViews
             PointLatLngAlt lastpnt = null;
 
             string maxzoomstring = "20";
-            if (InputBox.Show("max zoom", "Enter the max zoom to prefetch to.", ref maxzoomstring) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("max zoom"), UiText.Translate("Enter the max zoom to prefetch to."), ref maxzoomstring) != DialogResult.OK)
                 return;
 
             int maxzoom = 20;
@@ -3541,9 +3541,9 @@ namespace MissionPlanner.GCSViews
 
             BeginInvoke((Action)(() =>
                 Common.MessageShowAgain("New Mission Overlay",
-                    "Mission Planner now uses an improved mission overlay with styled lines and markers.\n\n" +
-                    "You can customize colors, line styles, and markers via Map Tool > Edit Style.\n\n" +
-                    "If you experience any issues, you can switch back via Map Tool > Use Legacy Overlay.")
+                    UiText.Translate("Mission Planner now uses an improved mission overlay with styled lines and markers.\n\n") +
+                    UiText.Translate("You can customize colors, line styles, and markers via Map Tool > Edit Style.\n\n") +
+                    UiText.Translate("If you experience any issues, you can switch back via Map Tool > Use Legacy Overlay."))
             ));
 
             // switch the action and wp table
@@ -3691,7 +3691,7 @@ namespace MissionPlanner.GCSViews
                 }
             }
             redrawPolygonSurvey(currentWaypoints);
-            if (CustomMessageBox.Show("Clear current waypoints?", "Confirm",
+            if (CustomMessageBox.Show(UiText.Translate("Clear current waypoints?"), UiText.Translate("Confirm"),
                                        MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
                 clearMissionToolStripMenuItem_Click(null, null);  // perhaps not best practice to directly call "click" events
@@ -3705,7 +3705,7 @@ namespace MissionPlanner.GCSViews
             }
             string meter = "0";
             double intmeter = 0;
-            if (InputBox.Show("Offset in Meters", "Please enter the offset in meters. Enter a negative value to make the polygon smaller", ref meter) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Offset in Meters"), UiText.Translate("Please enter the offset in meters. Enter a negative value to make the polygon smaller"), ref meter) == DialogResult.OK)
             {
                 if (meter != "0")
                 {
@@ -3756,19 +3756,19 @@ namespace MissionPlanner.GCSViews
 
             byte a = 0;
             // add return loc
-            PRD.UpdateProgressAndStatus(0, "Sending return location");
+            PRD.UpdateProgressAndStatus(0, UiText.Translate("Sending return location"));
             MainV2.comPort.setFencePoint(a, new PointLatLngAlt(geofenceoverlay.Markers[0].Position), pointcount);
             a++;
             // add points
             foreach (var pll in drawnpolygon.Points)
             {
-                PRD.UpdateProgressAndStatus(a / pointcount * 100, "Sending polygon points");
+                PRD.UpdateProgressAndStatus(a / pointcount * 100, UiText.Translate("Sending polygon points"));
                 MainV2.comPort.setFencePoint(a, new PointLatLngAlt(pll), pointcount);
                 a++;
             }
 
             // add polygon close
-            PRD.UpdateProgressAndStatus(a / pointcount * 100, "Sending polygon close");
+            PRD.UpdateProgressAndStatus(a / pointcount * 100, UiText.Translate("Sending polygon close"));
             MainV2.comPort.setFencePoint(a, new PointLatLngAlt(drawnpolygon.Points[0]), pointcount);
         }
 
@@ -3780,25 +3780,25 @@ namespace MissionPlanner.GCSViews
             if (!MainV2.comPort.MAV.param.ContainsKey("FENCE_ENABLE") &&
                 !MainV2.comPort.MAV.param.ContainsKey("FENCE_ACTION"))
             {
-                CustomMessageBox.Show("Not Supported");
+                CustomMessageBox.Show(UiText.Translate("Not Supported"));
                 return;
             }
 
             if (drawnpolygon == null)
             {
-                CustomMessageBox.Show("No polygon to upload");
+                CustomMessageBox.Show(UiText.Translate("No polygon to upload"));
                 return;
             }
 
             if (geofenceoverlay.Markers.Count == 0)
             {
-                CustomMessageBox.Show("No return location set");
+                CustomMessageBox.Show(UiText.Translate("No return location set"));
                 return;
             }
 
             if (drawnpolygon.Points.Count == 0)
             {
-                CustomMessageBox.Show("No polygon drawn");
+                CustomMessageBox.Show(UiText.Translate("No polygon drawn"));
                 return;
             }
 
@@ -3811,7 +3811,7 @@ namespace MissionPlanner.GCSViews
                 !pnpoly(plll.ToArray(), geofenceoverlay.Markers[0].Position.Lat,
                     geofenceoverlay.Markers[0].Position.Lng))
             {
-                CustomMessageBox.Show("Your return location is outside the polygon");
+                CustomMessageBox.Show(UiText.Translate("Your return location is outside the polygon"));
                 return;
             }
 
@@ -3824,12 +3824,12 @@ namespace MissionPlanner.GCSViews
                     (int.Parse(MainV2.comPort.MAV.param["FENCE_MINALT"].ToString()) * CurrentState.multiplieralt)
                     .ToString(
                         "0");
-                if (DialogResult.Cancel == InputBox.Show("Min Alt", "Box Minimum Altitude?", ref minalts))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Min Alt"), UiText.Translate("Box Minimum Altitude?"), ref minalts))
                     return;
 
                 if (!int.TryParse(minalts, out minalt))
                 {
-                    CustomMessageBox.Show("Bad Min Alt");
+                    CustomMessageBox.Show(UiText.Translate("Bad Min Alt"));
                     return;
                 }
             }
@@ -3840,12 +3840,12 @@ namespace MissionPlanner.GCSViews
                     (int.Parse(MainV2.comPort.MAV.param["FENCE_MAXALT"].ToString()) * CurrentState.multiplieralt)
                     .ToString(
                         "0");
-                if (DialogResult.Cancel == InputBox.Show("Max Alt", "Box Maximum Altitude?", ref maxalts))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Max Alt"), UiText.Translate("Box Maximum Altitude?"), ref maxalts))
                     return;
 
                 if (!int.TryParse(maxalts, out maxalt))
                 {
-                    CustomMessageBox.Show("Bad Max Alt");
+                    CustomMessageBox.Show(UiText.Translate("Bad Max Alt"));
                     return;
                 }
             }
@@ -3862,7 +3862,7 @@ namespace MissionPlanner.GCSViews
             catch (Exception ex)
             {
                 log.Error(ex);
-                CustomMessageBox.Show("Failed to set min/max fence alt");
+                CustomMessageBox.Show(UiText.Translate("Failed to set min/max fence alt"));
                 return;
             }
 
@@ -3875,7 +3875,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Failed to set FENCE_ACTION");
+                CustomMessageBox.Show(UiText.Translate("Failed to set FENCE_ACTION"));
                 return;
             }
 
@@ -3890,7 +3890,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Failed to set FENCE_TOTAL");
+                CustomMessageBox.Show(UiText.Translate("Failed to set FENCE_TOTAL"));
                 return;
             }
 
@@ -3899,11 +3899,11 @@ namespace MissionPlanner.GCSViews
                 IProgressReporterDialogue frmProgressReporter = new ProgressReporterDialogue
                 {
                     StartPosition = FormStartPosition.CenterScreen,
-                    Text = "Sending fence points"
+                    Text = UiText.Translate("Sending fence points")
                 };
 
                 frmProgressReporter.DoWork += DoGeofencePointsUpload;
-                frmProgressReporter.UpdateProgressAndStatus(-1, "Sending fence points");
+                frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Sending fence points"));
                 ThemeManager.ApplyThemeTo(frmProgressReporter);
                 frmProgressReporter.RunBackgroundOperationAsync();
                 frmProgressReporter.Dispose();
@@ -3915,7 +3915,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Failed to restore FENCE_ACTION");
+                    CustomMessageBox.Show(UiText.Translate("Failed to restore FENCE_ACTION"));
                     return;
                 }
 
@@ -3954,7 +3954,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to send new fence points " + ex, Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Failed to send new fence points ") + ex, Strings.ERROR);
             }
         }
 
@@ -4108,7 +4108,7 @@ namespace MissionPlanner.GCSViews
         public void insertSplineWPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string wpno = (selectedrow + 1).ToString("0");
-            if (InputBox.Show("Insert WP", "Insert WP after wp#", ref wpno) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Insert WP"), UiText.Translate("Insert WP after wp#"), ref wpno) == DialogResult.OK)
             {
                 try
                 {
@@ -4128,7 +4128,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("SPLINE_WAYPOINT command not supported.");
+                    CustomMessageBox.Show(UiText.Translate("SPLINE_WAYPOINT command not supported."));
                     Commands.Rows.RemoveAt(selectedrow);
                     return;
                 }
@@ -4143,7 +4143,7 @@ namespace MissionPlanner.GCSViews
         public void insertWpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string wpno = (selectedrow + 1).ToString("0");
-            if (InputBox.Show("Insert WP", "Insert WP after wp#", ref wpno) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Insert WP"), UiText.Translate("Insert WP after wp#"), ref wpno) == DialogResult.OK)
             {
                 try
                 {
@@ -4151,7 +4151,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Invalid insert position", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Invalid insert position"), Strings.ERROR);
                     return;
                 }
 
@@ -4167,7 +4167,7 @@ namespace MissionPlanner.GCSViews
         public void jumpstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string repeat = "5";
-            if (DialogResult.Cancel == InputBox.Show("Jump repeat", "Number of times to Repeat", ref repeat))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Jump repeat"), UiText.Translate("Number of times to Repeat"), ref repeat))
                 return;
 
             selectedrow = Commands.Rows.Add();
@@ -4184,10 +4184,10 @@ namespace MissionPlanner.GCSViews
         public void jumpwPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string wp = "1";
-            if (DialogResult.Cancel == InputBox.Show("WP No", "Jump to WP no?", ref wp))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("WP No"), UiText.Translate("Jump to WP no?"), ref wp))
                 return;
             string repeat = "5";
-            if (DialogResult.Cancel == InputBox.Show("Jump repeat", "Number of times to Repeat", ref repeat))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Jump repeat"), UiText.Translate("Number of times to Repeat"), ref repeat))
                 return;
 
             selectedrow = Commands.Rows.Add();
@@ -4262,7 +4262,7 @@ namespace MissionPlanner.GCSViews
                     else if (file.ToLower().EndsWith("dxf"))
                     {
                         string zone = "-99";
-                        InputBox.Show("Zone", "Please enter the UTM zone, or cancel to not change", ref zone);
+                        InputBox.Show(UiText.Translate("Zone"), UiText.Translate("Please enter the UTM zone, or cancel to not change"), ref zone);
 
                         dxf dxf = new dxf();
                         if (zone != "-99")
@@ -4368,7 +4368,7 @@ namespace MissionPlanner.GCSViews
             else
             {
                 CustomMessageBox.Show(
-                    "If you're at the field, connect to your APM and wait for GPS lock. Then click 'Home Location' link to set home to your location");
+                    UiText.Translate("If you're at the field, connect to your APM and wait for GPS lock. Then click 'Home Location' link to set home to your location"));
             }
         }
 
@@ -4396,7 +4396,7 @@ namespace MissionPlanner.GCSViews
             }
             catch
             {
-                CustomMessageBox.Show("Failed to open url http://127.0.0.1:56781/network.kml");
+                CustomMessageBox.Show(UiText.Translate("Failed to open url http://127.0.0.1:56781/network.kml"));
             }
         }
 
@@ -4451,7 +4451,7 @@ namespace MissionPlanner.GCSViews
                                         GMarkerGoogleType.red)
                                     {
                                         ToolTipMode = MarkerTooltipMode.OnMouseOver,
-                                        ToolTipText = "GeoFence Return"
+                                        ToolTipText = UiText.Translate("GeoFence Return")
                                     });
                                 MainMap.UpdateMarkerLocalPosition(geofenceoverlay.Markers[0]);
                             }
@@ -4802,7 +4802,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Error opening File", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Error opening File"), Strings.ERROR);
                     return;
                 }
             }
@@ -4816,7 +4816,7 @@ namespace MissionPlanner.GCSViews
         public void loitercirclesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string turns = "3";
-            if (DialogResult.Cancel == InputBox.Show("Loiter Turns", "Loiter Turns", ref turns))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Loiter Turns"), UiText.Translate("Loiter Turns"), ref turns))
                 return;
 
             selectedrow = Commands.Rows.Add();
@@ -4849,7 +4849,7 @@ namespace MissionPlanner.GCSViews
         public void loitertimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string time = "5";
-            if (DialogResult.Cancel == InputBox.Show("Loiter Time", "Loiter Time", ref time))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Loiter Time"), UiText.Translate("Loiter Time"), ref time))
                 return;
 
             selectedrow = Commands.Rows.Add();
@@ -4994,8 +4994,8 @@ namespace MissionPlanner.GCSViews
         public void modifyAltToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string altdif = "0";
-            InputBox.Show("Alt Change",
-                "Please enter the alitude change you require.\n(20 = up 20, *2 = up by alt * 2)",
+            InputBox.Show(UiText.Translate("Alt Change"),
+                UiText.Translate("Please enter the alitude change you require.\n(20 = up 20, *2 = up by alt * 2)"),
                 ref altdif);
 
             float altchange = 0;
@@ -5115,7 +5115,7 @@ namespace MissionPlanner.GCSViews
             RectLatLng area = MainMap.SelectedArea;
             if (area.IsEmpty)
             {
-                var res = CustomMessageBox.Show("No ripp area defined, ripp displayed on screen?", "Rip",
+                var res = CustomMessageBox.Show(UiText.Translate("No ripp area defined, ripp displayed on screen?"), UiText.Translate("Rip"),
                     MessageBoxButtons.YesNo);
                 if (res == (int) DialogResult.Yes)
                 {
@@ -5162,7 +5162,7 @@ namespace MissionPlanner.GCSViews
             }
             else
             {
-                CustomMessageBox.Show("Select map area holding ALT", "GMap.NET", MessageBoxButtons.OK,
+                CustomMessageBox.Show(UiText.Translate("Select map area holding ALT"), "GMap.NET", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
             }
         }
@@ -5729,7 +5729,7 @@ namespace MissionPlanner.GCSViews
                         {
                             var dr = Common.MessageShowAgain(
                                "Reset Home Coords",
-                               "Reset Home to loaded coords",
+                               UiText.Translate("Reset Home to loaded coords"),
                                true,
                                "RESET_HOME_FROM_LOADED_COORDS");
 
@@ -5946,7 +5946,7 @@ namespace MissionPlanner.GCSViews
         public void rotateMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string heading = "0";
-            if (DialogResult.Cancel == InputBox.Show("Rotate map to heading", "Enter new UP heading", ref heading))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Rotate map to heading"), UiText.Translate("Enter new UP heading"), ref heading))
                 return;
             float ans = 0;
             if (float.TryParse(heading, out ans))
@@ -6012,7 +6012,7 @@ namespace MissionPlanner.GCSViews
                     }
                     catch
                     {
-                        CustomMessageBox.Show("Failed to write fence file");
+                        CustomMessageBox.Show(UiText.Translate("Failed to write fence file"));
                     }
                 }
             }
@@ -6035,7 +6035,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Failed to save rally point", Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to save rally point"), Strings.ERROR);
                     return;
                 }
             }
@@ -6045,7 +6045,7 @@ namespace MissionPlanner.GCSViews
         {
             if (geofenceoverlay.Markers.Count == 0)
             {
-                CustomMessageBox.Show("Please set a return location");
+                CustomMessageBox.Show(UiText.Translate("Please set a return location"));
                 return;
             }
 
@@ -6096,7 +6096,7 @@ namespace MissionPlanner.GCSViews
                     }
                     catch
                     {
-                        CustomMessageBox.Show("Failed to write fence file");
+                        CustomMessageBox.Show(UiText.Translate("Failed to write fence file"));
                     }
                 }
             }
@@ -6106,7 +6106,7 @@ namespace MissionPlanner.GCSViews
         {
             if (rallypointoverlay.Markers.Count == 0)
             {
-                CustomMessageBox.Show("Please set some rally points");
+                CustomMessageBox.Show(UiText.Translate("Please set some rally points"));
                 return;
             }
             /*
@@ -6142,7 +6142,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     }
                     catch
                     {
-                        CustomMessageBox.Show("Failed to write rally file");
+                        CustomMessageBox.Show(UiText.Translate("Failed to write rally file"));
                     }
                 }
             }
@@ -6253,7 +6253,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                         sw.Close();
 
-                        lbl_wpfile.Text = "Saved " + Path.GetFileName(file);
+                        lbl_wpfile.Text = UiText.Translate("Saved ") + Path.GetFileName(file);
                     }
                     catch (Exception)
                     {
@@ -6377,7 +6377,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     }
                 }).GetAwaiter().GetResult();
 
-                ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(95, "Setting params");
+                ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(95, UiText.Translate("Setting params"));
 
                 // use brute force, for all three possible params
 
@@ -6411,7 +6411,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     }
                 });
 
-                ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(100, "Done.");
+                ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(100, UiText.Translate("Done."));
             }
             catch (Exception ex)
             {
@@ -6479,7 +6479,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     return true;
                 }, (byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent);
 
-            ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(0, "Set total wps ");
+            ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(0, UiText.Translate("Set total wps "));
             MainV2.comPort.setWPTotal(totalwpcountforupload);
 
             // define the home point
@@ -6639,7 +6639,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                 if (Commands.Rows.Count > 0)
                     ((ProgressReporterDialogue) sender).UpdateProgressAndStatus(a * 100 / Commands.Rows.Count,
-                        "Setting WP " + a);
+                        UiText.Translate("Setting WP ") + a);
                 log.Info("WP no " + a + " " + req.ToJSON(Formatting.None));
 
 
@@ -6721,7 +6721,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         {
             string altstring = TXT_DefaultAlt.Text;
 
-            if (InputBox.Show("Altitude", "Altitude", ref altstring) == DialogResult.Cancel)
+            if (InputBox.Show(UiText.Translate("Altitude"), UiText.Translate("Altitude"), ref altstring) == DialogResult.Cancel)
                 return;
 
             int alt = 0;
@@ -6750,7 +6750,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             geofenceoverlay.Markers.Clear();
             geofenceoverlay.Markers.Add(new GMarkerGoogle(new PointLatLng(MouseDownStart.Lat, MouseDownStart.Lng),
                     GMarkerGoogleType.red)
-                {ToolTipMode = MarkerTooltipMode.OnMouseOver, ToolTipText = "GeoFence Return"});
+                {ToolTipMode = MarkerTooltipMode.OnMouseOver, ToolTipText = UiText.Translate("GeoFence Return")});
 
             MainMap.Invalidate();
         }
@@ -6867,14 +6867,14 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             // altitude
             string alt = CurrentState.AltUnit == "m" ? "10" : "30"; ;
 
-            if (DialogResult.Cancel == InputBox.Show("Altitude", "Please enter your takeoff altitude in " + CurrentState.AltUnit, ref alt))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Altitude"), UiText.Translate("Please enter your takeoff altitude in ") + CurrentState.AltUnit, ref alt))
                 return;
 
             int alti = -1;
 
             if (!int.TryParse(alt, out alti))
             {
-                MessageBox.Show("Bad Alt");
+                MessageBox.Show(UiText.Translate("Bad Alt"));
                 return;
             }
 
@@ -6897,12 +6897,12 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 }
                 if (!skipPitch)
                 {
-                    if (DialogResult.Cancel == InputBox.Show("Takeoff Pitch", "Please enter your takeoff pitch", ref top))
+                    if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Takeoff Pitch"), UiText.Translate("Please enter your takeoff pitch"), ref top))
                         return;
 
                     if (!int.TryParse(top, out topi))
                     {
-                        MessageBox.Show("Bad Takeoff pitch");
+                        MessageBox.Show(UiText.Translate("Bad Takeoff pitch"));
                         return;
                     }
                 }
@@ -6924,11 +6924,11 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         public void textToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string text = "";
-            InputBox.Show("Enter String", "Enter String (requires 1CamBam_Stick_3 font)", ref text);
+            InputBox.Show(UiText.Translate("Enter String"), UiText.Translate("Enter String (requires 1CamBam_Stick_3 font)"), ref text);
             string size = "5";
-            InputBox.Show("Enter size", "Enter size", ref size);
+            InputBox.Show(UiText.Translate("Enter size"), UiText.Translate("Enter size"), ref size);
             string rotation = "0";
-            InputBox.Show("Enter rotation", "Enter rotation", ref rotation);
+            InputBox.Show(UiText.Translate("Enter rotation"), UiText.Translate("Enter rotation"), ref rotation);
 
             using (Font font = new System.Drawing.Font("1CamBam_Stick_3", float.Parse(size) * 1.35f, FontStyle.Regular))
             using (GraphicsPath gp = new GraphicsPath())
@@ -6961,7 +6961,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 }
                 catch (ArgumentException ex)
                 {
-                    CustomMessageBox.Show("Bad input options, please try again\n" + ex.ToString(), Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Bad input options, please try again\n") + ex.ToString(), Strings.ERROR);
                 }
 
                 quickadd = false;
@@ -7062,7 +7062,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             double alt = MainV2.comPort.MAV.cs.TrackerLocation.Alt != 0
                 ? MainV2.comPort.MAV.cs.TrackerLocation.Alt
                 : MainV2.comPort.MAV.cs.HomeAlt;
-            if (InputBox.Show("Tracker Alt", "Enter tracker ASL alt", ref alt) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Tracker Alt"), UiText.Translate("Enter tracker ASL alt"), ref alt) == DialogResult.OK)
             {
                 MainV2.comPort.MAV.cs.TrackerLocation = new PointLatLngAlt(MouseDownEnd)
                 {
@@ -7106,7 +7106,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         public void TXT_homelat_Enter(object sender, EventArgs e)
         {
             if (!sethome)
-                CustomMessageBox.Show("Click on the Map to set Home ");
+                CustomMessageBox.Show(UiText.Translate("Click on the Map to set Home "));
             sethome = true;
 
         }
@@ -8060,7 +8060,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 string url = "";
                 if (Settings.Instance["WMSserver"] != null)
                     url = Settings.Instance["WMSserver"];
-                if (DialogResult.Cancel == InputBox.Show("WMS Server", "Enter the WMS server URL", ref url))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("WMS Server"), UiText.Translate("Enter the WMS server URL"), ref url))
                     return;
 
                 // Build get capability request.
@@ -8078,7 +8078,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 string url = "";
                 if (Settings.Instance["WMSTserver"] != null)
                     url = Settings.Instance["WMSTserver"];
-                if (DialogResult.Cancel == InputBox.Show("WMST Server", "Enter the WMST server URL", ref url))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("WMST Server"), UiText.Translate("Enter the WMST server URL"), ref url))
                     return;
 
 
@@ -8089,9 +8089,9 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 string szUserSelection = Settings.Instance["WMSTLayer"];
                 int c=0;
                 if (DialogResult.Cancel ==
-                    InputBox.Show("WMTS Server",
-                        "The following layers were detected:\n " + WMTSProvider.Layers.Aggregate("", (a, b) => a + "\r\n" + c++ + " " + b) +
-                        "\r\nPlease choose one by typing the associated number.", ref szUserSelection))
+                    InputBox.Show(UiText.Translate("WMTS Server"),
+                        UiText.Translate("The following layers were detected:\n ") + WMTSProvider.Layers.Aggregate("", (a, b) => a + "\r\n" + c++ + " " + b) +
+                        UiText.Translate("\r\nPlease choose one by typing the associated number."), ref szUserSelection))
                     return;
                 int iUserSelection = 0;
                 try
@@ -8269,7 +8269,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
             MethodInvoker m = delegate
             {
-                lbl_status.Text = "Status: loaded tiles";
+                lbl_status.Text = UiText.Translate("Status: loaded tiles");
 
                 //panelMenu.Text = "Menu, last load in " + MainMap.ElapsedMilliseconds + "ms";
 
@@ -8287,7 +8287,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
         private void MainMap_OnTileLoadStart()
         {
-            MethodInvoker m = delegate { lbl_status.Text = "Status: loading tiles..."; };
+            MethodInvoker m = delegate { lbl_status.Text = UiText.Translate("Status: loading tiles..."); };
             try
             {
                 if (IsHandleCreated) BeginInvoke(m);
@@ -8313,7 +8313,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             }
             catch (Exception e)
             {
-                CustomMessageBox.Show("Failed to make WMS Server request: " + e.Message);
+                CustomMessageBox.Show(UiText.Translate("Failed to make WMS Server request: ") + e.Message);
                 return null;
             }
         }
@@ -8333,7 +8333,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             bool bPngCapable = false;
             XmlNodeList getMapElements = xCapabilitesResponse.SelectNodes("//GetMap", nsmgr);
             if (getMapElements.Count != 1)
-                CustomMessageBox.Show("Invalid WMS Server response: Invalid number of GetMap elements.");
+                CustomMessageBox.Show(UiText.Translate("Invalid WMS Server response: Invalid number of GetMap elements."));
             else
             {
                 XmlNode getMapNode = getMapElements.Item(0);
@@ -8351,7 +8351,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
             if (!bPngCapable)
             {
-                CustomMessageBox.Show("Invalid WMS Server response: Server unable to return PNG images.");
+                CustomMessageBox.Show(UiText.Translate("Invalid WMS Server response: Server unable to return PNG images."));
                 return;
             }
 
@@ -8372,7 +8372,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             if (!bEpsgCapable)
             {
                 CustomMessageBox.Show(
-                    "Invalid WMS Server response: Server unable to return EPSG:4326 / WGS84 compatible images.");
+                    UiText.Translate("Invalid WMS Server response: Server unable to return EPSG:4326 / WGS84 compatible images."));
                 return;
             }
 
@@ -8422,9 +8422,9 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 //now let the user select a layer
                 string szUserSelection = "";
                 if (DialogResult.Cancel ==
-                    InputBox.Show("WMS Server",
-                        "The following layers were detected:\n " + szLayerSelection +
-                        "Please choose one by typing the associated number.", ref szUserSelection))
+                    InputBox.Show(UiText.Translate("WMS Server"),
+                        UiText.Translate("The following layers were detected:\n ") + szLayerSelection +
+                        UiText.Translate("Please choose one by typing the associated number."), ref szUserSelection))
                     return;
                 int iUserSelection = 0;
                 try
@@ -8445,7 +8445,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         public void zoomToToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string place = "";
-            if (DialogResult.OK == InputBox.Show("Find Location", "Enter a location to search for:", ref place))
+            if (DialogResult.OK == InputBox.Show(UiText.Translate("Find Location"), UiText.Translate("Enter a location to search for:"), ref place))
             {
                 if (string.IsNullOrWhiteSpace(place))
                     return;
@@ -8460,7 +8460,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 MainMap.MapProvider = provider;
                 if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
                 {
-                    CustomMessageBox.Show($"Could not find location: '{place}'\nReason: {status}", "Location Not Found");
+                    CustomMessageBox.Show(UiText.Format($"Could not find location: '{place}'\nReason: {status}"), UiText.Translate("Location Not Found"));
                 }
                 else
                 {
@@ -8531,7 +8531,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         private void gDALOpacityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ans = GDAL.GDALProvider.Instance.opacity;
-            if (InputBox.Show("Opacity 0.0-1.0", "Enter opacity (0.0-1.0)", ref ans) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Opacity 0.0-1.0"), UiText.Translate("Enter opacity (0.0-1.0)"), ref ans) == DialogResult.OK)
                 GDAL.GDALProvider.Instance.opacity = double.Parse(InputBox.value);
         }
 
@@ -8645,7 +8645,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 count += item.Value;
             }
             results += Environment.NewLine + Environment.NewLine + count + " tile" + (count > 1 ? "s" : "") + " loaded !";
-            CustomMessageBox.Show("Number of tiles loaded per zoom : " + Environment.NewLine + results, "Injecting Custom Map Results");
+            CustomMessageBox.Show(UiText.Translate("Number of tiles loaded per zoom : ") + Environment.NewLine + results, UiText.Translate("Injecting Custom Map Results"));
             map.Dispose();
         }
 

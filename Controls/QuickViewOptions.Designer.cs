@@ -1,4 +1,5 @@
-﻿
+﻿using MissionPlanner.Utilities;
+
 namespace MissionPlanner.Controls
 {
     partial class QuickViewOptions
@@ -88,7 +89,7 @@ namespace MissionPlanner.Controls
             this.NUM_precision.Name = "NUM_precision";
             this.NUM_precision.Size = new System.Drawing.Size(40, 20);
             this.NUM_precision.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.NUM_precision, "How many decimal places to show");
+            this.toolTip1.SetToolTip(this.NUM_precision, UiText.Translate("How many decimal places to show"));
             this.NUM_precision.Value = new decimal(new int[] {
             2,
             0,
@@ -104,8 +105,8 @@ namespace MissionPlanner.Controls
             this.LBL_precision.Name = "LBL_precision";
             this.LBL_precision.Size = new System.Drawing.Size(53, 13);
             this.LBL_precision.TabIndex = 4;
-            this.LBL_precision.Text = "Precision:";
-            this.toolTip1.SetToolTip(this.LBL_precision, "How many decimal places to show");
+            this.LBL_precision.Text = UiText.Translate("Precision:");
+            this.toolTip1.SetToolTip(this.LBL_precision, UiText.Translate("How many decimal places to show"));
             //
             // LBL_color
             //
@@ -115,8 +116,8 @@ namespace MissionPlanner.Controls
             this.LBL_color.Name = "LBL_color";
             this.LBL_color.Size = new System.Drawing.Size(31, 13);
             this.LBL_color.TabIndex = 5;
-            this.LBL_color.Text = "Color";
-            this.toolTip1.SetToolTip(this.LBL_color, "Text color for the value");
+            this.LBL_color.Text = UiText.Translate("Color");
+            this.toolTip1.SetToolTip(this.LBL_color, UiText.Translate("Text color for the value"));
             // 
             // TXT_color
             // 
@@ -128,7 +129,7 @@ namespace MissionPlanner.Controls
             this.TXT_color.TabIndex = 6;
             this.TXT_color.Text = "FFFFFF";
             this.TXT_color.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_color, "Apply custom text color");
+            this.toolTip1.SetToolTip(this.TXT_color, UiText.Translate("Apply custom text color"));
             this.TXT_color.TextChanged += new System.EventHandler(this.TXT_color_TextChanged);
             // 
             // BUT_colorpicker
@@ -139,7 +140,7 @@ namespace MissionPlanner.Controls
             this.BUT_colorpicker.Name = "BUT_colorpicker";
             this.BUT_colorpicker.Size = new System.Drawing.Size(19, 20);
             this.BUT_colorpicker.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.BUT_colorpicker, "Apply custom text color");
+            this.toolTip1.SetToolTip(this.BUT_colorpicker, UiText.Translate("Apply custom text color"));
             this.BUT_colorpicker.UseVisualStyleBackColor = false;
             this.BUT_colorpicker.Click += new System.EventHandler(this.BUT_colorpicker_Click);
             // 
@@ -154,7 +155,7 @@ namespace MissionPlanner.Controls
             this.groupBox1.Size = new System.Drawing.Size(257, 420);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Advanced";
+            this.groupBox1.Text = UiText.Translate("Advanced");
             // 
             // tableLayoutPanel1
             // 
@@ -213,8 +214,8 @@ namespace MissionPlanner.Controls
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Scale";
-            this.toolTip1.SetToolTip(this.label1, "Apply scale and offset to convert units.");
+            this.label1.Text = UiText.Translate("Scale");
+            this.toolTip1.SetToolTip(this.label1, UiText.Translate("Apply scale and offset to convert units."));
             // 
             // label2
             // 
@@ -224,8 +225,8 @@ namespace MissionPlanner.Controls
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Offset";
-            this.toolTip1.SetToolTip(this.label2, "Apply scale and offset to convert units.");
+            this.label2.Text = UiText.Translate("Offset");
+            this.toolTip1.SetToolTip(this.label2, UiText.Translate("Apply scale and offset to convert units."));
             //
             // LBL_label
             //
@@ -235,8 +236,8 @@ namespace MissionPlanner.Controls
             this.LBL_label.Name = "LBL_label";
             this.LBL_label.Size = new System.Drawing.Size(33, 13);
             this.LBL_label.TabIndex = 15;
-            this.LBL_label.Text = "Label";
-            this.toolTip1.SetToolTip(this.LBL_label, "Description shown at the top of the item");
+            this.LBL_label.Text = UiText.Translate("Label");
+            this.toolTip1.SetToolTip(this.LBL_label, UiText.Translate("Description shown at the top of the item"));
             // 
             // TXT_customformat
             // 
@@ -248,7 +249,7 @@ namespace MissionPlanner.Controls
             this.TXT_customformat.TabIndex = 10;
             this.TXT_customformat.Text = "0.00";
             this.TXT_customformat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_customformat, "Custom format specifier, e.g. \"0.0\" or \"m:ss\"");
+            this.toolTip1.SetToolTip(this.TXT_customformat, UiText.Translate("Custom format specifier, e.g. \"0.0\" or \"m:ss\""));
             this.TXT_customformat.TextChanged += new System.EventHandler(this.TXT_customformat_TextChanged);
             // 
             // TXT_customlabel
@@ -261,7 +262,7 @@ namespace MissionPlanner.Controls
             this.TXT_customlabel.TabIndex = 16;
             this.TXT_customlabel.Text = "EFI Fuel Pressure (kPa)";
             this.TXT_customlabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_customlabel, "Override the description at the top");
+            this.toolTip1.SetToolTip(this.TXT_customlabel, UiText.Translate("Override the description at the top"));
             this.TXT_customlabel.TextChanged += new System.EventHandler(this.TXT_customlabel_TextChanged);
             // 
             // TXT_offset
@@ -274,7 +275,7 @@ namespace MissionPlanner.Controls
             this.TXT_offset.TabIndex = 18;
             this.TXT_offset.Text = "0.0";
             this.TXT_offset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_offset, "Apply scale and offset to convert units.");
+            this.toolTip1.SetToolTip(this.TXT_offset, UiText.Translate("Apply scale and offset to convert units."));
             this.TXT_offset.TextChanged += new System.EventHandler(this.TXT_offset_TextChanged);
             this.TXT_offset.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             // 
@@ -288,7 +289,7 @@ namespace MissionPlanner.Controls
             this.TXT_scale.TabIndex = 17;
             this.TXT_scale.Text = "1.0";
             this.TXT_scale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_scale, "Apply scale and offset to convert units.");
+            this.toolTip1.SetToolTip(this.TXT_scale, UiText.Translate("Apply scale and offset to convert units."));
             this.TXT_scale.TextChanged += new System.EventHandler(this.TXT_scale_TextChanged);
             this.TXT_scale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             //
@@ -300,8 +301,8 @@ namespace MissionPlanner.Controls
             this.LBL_format.Name = "LBL_format";
             this.LBL_format.Size = new System.Drawing.Size(39, 13);
             this.LBL_format.TabIndex = 8;
-            this.LBL_format.Text = "Format";
-            this.toolTip1.SetToolTip(this.LBL_format, "Format specifier, e.g. \"0.00\" or \"m:ss\"");
+            this.LBL_format.Text = UiText.Translate("Format");
+            this.toolTip1.SetToolTip(this.LBL_format, UiText.Translate("Format specifier, e.g. \"0.00\" or \"m:ss\""));
             //
             // CHK_gauge
             //
@@ -311,8 +312,8 @@ namespace MissionPlanner.Controls
             this.CHK_gauge.Name = "CHK_gauge";
             this.CHK_gauge.Size = new System.Drawing.Size(57, 17);
             this.CHK_gauge.TabIndex = 19;
-            this.CHK_gauge.Text = "Gauge";
-            this.toolTip1.SetToolTip(this.CHK_gauge, "Display as a 180-degree gauge with needle");
+            this.CHK_gauge.Text = UiText.Translate("Gauge");
+            this.toolTip1.SetToolTip(this.CHK_gauge, UiText.Translate("Display as a 180-degree gauge with needle"));
             this.CHK_gauge.UseVisualStyleBackColor = true;
             this.CHK_gauge.CheckedChanged += new System.EventHandler(this.CHK_gauge_CheckedChanged);
             //
@@ -324,8 +325,8 @@ namespace MissionPlanner.Controls
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 13);
             this.label3.TabIndex = 20;
-            this.label3.Text = "Min";
-            this.toolTip1.SetToolTip(this.label3, "Minimum value for gauge scale");
+            this.label3.Text = UiText.Translate("Min");
+            this.toolTip1.SetToolTip(this.label3, UiText.Translate("Minimum value for gauge scale"));
             //
             // label4
             //
@@ -335,8 +336,8 @@ namespace MissionPlanner.Controls
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Max";
-            this.toolTip1.SetToolTip(this.label4, "Maximum value for gauge scale");
+            this.label4.Text = UiText.Translate("Max");
+            this.toolTip1.SetToolTip(this.label4, UiText.Translate("Maximum value for gauge scale"));
             //
             // TXT_gaugeMin
             //
@@ -348,7 +349,7 @@ namespace MissionPlanner.Controls
             this.TXT_gaugeMin.TabIndex = 22;
             this.TXT_gaugeMin.Text = "0";
             this.TXT_gaugeMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_gaugeMin, "Minimum value for gauge scale");
+            this.toolTip1.SetToolTip(this.TXT_gaugeMin, UiText.Translate("Minimum value for gauge scale"));
             this.TXT_gaugeMin.TextChanged += new System.EventHandler(this.TXT_gaugeMin_TextChanged);
             this.TXT_gaugeMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             //
@@ -362,7 +363,7 @@ namespace MissionPlanner.Controls
             this.TXT_gaugeMax.TabIndex = 23;
             this.TXT_gaugeMax.Text = "100";
             this.TXT_gaugeMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_gaugeMax, "Maximum value for gauge scale");
+            this.toolTip1.SetToolTip(this.TXT_gaugeMax, UiText.Translate("Maximum value for gauge scale"));
             this.TXT_gaugeMax.TextChanged += new System.EventHandler(this.TXT_gaugeMax_TextChanged);
             this.TXT_gaugeMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             //
@@ -373,8 +374,8 @@ namespace MissionPlanner.Controls
             this.CHK_colorCode.Name = "CHK_colorCode";
             this.CHK_colorCode.Size = new System.Drawing.Size(80, 17);
             this.CHK_colorCode.TabIndex = 24;
-            this.CHK_colorCode.Text = "Color-code";
-            this.toolTip1.SetToolTip(this.CHK_colorCode, "Color the value Red/Yellow/Green based on threshold values below.\r\nThe displayed color is the one whose threshold is the highest still <= value.");
+            this.CHK_colorCode.Text = UiText.Translate("Color-code");
+            this.toolTip1.SetToolTip(this.CHK_colorCode, UiText.Translate("Color the value Red/Yellow/Green based on threshold values below.\r\nThe displayed color is the one whose threshold is the highest still <= value."));
             this.CHK_colorCode.UseVisualStyleBackColor = true;
             this.CHK_colorCode.CheckedChanged += new System.EventHandler(this.CHK_colorCode_CheckedChanged);
             //
@@ -385,9 +386,9 @@ namespace MissionPlanner.Controls
             this.LBL_redValue.Name = "LBL_redValue";
             this.LBL_redValue.Size = new System.Drawing.Size(27, 13);
             this.LBL_redValue.TabIndex = 25;
-            this.LBL_redValue.Text = "Red";
+            this.LBL_redValue.Text = UiText.Translate("Red");
             this.LBL_redValue.ForeColor = System.Drawing.Color.Red;
-            this.toolTip1.SetToolTip(this.LBL_redValue, "Value at which the display turns red");
+            this.toolTip1.SetToolTip(this.LBL_redValue, UiText.Translate("Value at which the display turns red"));
             //
             // TXT_redValue
             //
@@ -398,7 +399,7 @@ namespace MissionPlanner.Controls
             this.TXT_redValue.TabIndex = 26;
             this.TXT_redValue.Text = "0";
             this.TXT_redValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_redValue, "Value at which the display turns red");
+            this.toolTip1.SetToolTip(this.TXT_redValue, UiText.Translate("Value at which the display turns red"));
             this.TXT_redValue.TextChanged += new System.EventHandler(this.TXT_colorValue_TextChanged);
             this.TXT_redValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             //
@@ -409,9 +410,9 @@ namespace MissionPlanner.Controls
             this.LBL_yellowValue.Name = "LBL_yellowValue";
             this.LBL_yellowValue.Size = new System.Drawing.Size(36, 13);
             this.LBL_yellowValue.TabIndex = 27;
-            this.LBL_yellowValue.Text = "Yellow";
+            this.LBL_yellowValue.Text = UiText.Translate("Yellow");
             this.LBL_yellowValue.ForeColor = System.Drawing.Color.Goldenrod;
-            this.toolTip1.SetToolTip(this.LBL_yellowValue, "Value at which the display turns yellow");
+            this.toolTip1.SetToolTip(this.LBL_yellowValue, UiText.Translate("Value at which the display turns yellow"));
             //
             // TXT_yellowValue
             //
@@ -422,7 +423,7 @@ namespace MissionPlanner.Controls
             this.TXT_yellowValue.TabIndex = 28;
             this.TXT_yellowValue.Text = "50";
             this.TXT_yellowValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_yellowValue, "Value at which the display turns yellow");
+            this.toolTip1.SetToolTip(this.TXT_yellowValue, UiText.Translate("Value at which the display turns yellow"));
             this.TXT_yellowValue.TextChanged += new System.EventHandler(this.TXT_colorValue_TextChanged);
             this.TXT_yellowValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             //
@@ -433,9 +434,9 @@ namespace MissionPlanner.Controls
             this.LBL_greenValue.Name = "LBL_greenValue";
             this.LBL_greenValue.Size = new System.Drawing.Size(36, 13);
             this.LBL_greenValue.TabIndex = 29;
-            this.LBL_greenValue.Text = "Green";
+            this.LBL_greenValue.Text = UiText.Translate("Green");
             this.LBL_greenValue.ForeColor = System.Drawing.Color.Green;
-            this.toolTip1.SetToolTip(this.LBL_greenValue, "Value at which the display turns green");
+            this.toolTip1.SetToolTip(this.LBL_greenValue, UiText.Translate("Value at which the display turns green"));
             //
             // TXT_greenValue
             //
@@ -446,7 +447,7 @@ namespace MissionPlanner.Controls
             this.TXT_greenValue.TabIndex = 30;
             this.TXT_greenValue.Text = "100";
             this.TXT_greenValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.TXT_greenValue, "Value at which the display turns green");
+            this.toolTip1.SetToolTip(this.TXT_greenValue, UiText.Translate("Value at which the display turns green"));
             this.TXT_greenValue.TextChanged += new System.EventHandler(this.TXT_colorValue_TextChanged);
             this.TXT_greenValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TXT_scale_offset_KeyPress);
             //
@@ -465,7 +466,7 @@ namespace MissionPlanner.Controls
             this.MinimumSize = new System.Drawing.Size(16, 515);
             this.Name = "QuickViewOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Edit Item";
+            this.Text = UiText.Translate("Edit Item");
             this.Shown += new System.EventHandler(this.QuickViewOptions_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.NUM_precision)).EndInit();
             this.groupBox1.ResumeLayout(false);

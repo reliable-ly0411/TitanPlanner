@@ -134,7 +134,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.groupBox1.Size = new System.Drawing.Size(616, 264);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "FFT Setup";
+            this.groupBox1.Text = UiText.Translate("FFT Setup");
             // 
             // groupBox2
             // 
@@ -144,7 +144,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.groupBox2.Size = new System.Drawing.Size(616, 179);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Please ensure IMU_RAW and IMU_FAST are turned off to use FFT";
+            this.groupBox2.Text = UiText.Translate("Please ensure IMU_RAW and IMU_FAST are turned off to use FFT");
             // 
             // ConfigFFT
             // 

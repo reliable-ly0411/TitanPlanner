@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class LogAnalyzer
     {
@@ -49,7 +50,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LogAnalyzer";
-            this.Text = "LogAnalyzer";
+            this.Text = UiText.Translate("LogAnalyzer");
             this.ResumeLayout(false);
             this.PerformLayout();
 

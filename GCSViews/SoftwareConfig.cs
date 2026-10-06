@@ -229,8 +229,8 @@ namespace MissionPlanner.GCSViews
                     if (MainV2.comPort.MAV.cs.firmware == Firmwares.Ateryx)
                     {
                         start = AddBackstageViewPage(typeof(ConfigFlightModes), Strings.FlightModes);
-                        AddBackstageViewPage(typeof(ConfigAteryxSensors), "Ateryx Zero Sensors");
-                        AddBackstageViewPage(typeof(ConfigAteryx), "Ateryx Pids");
+                        AddBackstageViewPage(typeof(ConfigAteryxSensors), UiText.Translate("Ateryx Zero Sensors"));
+                        AddBackstageViewPage(typeof(ConfigAteryx), UiText.Translate("Ateryx Pids"));
                     }
 
                     if (!gotAllParams)

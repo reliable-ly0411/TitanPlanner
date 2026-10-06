@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 using System.Windows.Forms;
 
 namespace MissionPlanner.GCSViews.ConfigurationView
@@ -33,7 +34,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.groupBox1.Size = new System.Drawing.Size(400, 360);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Battery";
+            this.groupBox1.Text = UiText.Translate("Battery");
             // 
             // contentHost
             // 

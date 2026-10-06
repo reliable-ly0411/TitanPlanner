@@ -242,7 +242,7 @@ namespace MissionPlanner.Controls
             {
                 if (!MainV2.comPort.BaseStream.IsOpen && !MainV2.comPort.logreadmode)
                 {
-                    CustomMessageBox.Show("Please connect first");
+                    CustomMessageBox.Show(UiText.Translate("Please connect first"));
                     this.Close();
                 }
 
@@ -260,7 +260,7 @@ namespace MissionPlanner.Controls
             }
             catch
             {
-                CustomMessageBox.Show("Comport open failed");
+                CustomMessageBox.Show(UiText.Translate("Comport open failed"));
                 return;
             }
             timer1.Start();

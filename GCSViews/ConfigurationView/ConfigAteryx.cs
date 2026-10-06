@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using MissionPlanner.Utilities;
+using log4net;
 using MissionPlanner.ArduPilot;
 using MissionPlanner.Controls;
 using System;
@@ -295,7 +296,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 if ((MainV2.comPort.MAV.cs.airspeed > 7.0) || (MainV2.comPort.MAV.cs.groundspeed > 10.0))
                 {
-                    CustomMessageBox.Show("Unable - UAV airborne");
+                    CustomMessageBox.Show(UiText.Translate("Unable - UAV airborne"));
                     ((Button)sender).Enabled = true;
                     return;
                 }
@@ -305,7 +306,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("The Command failed to execute");
+                CustomMessageBox.Show(UiText.Translate("The Command failed to execute"));
             }
             ((Button)sender).Enabled = true;
         }
@@ -314,12 +315,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             try
             {
-                var dr = CustomMessageBox.Show("Reset Flash to Factory Defaults?", "Continue", MessageBoxButtons.YesNo);
+                var dr = CustomMessageBox.Show(UiText.Translate("Reset Flash to Factory Defaults?"), UiText.Translate("Continue"), MessageBoxButtons.YesNo);
                 if (dr == (int)DialogResult.Yes)
                 {
                     if ((MainV2.comPort.MAV.cs.airspeed > 7.0) || (MainV2.comPort.MAV.cs.groundspeed > 7.0))
                     {
-                        MessageBox.Show("Unable - UAV airborne");
+                        MessageBox.Show(UiText.Translate("Unable - UAV airborne"));
                         ((Button)sender).Enabled = true;
                         return;
                     }
@@ -329,7 +330,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("The Command failed to execute");
+                CustomMessageBox.Show(UiText.Translate("The Command failed to execute"));
             }
             ((Button)sender).Enabled = true;
         }

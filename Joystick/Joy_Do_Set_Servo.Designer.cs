@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_Do_Set_Servo
     {
@@ -51,7 +52,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Servo No#";
+            this.label1.Text = UiText.Translate("Servo No#");
             // 
             // label2
             // 
@@ -95,7 +96,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownservono);
             this.Name = "Joy_Do_Set_Servo";
-            this.Text = "Joy_Do_Set_Servo";
+            this.Text = UiText.Translate("Joy_Do_Set_Servo");
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownservono)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownpwm)).EndInit();
             this.ResumeLayout(false);

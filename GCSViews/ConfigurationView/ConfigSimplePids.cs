@@ -168,7 +168,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to process " + item.paramname + "\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Failed to process ") + item.paramname + "\n" + ex);
             }
         }
 
@@ -192,7 +192,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to change setting " + ex.Message);
+                CustomMessageBox.Show(UiText.Translate("Failed to change setting ") + ex.Message);
                 return;
             }
             TXT_info.AppendText("set " + rc.Name + " " + rc.Value + "\r\n");
@@ -206,7 +206,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 catch (Exception ex)
                 {
-                    CustomMessageBox.Show("Failed to change setting " + ex.Message);
+                    CustomMessageBox.Show(UiText.Translate("Failed to change setting ") + ex.Message);
                     return;
                 }
             }

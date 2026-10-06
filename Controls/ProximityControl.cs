@@ -97,7 +97,7 @@ namespace MissionPlanner.Controls
 
             //e.Graphics.DrawArc(System.Drawing.Pens.Green, midx - 10, midy - 10, 20, 20, 0, 360);
 
-            Text = "Radius(+/-): " + (screenradius / 100.0) + "m MAV size([/]): " + (mavsize / 100.0) + "m";
+            Text = UiText.Translate("Radius(+/-): ") + (screenradius / 100.0) + UiText.Translate("m MAV size([/]): ") + (mavsize / 100.0) + "m";
 
             // 11m radius = 22 m coverage
             var scale = ((screenradius + 50) * 2) / Math.Min(Height, Width);

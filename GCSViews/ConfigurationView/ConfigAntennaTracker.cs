@@ -143,13 +143,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     if ((float)changes[value] > MainV2.comPort.MAV.param[value].Value * 2.0f)
                         if (
-                            CustomMessageBox.Show(value + " has more than doubled the last input. Are you sure?",
-                                "Large Value", MessageBoxButtons.YesNo) == (int)DialogResult.No)
+                            CustomMessageBox.Show(value + UiText.Translate(" has more than doubled the last input. Are you sure?"),
+                                UiText.Translate("Large Value"), MessageBoxButtons.YesNo) == (int)DialogResult.No)
                             return;
 
                     if (MainV2.comPort.BaseStream == null || !MainV2.comPort.BaseStream.IsOpen)
                     {
-                        CustomMessageBox.Show("Your are not connected", Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Translate("Your are not connected"), Strings.ERROR);
                         return;
                     }
 

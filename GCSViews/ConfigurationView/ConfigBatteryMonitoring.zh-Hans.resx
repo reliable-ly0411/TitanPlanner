@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -168,4 +168,18 @@
   <data name="CMB_batmontype.Items2" xml:space="preserve">
     <value>4: 电压及电流</value>
   </data>
+  <data name="CMB_batmonsensortype.Items" xml:space="preserve"><value>0：其他</value></data>
+  <data name="CMB_batmonsensortype.Items4" xml:space="preserve"><value>4：3DR 电源模块</value></data>
+  <data name="CMB_batmonsensortype.Items5" xml:space="preserve"><value>5：3DR 四合一电调</value></data>
+  <data name="CMB_batmonsensortype.Items6" xml:space="preserve"><value>6：3DR 高压电源模块 APM</value></data>
+  <data name="CMB_batmonsensortype.Items7" xml:space="preserve"><value>7：Cube 高压电源模块</value></data>
+  <data name="CMB_batmonsensortype.Items8" xml:space="preserve"><value>8：CUAV 高压电源模块</value></data>
+  <data name="CMB_batmonsensortype.Items9" xml:space="preserve"><value>9：Holybro 电源模块</value></data>
+  <data name="CMB_HWVersion.Items" xml:space="preserve"><value>0：CUAV V5/Pixhawk4 或 APM1</value></data>
+  <data name="CMB_HWVersion.Items1" xml:space="preserve"><value>1：APM2 - 2.5 非 3DR</value></data>
+  <data name="CMB_HWVersion.Items2" xml:space="preserve"><value>2：APM2.5+/ZealotF427 - 3DR 电源模块</value></data>
+  <data name="CMB_HWVersion.Items4" xml:space="preserve"><value>4：The Cube 或 Pixhawk</value></data>
+  <data name="btnCalcCurrent.Text" xml:space="preserve"><value>计算</value></data>
+  <data name="btnCalcVoltage.Text" xml:space="preserve"><value>计算</value></data>
+  <data name="groupBoxCalibrate.Text" xml:space="preserve"><value>校准</value></data>
 </root>

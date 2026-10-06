@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Windows.Forms;
 
 namespace MissionPlanner.Swarm.SRB
@@ -43,12 +44,12 @@ namespace MissionPlanner.Swarm.SRB
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label4.Text = "BasePos: " + ctl.DG.GetBasePosition()?.ToString();
-            label5.Text = "BaseVel: " + ctl.DG.GetBaseVelocity()?.ToString();
+            label4.Text = UiText.Translate("BasePos: ") + ctl.DG.GetBasePosition()?.ToString();
+            label5.Text = UiText.Translate("BaseVel: ") + ctl.DG.GetBaseVelocity()?.ToString();
 
-            label6.Text = "Mode: " + ctl.DG.CurrentMode.ToString();
+            label6.Text = UiText.Translate("Mode: ") + ctl.DG.CurrentMode.ToString();
 
-            label7.Text = "BaseHeading: " + ctl.DG.GetBasePosition()?.Heading.ToString();
+            label7.Text = UiText.Translate("BaseHeading: ") + ctl.DG.GetBasePosition()?.Heading.ToString();
         }
 
         private void num_TakeOffAlt_ValueChanged(object sender, EventArgs e)

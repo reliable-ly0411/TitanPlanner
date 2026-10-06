@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -52,7 +53,7 @@ namespace MissionPlanner.Controls
                 }
 
                 flowLayoutPanel1.Controls[idx].Text = currentflag.ToString().Replace("EKF_", "").ToLower() + " " +
-                                                         (currentbit > 0 ? "On " : "Off") + "\r\n";
+                                                         (currentbit > 0 ? UiText.Translate("On ") : UiText.Translate("Off")) + "\r\n";
 
                 flowLayoutPanel1.Controls[idx].ForeColor = ForeColor;
 

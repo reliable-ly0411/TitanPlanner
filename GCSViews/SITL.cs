@@ -244,7 +244,7 @@ namespace MissionPlanner.GCSViews
             // Check if marker is off screen
             if (!IsPointOnScreen(currentPos))
             {
-                if (CustomMessageBox.Show("Place home at map center?", "Home Off Screen", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+                if (CustomMessageBox.Show(UiText.Translate("Place home at map center?"), UiText.Translate("Home Off Screen"), MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
                 {
                     currentPos = myGMAP1.Position;
                     homemarker.Position = currentPos;
@@ -257,31 +257,31 @@ namespace MissionPlanner.GCSViews
 
             if (currentPos.Lat == 0 && currentPos.Lng == 0)
             {
-                CustomMessageBox.Show("Please set a valid home location on the map first.", "Invalid Location");
+                CustomMessageBox.Show(UiText.Translate("Please set a valid home location on the map first."), UiText.Translate("Invalid Location"));
                 return;
             }
 
             // Ask for location name
             string locationName = "";
-            if (InputBox.Show("Save Location", "Enter a name for this location:", ref locationName) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Save Location"), UiText.Translate("Enter a name for this location:"), ref locationName) != DialogResult.OK)
                 return;
 
             if (string.IsNullOrWhiteSpace(locationName))
             {
-                CustomMessageBox.Show("Location name cannot be empty.", "Invalid Name");
+                CustomMessageBox.Show(UiText.Translate("Location name cannot be empty."), UiText.Translate("Invalid Name"));
                 return;
             }
 
             // Don't allow overwriting Woodley
             if (locationName.Equals("Woodley", StringComparison.OrdinalIgnoreCase))
             {
-                CustomMessageBox.Show("Cannot overwrite the default Woodley location.", "Invalid Name");
+                CustomMessageBox.Show(UiText.Translate("Cannot overwrite the default Woodley location."), UiText.Translate("Invalid Name"));
                 return;
             }
 
             // Ask for heading
             int heading = (int)NUM_heading.Value;
-            if (InputBox.Show("Heading", "Enter the heading (0-360):", ref heading) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Heading"), UiText.Translate("Enter the heading (0-360):"), ref heading) != DialogResult.OK)
                 return;
 
             heading = Math.Max(0, Math.Min(360, heading));
@@ -307,7 +307,7 @@ namespace MissionPlanner.GCSViews
                 }
             }
 
-            CustomMessageBox.Show($"Location '{locationName}' saved successfully.", "Location Saved");
+            CustomMessageBox.Show(UiText.Format($"Location '{locationName}' saved successfully."), UiText.Translate("Location Saved"));
 
             // Update remove button state
             UpdateRemoveButtonState();
@@ -325,14 +325,14 @@ namespace MissionPlanner.GCSViews
             // Don't allow removing Woodley (index 0)
             if (cmb_location.SelectedIndex == 0)
             {
-                CustomMessageBox.Show("Cannot remove the default Woodley location.", "Cannot Remove");
+                CustomMessageBox.Show(UiText.Translate("Cannot remove the default Woodley location."), UiText.Translate("Cannot Remove"));
                 return;
             }
 
             if (cmb_location.SelectedItem is SITLLocation location)
             {
                 // Confirm removal
-                if (CustomMessageBox.Show($"Remove location '{location.Name}'?", "Confirm Remove", MessageBoxButtons.YesNo) != (int)DialogResult.Yes)
+                if (CustomMessageBox.Show(UiText.Format($"Remove location '{location.Name}'?"), UiText.Translate("Confirm Remove"), MessageBoxButtons.YesNo) != (int)DialogResult.Yes)
                     return;
 
                 // Remove from saved locations
@@ -363,7 +363,7 @@ namespace MissionPlanner.GCSViews
         private void findLoc_Click(object sender, EventArgs e)
         {
             string place = "";
-            if (InputBox.Show("Find Location", "Enter a location to search for:", ref place) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Find Location"), UiText.Translate("Enter a location to search for:"), ref place) == DialogResult.OK)
             {
                 if (string.IsNullOrWhiteSpace(place))
                     return;
@@ -379,7 +379,7 @@ namespace MissionPlanner.GCSViews
 
                 if (status != GMap.NET.GeoCoderStatusCode.G_GEO_SUCCESS)
                 {
-                    CustomMessageBox.Show($"Could not find location: '{place}'\nReason: {status}", "Location Not Found");
+                    CustomMessageBox.Show(UiText.Format($"Could not find location: '{place}'\nReason: {status}"), UiText.Translate("Location Not Found"));
                 }
                 else
                 {
@@ -458,7 +458,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to download and start sitl\n" + ex.ToString());
+                CustomMessageBox.Show(UiText.Translate("Failed to download and start sitl\n") + ex.ToString());
             }
         }
 
@@ -479,7 +479,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to download and start sitl\n" + ex.ToString());
+                CustomMessageBox.Show(UiText.Translate("Failed to download and start sitl\n") + ex.ToString());
             }
         }
 
@@ -500,7 +500,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to download and start sitl\n" + ex.ToString());
+                CustomMessageBox.Show(UiText.Translate("Failed to download and start sitl\n") + ex.ToString());
             }
         }
 
@@ -521,7 +521,7 @@ namespace MissionPlanner.GCSViews
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Failed to download and start sitl\n" + ex.ToString());
+                CustomMessageBox.Show(UiText.Translate("Failed to download and start sitl\n") + ex.ToString());
             }
         }
 
@@ -965,7 +965,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch (Exception ex)
                 {
-                    CustomMessageBox.Show("Failed to start the simulator\n" + ex.ToString(), Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to start the simulator\n") + ex.ToString(), Strings.ERROR);
                     return;
                 }
             }
@@ -993,7 +993,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch (Exception ex)
                 {
-                    CustomMessageBox.Show("Failed to start the simulator\n" + ex.ToString(), Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Failed to start the simulator\n") + ex.ToString(), Strings.ERROR);
                     return;
                 }
             }
@@ -1110,7 +1110,7 @@ namespace MissionPlanner.GCSViews
         {
             var max = 10;
 
-            if (InputBox.Show("how many?", "how many?", ref max) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("how many?"), UiText.Translate("how many?"), ref max) != DialogResult.OK)
                 return;
 
             // kill old session
@@ -1274,7 +1274,7 @@ SIM_DRIFT_TIME=0
         {
             var max = 10;
 
-            if (InputBox.Show("how many?", "how many?", ref max) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("how many?"), UiText.Translate("how many?"), ref max) != DialogResult.OK)
                 return;
 
             // kill old session

@@ -33,7 +33,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 Name = "CHK_startFullscreen",
                 AutoSize = true,
-                Text = "Always start fullscreen"
+                Text = UiText.Translate("Always start fullscreen")
             };
             CHK_startFullscreen.CheckedChanged += CHK_startFullscreen_CheckedChanged;
 
@@ -188,7 +188,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             table.Controls.Add(CMB_osdcolor, 1, 3);
             table.SetColumnSpan(CMB_osdcolor, 2);
 
-            var severityLabel = new Label { AutoSize = true, Text = "Severity" };
+            var severityLabel = new Label { AutoSize = true, Text = UiText.Translate("Severity") };
             table.Controls.Add(severityLabel, 0, 4);
             table.Controls.Add(CMB_severity, 1, 4);
             table.SetColumnSpan(CMB_severity, 2);
@@ -272,7 +272,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             var btnCheckUpdate = new MyButton
             {
-                Text = "Check for Updates",
+                Text = UiText.Translate("Check for Updates"),
                 AutoSize = true
             };
             btnCheckUpdate.Click += BtnCheckUpdate_Click;
@@ -280,7 +280,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             var btnBetaUpdate = new MyButton
             {
-                Text = "Update to Dev",
+                Text = UiText.Translate("Update to Dev"),
                 AutoSize = true
             };
             btnBetaUpdate.Click += BtnBetaUpdate_Click;
@@ -288,7 +288,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             var lnkReleases = new LinkLabel
             {
-                Text = "Manual downloads (GitHub releases)",
+                Text = UiText.Translate("Manual downloads (GitHub releases)"),
                 AutoSize = true,
                 Margin = new Padding(3, 6, 3, 3)
             };
@@ -338,7 +338,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Control.ModifierKeys == Keys.Control)
                 {
                     Utilities.Update.domaster = true;
-                    CustomMessageBox.Show("This will update to MASTER release");
+                    CustomMessageBox.Show(UiText.Translate("This will update to MASTER release"));
                 }
 
                 Utilities.Update.DoUpdate();
@@ -761,7 +761,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Camera Fail: " + ex.Message);
+                CustomMessageBox.Show(UiText.Translate("Camera Fail: ") + ex.Message);
             }
         }
 
@@ -807,7 +807,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Can not add video source\n" + ex);
+                CustomMessageBox.Show(UiText.Translate("Can not add video source\n") + ex);
                 return;
             }
 
@@ -819,7 +819,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             var videoStreamConfig = o as IAMStreamConfig;
             if (videoStreamConfig == null)
             {
-                CustomMessageBox.Show("Failed to get IAMStreamConfig");
+                CustomMessageBox.Show(UiText.Translate("Failed to get IAMStreamConfig"));
                 return;
             }
 
@@ -903,7 +903,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 return;
             MainV2.instance.changelanguage((CultureInfo)CMB_language.SelectedItem);
 
-            MessageBox.Show("Please Restart the Planner");
+            MessageBox.Show(UiText.Translate("Please Restart the Planner"));
 
             MainV2.instance.Close();
             //Application.Exit();
@@ -935,7 +935,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechwaypoint"] != null)
                     speechstring = Settings.Instance["speechwaypoint"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechwaypoint"] = speechstring;
             }
@@ -953,7 +953,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechmode"] != null)
                     speechstring = Settings.Instance["speechmode"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechmode"] = speechstring;
             }
@@ -971,7 +971,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechcustom"] != null)
                     speechstring = Settings.Instance["speechcustom"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechcustom"] = speechstring;
             }
@@ -988,7 +988,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             catch
             {
-                CustomMessageBox.Show("Error: getting param list");
+                CustomMessageBox.Show(UiText.Translate("Error: getting param list"));
             }
 
 
@@ -1011,7 +1011,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbattery"] != null)
                     speechstring = Settings.Instance["speechbattery"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechbattery"] = speechstring;
 
@@ -1019,7 +1019,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatteryvolt"] != null)
                     speechstring = Settings.Instance["speechbatteryvolt"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What Voltage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What Voltage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatteryvolt"] = speechstring;
 
@@ -1027,7 +1027,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechbatterypercent"] != null)
                     speechstring = Settings.Instance["speechbatterypercent"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Battery Level", "What percentage do you want to warn at?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Battery Level"), UiText.Translate("What percentage do you want to warn at?"), ref speechstring))
                     return;
                 Settings.Instance["speechbatterypercent"] = speechstring;
             }
@@ -1153,7 +1153,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechalt"] != null)
                     speechstring = Settings.Instance["speechalt"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Notification", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Notification"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechalt"] = speechstring;
 
@@ -1161,7 +1161,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechaltheight"] != null)
                     speechstring = Settings.Instance["speechaltheight"].ToString();
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Min Alt", "What altitude do you want to warn at? (relative to home)",
+                    InputBox.Show(UiText.Translate("Min Alt"), UiText.Translate("What altitude do you want to warn at? (relative to home)"),
                         ref speechstring))
                     return;
                 Settings.Instance["speechaltheight"] = (double.Parse(speechstring) / CurrentState.multiplieralt).ToString();
@@ -1183,7 +1183,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             if (startup)
                 return;
-            CustomMessageBox.Show("You need to restart the planner for this to take effect");
+            CustomMessageBox.Show(UiText.Translate("You need to restart the planner for this to take effect"));
             Settings.Instance["CHK_GDIPlus"] = CHK_GDIPlus.Checked.ToString();
         }
 
@@ -1284,7 +1284,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             ThemeManager.LoadTheme(CMB_theme.Text);
             ThemeManager.ApplyThemeTo(MainV2.instance);
-            CustomMessageBox.Show("You may need to select another tab or restart to see the full effect.");
+            CustomMessageBox.Show(UiText.Translate("You may need to select another tab or restart to see the full effect."));
         }
 
         private void BUT_themecustom_Click(object sender, EventArgs e)
@@ -1303,14 +1303,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 var speechstring = "Armed";
                 if (Settings.Instance["speecharm"] != null)
                     speechstring = Settings.Instance["speecharm"];
-                if (DialogResult.Cancel == InputBox.Show("Arm", "What do you want it to say?", ref speechstring))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Arm"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speecharm"] = speechstring;
 
                 speechstring = "Disarmed";
                 if (Settings.Instance["speechdisarm"] != null)
                     speechstring = Settings.Instance["speechdisarm"];
-                if (DialogResult.Cancel == InputBox.Show("Disarmed", "What do you want it to say?", ref speechstring))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Disarmed"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechdisarm"] = speechstring;
             }
@@ -1359,7 +1359,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 // keep this one local
                 string pw = "";
 
-                InputBox.Show("Enter Password", "Please enter a password", ref pw, true);
+                InputBox.Show(UiText.Translate("Enter Password"), UiText.Translate("Please enter a password"), ref pw, true);
 
                 Password.EnterPassword(pw);
             }
@@ -1377,7 +1377,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechlowgroundspeed"] != null)
                     speechstring = Settings.Instance["speechlowgroundspeed"];
                 if (DialogResult.Cancel ==
-                    InputBox.Show("Ground Speed", "What do you want it to say?", ref speechstring))
+                    InputBox.Show(UiText.Translate("Ground Speed"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechlowgroundspeed"] = speechstring;
 
@@ -1385,14 +1385,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechlowgroundspeedtrigger"] != null)
                     speechstring = Settings.Instance["speechlowgroundspeedtrigger"];
                 if (DialogResult.Cancel ==
-                    InputBox.Show("speed trigger", "What speed do you want to warn at (m/s)?", ref speechstring))
+                    InputBox.Show(UiText.Translate("speed trigger"), UiText.Translate("What speed do you want to warn at (m/s)?"), ref speechstring))
                     return;
                 Settings.Instance["speechlowgroundspeedtrigger"] = speechstring;
 
                 speechstring = "Low Air Speed {asp}";
                 if (Settings.Instance["speechlowairspeed"] != null)
                     speechstring = Settings.Instance["speechlowairspeed"];
-                if (DialogResult.Cancel == InputBox.Show("Air Speed", "What do you want it to say?", ref speechstring))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Air Speed"), UiText.Translate("What do you want it to say?"), ref speechstring))
                     return;
                 Settings.Instance["speechlowairspeed"] = speechstring;
 
@@ -1400,7 +1400,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 if (Settings.Instance["speechlowairspeedtrigger"] != null)
                     speechstring = Settings.Instance["speechlowairspeedtrigger"];
                 if (DialogResult.Cancel ==
-                    InputBox.Show("speed trigger", "What speed do you want to warn at (m/s)?", ref speechstring))
+                    InputBox.Show(UiText.Translate("speed trigger"), UiText.Translate("What speed do you want to warn at (m/s)?"), ref speechstring))
                     return;
                 Settings.Instance["speechlowairspeedtrigger"] = speechstring;
             }
@@ -1420,7 +1420,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (((CheckBox)sender).Checked)
             {
                 var server = Settings.Instance["adsbserverv2"] ?? Settings.Instance["adsbserver"] ?? "https://api.adsb.lol/";
-                if (DialogResult.Cancel == InputBox.Show("ADSB Server", "Server IP or API base URL (see https://ardupilot.org/planner/docs/common-adsb.html)", ref server))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("ADSB Server"), UiText.Translate("Server IP or API base URL (see https://ardupilot.org/planner/docs/common-adsb.html)"), ref server))
                     return;
                 // Strip ending slash off server
                 if (server.EndsWith("/"))
@@ -1433,7 +1433,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     var port = "30003";
                     if (Settings.Instance["adsbport"] != null)
                         port = Settings.Instance["adsbport"];
-                    if (DialogResult.Cancel == InputBox.Show("Server port", "Server port?", ref port))
+                    if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Server port"), UiText.Translate("Server port?"), ref port))
                         return;
                     Settings.Instance["adsbport"] = port;
                 }
@@ -1607,7 +1607,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 var descstring = Settings.Instance["mapicondesc_default",
                     "{alt}{altunit} {airspeed}{speedunit} id:{sysid} Sats:{satcount} HDOP:{gpshdop} Volts:{battery_voltage}"];
 
-                if (DialogResult.Cancel == InputBox.Show("Description", "What do you want it to show?", ref descstring))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Description"), UiText.Translate("What do you want it to show?"), ref descstring))
                 {
                     return;
                 }
@@ -1712,7 +1712,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 // Set - open file dialog
                 var ofd = new OpenFileDialog();
                 ofd.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp";
-                ofd.Title = "Select Custom Aircraft Icon";
+                ofd.Title = UiText.Translate("Select Custom Aircraft Icon");
 
                 if (ofd.ShowDialog(MainV2.instance) == DialogResult.OK)
                 {
@@ -1740,12 +1740,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 else
                 {
-                    BUT_customicon.Text = "Set";
+                    BUT_customicon.Text = UiText.Translate("Set");
                 }
             }
             catch
             {
-                BUT_customicon.Text = "Set";
+                BUT_customicon.Text = UiText.Translate("Set");
             }
         }
 
@@ -1820,13 +1820,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (string.IsNullOrEmpty(newName))
             {
-                CustomMessageBox.Show("Please enter a configuration name.", "Save Configuration");
+                CustomMessageBox.Show(UiText.Translate("Please enter a configuration name."), UiText.Translate("Save Configuration"));
                 return;
             }
 
             if (!Settings.IsValidConfigName(newName))
             {
-                CustomMessageBox.Show("Configuration name can only contain letters (A-Z), numbers (0-9), and underscores.", "Save Configuration");
+                CustomMessageBox.Show(UiText.Translate("Configuration name can only contain letters (A-Z), numbers (0-9), and underscores."), UiText.Translate("Save Configuration"));
                 return;
             }
 
@@ -1834,11 +1834,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 TXT_newconfigname.Text = "";
                 LoadConfigProfiles();
-                CustomMessageBox.Show($"Configuration saved as '{newName}'.", "Save Configuration");
+                CustomMessageBox.Show(UiText.Format($"Configuration saved as '{newName}'."), UiText.Translate("Save Configuration"));
             }
             else
             {
-                CustomMessageBox.Show("Failed to save configuration.", "Save Configuration");
+                CustomMessageBox.Show(UiText.Translate("Failed to save configuration."), UiText.Translate("Save Configuration"));
             }
         }
     }

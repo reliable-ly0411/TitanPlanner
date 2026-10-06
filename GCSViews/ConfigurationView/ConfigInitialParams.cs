@@ -133,14 +133,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (prop_size <= 0 )
             {
 
-                CustomMessageBox.Show("Prop size must be larger than zero.", "ERROR!");
+                CustomMessageBox.Show(UiText.Translate("Prop size must be larger than zero."), UiText.Translate("ERROR!"));
                 return;
 
             }
 
             if (batt_cells < 1)
             {
-                CustomMessageBox.Show("Battery cell count must be at least 1.", "ERROR!");
+                CustomMessageBox.Show(UiText.Translate("Battery cell count must be at least 1."), UiText.Translate("ERROR!"));
                 return;
             }
 
@@ -231,13 +231,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             ThemeManager.ApplyThemeTo(paramCompareForm);
 
             MissionPlanner.Controls.MyButton button = paramCompareForm.Controls.Find("BUT_save", true).FirstOrDefault() as MissionPlanner.Controls.MyButton;
-            button.Text = "Write to FC";
+            button.Text = UiText.Translate("Write to FC");
             paramCompareForm.StartPosition = FormStartPosition.CenterParent;
             paramCompareForm.ShowDialog();
 
             if (paramCompareForm.DialogResult == DialogResult.OK)
             {
-                CustomMessageBox.Show("Initial Parameters succesfully updated.\r\nCheck parameters before flight!\r\n\r\nAfter test flight :\r\n\tSet ATC_THR_MIX_MAN to 0.5\r\n\tSet PSC_ACCZ_P/PSC_D_ACC_P to MOT_THST_HOVER\r\n\tSet PSC_ACCZ_I/PSC_D_ACC_I to 2*MOT_THST_HOVER\r\n\r\nHappy flying!", "Initial parameter calculator");
+                CustomMessageBox.Show(UiText.Translate("Initial Parameters succesfully updated.\r\nCheck parameters before flight!\r\n\r\nAfter test flight :\r\n\tSet ATC_THR_MIX_MAN to 0.5\r\n\tSet PSC_ACCZ_P/PSC_D_ACC_P to MOT_THST_HOVER\r\n\tSet PSC_ACCZ_I/PSC_D_ACC_I to 2*MOT_THST_HOVER\r\n\r\nHappy flying!"), UiText.Translate("Initial parameter calculator"));
             }
 
             }

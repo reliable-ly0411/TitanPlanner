@@ -34,9 +34,9 @@ namespace MissionPlanner.Controls
             this.SuspendLayout();
 
             // Context menu for copy
-            var copyItem = new ToolStripMenuItem("Copy Message");
+            var copyItem = new ToolStripMenuItem(UiText.Translate("Copy Message"));
             copyItem.Click += CopyItem_Click;
-            var copyAllItem = new ToolStripMenuItem("Copy All Messages");
+            var copyAllItem = new ToolStripMenuItem(UiText.Translate("Copy All Messages"));
             copyAllItem.Click += CopyAllItem_Click;
             this.contextMenu.Items.Add(copyItem);
             this.contextMenu.Items.Add(copyAllItem);
@@ -248,7 +248,7 @@ namespace MissionPlanner.Controls
                 using (var brush = new SolidBrush(Color.FromArgb(128, placeholderColor)))
                 using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
                 {
-                    g.DrawString("No messages", displayFont, brush, containerPanel.ClientRectangle, sf);
+                    g.DrawString(UiText.Translate("No messages"), displayFont, brush, containerPanel.ClientRectangle, sf);
                 }
                 return;
             }

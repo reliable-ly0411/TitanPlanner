@@ -1,4 +1,5 @@
-﻿using ICSharpCode.SharpZipLib.Checksum;
+﻿using MissionPlanner.Utilities;
+using ICSharpCode.SharpZipLib.Checksum;
 using log4net;
 using MissionPlanner.Controls;
 using System;
@@ -91,7 +92,7 @@ namespace MissionPlanner.Utilities
                     log.Error("Exception during update", ex);
                 }
                 if (frmProgressReporter != null)
-                    frmProgressReporter.UpdateProgressAndStatus(-1, "Starting Updater");
+                    frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Starting Updater"));
                 log.Info("Starting new process: " + process.StartInfo.FileName + " with " +
                          process.StartInfo.Arguments);
                 process.Start();
@@ -103,12 +104,12 @@ namespace MissionPlanner.Utilities
             catch (AggregateException ex)
             {
                 log.Error("Update Failed", ex.InnerException);
-                CustomMessageBox.Show("Update Failed " + ex.InnerException?.Message);
+                CustomMessageBox.Show(UiText.Translate("Update Failed ") + ex.InnerException?.Message);
             }
             catch (Exception ex)
             {
                 log.Error("Update Failed", ex);
-                CustomMessageBox.Show("Update Failed " + ex.Message);
+                CustomMessageBox.Show(UiText.Translate("Update Failed ") + ex.Message);
             }
         }
 
@@ -169,7 +170,7 @@ namespace MissionPlanner.Utilities
                         {
                             log.Warn("Invalid version string from server: " + (versionString ?? "(null)"));
                             if (NotifyNoUpdate)
-                                CustomMessageBox.Show("Unable to check for updates: Invalid version information from server.");
+                                CustomMessageBox.Show(UiText.Translate("Unable to check for updates: Invalid version information from server."));
                             return;
                         }
                     }
@@ -200,7 +201,7 @@ namespace MissionPlanner.Utilities
                        extra = "BETA ";
 
                    var dr = CustomMessageBox.Show(
-                       extra + Strings.UpdateFound + " [link;" + baseurl.Replace("version.txt", "ChangeLog.txt") + ";ChangeLog]",
+                       extra + Strings.UpdateFound + " [link;" + baseurl.Replace("version.txt", "ChangeLog.txt") + UiText.Translate(";ChangeLog]"),
                        Strings.UpdateNow, MessageBoxButtons.YesNo);
 
                    if (dr == (int)DialogResult.Yes)
@@ -229,7 +230,7 @@ namespace MissionPlanner.Utilities
 
             IProgressReporterDialogue frmProgressReporter = new ProgressReporterDialogue()
             {
-                Text = "Check for Updates",
+                Text = UiText.Translate("Check for Updates"),
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             };
 
@@ -240,7 +241,7 @@ namespace MissionPlanner.Utilities
             frmProgressReporter.doWorkArgs.CancelRequestChanged += (sender, args) => { frmProgressReporter.doWorkArgs.CancelAcknowledged = true; };
             frmProgressReporter.doWorkArgs.ForceExit = true;
 
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Checking for Updates");
+            frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Checking for Updates"));
 
             frmProgressReporter.RunBackgroundOperationAsync();
 
@@ -261,7 +262,7 @@ namespace MissionPlanner.Utilities
             if (regex.IsMatch(responseFromServer))
             {
                 if (frmProgressReporter != null)
-                    frmProgressReporter.UpdateProgressAndStatus(-1, "Hashing Files");
+                    frmProgressReporter.UpdateProgressAndStatus(-1, UiText.Translate("Hashing Files"));
 
                 // cleanup dll's with the same exe name
                 var dlls = Directory.GetFiles(Settings.GetRunningDirectory(), "*.dll", SearchOption.AllDirectories);
@@ -405,7 +406,7 @@ namespace MissionPlanner.Utilities
                         {
                             if (frmProgressReporter != null)
                                 frmProgressReporter.UpdateProgressAndStatus((int)((done / (double)count) * 100),
-                                    Strings.Getting + file + "\n" + done + " of " + count + " of total " +
+                                    Strings.Getting + file + "\n" + done + UiText.Translate(" of ") + count + UiText.Translate(" of total ") +
                                     tasklist.Count);
 
                             string subdir = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar;
@@ -712,12 +713,12 @@ namespace MissionPlanner.Utilities
             catch (Exception ex)
             {
                 log.Error(ex.ToString());
-                CustomMessageBox.Show("Error getting Parameter Information");
+                CustomMessageBox.Show(UiText.Translate("Error getting Parameter Information"));
             }
             */
             #endregion Fetch Parameter Meta Data
 
-            progressReporterDialogue.UpdateProgressAndStatus(-1, "Getting Base URL");
+            progressReporterDialogue.UpdateProgressAndStatus(-1, UiText.Translate("Getting Base URL"));
 
             try
             {

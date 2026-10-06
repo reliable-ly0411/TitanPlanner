@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 namespace MissionPlanner.Controls
 {
     partial class SerialOutputPass
@@ -69,7 +70,7 @@ namespace MissionPlanner.Controls
             this.gbAddConnection.Size = new System.Drawing.Size(560, 85);
             this.gbAddConnection.TabIndex = 0;
             this.gbAddConnection.TabStop = false;
-            this.gbAddConnection.Text = "Add Connection";
+            this.gbAddConnection.Text = UiText.Translate("Add Connection");
             //
             // tableLayoutPanel1
             //
@@ -109,7 +110,7 @@ namespace MissionPlanner.Controls
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 13);
             this.lblType.TabIndex = 0;
-            this.lblType.Text = "Type:";
+            this.lblType.Text = UiText.Translate("Type:");
             //
             // cmbType
             //
@@ -134,7 +135,7 @@ namespace MissionPlanner.Controls
             this.lblDirection.Name = "lblDirection";
             this.lblDirection.Size = new System.Drawing.Size(52, 13);
             this.lblDirection.TabIndex = 2;
-            this.lblDirection.Text = "Direction:";
+            this.lblDirection.Text = UiText.Translate("Direction:");
             //
             // cmbDirection
             //
@@ -158,7 +159,7 @@ namespace MissionPlanner.Controls
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(29, 13);
             this.lblPort.TabIndex = 4;
-            this.lblPort.Text = "Port:";
+            this.lblPort.Text = UiText.Translate("Port:");
             //
             // txtPort
             //
@@ -176,7 +177,7 @@ namespace MissionPlanner.Controls
             this.lblExtra.Name = "lblExtra";
             this.lblExtra.Size = new System.Drawing.Size(32, 13);
             this.lblExtra.TabIndex = 6;
-            this.lblExtra.Text = "Host:";
+            this.lblExtra.Text = UiText.Translate("Host:");
             //
             // txtExtra
             //
@@ -194,7 +195,7 @@ namespace MissionPlanner.Controls
             this.chkWriteAccess.Name = "chkWriteAccess";
             this.chkWriteAccess.Size = new System.Drawing.Size(50, 17);
             this.chkWriteAccess.TabIndex = 8;
-            this.chkWriteAccess.Text = "Write";
+            this.chkWriteAccess.Text = UiText.Translate("Write");
             this.chkWriteAccess.UseVisualStyleBackColor = true;
             //
             // btnAdd
@@ -205,7 +206,7 @@ namespace MissionPlanner.Controls
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(98, 24);
             this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "Add Connection";
+            this.btnAdd.Text = UiText.Translate("Add Connection");
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             //
@@ -219,7 +220,7 @@ namespace MissionPlanner.Controls
             this.gbConnections.Size = new System.Drawing.Size(560, 160);
             this.gbConnections.TabIndex = 1;
             this.gbConnections.TabStop = false;
-            this.gbConnections.Text = "Active Connections";
+            this.gbConnections.Text = UiText.Translate("Active Connections");
             //
             // dgvConnections
             //
@@ -247,14 +248,14 @@ namespace MissionPlanner.Controls
             //
             // colType
             //
-            this.colType.HeaderText = "Type";
+            this.colType.HeaderText = UiText.Translate("Type");
             this.colType.Name = "colType";
             this.colType.ReadOnly = true;
             this.colType.Width = 60;
             //
             // colDirection
             //
-            this.colDirection.HeaderText = "Direction";
+            this.colDirection.HeaderText = UiText.Translate("Direction");
             this.colDirection.Name = "colDirection";
             this.colDirection.ReadOnly = true;
             this.colDirection.Width = 70;
@@ -262,30 +263,30 @@ namespace MissionPlanner.Controls
             // colAddress
             //
             this.colAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colAddress.HeaderText = "Address";
+            this.colAddress.HeaderText = UiText.Translate("Address");
             this.colAddress.Name = "colAddress";
             this.colAddress.ReadOnly = true;
             //
             // colStatus
             //
-            this.colStatus.HeaderText = "Status";
+            this.colStatus.HeaderText = UiText.Translate("Status");
             this.colStatus.Name = "colStatus";
             this.colStatus.ReadOnly = true;
             this.colStatus.Width = 80;
             //
             // colWrite
             //
-            this.colWrite.HeaderText = "Write";
+            this.colWrite.HeaderText = UiText.Translate("Write");
             this.colWrite.Name = "colWrite";
             this.colWrite.ReadOnly = true;
             this.colWrite.Width = 45;
             //
             // colStop
             //
-            this.colStop.HeaderText = "Action";
+            this.colStop.HeaderText = UiText.Translate("Action");
             this.colStop.Name = "colStop";
             this.colStop.ReadOnly = true;
-            this.colStop.Text = "Stop";
+            this.colStop.Text = UiText.Translate("Stop");
             this.colStop.UseColumnTextForButtonValue = true;
             this.colStop.Width = 60;
             //
@@ -301,7 +302,7 @@ namespace MissionPlanner.Controls
             this.gbLog.Size = new System.Drawing.Size(560, 180);
             this.gbLog.TabIndex = 2;
             this.gbLog.TabStop = false;
-            this.gbLog.Text = "Output Log";
+            this.gbLog.Text = UiText.Translate("Output Log");
             //
             // btnClear
             //
@@ -310,7 +311,7 @@ namespace MissionPlanner.Controls
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 1;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = UiText.Translate("Clear");
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             //
@@ -338,7 +339,7 @@ namespace MissionPlanner.Controls
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "SerialOutputPass";
-            this.Text = "MAVLink Output";
+            this.Text = UiText.Translate("MAVLink Output");
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialOutputPass_FormClosing);
             this.Load += new System.EventHandler(this.SerialOutputPass_Load);
             this.gbAddConnection.ResumeLayout(false);

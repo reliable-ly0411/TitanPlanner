@@ -138,7 +138,7 @@ namespace MissionPlanner
                 config.SaveToDir("C:\\Temp\\Snapshot");
                 DotTrace.Attach(config);
                 DotTrace.StartCollectingData();
-                CustomMessageBox.Show("Trace started");
+                CustomMessageBox.Show(UiText.Translate("Trace started"));
             }
             else
             {
@@ -315,6 +315,9 @@ namespace MissionPlanner
             {
                 log.Error(ex);
             }
+
+            // 启动画面也遵循已保存的语言；无设置时使用本分支的简体中文默认值。
+            System.Threading.Thread.CurrentThread.CurrentUICulture = L10N.GetConfigLang();
 
             // Initialize theme before Splash so it can use theme colors
             ThemeManager.thmColor = new ThemeColorTable();
@@ -522,7 +525,7 @@ namespace MissionPlanner
                             Console.WriteLine(
                                 "Please upgrade your mono version to 6+ https://www.mono-project.com/download/stable/");
                             CustomMessageBox.Show(
-                                "Please upgrade your mono version to 6+ https://www.mono-project.com/download/stable/");
+                                UiText.Translate("Please upgrade your mono version to 6+ https://www.mono-project.com/download/stable/"));
                         }
                     }
                 }
@@ -796,26 +799,26 @@ namespace MissionPlanner
 
             if (ex.Message.Contains("The port is closed"))
             {
-                CustomMessageBox.Show("Serial connection has been lost");
+                CustomMessageBox.Show(UiText.Translate("Serial connection has been lost"));
                 return;
             }
 
             if (ex.Message.Contains("Array.Empty"))
             {
-                CustomMessageBox.Show("Please install Microsoft Dot Net 4.6.2");
+                CustomMessageBox.Show(UiText.Translate("Please install Microsoft Dot Net 4.6.2"));
                 Application.Exit();
                 return;
             }
 
             if (ex.Message.Contains("A device attached to the system is not functioning"))
             {
-                CustomMessageBox.Show("Serial connection has been lost");
+                CustomMessageBox.Show(UiText.Translate("Serial connection has been lost"));
                 return;
             }
 
             if (ex.GetType() == typeof(MissingMethodException) || ex.GetType() == typeof(TypeLoadException))
             {
-                CustomMessageBox.Show("Please Update - Some older library dlls are causing problems\n" + ex.Message);
+                CustomMessageBox.Show(UiText.Translate("Please Update - Some older library dlls are causing problems\n") + ex.Message);
                 return;
             }
 
@@ -830,7 +833,7 @@ namespace MissionPlanner
                 // i get alot of error from people who click the exe from inside a zip file.
             {
                 CustomMessageBox.Show(
-                    "You are missing some DLL's. Please extract the zip file somewhere. OR Use the update feature from the menu " +
+                    UiText.Translate("You are missing some DLL's. Please extract the zip file somewhere. OR Use the update feature from the menu ") +
                     ex.ToString());
                 // return;
             }
@@ -846,8 +849,8 @@ namespace MissionPlanner
             log.Info("Th Name " + Thread?.Name);
 
             var dr =
-                CustomMessageBox.Show("An error has occurred\n" + ex.ToString() + "\n\nReport this Error???",
-                    "Send Error", MessageBoxButtons.YesNo);
+                CustomMessageBox.Show(UiText.Translate("An error has occurred\n") + ex.ToString() + UiText.Translate("\n\nReport this Error???"),
+                    UiText.Translate("Send Error"), MessageBoxButtons.YesNo);
             if ((int) DialogResult.Yes == dr)
             {
                 try
@@ -860,7 +863,7 @@ namespace MissionPlanner
 
                     try
                     {
-                        Controls.InputBox.Show("Message", "Please enter a message about this error if you can.",
+                        Controls.InputBox.Show(UiText.Translate("Message"), UiText.Translate("Please enter a message about this error if you can."),
                             ref message);
                     }
                     catch
@@ -920,7 +923,7 @@ namespace MissionPlanner
                 {
                     Console.WriteLine(exp.ToString());
                     log.Error(exp);
-                    CustomMessageBox.Show("Could not send report! Typically due to lack of internet connection.");
+                    CustomMessageBox.Show(UiText.Translate("Could not send report! Typically due to lack of internet connection."));
                 }
             }
         }

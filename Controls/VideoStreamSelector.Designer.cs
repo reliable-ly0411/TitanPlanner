@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class VideoStreamSelector
     {
@@ -53,7 +54,7 @@
             this.but_launch.Name = "but_launch";
             this.but_launch.Size = new System.Drawing.Size(75, 21);
             this.but_launch.TabIndex = 1;
-            this.but_launch.Text = "Connect";
+            this.but_launch.Text = UiText.Translate("Connect");
             this.but_launch.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_launch.UseVisualStyleBackColor = true;
             this.but_launch.Click += new System.EventHandler(this.but_launch_Click);
@@ -74,7 +75,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Detected Streams";
+            this.label1.Text = UiText.Translate("Detected Streams");
             // 
             // label2
             // 
@@ -83,7 +84,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "GStreamer Pipeline";
+            this.label2.Text = UiText.Translate("GStreamer Pipeline");
             // 
             // VideoStreamSelector
             // 
@@ -96,7 +97,7 @@
             this.Controls.Add(this.but_launch);
             this.Controls.Add(this.cmb_detectedstreams);
             this.Name = "VideoStreamSelector";
-            this.Text = "VideoStreamSelector";
+            this.Text = UiText.Translate("VideoStreamSelector");
             this.ResumeLayout(false);
             this.PerformLayout();
 

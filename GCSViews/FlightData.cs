@@ -420,7 +420,7 @@ namespace MissionPlanner.GCSViews
         {
             CB_3dmap = new CheckBox
             {
-                Text = "3D Map",
+                Text = UiText.Translate("3D Map"),
                 AutoSize = true
             };
             CB_3dmap.CheckedChanged += CB_3dmap_CheckedChanged;
@@ -732,7 +732,7 @@ namespace MissionPlanner.GCSViews
             // Add Tools button to top-right of map
             var btnTools = new Controls.MyButton
             {
-                Text = "Tools",
+                Text = UiText.Translate("Tools"),
                 Size = new Size(50, 23),
                 Anchor = AnchorStyles.Top | AnchorStyles.Right
             };
@@ -751,7 +751,7 @@ namespace MissionPlanner.GCSViews
             // Add Propagation button to the right of Tools
             var btnPropagation = new Controls.MyButton
             {
-                Text = "Propagation",
+                Text = UiText.Translate("Propagation"),
                 Size = new Size(80, 23),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
@@ -768,7 +768,7 @@ namespace MissionPlanner.GCSViews
             _doubleClickFlyToHereEnabled = Settings.Instance.GetBoolean("DoubleClickFlyToHere", true);
             var chkDoubleClickFlyToHere = new CheckBox
             {
-                Text = "Double-click Fly to Here",
+                Text = UiText.Translate("Double-click Fly to Here"),
                 AutoSize = true,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 BackColor = Color.Transparent,
@@ -1168,9 +1168,9 @@ namespace MissionPlanner.GCSViews
             GraphPane myPane = zgc.GraphPane;
 
             // Set the titles and axis labels
-            myPane.Title.Text = "Tuning - Double click to change items";
-            myPane.XAxis.Title.Text = "Time (s)";
-            myPane.YAxis.Title.Text = "Unit";
+            myPane.Title.Text = UiText.Translate("Tuning - Double click to change items");
+            myPane.XAxis.Title.Text = UiText.Translate("Time (s)");
+            myPane.YAxis.Title.Text = UiText.Translate("Unit");
             myPane.YAxis.Title.FontSpec.Size += 2;
 
             // Show the x axis grid
@@ -1366,7 +1366,7 @@ namespace MissionPlanner.GCSViews
                     IsBackground = true,
                     Name = "Script Thread (new)"
                 };
-                labelScriptStatus.Text = "Script Status: Running";
+                labelScriptStatus.Text = UiText.Translate("Script Status: Running");
 
                 script = null;
                 outputwindowstarted = false;
@@ -1392,7 +1392,7 @@ namespace MissionPlanner.GCSViews
             }
             else
             {
-                CustomMessageBox.Show("Please select a valid script", "Bad Script");
+                CustomMessageBox.Show(UiText.Translate("Please select a valid script"), UiText.Translate("Bad Script"));
             }
         }
 
@@ -1638,7 +1638,7 @@ namespace MissionPlanner.GCSViews
                 var action = MainV2.comPort.MAV.cs.armed ? "Disarm" : "Arm";
 
                 if (isitarmed)
-                    if (CustomMessageBox.Show("Are you sure you want to " + action, action,
+                    if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to ") + action, action,
                             CustomMessageBox.MessageBoxButtons.YesNo) !=
                         CustomMessageBox.DialogResult.Yes)
                         return;
@@ -1654,8 +1654,8 @@ namespace MissionPlanner.GCSViews
                 if (ans == false)
                 {
                     if (CustomMessageBox.Show(
-                            action + " failed.\n" + sb.ToString() + "\nForce " + action +
-                            " can bypass safety checks,\nwhich can lead to the vehicle crashing\nand causing serious injuries.\n\nDo you wish to Force " +
+                            action + UiText.Translate(" failed.\n") + sb.ToString() + UiText.Translate("\nForce ") + action +
+                            UiText.Translate(" can bypass safety checks,\nwhich can lead to the vehicle crashing\nand causing serious injuries.\n\nDo you wish to Force ") +
                             action + "?", Strings.ERROR, CustomMessageBox.MessageBoxButtons.YesNo,
                             CustomMessageBox.MessageBoxIcon.Exclamation, "Force " + action, "Cancel") ==
                         CustomMessageBox.DialogResult.Yes)
@@ -1787,7 +1787,7 @@ namespace MissionPlanner.GCSViews
                         }
                         catch (Exception ex)
                         {
-                            CustomMessageBox.Show("Error processing file. Make sure the file is not in use.\n" + ex);
+                            CustomMessageBox.Show(UiText.Translate("Error processing file. Make sure the file is not in use.\n") + ex);
                         }
 
                         lo.writeKML(logfile + ".kml");
@@ -1856,7 +1856,7 @@ namespace MissionPlanner.GCSViews
             try
             {
                 string txt = "";
-                if (DialogResult.Cancel == InputBox.Show("Enter Message", "Enter Message to be logged", ref txt))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Enter Message"), UiText.Translate("Enter Message to be logged"), ref txt))
                     return;
                 MainV2.comPort.send_text(5, txt);
             }
@@ -1925,7 +1925,7 @@ namespace MissionPlanner.GCSViews
                         }
                         catch (IOException ex)
                         {
-                            CustomMessageBox.Show("File access issue: " + ex.Message, Strings.ERROR);
+                            CustomMessageBox.Show(UiText.Translate("File access issue: ") + ex.Message, Strings.ERROR);
                             return;
                         }
 
@@ -1950,12 +1950,12 @@ namespace MissionPlanner.GCSViews
                         }
                         catch (Exception ex)
                         {
-                            CustomMessageBox.Show("Failed to load analyzer results\n" + ex.ToString());
+                            CustomMessageBox.Show(UiText.Translate("Failed to load analyzer results\n") + ex.ToString());
                         }
                     }
                     else
                     {
-                        CustomMessageBox.Show("Bad input file");
+                        CustomMessageBox.Show(UiText.Translate("Bad input file"));
                     }
 
                     if (!String.IsNullOrEmpty(newlogfile))
@@ -2009,7 +2009,7 @@ namespace MissionPlanner.GCSViews
 
         private void BUT_Reboot_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show("Are you sure you want to reboot the autopilot?", "Reboot", MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
+            if (CustomMessageBox.Show(UiText.Translate("Are you sure you want to reboot the autopilot?"), UiText.Translate("Reboot"), MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
                 try
                 {
@@ -2092,7 +2092,7 @@ namespace MissionPlanner.GCSViews
         {
             if (
                 Common.MessageShowAgain("Resume Mission",
-                    "Warning this will reprogram your mission, arm and issue a takeoff command (copter)") !=
+                    UiText.Translate("Warning this will reprogram your mission, arm and issue a takeoff command (copter)")) !=
                 DialogResult.OK)
                 return;
 
@@ -2104,7 +2104,7 @@ namespace MissionPlanner.GCSViews
                     if (lastwp == "-1")
                         lastwp = "1";
 
-                    if (InputBox.Show("Resume at", "Resume mission at waypoint#", ref lastwp) == DialogResult.OK)
+                    if (InputBox.Show(UiText.Translate("Resume at"), UiText.Translate("Resume mission at waypoint#"), ref lastwp) == DialogResult.OK)
                     {
                         int timeout = 0;
                         int lastwpno = int.Parse(lastwp);
@@ -2146,7 +2146,7 @@ namespace MissionPlanner.GCSViews
                                 (MAVLink.MAV_FRAME) (loc.frame));
                             if (ans != MAVLink.MAV_MISSION_RESULT.MAV_MISSION_ACCEPTED)
                             {
-                                CustomMessageBox.Show("Upload wps failed " +
+                                CustomMessageBox.Show(UiText.Translate("Upload wps failed ") +
                                                       Enum.Parse(typeof(MAVLink.MAV_CMD), loc.id.ToString()) + " " +
                                                       Enum.Parse(typeof(MAVLink.MAV_MISSION_RESULT), ans.ToString()));
                                 return;
@@ -2243,7 +2243,7 @@ namespace MissionPlanner.GCSViews
             {
                 selectedscript = openScriptDialog.FileName;
                 BUT_run_script.Visible = BUT_edit_selected.Visible = true;
-                labelSelectedScript.Text = "Selected Script: " + selectedscript;
+                labelSelectedScript.Text = UiText.Translate("Selected Script: ") + selectedscript;
             }
             else
             {
@@ -2257,7 +2257,7 @@ namespace MissionPlanner.GCSViews
             {
                 var confirmResult = Common.MessageShowAgain(
                     "Failsafe",
-                    "You are in failsafe, are you sure you want to change mode?",
+                    UiText.Translate("You are in failsafe, are you sure you want to change mode?"),
                     true,
                     "FailsafeModeChangeConfirmation");
 
@@ -2402,7 +2402,7 @@ namespace MissionPlanner.GCSViews
             }
 
             if (
-                CustomMessageBox.Show("Are you sure you want to do " + flightDataActions1.CMB_action.Text + " ?", "Action",
+                CustomMessageBox.Show(UiText.Translate("Are you sure you want to do ") + flightDataActions1.CMB_action.Text + " ?", UiText.Translate("Action"),
                     MessageBoxButtons.YesNo) == (int) DialogResult.Yes)
             {
                 try
@@ -3089,7 +3089,7 @@ namespace MissionPlanner.GCSViews
                 }
                 else
                 {
-                    CustomMessageBox.Show("Max 20 at a time.");
+                    CustomMessageBox.Show(UiText.Translate("Max 20 at a time."));
                     ((CheckBox) sender).Checked = false;
                 }
 
@@ -3254,7 +3254,7 @@ namespace MissionPlanner.GCSViews
                 if (Settings.Instance["hud1_useritem_" + checkbox.Name] != null)
                     prefix = Settings.Instance["hud1_useritem_" + checkbox.Name];
 
-                if (DialogResult.Cancel == InputBox.Show("Hud Header", "Please enter your item prefix", ref prefix))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Hud Header"), UiText.Translate("Please enter your item prefix"), ref prefix))
                 {
                     checkbox.Checked = false;
                     return;
@@ -3350,7 +3350,7 @@ namespace MissionPlanner.GCSViews
         {
             using (Form customForm = new Form())
             {
-                customForm.Text = "Customize Tabs";
+                customForm.Text = UiText.Translate("Customize Tabs");
                 customForm.StartPosition = FormStartPosition.CenterParent;
                 customForm.Icon = this.ParentForm?.Icon;
                 customForm.Padding = new Padding(4);
@@ -3565,11 +3565,11 @@ namespace MissionPlanner.GCSViews
                 if (string.IsNullOrWhiteSpace(button.Text))
                 {
                     if (button == BUT_loadtelem)
-                        button.Text = "Load Tlog";
+                        button.Text = UiText.Translate("Load Tlog");
                     else if (button == BUT_playlog)
-                        button.Text = "Play";
+                        button.Text = UiText.Translate("Play");
                     else if (button == BUT_log2kml)
-                        button.Text = "Tlog > KML/Graph";
+                        button.Text = UiText.Translate("Tlog > KML/Graph");
                 }
             }
 
@@ -3820,7 +3820,7 @@ namespace MissionPlanner.GCSViews
                     MyButton but = new MyButton
                     {
                         Location = new Point(MapContentPanel.Width / 2, 0),
-                        Text = "Close"
+                        Text = UiText.Translate("Close")
                     };
                     but.Click += but_Click;
 
@@ -3862,7 +3862,7 @@ namespace MissionPlanner.GCSViews
             if (Settings.Instance.ContainsKey("guided_alt_frame"))
                 frame = (MAVLink.MAV_FRAME)byte.Parse(Settings.Instance["guided_alt_frame"]);
 
-            if (DialogResult.Cancel == AltInputBox.Show("Enter Alt", "Enter Guided Mode Alt", ref alt, ref frame))
+            if (DialogResult.Cancel == AltInputBox.Show(UiText.Translate("Enter Alt"), UiText.Translate("Enter Guided Mode Alt"), ref alt, ref frame))
                 return;
 
             Settings.Instance["guided_alt"] = alt;
@@ -3871,7 +3871,7 @@ namespace MissionPlanner.GCSViews
             int intalt = (int) (100 * CurrentState.multiplieralt);
             if (!int.TryParse(alt, out intalt))
             {
-                CustomMessageBox.Show("Bad Alt");
+                CustomMessageBox.Show(UiText.Translate("Bad Alt"));
                 return;
             }
 
@@ -3979,7 +3979,7 @@ namespace MissionPlanner.GCSViews
                     marker = new GMapMarkerRect(point);
                     marker.ToolTip = new GMapToolTip(marker);
                     marker.ToolTipMode = MarkerTooltipMode.Always;
-                    marker.ToolTipText = "Dist to Home: " +
+                    marker.ToolTipText = UiText.Translate("Dist to Home: ") +
                                          ((gMapControl1.MapProvider.Projection.GetDistance(point,
                                               MainV2.comPort.MAV.cs.HomeLocation.Point()) * 1000) *
                                           CurrentState.multiplierdist).ToString("0");
@@ -4094,7 +4094,7 @@ namespace MissionPlanner.GCSViews
         private void Gspeed_DoubleClick(object sender, EventArgs e)
         {
             string max = "60";
-            if (DialogResult.OK == InputBox.Show("Enter Max Speed", "Enter Max Speed", ref max))
+            if (DialogResult.OK == InputBox.Show(UiText.Translate("Enter Max Speed"), UiText.Translate("Enter Max Speed"), ref max))
             {
                 Gspeed.MaxValue = float.Parse(max);
                 Settings.Instance["GspeedMAX"] = Gspeed.MaxValue.ToString();
@@ -4113,7 +4113,7 @@ namespace MissionPlanner.GCSViews
             if (Settings.Instance["herelinkip"] != null)
                 ipaddr = Settings.Instance["herelinkip"].ToString();
 
-            InputBox.Show("herelink ip", "Enter herelink ip address", ref ipaddr);
+            InputBox.Show(UiText.Translate("herelink ip"), UiText.Translate("Enter herelink ip address"), ref ipaddr);
 
             Settings.Instance["herelinkip"] = ipaddr;
 
@@ -4152,7 +4152,7 @@ namespace MissionPlanner.GCSViews
             if(hud1.Parent == SubMainLeft.Panel1)
                 SubMainLeft.Panel1Collapsed = true;
             Form dropout = new Form();
-            dropout.Text = "HUD Dropout";
+            dropout.Text = UiText.Translate("HUD Dropout");
             dropout.Size = new Size(hud1.Width, hud1.Height + 20);
             dropout.Tag = hud1.Parent;
             SubMainLeft.Panel1.Controls.Remove(hud1);
@@ -4862,7 +4862,7 @@ namespace MissionPlanner.GCSViews
                             addMissionRouteMarker(new GMarkerGoogle(currentloc, GMarkerGoogleType.blue_dot)
                             {
                                 Position = MainV2.comPort.MAV.cs.Base,
-                                ToolTipText = "Base",
+                                ToolTipText = UiText.Translate("Base"),
                                 ToolTipMode = MarkerTooltipMode.OnMouseOver
                             });
                         }
@@ -4894,7 +4894,7 @@ namespace MissionPlanner.GCSViews
 
                                         addMissionRouteMarker(new GMarkerGoogle(marker, GMarkerGoogleType.blue_dot)
                                         {
-                                            ToolTipText = "Camera Target\n" + marker,
+                                            ToolTipText = UiText.Translate("Camera Target\n") + marker,
                                             ToolTipMode = MarkerTooltipMode.OnMouseOver
                                         });
                                     }
@@ -5008,8 +5008,8 @@ namespace MissionPlanner.GCSViews
                                 marker.Position = new PointLatLngAlt(item.lat / 1e7, item.lon / 1e7, 0);
                                 marker.heading = item.heading / 100.0f;
                                 marker.ToolTipText = "MMSI: " + item.MMSI + "\n" +
-                                                     "Speed: " + (item.velocity / 100).ToString("0 m/s") + "\n" +
-                                                     "TurnRate: " + (item.turn_rate / 100).ToString("0");
+                                                     UiText.Translate("Speed: ") + (item.velocity / 100).ToString("0 m/s") + "\n" +
+                                                     UiText.Translate("TurnRate: ") + (item.turn_rate / 100).ToString("0");
                                 marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                                 marker.Tag = item;
                             });
@@ -5077,14 +5077,14 @@ namespace MissionPlanner.GCSViews
                                     typeCategory += pllau.GetCategoryFriendlyString();
 
                                     adsbplane.ToolTipText = "ICAO: " + pllau.Tag + "\n" +
-                                                            "Callsign: " + pllau.CallSign + "\n" +
-                                                            "Type/Category: " + typeCategory + "\n" +
-                                                            "Squawk: " + pllau.Squawk.ToString() + "\n" +
-                                                            "Alt: " + (pllau.Alt * CurrentState.multiplieralt).ToString("0") + " " + CurrentState.AltUnit + "\n" +
-                                                            "Speed: " + (pllau.Speed / 100 /* cm to m */ * CurrentState.multiplierspeed).ToString("0") + " " + CurrentState.SpeedUnit + "\n" +
-                                                            "VSpeed: " + (pllau.VerticalSpeed / 100 /* cm to m */ * CurrentState.multiplierspeed).ToString("F1") + " " + CurrentState.SpeedUnit + "\n" +
-                                                            "Heading: " + pllau.Heading.ToString("0") + "°" +
-                                                            (pllau.IsOnGround ? " (On Ground)" : "") + "\n";
+                                                            UiText.Translate("Callsign: ") + pllau.CallSign + "\n" +
+                                                            UiText.Translate("Type/Category: ") + typeCategory + "\n" +
+                                                            UiText.Translate("Squawk: ") + pllau.Squawk.ToString() + "\n" +
+                                                            UiText.Translate("Alt: ") + (pllau.Alt * CurrentState.multiplieralt).ToString("0") + " " + CurrentState.AltUnit + "\n" +
+                                                            UiText.Translate("Speed: ") + (pllau.Speed / 100 /* cm to m */ * CurrentState.multiplierspeed).ToString("0") + " " + CurrentState.SpeedUnit + "\n" +
+                                                            UiText.Translate("VSpeed: ") + (pllau.VerticalSpeed / 100 /* cm to m */ * CurrentState.multiplierspeed).ToString("F1") + " " + CurrentState.SpeedUnit + "\n" +
+                                                            UiText.Translate("Heading: ") + pllau.Heading.ToString("0") + "°" +
+                                                            (pllau.IsOnGround ? UiText.Translate(" (On Ground)") : "") + "\n";
                                     // Add distance and altitude delta
                                     if (MainV2.comPort.MAV.cs.Location.Lat != 0 && MainV2.comPort.MAV.cs.Location.Lng != 0)
                                     {
@@ -5094,15 +5094,15 @@ namespace MissionPlanner.GCSViews
                                             distanceStr = (distanceM / 1000).ToString("0.#") + " km";
                                         else
                                             distanceStr = (distanceM * CurrentState.multiplierdist).ToString("0") + " " + CurrentState.DistanceUnit;
-                                        adsbplane.ToolTipText += "\n" + "Distance: " + distanceStr;
+                                        adsbplane.ToolTipText += "\n" + UiText.Translate("Distance: ") + distanceStr;
                                         // Altitude delta (ADSB plane alt - my alt), positive means ADSB plane is above
                                         double altDelta = (pllau.Alt - MainV2.comPort.MAV.cs.alt) * CurrentState.multiplieralt;
                                         string altDeltaStr = (altDelta >= 0 ? "+" : "") + altDelta.ToString("0");
-                                        adsbplane.ToolTipText += "\n" + "Alt Delta: " + altDeltaStr + " " + CurrentState.AltUnit;
+                                        adsbplane.ToolTipText += "\n" + UiText.Translate("Alt Delta: ") + altDeltaStr + " " + CurrentState.AltUnit;
                                     }
                                     // Add collision threat level
                                     if (pllau.ThreatLevel != MAVLink.MAV_COLLISION_THREAT_LEVEL.NONE)
-                                        adsbplane.ToolTipText += "\n" + "Collision risk: " + (pllau.ThreatLevel == MAVLink.MAV_COLLISION_THREAT_LEVEL.LOW ? "Warning" : "Danger");
+                                        adsbplane.ToolTipText += "\n" + UiText.Translate("Collision risk: ") + (pllau.ThreatLevel == MAVLink.MAV_COLLISION_THREAT_LEVEL.LOW ? UiText.Translate("Warning") : UiText.Translate("Danger"));
                                     adsbplane.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                                     adsbplane.Position = pllau;
                                     adsbplane.heading = pllau.Heading;
@@ -5449,7 +5449,7 @@ namespace MissionPlanner.GCSViews
         private void PointCameraCoordsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var location = "";
-            InputBox.Show("Enter Coords", "Please enter the coords 'lat;long;alt(abs)' or 'lat;long'", ref location);
+            InputBox.Show(UiText.Translate("Enter Coords"), UiText.Translate("Please enter the coords 'lat;long;alt(abs)' or 'lat;long'"), ref location);
 
             var split = location.Split(';');
 
@@ -5483,24 +5483,24 @@ namespace MissionPlanner.GCSViews
         {
             if (!MainV2.comPort.BaseStream.IsOpen)
             {
-                CustomMessageBox.Show("Please Connect First");
+                CustomMessageBox.Show(UiText.Translate("Please Connect First"));
                 return;
             }
 
             string alt = "0";
-            if (DialogResult.Cancel == InputBox.Show("Enter Alt",
-                "Enter Target Alt (Relative to home)", ref alt))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Enter Alt"),
+                UiText.Translate("Enter Target Alt (Relative to home)"), ref alt))
                 return;
 
             if (!float.TryParse(alt, out var intalt))
             {
-                CustomMessageBox.Show("Bad Alt");
+                CustomMessageBox.Show(UiText.Translate("Bad Alt"));
                 return;
             }
 
             if (MouseDownStart.Lat == 0.0 || MouseDownStart.Lng == 0.0)
             {
-                CustomMessageBox.Show("Bad Lat/Long");
+                CustomMessageBox.Show(UiText.Translate("Bad Lat/Long"));
                 return;
             }
 
@@ -5531,7 +5531,7 @@ namespace MissionPlanner.GCSViews
         {
             stopRecordToolStripMenuItem_Click(sender, e);
 
-            CustomMessageBox.Show("Output avi will be saved to the log folder");
+            CustomMessageBox.Show(UiText.Translate("Output avi will be saved to the log folder"));
 
             aviwriter = new AviWriter();
             try
@@ -5540,7 +5540,7 @@ namespace MissionPlanner.GCSViews
                 aviwriter.avi_start(Settings.Instance.LogDir + Path.DirectorySeparatorChar +
                                     DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".avi");
 
-                recordHudToAVIToolStripMenuItem.Text = "Recording";
+                recordHudToAVIToolStripMenuItem.Text = UiText.Translate("Recording");
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -5630,7 +5630,7 @@ namespace MissionPlanner.GCSViews
         {
             if (!scriptrunning)
             {
-                labelScriptStatus.Text = "Script Status: Finished (or aborted)";
+                labelScriptStatus.Text = UiText.Translate("Script Status: Finished (or aborted)");
                 scriptChecker.Enabled = false;
                 BUT_select_script.Enabled = true;
                 BUT_run_script.Enabled = true;
@@ -5667,7 +5667,7 @@ namespace MissionPlanner.GCSViews
 
             if (alt.currenttype != srtm.tiletype.valid)
             {
-                CustomMessageBox.Show("No SRTM data for this area", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("No SRTM data for this area"), Strings.ERROR);
                 return;
             }
 
@@ -5688,8 +5688,8 @@ namespace MissionPlanner.GCSViews
                 ? Settings.Instance["gstreamer_url"]
                 : @"videotestsrc ! video/x-raw, width=1280, height=720, framerate=30/1 ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink";
 
-            if (DialogResult.OK == InputBox.Show("GStreamer url",
-                "Enter the source pipeline\nEnsure the final payload is ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink",
+            if (DialogResult.OK == InputBox.Show(UiText.Translate("GStreamer url"),
+                UiText.Translate("Enter the source pipeline\nEnsure the final payload is ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink"),
                 ref url))
             {
                 Settings.Instance["gstreamer_url"] = url;
@@ -5731,13 +5731,13 @@ namespace MissionPlanner.GCSViews
 
                     if (alt.currenttype != srtm.tiletype.valid && alt.currenttype != srtm.tiletype.ocean)
                     {
-                        CustomMessageBox.Show("No SRTM data for this area", Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Translate("No SRTM data for this area"), Strings.ERROR);
                         return;
                     }
 
                     if (CustomMessageBox.Show(
-                            "This will reset the onboard home position (effects RTL etc). Are you Sure?",
-                            "Are you sure?", CustomMessageBox.MessageBoxButtons.OKCancel) ==
+                            UiText.Translate("This will reset the onboard home position (effects RTL etc). Are you Sure?"),
+                            UiText.Translate("Are you sure?"), CustomMessageBox.MessageBoxButtons.OKCancel) ==
                         CustomMessageBox.DialogResult.OK)
                     {
                         MainV2.comPort.doCommandInt((byte) MainV2.comPort.sysidcurrent,
@@ -5767,7 +5767,7 @@ namespace MissionPlanner.GCSViews
                 ? Settings.Instance["mjpeg_url"]
                 : @"http://127.0.0.1:56781/map.jpg";
 
-            if (DialogResult.OK == InputBox.Show("Mjpeg url", "Enter the url to the mjpeg source url", ref url))
+            if (DialogResult.OK == InputBox.Show(UiText.Translate("Mjpeg url"), UiText.Translate("Enter the url to the mjpeg source url"), ref url))
             {
                 Settings.Instance["mjpeg_url"] = url;
 
@@ -5879,9 +5879,9 @@ namespace MissionPlanner.GCSViews
                 cols = Settings.Instance["dashboardCols"];
             }
 
-            if (InputBox.Show("Columns", "Enter number of columns to have.", ref cols) == DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Columns"), UiText.Translate("Enter number of columns to have."), ref cols) == DialogResult.OK)
             {
-                if (InputBox.Show("Rows", "Enter number of rows to have.", ref rows) == DialogResult.OK)
+                if (InputBox.Show(UiText.Translate("Rows"), UiText.Translate("Enter number of rows to have."), ref rows) == DialogResult.OK)
                 {
                     if (rows.IsNumber() && cols.IsNumber())
                         setQuickViewRowsCols(cols, rows);
@@ -6448,7 +6448,7 @@ namespace MissionPlanner.GCSViews
                 }
                 catch (Exception ex)
                 {
-                    CustomMessageBox.Show("Camera Fail: " + ex.ToString(), Strings.ERROR);
+                    CustomMessageBox.Show(UiText.Translate("Camera Fail: ") + ex.ToString(), Strings.ERROR);
 
                     // Clean up the partially initialized camera to prevent crashes
                     // from the background thread trying to access invalid resources
@@ -6467,7 +6467,7 @@ namespace MissionPlanner.GCSViews
 
         private void stopRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            recordHudToAVIToolStripMenuItem.Text = "Start Recording";
+            recordHudToAVIToolStripMenuItem.Text = UiText.Translate("Start Recording");
 
             try
             {
@@ -6781,7 +6781,7 @@ namespace MissionPlanner.GCSViews
             {
                 string alt = Settings.Instance["takeoff_alt", "5"];
 
-                if (DialogResult.Cancel == InputBox.Show("Enter Alt", "Enter Takeoff Alt", ref alt))
+                if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Enter Alt"), UiText.Translate("Enter Takeoff Alt"), ref alt))
                     return;
 
                 var altf = float.Parse(alt, CultureInfo.InvariantCulture);
@@ -7116,14 +7116,14 @@ namespace MissionPlanner.GCSViews
         {
             if (playing)
             {
-                if (BUT_playlog.Text == "Pause")
+                if (BUT_playlog.Text == UiText.Translate("Pause"))
                     return;
 
                 BeginInvoke((Action) delegate
                 {
                     try
                     {
-                        BUT_playlog.Text = "Pause";
+                        BUT_playlog.Text = UiText.Translate("Pause");
                     }
                     catch
                     {
@@ -7132,14 +7132,14 @@ namespace MissionPlanner.GCSViews
             }
             else
             {
-                if (BUT_playlog.Text == "Play")
+                if (BUT_playlog.Text == UiText.Translate("Play"))
                     return;
 
                 BeginInvoke((Action) delegate
                 {
                     try
                     {
-                        BUT_playlog.Text = "Play";
+                        BUT_playlog.Text = UiText.Translate("Play");
                     }
                     catch
                     {
@@ -7226,7 +7226,7 @@ namespace MissionPlanner.GCSViews
         private void flyToCoordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var location = "";
-            InputBox.Show("Enter Fly To Coords", "Please enter the coords 'lat;long;alt' or 'lat;long'", ref location);
+            InputBox.Show(UiText.Translate("Enter Fly To Coords"), UiText.Translate("Please enter the coords 'lat;long;alt' or 'lat;long'"), ref location);
 
             byte frame = (byte)MAVLink.MAV_FRAME.GLOBAL_RELATIVE_ALT;
             if (!MainV2.comPort.MAV.GuidedMode.Equals(new MAVLink.mavlink_mission_item_int_t()))
@@ -7299,7 +7299,7 @@ namespace MissionPlanner.GCSViews
         private void poiatcoordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var location = "";
-            InputBox.Show("Enter POI Coords", "Please enter the coords 'lat;long;alt' or 'lat;long'", ref location);
+            InputBox.Show(UiText.Translate("Enter POI Coords"), UiText.Translate("Please enter the coords 'lat;long;alt' or 'lat;long'"), ref location);
 
             var split = location.Split(';');
 
@@ -7368,12 +7368,12 @@ namespace MissionPlanner.GCSViews
             string CellCount = "4";
             int iCellCount;
 
-            if (DialogResult.Cancel == InputBox.Show("Battery Cell Count", "Cell Count", ref CellCount))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Battery Cell Count"), UiText.Translate("Cell Count"), ref CellCount))
                 return;
 
             if (!int.TryParse(CellCount, out iCellCount))
             {
-                CustomMessageBox.Show("Bad Radius");
+                CustomMessageBox.Show(UiText.Translate("Bad Radius"));
                 return;
             }
             Settings.Instance["HUD_batterycellcount"] = iCellCount.ToString();
@@ -7400,7 +7400,7 @@ namespace MissionPlanner.GCSViews
             dropout.ShowInTaskbar = false;
             dropout.TopMost = true;
             dropout.Size = new Size(300, 450);
-            dropout.Text = "Dashboard";
+            dropout.Text = UiText.Translate("Dashboard");
             dropout.BackColor = ThemeManager.BGColor;
             dropout.Icon = this.ParentForm?.Icon;
 
@@ -7648,12 +7648,12 @@ namespace MissionPlanner.GCSViews
                 {
                     updateTransponder();
                 }
-                else CustomMessageBox.Show("Timeout: Status message not received.");
+                else CustomMessageBox.Show(UiText.Translate("Timeout: Status message not received."));
 
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Timeout.");
+                CustomMessageBox.Show(UiText.Translate("Timeout."));
             }
         }
 
@@ -7674,7 +7674,7 @@ namespace MissionPlanner.GCSViews
 
                 if (transponderNeverConnected)
                 {
-                    XPDRConnect_btn.Text = "Connect To Transponder";
+                    XPDRConnect_btn.Text = UiText.Translate("Connect To Transponder");
                     XPDRConnect_btn.Enabled = true;
                 }
                 else
@@ -7682,7 +7682,7 @@ namespace MissionPlanner.GCSViews
                     // if we have connected before, we should have subscribed to the status message.
                     // something must have reset the message interval (AP power cycled, etc.)
                     // so indicate that the connection reset
-                    XPDRConnect_btn.Text = "Transponder Status Lost";
+                    XPDRConnect_btn.Text = UiText.Translate("Transponder Status Lost");
                     XPDRConnect_btn.Enabled = true;
                     transponderNeverConnected = true;
                 }
@@ -7755,7 +7755,7 @@ namespace MissionPlanner.GCSViews
 
                 IDENT_btn.Font = new Font(IDENT_btn.Font, MainV2.comPort.MAV.cs.xpdr_ident_active ? FontStyle.Bold : FontStyle.Regular);
 
-                XPDRConnect_btn.Text = "Transponder Connected!";
+                XPDRConnect_btn.Text = UiText.Translate("Transponder Connected!");
                 XPDRConnect_btn.Enabled = false;
             }
             else
@@ -7767,7 +7767,7 @@ namespace MissionPlanner.GCSViews
                 FlightID_tb.Enabled = false;
                 Squawk_nud.Enabled = false;
 
-                XPDRConnect_btn.Text = "Transponder Offline";
+                XPDRConnect_btn.Text = UiText.Translate("Transponder Offline");
                 XPDRConnect_btn.Enabled = false;
             }
             MainV2.comPort.MAV.cs.xpdr_status_pending = false;
@@ -7776,7 +7776,7 @@ namespace MissionPlanner.GCSViews
         private void jumpToTagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string tag_str = "";
-            if (InputBox.Show("Jump to Tag", "Tag Id:", ref tag_str) != DialogResult.OK)
+            if (InputBox.Show(UiText.Translate("Jump to Tag"), UiText.Translate("Tag Id:"), ref tag_str) != DialogResult.OK)
             {
                 return;
             }
@@ -7784,7 +7784,7 @@ namespace MissionPlanner.GCSViews
             UInt16 tag;
             if (!UInt16.TryParse(tag_str, out tag) || tag < 0 || tag > 0xFFFF)
             {
-                CustomMessageBox.Show("Invalid Tag. Must be a number from 0 to 65535");
+                CustomMessageBox.Show(UiText.Translate("Invalid Tag. Must be a number from 0 to 65535"));
                 // NOTE: This is recursive to automatically re-pop up the dialog box
                 // on input error for as many times as you try to enter an invalid number.
                 jumpToTagToolStripMenuItem_Click(null, null);
@@ -7803,9 +7803,9 @@ namespace MissionPlanner.GCSViews
             }
         }
 
-        ToolStripMenuItem gimbalVideoShowMiniMap = new ToolStripMenuItem("Mini map");
-        ToolStripMenuItem gimbalVideoSwapPosition = new ToolStripMenuItem("Swap with map");
-        ToolStripMenuItem gimbalVideoClose = new ToolStripMenuItem("Close");
+        ToolStripMenuItem gimbalVideoShowMiniMap = new ToolStripMenuItem(UiText.Translate("Mini map"));
+        ToolStripMenuItem gimbalVideoSwapPosition = new ToolStripMenuItem(UiText.Translate("Swap with map"));
+        ToolStripMenuItem gimbalVideoClose = new ToolStripMenuItem(UiText.Translate("Close"));
         bool gimbalMenuHandlersInitialized = false;
         GimbalVideoControl _gimbalVideoControl;
         GimbalVideoControl gimbalVideoControl
@@ -7966,7 +7966,7 @@ namespace MissionPlanner.GCSViews
 
             var form = new Form()
             {
-                Text = "Gimbal Control",
+                Text = UiText.Translate("Gimbal Control"),
                 Size = new Size(600, 400),
                 StartPosition = FormStartPosition.CenterParent
             };

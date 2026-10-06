@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -280,4 +280,15 @@
   <data name="groupBoxCompass3.Text" xml:space="preserve">
     <value>指南针 #3</value>
   </data>
+  <data name="label6.Text" xml:space="preserve"><value>校准失败时放宽适应度要求</value></data>
+  <data name="label10.Text" xml:space="preserve"><value>适应度</value></data>
+  <data name="label9.Text" xml:space="preserve"><value>罗盘 3</value></data>
+  <data name="label8.Text" xml:space="preserve"><value>罗盘 2</value></data>
+  <data name="label7.Text" xml:space="preserve"><value>罗盘 1</value></data>
+  <data name="groupBoxonboardcalib.Text" xml:space="preserve"><value>机载罗盘校准</value></data>
+  <data name="groupBoxmpcalib.Text" xml:space="preserve"><value>Mission Planner 罗盘校准</value></data>
+  <data name="LBL_compass1_offset.Text" xml:space="preserve"><value>偏移</value></data>
+  <data name="LBL_compass2_offset.Text" xml:space="preserve"><value>偏移</value></data>
+  <data name="LBL_compass3_offset.Text" xml:space="preserve"><value>偏移</value></data>
+  <data name="but_largemagcal.Text" xml:space="preserve"><value>大型飞行器罗盘校准</value></data>
 </root>

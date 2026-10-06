@@ -1,0 +1,56 @@
+using System;
+using System.Globalization;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using MissionPlanner.Utilities;
+
+internal static class Program
+{
+    private static int assertions;
+
+    private static void Equal(string expected, string actual)
+    {
+        assertions++;
+        if (expected != actual)
+            throw new Exception($"Expected [{expected}], got [{actual}]");
+    }
+
+    private static void Main()
+    {
+        // UI 文化与数值文化必须分开；翻译不能改变参数值或协议格式。
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+        foreach (var language in new[] { "zh-Hans", "zh-CN", "zh-SG" })
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(language);
+            Equal("3D 地图设置", UiText.Translate("3D Map Settings"));
+            Equal("是", UiText.Translate("Yes"));
+            Equal("否", UiText.Translate("No"));
+            Equal("电机 4", UiText.Format($"Motor {4}"));
+            Equal("航迹方向：12.3°", UiText.Format($"Course: {12.34:0.0}°"));
+            Equal("设置 MOT_SPIN_ARM 失败： ", UiText.Format($"Failed to set {"MOT_SPIN_ARM"}: "));
+            Equal("MOT_SPIN_ARM", UiText.Translate("MOT_SPIN_ARM"));
+            Equal("[untranslated]", UiText.Translate("[untranslated]"));
+            Equal("0.125", 0.125.ToString(CultureInfo.InvariantCulture));
+        }
+        // 不重启进程切换语言，验证不复用上一次中文结果。
+        foreach (var language in new[] { "en-US", "de-DE", "zh-TW" })
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(language);
+            Equal("3D Map Settings", UiText.Translate("3D Map Settings"));
+            Equal("Motor 4", UiText.Format($"Motor {4}"));
+        }
+        CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("zh-Hans");
+        // 逐条读取真实编译资源，检查换行、大小写键、中文编码及资源覆盖。
+        var entries = new Dictionary<string, string>();
+        foreach (var file in new[] { "ui-translations.json", "code-translations.json" })
+            using (var document = JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, file))))
+                foreach (var entry in document.RootElement.EnumerateObject())
+                    entries[entry.Name] = entry.Value.GetString();
+        foreach (var entry in entries)
+            Equal(entry.Value, UiText.Translate(entry.Key));
+        Equal("暂停", UiText.Translate("Pause"));
+        Equal("播放", UiText.Translate("Play"));
+        Console.WriteLine($"Localization runtime: {assertions} assertions passed.");
+    }
+}

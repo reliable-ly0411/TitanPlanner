@@ -1,4 +1,5 @@
-﻿using GMap.NET.WindowsForms;
+﻿using MissionPlanner.Utilities;
+using GMap.NET.WindowsForms;
 using MissionPlanner.Controls;
 using MissionPlanner.Maps;
 using System;
@@ -78,7 +79,7 @@ namespace MissionPlanner.Utilities
 
             string output = "";
 
-            if (DialogResult.OK != InputBox.Show("POI", "Enter ID", ref output))
+            if (DialogResult.OK != InputBox.Show(UiText.Translate("POI"), UiText.Translate("Enter ID"), ref output))
                 return;
 
             POIAdd(Point, output);
@@ -108,7 +109,7 @@ namespace MissionPlanner.Utilities
 
             string output = "";
 
-            if (DialogResult.OK != InputBox.Show("POI", "Enter ID", ref output))
+            if (DialogResult.OK != InputBox.Show(UiText.Translate("POI"), UiText.Translate("Enter ID"), ref output))
                 return;
 
             for (int a = 0; a < POI.POIs.Count; a++)

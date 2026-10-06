@@ -1,3 +1,4 @@
+using MissionPlanner.Utilities;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -37,7 +38,7 @@ namespace MissionPlanner.Controls
             set
             {
                 _waypointIndex = value;
-                this.Text = $"WP {value + 1}";
+                this.Text = UiText.Format($"WP {value + 1}");
             }
         }
 
@@ -135,9 +136,9 @@ namespace MissionPlanner.Controls
                 Height = 30
             };
 
-            btnUp = new MyButton { Text = "Up", Width = 50, Height = 25 };
-            btnDown = new MyButton { Text = "Down", Width = 50, Height = 25 };
-            btnDelete = new MyButton { Text = "X", Width = 30, Height = 25 };
+            btnUp = new MyButton { Text = UiText.Translate("Up"), Width = 50, Height = 25 };
+            btnDown = new MyButton { Text = UiText.Translate("Down"), Width = 50, Height = 25 };
+            btnDelete = new MyButton { Text = UiText.Translate("X"), Width = 30, Height = 25 };
 
             btnUp.Click += (s, e) => UpClicked?.Invoke(this, EventArgs.Empty);
             btnDown.Click += (s, e) => DownClicked?.Invoke(this, EventArgs.Empty);
@@ -188,13 +189,13 @@ namespace MissionPlanner.Controls
         {
             // Update labels based on command type
             if (tableLayout.GetControlFromPosition(0, 1) is Label lbl1)
-                lbl1.Text = string.IsNullOrEmpty(param1) ? "Param1:" : param1 + ":";
+                lbl1.Text = string.IsNullOrEmpty(param1) ? UiText.Translate("Param1:") : param1 + ":";
             if (tableLayout.GetControlFromPosition(0, 2) is Label lbl2)
-                lbl2.Text = string.IsNullOrEmpty(param2) ? "Param2:" : param2 + ":";
+                lbl2.Text = string.IsNullOrEmpty(param2) ? UiText.Translate("Param2:") : param2 + ":";
             if (tableLayout.GetControlFromPosition(0, 3) is Label lbl3)
-                lbl3.Text = string.IsNullOrEmpty(param3) ? "Param3:" : param3 + ":";
+                lbl3.Text = string.IsNullOrEmpty(param3) ? UiText.Translate("Param3:") : param3 + ":";
             if (tableLayout.GetControlFromPosition(0, 4) is Label lbl4)
-                lbl4.Text = string.IsNullOrEmpty(param4) ? "Param4:" : param4 + ":";
+                lbl4.Text = string.IsNullOrEmpty(param4) ? UiText.Translate("Param4:") : param4 + ":";
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Controls;
+﻿using MissionPlanner.Utilities;
+using MissionPlanner.Controls;
 
 namespace MissionPlanner.GCSViews.ConfigurationView
 {
@@ -76,14 +77,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // Name
             // 
-            this.Name1.HeaderText = "Name";
+            this.Name1.HeaderText = UiText.Translate("Name");
             this.Name1.Name = "Name";
             this.Name1.ReadOnly = true;
             this.Name1.Width = 150;
             // 
             // Value
             // 
-            this.Value.HeaderText = "Value";
+            this.Value.HeaderText = UiText.Translate("Value");
             this.Value.Name = "Value";
             this.Value.ReadOnly = true;
             this.Value.Width = 300;
@@ -95,7 +96,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(251, 13);
             this.label1.TabIndex = 70;
-            this.label1.Text = "NOTE: You can break the planner using this screen";
+            this.label1.Text = UiText.Translate("NOTE: You can break the planner using this screen");
             // 
             // ConfigPlannerAdv
             // 

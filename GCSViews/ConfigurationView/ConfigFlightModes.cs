@@ -63,7 +63,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 // Row 0: Flight Modes header
                 var flightModesHeader = new Label
                 {
-                    Text = "Flight Modes",
+                    Text = UiText.Translate("Flight Modes"),
                     Font = new System.Drawing.Font(this.Font.FontFamily, 10, System.Drawing.FontStyle.Bold),
                     AutoSize = true
                 };
@@ -456,7 +456,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 CustomMessageBox.Show(Strings.ErrorSettingParameter, Strings.ERROR);
             }
-            BUT_SaveModes.Text = "Complete";
+            BUT_SaveModes.Text = UiText.Translate("Complete");
         }
 
         private void updateDropDown(ComboBox ctl, string param)
@@ -602,7 +602,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // Add header/separator
             var headerLabel = new Label
             {
-                Text = "RC Options",
+                Text = UiText.Translate("RC Options"),
                 Font = new System.Drawing.Font(this.Font.FontFamily, 10, System.Drawing.FontStyle.Bold),
                 AutoSize = true,
                 Padding = new System.Windows.Forms.Padding(0, 5, 0, 5)
@@ -612,11 +612,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _userParamsPanel.SetColumnSpan(headerLabel, 2);
 
             // Add Modify button
-            var modifyButton = new MyButton { Text = "Modify", AutoSize = true };
+            var modifyButton = new MyButton { Text = UiText.Translate("Modify"), AutoSize = true };
             modifyButton.Click += (o, e) =>
             {
                 var opts = UserParamOptions.Aggregate((a, b) => a + "\r\n" + b);
-                InputBox.Show("Params", "Enter Param Names", ref opts, false, true);
+                InputBox.Show(UiText.Translate("Params"), UiText.Translate("Enter Param Names"), ref opts, false, true);
                 UserParamOptions = opts.Split(new[] { ',', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                 Settings.Instance["FlightModeUserParams"] = UserParamOptions.Aggregate((a, b) => a.Trim() + "," + b.Trim());
                 LoadUserParams();

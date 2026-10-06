@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Joystick
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Joystick
 {
     partial class Joy_Do_Repeat_Relay
     {
@@ -46,7 +47,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Relay No#";
+            this.label1.Text = UiText.Translate("Relay No#");
             // 
             // numericUpDown1
             // 
@@ -68,7 +69,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Repeat #";
+            this.label2.Text = UiText.Translate("Repeat #");
             // 
             // numericUpDown2
             // 
@@ -85,7 +86,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Time";
+            this.label3.Text = UiText.Translate("Time");
             // 
             // numericUpDown3
             // 
@@ -107,7 +108,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Name = "Joy_Do_Repeat_Relay";
-            this.Text = "Joy_Do_Repeat_Relay";
+            this.Text = UiText.Translate("Joy_Do_Repeat_Relay");
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();

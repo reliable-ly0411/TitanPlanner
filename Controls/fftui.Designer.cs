@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class fftui
     {
@@ -99,7 +100,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Bins";
+            this.label1.Text = UiText.Translate("Bins");
             // 
             // label2
             // 
@@ -109,7 +110,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Start Freq";
+            this.label2.Text = UiText.Translate("Start Freq");
             // 
             // NUM_startfreq
             // 
@@ -132,7 +133,7 @@
             this.chk_mag.Name = "chk_mag";
             this.chk_mag.Size = new System.Drawing.Size(76, 17);
             this.chk_mag.TabIndex = 11;
-            this.chk_mag.Text = "Magnitude";
+            this.chk_mag.Text = UiText.Translate("Magnitude");
             this.chk_mag.UseVisualStyleBackColor = true;
             this.chk_mag.CheckedChanged += new System.EventHandler(this.chk_mag_CheckedChanged);
             // 
@@ -143,7 +144,7 @@
             this.but_ISBH.Name = "but_ISBH";
             this.but_ISBH.Size = new System.Drawing.Size(75, 32);
             this.but_ISBH.TabIndex = 10;
-            this.but_ISBH.Text = "IMU Batch Sample";
+            this.but_ISBH.Text = UiText.Translate("IMU Batch Sample");
             this.but_ISBH.UseVisualStyleBackColor = true;
             this.but_ISBH.Click += new System.EventHandler(this.but_ISBH_Click);
             // 
@@ -154,7 +155,7 @@
             this.but_fftimu13.Name = "but_fftimu13";
             this.but_fftimu13.Size = new System.Drawing.Size(75, 32);
             this.but_fftimu13.TabIndex = 9;
-            this.but_fftimu13.Text = "Run all imus - IMU1-3 MSG";
+            this.but_fftimu13.Text = UiText.Translate("Run all imus - IMU1-3 MSG");
             this.but_fftimu13.UseVisualStyleBackColor = true;
             this.but_fftimu13.Click += new System.EventHandler(this.but_fftimu13_Click);
             // 
@@ -165,7 +166,7 @@
             this.BUT_accgyrall.Name = "BUT_accgyrall";
             this.BUT_accgyrall.Size = new System.Drawing.Size(87, 32);
             this.BUT_accgyrall.TabIndex = 8;
-            this.BUT_accgyrall.Text = "Run all imus - ACC GYR MSG";
+            this.BUT_accgyrall.Text = UiText.Translate("Run all imus - ACC GYR MSG");
             this.BUT_accgyrall.UseVisualStyleBackColor = true;
             this.BUT_accgyrall.Click += new System.EventHandler(this.BUT_accgyrall_Click);
             // 
@@ -176,7 +177,7 @@
             this.but_accgyr1.Name = "but_accgyr1";
             this.but_accgyr1.Size = new System.Drawing.Size(99, 33);
             this.but_accgyr1.TabIndex = 2;
-            this.but_accgyr1.Text = "Run Log - imu1 ACC1 GYR1 MSG";
+            this.but_accgyr1.Text = UiText.Translate("Run Log - imu1 ACC1 GYR1 MSG");
             this.but_accgyr1.UseVisualStyleBackColor = true;
             this.but_accgyr1.Click += new System.EventHandler(this.acc1gyr1myButton1_Click);
             // 
@@ -187,7 +188,7 @@
             this.BUT_runwav.Name = "BUT_runwav";
             this.BUT_runwav.Size = new System.Drawing.Size(75, 33);
             this.BUT_runwav.TabIndex = 1;
-            this.BUT_runwav.Text = "Run 16bit Mono Wav";
+            this.BUT_runwav.Text = UiText.Translate("Run 16bit Mono Wav");
             this.BUT_runwav.UseVisualStyleBackColor = true;
             this.BUT_runwav.Click += new System.EventHandler(this.BUT_runwav_Click);
             // 
@@ -206,7 +207,7 @@
             this.Controls.Add(this.but_accgyr1);
             this.Controls.Add(this.BUT_runwav);
             this.Name = "fftui";
-            this.Text = "fftui";
+            this.Text = UiText.Translate("fftui");
             this.Resize += new System.EventHandler(this.fftui_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NUM_bins)).EndInit();

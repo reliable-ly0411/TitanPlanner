@@ -152,7 +152,7 @@ namespace MissionPlanner.Controls
             Control sourcectl = ((ContextMenuStrip)renameToolStripMenuItem.Owner).SourceControl;
 
             string desc = sourcectl.Text;
-            MissionPlanner.Controls.InputBox.Show("Description", "Enter new Description", ref desc);
+            MissionPlanner.Controls.InputBox.Show(UiText.Translate("Description"), UiText.Translate("Enter new Description"), ref desc);
             sourcectl.Text = desc;
 
             if (sourcectl == BUT_High)

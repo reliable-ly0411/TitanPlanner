@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MissionPlanner.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -268,7 +269,7 @@ namespace MissionPlanner.Controls
             }
             else
             {
-                MessageBox.Show("File does not exist");
+                MessageBox.Show(UiText.Translate("File does not exist"));
             }
         }
 
@@ -285,7 +286,7 @@ namespace MissionPlanner.Controls
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                    CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                     return;
                 }
                 mine.logreadmode = true;
@@ -807,7 +808,7 @@ namespace MissionPlanner.Controls
         {
             hud1.Invalidate();
 
-            label1.Text = "time offset in seconds " + trackBar1.Value;
+            label1.Text = UiText.Translate("time offset in seconds ") + trackBar1.Value;
 
             saveconfig();
         }

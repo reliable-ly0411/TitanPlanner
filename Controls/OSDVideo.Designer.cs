@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class OSDVideo
     {
@@ -91,7 +92,7 @@
             this.BUT_tlogfile.Name = "BUT_tlogfile";
             this.BUT_tlogfile.Size = new System.Drawing.Size(75, 19);
             this.BUT_tlogfile.TabIndex = 6;
-            this.BUT_tlogfile.Text = "Browse Tlog";
+            this.BUT_tlogfile.Text = UiText.Translate("Browse Tlog");
             this.BUT_tlogfile.UseVisualStyleBackColor = true;
             this.BUT_tlogfile.Click += new System.EventHandler(this.BUT_tlogfile_Click);
             // 
@@ -194,7 +195,7 @@
             this.BUT_vidfile.Name = "BUT_vidfile";
             this.BUT_vidfile.Size = new System.Drawing.Size(75, 19);
             this.BUT_vidfile.TabIndex = 2;
-            this.BUT_vidfile.Text = "Browse Video";
+            this.BUT_vidfile.Text = UiText.Translate("Browse Video");
             this.BUT_vidfile.UseVisualStyleBackColor = true;
             this.BUT_vidfile.Click += new System.EventHandler(this.BUT_vidfile_Click);
             // 
@@ -205,7 +206,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(118, 294);
             this.textBox1.TabIndex = 9;
-            this.textBox1.Text = "Please make sure you have installed\r\nffdshow\r\nand haali media splitter.";
+            this.textBox1.Text = UiText.Translate("Please make sure you have installed\r\nffdshow\r\nand haali media splitter.");
             // 
             // CHK_fullres
             // 
@@ -214,7 +215,7 @@
             this.CHK_fullres.Name = "CHK_fullres";
             this.CHK_fullres.Size = new System.Drawing.Size(64, 17);
             this.CHK_fullres.TabIndex = 10;
-            this.CHK_fullres.Text = "Full Res";
+            this.CHK_fullres.Text = UiText.Translate("Full Res");
             this.CHK_fullres.UseVisualStyleBackColor = true;
             this.CHK_fullres.CheckedChanged += new System.EventHandler(this.CHK_fullres_CheckedChanged);
             // 
@@ -225,7 +226,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 11;
-            this.label1.Text = "time offset in seconds";
+            this.label1.Text = UiText.Translate("time offset in seconds");
             // 
             // label2
             // 
@@ -234,7 +235,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "playback timeline";
+            this.label2.Text = UiText.Translate("playback timeline");
             // 
             // OSDVideo
             // 
@@ -254,7 +255,7 @@
             this.Controls.Add(this.BUT_vidfile);
             this.Controls.Add(this.txtAviFileName);
             this.Name = "OSDVideo";
-            this.Text = "OSDVideo";
+            this.Text = UiText.Translate("OSDVideo");
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OSDVideo_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_mediapos)).EndInit();

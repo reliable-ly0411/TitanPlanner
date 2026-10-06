@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigPlanner
     {
@@ -897,13 +898,13 @@
             //
             this.label_customicon.AutoSize = true;
             this.label_customicon.Name = "label_customicon";
-            this.label_customicon.Text = "Custom Icon";
+            this.label_customicon.Text = UiText.Translate("Custom Icon");
             //
             // BUT_customicon
             //
             this.BUT_customicon.Name = "BUT_customicon";
             this.BUT_customicon.Size = new System.Drawing.Size(150, 23);
-            this.BUT_customicon.Text = "Set";
+            this.BUT_customicon.Text = UiText.Translate("Set");
             this.BUT_customicon.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.BUT_customicon.UseVisualStyleBackColor = true;
             this.BUT_customicon.Click += new System.EventHandler(this.BUT_customicon_Click);
@@ -912,7 +913,7 @@
             //
             this.label_configprofile.AutoSize = true;
             this.label_configprofile.Name = "label_configprofile";
-            this.label_configprofile.Text = "Configuration";
+            this.label_configprofile.Text = UiText.Translate("Configuration");
             //
             // CMB_configprofile
             //
@@ -932,7 +933,7 @@
             //
             this.BUT_saveconfig.Name = "BUT_saveconfig";
             this.BUT_saveconfig.Size = new System.Drawing.Size(75, 23);
-            this.BUT_saveconfig.Text = "Save As";
+            this.BUT_saveconfig.Text = UiText.Translate("Save As");
             this.BUT_saveconfig.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.BUT_saveconfig.UseVisualStyleBackColor = true;
             this.BUT_saveconfig.Click += new System.EventHandler(this.BUT_saveconfig_Click);

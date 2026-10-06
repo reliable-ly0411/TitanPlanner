@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigHWCompass2
     {
@@ -88,8 +89,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(438, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Set the Compass Priority by reordering the compasses in the table below (Highest " +
-    "at the top)\r\n";
+            this.label1.Text = UiText.Translate("Set the Compass Priority by reordering the compasses in the table below (Highest at the top)\r\n");
             // 
             // label6
             // 
@@ -99,7 +99,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(583, 22);
             this.label6.TabIndex = 80;
-            this.label6.Text = "Compass Priority";
+            this.label6.Text = UiText.Translate("Compass Priority");
             // 
             // groupBox5
             // 
@@ -134,7 +134,7 @@
             this.groupBoxonboardcalib.Size = new System.Drawing.Size(600, 162);
             this.groupBoxonboardcalib.TabIndex = 81;
             this.groupBoxonboardcalib.TabStop = false;
-            this.groupBoxonboardcalib.Text = "Onboard Mag Calibration";
+            this.groupBoxonboardcalib.Text = UiText.Translate("Onboard Mag Calibration");
             // 
             // pictureBox3
             // 
@@ -170,7 +170,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(181, 13);
             this.label2.TabIndex = 17;
-            this.label2.Text = "Relax fitness if calibration fails";
+            this.label2.Text = UiText.Translate("Relax fitness if calibration fails");
             // 
             // label10
             // 
@@ -180,7 +180,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(40, 13);
             this.label10.TabIndex = 16;
-            this.label10.Text = "Fitness";
+            this.label10.Text = UiText.Translate("Fitness");
             // 
             // mavlinkComboBoxfitness
             // 
@@ -202,7 +202,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 14;
-            this.label9.Text = "Mag 3";
+            this.label9.Text = UiText.Translate("Mag 3");
             // 
             // label8
             // 
@@ -212,7 +212,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 13;
-            this.label8.Text = "Mag 2";
+            this.label8.Text = UiText.Translate("Mag 2");
             // 
             // label7
             // 
@@ -222,7 +222,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 13);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Mag 1";
+            this.label7.Text = UiText.Translate("Mag 1");
             // 
             // horizontalProgressBar3
             // 
@@ -279,7 +279,7 @@
             this.BUT_OBmagcalaccept.Name = "BUT_OBmagcalaccept";
             this.BUT_OBmagcalaccept.Size = new System.Drawing.Size(75, 23);
             this.BUT_OBmagcalaccept.TabIndex = 1;
-            this.BUT_OBmagcalaccept.Text = "Accept";
+            this.BUT_OBmagcalaccept.Text = UiText.Translate("Accept");
             this.BUT_OBmagcalaccept.UseVisualStyleBackColor = true;
             this.BUT_OBmagcalaccept.Click += new System.EventHandler(this.BUT_OBmagcalaccept_Click);
             // 
@@ -291,7 +291,7 @@
             this.BUT_OBmagcalcancel.Name = "BUT_OBmagcalcancel";
             this.BUT_OBmagcalcancel.Size = new System.Drawing.Size(75, 23);
             this.BUT_OBmagcalcancel.TabIndex = 2;
-            this.BUT_OBmagcalcancel.Text = "Cancel";
+            this.BUT_OBmagcalcancel.Text = UiText.Translate("Cancel");
             this.BUT_OBmagcalcancel.UseVisualStyleBackColor = true;
             this.BUT_OBmagcalcancel.Click += new System.EventHandler(this.BUT_OBmagcalcancel_Click);
             // 
@@ -302,7 +302,7 @@
             this.BUT_OBmagcalstart.Name = "BUT_OBmagcalstart";
             this.BUT_OBmagcalstart.Size = new System.Drawing.Size(75, 23);
             this.BUT_OBmagcalstart.TabIndex = 0;
-            this.BUT_OBmagcalstart.Text = "Start";
+            this.BUT_OBmagcalstart.Text = UiText.Translate("Start");
             this.BUT_OBmagcalstart.UseVisualStyleBackColor = true;
             this.BUT_OBmagcalstart.Click += new System.EventHandler(this.BUT_OBmagcalstart_Click);
             // 
@@ -317,7 +317,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(255, 13);
             this.label3.TabIndex = 85;
-            this.label3.Text = "Do you want to disable any of the first 3 compasses?";
+            this.label3.Text = UiText.Translate("Do you want to disable any of the first 3 compasses?");
             // 
             // but_largemagcal
             // 
@@ -326,7 +326,7 @@
             this.but_largemagcal.Name = "but_largemagcal";
             this.but_largemagcal.Size = new System.Drawing.Size(135, 23);
             this.but_largemagcal.TabIndex = 21;
-            this.but_largemagcal.Text = "Large Vehicle MagCal";
+            this.but_largemagcal.Text = UiText.Translate("Large Vehicle MagCal");
             this.but_largemagcal.UseVisualStyleBackColor = true;
             this.but_largemagcal.Click += new System.EventHandler(this.but_largemagcal_Click);
             // 
@@ -337,7 +337,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(281, 13);
             this.label4.TabIndex = 86;
-            this.label4.Text = "A mag calibration is required to remap the above changes.";
+            this.label4.Text = UiText.Translate("A mag calibration is required to remap the above changes.");
             // 
             // but_reboot
             // 
@@ -345,7 +345,7 @@
             this.but_reboot.Name = "but_reboot";
             this.but_reboot.Size = new System.Drawing.Size(75, 23);
             this.but_reboot.TabIndex = 88;
-            this.but_reboot.Text = "Reboot";
+            this.but_reboot.Text = UiText.Translate("Reboot");
             this.but_reboot.UseVisualStyleBackColor = true;
             this.but_reboot.Click += new System.EventHandler(this.but_reboot_Click);
             // 
@@ -356,7 +356,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(203, 13);
             this.label5.TabIndex = 89;
-            this.label5.Text = "A reboot is required to adjust the ordering.\r\n";
+            this.label5.Text = UiText.Translate("A reboot is required to adjust the ordering.\r\n");
             // 
             // mavlinkCheckBoxUseCompass3
             // 
@@ -369,7 +369,7 @@
             this.mavlinkCheckBoxUseCompass3.ParamName = null;
             this.mavlinkCheckBoxUseCompass3.Size = new System.Drawing.Size(100, 17);
             this.mavlinkCheckBoxUseCompass3.TabIndex = 83;
-            this.mavlinkCheckBoxUseCompass3.Text = "Use Compass 3";
+            this.mavlinkCheckBoxUseCompass3.Text = UiText.Translate("Use Compass 3");
             this.mavlinkCheckBoxUseCompass3.UseVisualStyleBackColor = true;
             // 
             // mavlinkCheckBoxUseCompass2
@@ -383,7 +383,7 @@
             this.mavlinkCheckBoxUseCompass2.ParamName = null;
             this.mavlinkCheckBoxUseCompass2.Size = new System.Drawing.Size(100, 17);
             this.mavlinkCheckBoxUseCompass2.TabIndex = 84;
-            this.mavlinkCheckBoxUseCompass2.Text = "Use Compass 2";
+            this.mavlinkCheckBoxUseCompass2.Text = UiText.Translate("Use Compass 2");
             this.mavlinkCheckBoxUseCompass2.UseVisualStyleBackColor = true;
             // 
             // CHK_compass_learn
@@ -397,7 +397,7 @@
             this.CHK_compass_learn.ParamName = null;
             this.CHK_compass_learn.Size = new System.Drawing.Size(148, 17);
             this.CHK_compass_learn.TabIndex = 87;
-            this.CHK_compass_learn.Text = "Automatically learn offsets";
+            this.CHK_compass_learn.Text = UiText.Translate("Automatically learn offsets");
             this.CHK_compass_learn.UseVisualStyleBackColor = true;
             // 
             // mavlinkCheckBoxUseCompass1
@@ -411,7 +411,7 @@
             this.mavlinkCheckBoxUseCompass1.ParamName = null;
             this.mavlinkCheckBoxUseCompass1.Size = new System.Drawing.Size(100, 17);
             this.mavlinkCheckBoxUseCompass1.TabIndex = 82;
-            this.mavlinkCheckBoxUseCompass1.Text = "Use Compass 1";
+            this.mavlinkCheckBoxUseCompass1.Text = UiText.Translate("Use Compass 1");
             this.mavlinkCheckBoxUseCompass1.UseVisualStyleBackColor = true;
             // 
             // myDataGridView1
@@ -449,7 +449,7 @@
             // 
             // Priority
             // 
-            this.Priority.HeaderText = "Priority";
+            this.Priority.HeaderText = UiText.Translate("Priority");
             this.Priority.Name = "Priority";
             this.Priority.ReadOnly = true;
             this.Priority.Width = 50;
@@ -457,7 +457,7 @@
             // devIDDataGridViewTextBoxColumn
             // 
             this.devIDDataGridViewTextBoxColumn.DataPropertyName = "DevID";
-            this.devIDDataGridViewTextBoxColumn.HeaderText = "DevID";
+            this.devIDDataGridViewTextBoxColumn.HeaderText = UiText.Translate("DevID");
             this.devIDDataGridViewTextBoxColumn.Name = "devIDDataGridViewTextBoxColumn";
             this.devIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.devIDDataGridViewTextBoxColumn.Width = 50;
@@ -465,7 +465,7 @@
             // busTypeDataGridViewTextBoxColumn
             // 
             this.busTypeDataGridViewTextBoxColumn.DataPropertyName = "BusType";
-            this.busTypeDataGridViewTextBoxColumn.HeaderText = "BusType";
+            this.busTypeDataGridViewTextBoxColumn.HeaderText = UiText.Translate("BusType");
             this.busTypeDataGridViewTextBoxColumn.Name = "busTypeDataGridViewTextBoxColumn";
             this.busTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.busTypeDataGridViewTextBoxColumn.Width = 60;
@@ -473,7 +473,7 @@
             // busDataGridViewTextBoxColumn
             // 
             this.busDataGridViewTextBoxColumn.DataPropertyName = "Bus";
-            this.busDataGridViewTextBoxColumn.HeaderText = "Bus";
+            this.busDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Bus");
             this.busDataGridViewTextBoxColumn.Name = "busDataGridViewTextBoxColumn";
             this.busDataGridViewTextBoxColumn.ReadOnly = true;
             this.busDataGridViewTextBoxColumn.Width = 50;
@@ -481,7 +481,7 @@
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Address");
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             this.addressDataGridViewTextBoxColumn.Width = 50;
@@ -489,7 +489,7 @@
             // devTypeDataGridViewTextBoxColumn
             // 
             this.devTypeDataGridViewTextBoxColumn.DataPropertyName = "DevType";
-            this.devTypeDataGridViewTextBoxColumn.HeaderText = "DevType";
+            this.devTypeDataGridViewTextBoxColumn.HeaderText = UiText.Translate("DevType");
             this.devTypeDataGridViewTextBoxColumn.Name = "devTypeDataGridViewTextBoxColumn";
             this.devTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.devTypeDataGridViewTextBoxColumn.Width = 150;
@@ -497,7 +497,7 @@
             // Missing
             // 
             this.Missing.DataPropertyName = "Missing";
-            this.Missing.HeaderText = "Missing";
+            this.Missing.HeaderText = UiText.Translate("Missing");
             this.Missing.Name = "Missing";
             this.Missing.ReadOnly = true;
             this.Missing.Width = 50;
@@ -505,7 +505,7 @@
             // External
             // 
             this.External.DataPropertyName = "External";
-            this.External.HeaderText = "External";
+            this.External.HeaderText = UiText.Translate("External");
             this.External.Name = "External";
             this.External.ReadOnly = true;
             this.External.Width = 50;
@@ -513,13 +513,13 @@
             // Orientation
             // 
             this.Orientation.DataPropertyName = "Orient";
-            this.Orientation.HeaderText = "Orientation";
+            this.Orientation.HeaderText = UiText.Translate("Orientation");
             this.Orientation.Name = "Orientation";
             this.Orientation.ReadOnly = true;
             // 
             // Up
             // 
-            this.Up.HeaderText = "Up";
+            this.Up.HeaderText = UiText.Translate("Up");
             this.Up.Image = global::MissionPlanner.Properties.Resources.up;
             this.Up.Name = "Up";
             this.Up.ReadOnly = true;
@@ -527,7 +527,7 @@
             // 
             // Down
             // 
-            this.Down.HeaderText = "Down";
+            this.Down.HeaderText = UiText.Translate("Down");
             this.Down.Image = global::MissionPlanner.Properties.Resources.down;
             this.Down.Name = "Down";
             this.Down.ReadOnly = true;
@@ -544,7 +544,7 @@
             this.but_missing.Name = "but_missing";
             this.but_missing.Size = new System.Drawing.Size(115, 23);
             this.but_missing.TabIndex = 90;
-            this.but_missing.Text = "Remove Missing";
+            this.but_missing.Text = UiText.Translate("Remove Missing");
             this.but_missing.UseVisualStyleBackColor = true;
             this.but_missing.Click += new System.EventHandler(this.but_missing_ClickAsync);
             // 

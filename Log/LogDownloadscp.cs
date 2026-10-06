@@ -70,7 +70,7 @@ namespace MissionPlanner.Log
 
             //solo - root:TjSDBkAu@10.1.1.10:/log/dataflash/
 
-            InputBox.Show("", "Please enter scp path eg (user:password@host:/dir/path/to/files/)", ref path);
+            InputBox.Show("", UiText.Translate("Please enter scp path eg (user:password@host:/dir/path/to/files/)"), ref path);
 
             Uri ur = new Uri("http://" + path);
 
@@ -266,7 +266,7 @@ namespace MissionPlanner.Log
                 }
                 catch
                 {
-                    CustomMessageBox.Show(Strings.ErrorRenameFile + " " + logfile + "\nto " + newlogfilename,
+                    CustomMessageBox.Show(Strings.ErrorRenameFile + " " + logfile + UiText.Translate("\nto ") + newlogfilename,
                         Strings.ERROR);
                 }
             }
@@ -293,7 +293,7 @@ namespace MissionPlanner.Log
         {
             if (status == SerialStatus.Reading)
             {
-                if (CustomMessageBox.Show(LogStrings.CancelDownload, "Cancel Download", MessageBoxButtons.YesNo) ==
+                if (CustomMessageBox.Show(LogStrings.CancelDownload, UiText.Translate("Cancel Download"), MessageBoxButtons.YesNo) ==
                     (int)System.Windows.Forms.DialogResult.No)
                 {
                     e.Cancel = true;
@@ -451,7 +451,7 @@ namespace MissionPlanner.Log
 
         private void BUT_clearlogs_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show(LogStrings.Confirmation, "sure", MessageBoxButtons.YesNo) ==
+            if (CustomMessageBox.Show(LogStrings.Confirmation, UiText.Translate("sure"), MessageBoxButtons.YesNo) ==
                 (int)System.Windows.Forms.DialogResult.Yes)
             {
                 try

@@ -273,7 +273,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                     catch (Exception ex)
                     {
                         log.Error(ex);
-                        CustomMessageBox.Show("Failed to load Base Position List\n" + ex.ToString(), Strings.ERROR);
+                        CustomMessageBox.Show(UiText.Translate("Failed to load Base Position List\n") + ex.ToString(), Strings.ERROR);
                     }
                 }
             }
@@ -441,12 +441,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 catch (Exception ex2)
                 {
-                    CustomMessageBox.Show("Error creating file to save base data into " + ex2.ToString());
+                    CustomMessageBox.Show(UiText.Translate("Error creating file to save base data into ") + ex2.ToString());
                 }
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Error Connecting\nif using com0com please rename the ports to COM??\n" +
+                CustomMessageBox.Show(UiText.Translate("Error Connecting\nif using com0com please rename the ports to COM??\n") +
                                       ex.ToString());
                 return;
             }
@@ -463,7 +463,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch (Exception ex)
                 {
                     log.Error(ex);
-                    CustomMessageBox.Show("Error configuring\n" +
+                    CustomMessageBox.Show(UiText.Translate("Error configuring\n") +
                                           ex.ToString());
                     return;
                 }
@@ -533,17 +533,17 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Utilities.Septentrio.FailedAckException)
             {
                 this.LogError("Automatic configuration of Unicore receiver failed");
-                CustomMessageBox.Show("Automatic configuration of Unicore receiver failed.");
+                CustomMessageBox.Show(UiText.Translate("Automatic configuration of Unicore receiver failed."));
             }
             catch (InvalidOperationException)
             {
                 this.LogError("Unicore fixed base position is invalid");
-                CustomMessageBox.Show("Unicore fixed base position is invalid.");
+                CustomMessageBox.Show(UiText.Translate("Unicore fixed base position is invalid."));
             }
             catch (FormatException)
             {
                 this.LogError("Unicore fixed base position is invalid");
-                CustomMessageBox.Show("Unicore fixed base position is invalid.");
+                CustomMessageBox.Show(UiText.Translate("Unicore fixed base position is invalid."));
             }
         }
 
@@ -565,17 +565,17 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Utilities.Septentrio.FailedAckException)
             {
                 this.LogError("Automatic configuration of Septentrio receiver failed");
-                CustomMessageBox.Show("Automatic configuration of Septentrio receiver failed.");
+                CustomMessageBox.Show(UiText.Translate("Automatic configuration of Septentrio receiver failed."));
             }
             catch (InvalidOperationException)
             {
                 this.LogError("Septentrio fixed base position is invalid");
-                CustomMessageBox.Show("Septentrio fixed base position is invalid.");
+                CustomMessageBox.Show(UiText.Translate("Septentrio fixed base position is invalid."));
             }
             catch (FormatException)
             {
                 this.LogError("Septentrio fixed base position is invalid");
-                CustomMessageBox.Show("Septentrio fixed base position is invalid.");
+                CustomMessageBox.Show(UiText.Translate("Septentrio fixed base position is invalid."));
             }
 
             this.BeginInvokeIfRequired(new Action(() => CMB_baudrate.Text = $"{Utilities.Septentrio.DefaultBaudrate}"));
@@ -1004,7 +1004,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                                 Instance.label9.Visible = true;
                                 Instance.label10.Visible = true;
 
-                                Instance.lbl_svin.Text = valid ? "Postion is valid" : "Position is invalid";
+                                Instance.lbl_svin.Text = valid ? UiText.Translate("Postion is valid") : UiText.Translate("Position is invalid");
                                 if (valid)
                                     Instance.lbl_svin.BackColor = Color.Green;
                                 else
@@ -1013,10 +1013,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                                 if (!valid)
                                 {
                                     Instance.label7.Text = active
-                                        ? "In Progress"
-                                        : "Complete";
-                                    Instance.label8.Text = "Duration: " + dur;
-                                    Instance.label9.Text = "Observations: " + obs;
+                                        ? UiText.Translate("In Progress")
+                                        : UiText.Translate("Complete");
+                                    Instance.label8.Text = UiText.Translate("Duration: ") + dur;
+                                    Instance.label9.Text = UiText.Translate("Observations: ") + obs;
                                 }
                                 else
                                 {
@@ -1024,19 +1024,19 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                                     Utilities.rtcm3.ecef2pos(ubxsvin.getECEF(), ref posllh);
 
-                                    Instance.label7.Text = "Lat/X: " + posllh[0] * MathHelper.rad2deg;
-                                    Instance.label8.Text = "Lng/Y: " + posllh[1] * MathHelper.rad2deg;
-                                    Instance.label9.Text = "Alt/Z: " + posllh[2];
+                                    Instance.label7.Text = UiText.Translate("Lat/X: ") + posllh[0] * MathHelper.rad2deg;
+                                    Instance.label8.Text = UiText.Translate("Lng/Y: ") + posllh[1] * MathHelper.rad2deg;
+                                    Instance.label9.Text = UiText.Translate("Alt/Z: ") + posllh[2];
                                     Instance.label7.Visible = true;
                                     Instance.label8.Visible = true;
                                     Instance.label9.Visible = true;
                                 }
-                                Instance.label10.Text = "Current Acc: " + acc;
+                                Instance.label10.Text = UiText.Translate("Current Acc: ") + acc;
                             }
                             else
                             {
                                 Instance.lbl_svin.Visible = true;
-                                Instance.lbl_svin.Text = "Using " + (Ubx.ubx_cfg_tmode3.modeflags)ubxmode.flags;
+                                Instance.lbl_svin.Text = UiText.Translate("Using ") + (Ubx.ubx_cfg_tmode3.modeflags)ubxmode.flags;
                                 Instance.lbl_svin.BackColor = Color.Green;
                                 Instance.label7.Visible = false;
                                 Instance.label8.Visible = false;
@@ -1044,9 +1044,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                                 var pnt = ubxmode.getPointLatLngAlt();
                                 if (pnt != null)
                                 {
-                                    Instance.label7.Text = "Lat/X: " + pnt.Lat;
-                                    Instance.label8.Text = "Lng/Y: " + pnt.Lng;
-                                    Instance.label9.Text = "Alt/Z: " + pnt.Alt;
+                                    Instance.label7.Text = UiText.Translate("Lat/X: ") + pnt.Lat;
+                                    Instance.label8.Text = UiText.Translate("Lng/Y: ") + pnt.Lng;
+                                    Instance.label9.Text = UiText.Translate("Alt/Z: ") + pnt.Alt;
                                     Instance.label7.Visible = true;
                                     Instance.label8.Visible = true;
                                     Instance.label9.Visible = true;
@@ -1261,12 +1261,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             if (MainV2.comPort.MAV.cs.Base == null)
             {
-                CustomMessageBox.Show("No valid base position determined by gps yet", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("No valid base position determined by gps yet"), Strings.ERROR);
                 return;
             }
 
             string location = "";
-            if (InputBox.Show("Enter Location", "Enter a friendly name for this location.", ref location) ==
+            if (InputBox.Show(UiText.Translate("Enter Location"), UiText.Translate("Enter a friendly name for this location."), ref location) ==
                 DialogResult.OK)
             {
                 var basepos = MainV2.comPort.MAV.cs.Base;
@@ -1414,7 +1414,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch (Exception ex)
                 {
                     log.Error(ex);
-                    CustomMessageBox.Show("Error configuring\n" +
+                    CustomMessageBox.Show(UiText.Translate("Error configuring\n") +
                                           ex.ToString());
                     return;
                 }
@@ -1435,7 +1435,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private void chk_movingbase_CheckedChanged(object sender, EventArgs e)
         {
             if (comPort.IsOpen)
-                CustomMessageBox.Show("Please Disconnect and Reconnect to apply this change.");
+                CustomMessageBox.Show(UiText.Translate("Please Disconnect and Reconnect to apply this change."));
         }
 
         private void comboBoxConfigType_SelectedIndexChanged(object sender, EventArgs e)
@@ -1469,7 +1469,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Utilities.Septentrio.FailedAckException)
             {
                 this.LogError("Configuration of fixed position on Septentrio receiver failed");
-                CustomMessageBox.Show("Configuration of fixed position on Septentrio receiver failed.");
+                CustomMessageBox.Show(UiText.Translate("Configuration of fixed position on Septentrio receiver failed."));
             }
             catch (FormatException) { }
             catch (InvalidOperationException) { }
@@ -1486,7 +1486,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             } catch (Utilities.Septentrio.FailedAckException)
             {
                 this.LogError("Configuration of fixed position on Septentrio receiver failed");
-                CustomMessageBox.Show("Configuration of fixed position on Septentrio receiver failed.");
+                CustomMessageBox.Show(UiText.Translate("Configuration of fixed position on Septentrio receiver failed."));
             }
         }
 
@@ -1531,7 +1531,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Utilities.Septentrio.FailedAckException)
             {
                 this.LogError("Configuration of fixed position on Septentrio receiver failed");
-                CustomMessageBox.Show("Configuration of fixed position on Septentrio receiver failed.");
+                CustomMessageBox.Show(UiText.Translate("Configuration of fixed position on Septentrio receiver failed."));
             }
             catch (FormatException) { }
             catch (InvalidOperationException) { }
@@ -1603,7 +1603,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             catch (Utilities.Septentrio.FailedAckException)
             {
                 this.LogError("Configuration of RTCM interval on Septentrio receiver failed");
-                CustomMessageBox.Show("Configuration of RTCM interval on Septentrio receiver failed.");
+                CustomMessageBox.Show(UiText.Translate("Configuration of RTCM interval on Septentrio receiver failed."));
             }
             catch (FormatException ex) {
                 log.Error(ex.Message);

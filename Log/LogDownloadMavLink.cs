@@ -53,7 +53,7 @@ namespace MissionPlanner.Log
             LoadLogList();
 
             if (MainV2.comPort.MAV.cs.armed)
-                CustomMessageBox.Show("Please disarm the drone before downloading logs!", Strings.ERROR);
+                CustomMessageBox.Show(UiText.Translate("Please disarm the drone before downloading logs!"), Strings.ERROR);
         }
 
         void LoadLogList()
@@ -223,7 +223,7 @@ namespace MissionPlanner.Log
             }
             catch
             {
-                CustomMessageBox.Show(Strings.ErrorRenameFile + " " + logfile + "\nto " + logfile,
+                CustomMessageBox.Show(Strings.ErrorRenameFile + " " + logfile + UiText.Translate("\nto ") + logfile,
                     Strings.ERROR);
             }
 
@@ -251,7 +251,7 @@ namespace MissionPlanner.Log
                 }
                 catch
                 {
-                    CustomMessageBox.Show(Strings.ErrorRenameFile + " " + logfile + "\nto " + newlogfilename,
+                    CustomMessageBox.Show(Strings.ErrorRenameFile + " " + logfile + UiText.Translate("\nto ") + newlogfilename,
                         Strings.ERROR);
                 }
             }
@@ -273,7 +273,7 @@ namespace MissionPlanner.Log
         {
             if (status == SerialStatus.Reading)
             {
-                if (CustomMessageBox.Show(LogStrings.CancelDownload, "Cancel Download", MessageBoxButtons.YesNo) ==
+                if (CustomMessageBox.Show(LogStrings.CancelDownload, UiText.Translate("Cancel Download"), MessageBoxButtons.YesNo) ==
                     (int)System.Windows.Forms.DialogResult.No)
                 {
                     e.Cancel = true;
@@ -415,7 +415,7 @@ namespace MissionPlanner.Log
                     labelBytes.Text = MissionPlanner.Controls.ConnectionStats.ToHumanReadableByteCount((int)current) + " "
                     + per.ToString("N1") + "% "
                     + MissionPlanner.Controls.ConnectionStats.ToHumanReadableByteCount((int)avgbps) + "/s "
-                    + (remaining.Day > 1 || remaining.Hour > 0 ? ((remaining.Day - 1) * 24 + remaining.Hour).ToString() + ":" : "") + remaining.ToString("mm:ss") + " left";
+                    + (remaining.Day > 1 || remaining.Hour > 0 ? ((remaining.Day - 1) * 24 + remaining.Hour).ToString() + ":" : "") + remaining.ToString("mm:ss") + UiText.Translate(" left");
                 }
                 else
                 {
@@ -449,7 +449,7 @@ namespace MissionPlanner.Log
 
         private void BUT_clearlogs_Click(object sender, EventArgs e)
         {
-            if (CustomMessageBox.Show(LogStrings.Confirmation, "sure", MessageBoxButtons.YesNo) ==
+            if (CustomMessageBox.Show(LogStrings.Confirmation, UiText.Translate("sure"), MessageBoxButtons.YesNo) ==
                 (int)System.Windows.Forms.DialogResult.Yes)
             {
                 try

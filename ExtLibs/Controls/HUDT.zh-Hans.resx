@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -154,12 +154,8 @@
   <data name="GPS4" xml:space="preserve">
     <value>GPS: 3D DGPS</value>
   </data>
-  <data name="GPS5" xml:space="preserve">
-    <value>GPS: rtk Float</value>
-  </data>
-  <data name="GPS6" xml:space="preserve">
-    <value>GPS: rtk Fixed</value>
-  </data>
+  <data name="GPS5" xml:space="preserve"><value>GPS: RTK 浮点解</value></data>
+  <data name="GPS6" xml:space="preserve"><value>GPS: RTK 固定解</value></data>
   <data name="GS" xml:space="preserve">
     <value>地速 </value>
   </data>
@@ -172,4 +168,13 @@
   <data name="SAFE" xml:space="preserve">
     <value>安全</value>
   </data>
+  <data name="Cell" xml:space="preserve"><value>单节</value></data>
+  <data name="N" xml:space="preserve"><value>北</value></data>
+  <data name="NE" xml:space="preserve"><value>东北</value></data>
+  <data name="E" xml:space="preserve"><value>东</value></data>
+  <data name="SE" xml:space="preserve"><value>东南</value></data>
+  <data name="S" xml:space="preserve"><value>南</value></data>
+  <data name="SW" xml:space="preserve"><value>西南</value></data>
+  <data name="W" xml:space="preserve"><value>西</value></data>
+  <data name="NW" xml:space="preserve"><value>西北</value></data>
 </root>

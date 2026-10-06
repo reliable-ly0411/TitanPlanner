@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner
 {
     partial class Splash
     {
@@ -46,7 +47,7 @@
             this.label1.Size = new System.Drawing.Size(364, 17);
             this.label1.TabIndex = 0;
             this.label1.Tag = "custom";
-            this.label1.Text = "by Michael Oborne | Modified by Mohammad Adib";
+            this.label1.Text = UiText.Translate("by Michael Oborne | Modified by Mohammad Adib");
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // TXT_version

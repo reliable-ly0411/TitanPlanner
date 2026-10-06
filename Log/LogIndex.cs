@@ -139,7 +139,7 @@ namespace MissionPlanner.Log
                     catch (Exception ex)
                     {
                         log.Debug(ex.ToString());
-                        CustomMessageBox.Show("Log Can not be opened. Are you still connected?");
+                        CustomMessageBox.Show(UiText.Translate("Log Can not be opened. Are you still connected?"));
                         return;
                     }
                     mine.logreadmode = true;

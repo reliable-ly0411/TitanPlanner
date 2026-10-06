@@ -76,7 +76,7 @@ namespace MissionPlanner.Controls
             this.labelVideoDevice.Name = "labelVideoDevice";
             this.labelVideoDevice.Size = new System.Drawing.Size(89, 16);
             this.labelVideoDevice.TabIndex = 0;
-            this.labelVideoDevice.Text = "Video Device";
+            this.labelVideoDevice.Text = UiText.Translate("Video Device");
             // 
             // labelVideoFormat
             // 
@@ -85,7 +85,7 @@ namespace MissionPlanner.Controls
             this.labelVideoFormat.Name = "labelVideoFormat";
             this.labelVideoFormat.Size = new System.Drawing.Size(88, 16);
             this.labelVideoFormat.TabIndex = 2;
-            this.labelVideoFormat.Text = "Video Format";
+            this.labelVideoFormat.Text = UiText.Translate("Video Format");
             // 
             // labelOsdColor
             // 
@@ -94,7 +94,7 @@ namespace MissionPlanner.Controls
             this.labelOsdColor.Name = "labelOsdColor";
             this.labelOsdColor.Size = new System.Drawing.Size(71, 16);
             this.labelOsdColor.TabIndex = 7;
-            this.labelOsdColor.Text = "OSD Color";
+            this.labelOsdColor.Text = UiText.Translate("OSD Color");
             // 
             // labelGStreamer
             // 
@@ -156,7 +156,7 @@ namespace MissionPlanner.Controls
             this.btnGStreamerStart.Name = "btnGStreamerStart";
             this.btnGStreamerStart.Size = new System.Drawing.Size(50, 23);
             this.btnGStreamerStart.TabIndex = 11;
-            this.btnGStreamerStart.Text = "Start";
+            this.btnGStreamerStart.Text = UiText.Translate("Start");
             this.btnGStreamerStart.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.btnGStreamerStart.UseVisualStyleBackColor = true;
             // 
@@ -167,7 +167,7 @@ namespace MissionPlanner.Controls
             this.btnGStreamerStop.Name = "btnGStreamerStop";
             this.btnGStreamerStop.Size = new System.Drawing.Size(50, 23);
             this.btnGStreamerStop.TabIndex = 12;
-            this.btnGStreamerStop.Text = "Stop";
+            this.btnGStreamerStop.Text = UiText.Translate("Stop");
             this.btnGStreamerStop.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.btnGStreamerStop.UseVisualStyleBackColor = true;
             // 
@@ -179,7 +179,7 @@ namespace MissionPlanner.Controls
             this.btnVideoStart.Name = "btnVideoStart";
             this.btnVideoStart.Size = new System.Drawing.Size(50, 23);
             this.btnVideoStart.TabIndex = 4;
-            this.btnVideoStart.Text = "Start";
+            this.btnVideoStart.Text = UiText.Translate("Start");
             this.btnVideoStart.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.btnVideoStart.UseVisualStyleBackColor = true;
             // 
@@ -191,7 +191,7 @@ namespace MissionPlanner.Controls
             this.btnVideoStop.Name = "btnVideoStop";
             this.btnVideoStop.Size = new System.Drawing.Size(50, 23);
             this.btnVideoStop.TabIndex = 5;
-            this.btnVideoStop.Text = "Stop";
+            this.btnVideoStop.Text = UiText.Translate("Stop");
             this.btnVideoStop.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.btnVideoStop.UseVisualStyleBackColor = true;
             // 
@@ -203,7 +203,7 @@ namespace MissionPlanner.Controls
             this.chkHudShow.Name = "chkHudShow";
             this.chkHudShow.Size = new System.Drawing.Size(109, 20);
             this.chkHudShow.TabIndex = 6;
-            this.chkHudShow.Text = "HUD Overlay";
+            this.chkHudShow.Text = UiText.Translate("HUD Overlay");
             this.chkHudShow.UseVisualStyleBackColor = true;
             // 
             // FlightPlannerVideoOptions
@@ -421,7 +421,7 @@ namespace MissionPlanner.Controls
             }
             catch (Exception ex)
             {
-                CustomMessageBox.Show("Camera Fail: " + ex.Message);
+                CustomMessageBox.Show(UiText.Translate("Camera Fail: ") + ex.Message);
             }
         }
 

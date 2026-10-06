@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigDroneCAN
     {
@@ -123,38 +124,38 @@
             // menu_parameters
             // 
             this.menu_parameters.Index = 0;
-            this.menu_parameters.Text = "Parameters";
+            this.menu_parameters.Text = UiText.Translate("Parameters");
             this.menu_parameters.Click += new System.EventHandler(this.menu_parameters_Click);
             // 
             // menu_restart
             // 
             this.menu_restart.Index = 1;
-            this.menu_restart.Text = "Restart";
+            this.menu_restart.Text = UiText.Translate("Restart");
             this.menu_restart.Click += new System.EventHandler(this.menu_restart_Click);
             // 
             // menu_update
             // 
             this.menu_update.Index = 2;
-            this.menu_update.Text = "Update";
+            this.menu_update.Text = UiText.Translate("Update");
             this.menu_update.Click += new System.EventHandler(this.menu_update_Click);
             // 
             // menu_updatebeta
             // 
             this.menu_updatebeta.Index = 3;
-            this.menu_updatebeta.Text = "Update Beta";
+            this.menu_updatebeta.Text = UiText.Translate("Update Beta");
             this.menu_updatebeta.Click += new System.EventHandler(this.menu_updatebeta_Click);
             // 
             // menu_passthrough
             // 
             this.menu_passthrough.Index = 4;
             this.menu_passthrough.RadioCheck = true;
-            this.menu_passthrough.Text = "CANPassThrough Here3";
+            this.menu_passthrough.Text = UiText.Translate("CANPassThrough Here3");
             this.menu_passthrough.Click += new System.EventHandler(this.menu_passthrough_Click);
             // 
             // menu_passthrough4
             // 
             this.menu_passthrough4.Index = 5;
-            this.menu_passthrough4.Text = "CANPassThough Here3+/4";
+            this.menu_passthrough4.Text = UiText.Translate("CANPassThough Here3+/4");
             this.menu_passthrough4.Click += new System.EventHandler(this.menu_passthrough4_Click);
             // 
             // label1
@@ -164,8 +165,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(359, 26);
             this.label1.TabIndex = 83;
-            this.label1.Text = "After enabling SLCAN, you will no longer be able to connect via MAVLINK.\r\nYou mus" +
-    "t leave this screen and wait 2 seconds before connecting again\r\n";
+            this.label1.Text = UiText.Translate("After enabling SLCAN, you will no longer be able to connect via MAVLINK.\r\nYou must leave this screen and wait 2 seconds before connecting again\r\n");
             // 
             // but_uavcaninspector
             // 
@@ -173,7 +173,7 @@
             this.but_uavcaninspector.Name = "but_uavcaninspector";
             this.but_uavcaninspector.Size = new System.Drawing.Size(57, 23);
             this.but_uavcaninspector.TabIndex = 85;
-            this.but_uavcaninspector.Text = "Inspector";
+            this.but_uavcaninspector.Text = UiText.Translate("Inspector");
             this.but_uavcaninspector.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_uavcaninspector.UseVisualStyleBackColor = true;
             this.but_uavcaninspector.Click += new System.EventHandler(this.But_uavcaninspector_Click);
@@ -320,7 +320,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 27);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Node ID / Name";
+            this.label2.Text = UiText.Translate("Node ID / Name");
             // 
             // label3
             // 
@@ -330,7 +330,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 27);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Mode / Health / Uptime";
+            this.label3.Text = UiText.Translate("Mode / Health / Uptime");
             // 
             // label4
             // 
@@ -340,7 +340,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 27);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Vendor-specific code";
+            this.label4.Text = UiText.Translate("Vendor-specific code");
             // 
             // label5
             // 
@@ -350,7 +350,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 27);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Software version/CRC64";
+            this.label5.Text = UiText.Translate("Software version/CRC64");
             // 
             // label7
             // 
@@ -360,7 +360,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 28);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Hardware version/UID";
+            this.label7.Text = UiText.Translate("Hardware version/UID");
             // 
             // textBox1
             // 
@@ -378,7 +378,7 @@
             this.chk_log.Name = "chk_log";
             this.chk_log.Size = new System.Drawing.Size(44, 17);
             this.chk_log.TabIndex = 87;
-            this.chk_log.Text = "Log";
+            this.chk_log.Text = UiText.Translate("Log");
             this.chk_log.UseVisualStyleBackColor = true;
             // 
             // DGDebug
@@ -400,21 +400,21 @@
             // 
             // Node
             // 
-            this.Node.HeaderText = "Node";
+            this.Node.HeaderText = UiText.Translate("Node");
             this.Node.Name = "Node";
             this.Node.ReadOnly = true;
             this.Node.Width = 40;
             // 
             // Level
             // 
-            this.Level.HeaderText = "Level";
+            this.Level.HeaderText = UiText.Translate("Level");
             this.Level.Name = "Level";
             this.Level.ReadOnly = true;
             this.Level.Width = 40;
             // 
             // Source
             // 
-            this.Source.HeaderText = "Source";
+            this.Source.HeaderText = UiText.Translate("Source");
             this.Source.Name = "Source";
             this.Source.ReadOnly = true;
             this.Source.Width = 50;
@@ -422,7 +422,7 @@
             // UAVText
             // 
             this.UAVText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UAVText.HeaderText = "Text";
+            this.UAVText.HeaderText = UiText.Translate("Text");
             this.UAVText.Name = "UAVText";
             this.UAVText.ReadOnly = true;
             // 
@@ -435,7 +435,7 @@
             this.chk_canonclose.Name = "chk_canonclose";
             this.chk_canonclose.Size = new System.Drawing.Size(131, 17);
             this.chk_canonclose.TabIndex = 90;
-            this.chk_canonclose.Text = "Exit SLCAN on leave?";
+            this.chk_canonclose.Text = UiText.Translate("Exit SLCAN on leave?");
             this.chk_canonclose.UseVisualStyleBackColor = true;
             // 
             // but_filter
@@ -444,7 +444,7 @@
             this.but_filter.Name = "but_filter";
             this.but_filter.Size = new System.Drawing.Size(42, 23);
             this.but_filter.TabIndex = 92;
-            this.but_filter.Text = "Filter";
+            this.but_filter.Text = UiText.Translate("Filter");
             this.but_filter.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_filter.UseVisualStyleBackColor = true;
             this.but_filter.Click += new System.EventHandler(this.but_filter_Click);
@@ -455,7 +455,7 @@
             this.but_stats.Name = "but_stats";
             this.but_stats.Size = new System.Drawing.Size(42, 23);
             this.but_stats.TabIndex = 93;
-            this.but_stats.Text = "Stats";
+            this.but_stats.Text = UiText.Translate("Stats");
             this.but_stats.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_stats.UseVisualStyleBackColor = true;
             this.but_stats.Click += new System.EventHandler(this.but_stats_Click);
@@ -484,7 +484,7 @@
             this.but_connect.Name = "but_connect";
             this.but_connect.Size = new System.Drawing.Size(75, 23);
             this.but_connect.TabIndex = 98;
-            this.but_connect.Text = "Connect";
+            this.but_connect.Text = UiText.Translate("Connect");
             this.but_connect.TextColorNotEnabled = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(87)))), ((int)(((byte)(4)))));
             this.but_connect.UseVisualStyleBackColor = true;
             this.but_connect.Click += new System.EventHandler(this.but_connect_Click);
@@ -530,7 +530,7 @@
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Name");
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 110;
@@ -538,7 +538,7 @@
             // modeDataGridViewTextBoxColumn
             // 
             this.modeDataGridViewTextBoxColumn.DataPropertyName = "Mode";
-            this.modeDataGridViewTextBoxColumn.HeaderText = "Mode";
+            this.modeDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Mode");
             this.modeDataGridViewTextBoxColumn.Name = "modeDataGridViewTextBoxColumn";
             this.modeDataGridViewTextBoxColumn.ReadOnly = true;
             this.modeDataGridViewTextBoxColumn.Width = 90;
@@ -546,7 +546,7 @@
             // healthDataGridViewTextBoxColumn
             // 
             this.healthDataGridViewTextBoxColumn.DataPropertyName = "Health";
-            this.healthDataGridViewTextBoxColumn.HeaderText = "Health";
+            this.healthDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Health");
             this.healthDataGridViewTextBoxColumn.Name = "healthDataGridViewTextBoxColumn";
             this.healthDataGridViewTextBoxColumn.ReadOnly = true;
             this.healthDataGridViewTextBoxColumn.Width = 43;
@@ -554,7 +554,7 @@
             // uptimeDataGridViewTextBoxColumn
             // 
             this.uptimeDataGridViewTextBoxColumn.DataPropertyName = "Uptime";
-            this.uptimeDataGridViewTextBoxColumn.HeaderText = "Uptime";
+            this.uptimeDataGridViewTextBoxColumn.HeaderText = UiText.Translate("Uptime");
             this.uptimeDataGridViewTextBoxColumn.Name = "uptimeDataGridViewTextBoxColumn";
             this.uptimeDataGridViewTextBoxColumn.ReadOnly = true;
             this.uptimeDataGridViewTextBoxColumn.Width = 60;
@@ -562,7 +562,7 @@
             // hardwareVersionDataGridViewTextBoxColumn
             // 
             this.hardwareVersionDataGridViewTextBoxColumn.DataPropertyName = "HardwareVersion";
-            this.hardwareVersionDataGridViewTextBoxColumn.HeaderText = "HW Version";
+            this.hardwareVersionDataGridViewTextBoxColumn.HeaderText = UiText.Translate("HW Version");
             this.hardwareVersionDataGridViewTextBoxColumn.Name = "hardwareVersionDataGridViewTextBoxColumn";
             this.hardwareVersionDataGridViewTextBoxColumn.ReadOnly = true;
             this.hardwareVersionDataGridViewTextBoxColumn.Width = 50;
@@ -570,7 +570,7 @@
             // SoftwareVersion
             // 
             this.SoftwareVersion.DataPropertyName = "SoftwareVersion";
-            this.SoftwareVersion.HeaderText = "SW Version";
+            this.SoftwareVersion.HeaderText = UiText.Translate("SW Version");
             this.SoftwareVersion.Name = "SoftwareVersion";
             this.SoftwareVersion.ReadOnly = true;
             this.SoftwareVersion.Width = 80;
@@ -581,7 +581,7 @@
             dataGridViewCellStyle1.Format = "X";
             dataGridViewCellStyle1.NullValue = null;
             this.SoftwareCRC.DefaultCellStyle = dataGridViewCellStyle1;
-            this.SoftwareCRC.HeaderText = "SW CRC";
+            this.SoftwareCRC.HeaderText = UiText.Translate("SW CRC");
             this.SoftwareCRC.Name = "SoftwareCRC";
             this.SoftwareCRC.ReadOnly = true;
             this.SoftwareCRC.Width = 110;
@@ -591,7 +591,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.NullValue = "Menu";
             this.Menu.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Menu.HeaderText = "Menu";
+            this.Menu.HeaderText = UiText.Translate("Menu");
             this.Menu.Name = "Menu";
             this.Menu.ReadOnly = true;
             this.Menu.Width = 50;
@@ -602,7 +602,7 @@
             this.CHK_checkupdate.Name = "CHK_checkupdate";
             this.CHK_checkupdate.Size = new System.Drawing.Size(121, 23);
             this.CHK_checkupdate.TabIndex = 99;
-            this.CHK_checkupdate.Text = "Check for Updates";
+            this.CHK_checkupdate.Text = UiText.Translate("Check for Updates");
             this.CHK_checkupdate.UseVisualStyleBackColor = true;
             this.CHK_checkupdate.CheckedChanged += new System.EventHandler(this.CHK_checkupdate_CheckedChanged);
             // 

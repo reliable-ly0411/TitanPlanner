@@ -56,14 +56,14 @@ namespace MissionPlanner.Controls
             //Create a new theme based on the current theme. Nem theme will allways be a .mpusertheme
             string name = Path.GetFileNameWithoutExtension(ThemeManager.thmColor.strThemeName);
 
-            if (DialogResult.Cancel == InputBox.Show("Create Theme Copy", "Enter nem theme name (without extension)", ref name))
+            if (DialogResult.Cancel == InputBox.Show(UiText.Translate("Create Theme Copy"), UiText.Translate("Enter nem theme name (without extension)"), ref name))
                 return;
 
             name = name + ".mpusertheme";
             var match = ThemeManager.ThemeNames.FirstOrDefault(stringToCheck => stringToCheck.Equals(name,StringComparison.OrdinalIgnoreCase));
             if (match != null)
             {
-                CustomMessageBox.Show("User theme named " + Path.GetFileNameWithoutExtension(name) + " exists.");
+                CustomMessageBox.Show(UiText.Translate("User theme named ") + Path.GetFileNameWithoutExtension(name) + UiText.Translate(" exists."));
                 return;
             }
 
@@ -121,7 +121,7 @@ namespace MissionPlanner.Controls
 
             ThemeManager.LoadTheme(ThemeManager.thmColor.strThemeName);
             ThemeManager.ApplyThemeTo(MainV2.instance);
-            CustomMessageBox.Show("You may need to select another tab or restart to see the full effect.");
+            CustomMessageBox.Show(UiText.Translate("You may need to select another tab or restart to see the full effect."));
             this.Close();
         }
 

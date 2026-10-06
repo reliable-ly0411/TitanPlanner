@@ -1,4 +1,5 @@
-﻿using MissionPlanner.Controls;
+﻿using MissionPlanner.Utilities;
+using MissionPlanner.Controls;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -373,7 +374,7 @@ namespace MissionPlanner.Swarm
             var mouseoverlocal = mouseover;
 
             string output = mouseover.z.ToString();
-            if (DialogResult.OK == InputBox.Show("Alt", "Enter New Alt", ref output))
+            if (DialogResult.OK == InputBox.Show(UiText.Translate("Alt"), UiText.Translate("Enter New Alt"), ref output))
             {
                 mouseoverlocal.z = float.Parse(output);
 

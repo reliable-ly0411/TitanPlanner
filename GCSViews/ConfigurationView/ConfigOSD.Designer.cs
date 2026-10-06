@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.GCSViews.ConfigurationView
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.GCSViews.ConfigurationView
 {
     partial class ConfigOSD
     {
@@ -66,7 +67,7 @@
             this.btnOsd56ItemsSetup.Name = "btnOsd56ItemsSetup";
             this.btnOsd56ItemsSetup.Size = new System.Drawing.Size(145, 42);
             this.btnOsd56ItemsSetup.TabIndex = 4;
-            this.btnOsd56ItemsSetup.Text = "OSD / Telmetry Slots Config";
+            this.btnOsd56ItemsSetup.Text = UiText.Translate("OSD / Telmetry Slots Config");
             this.btnOsd56ItemsSetup.UseVisualStyleBackColor = true;
             // 
             // btnRefreshParameters
@@ -75,7 +76,7 @@
             this.btnRefreshParameters.Name = "btnRefreshParameters";
             this.btnRefreshParameters.Size = new System.Drawing.Size(145, 32);
             this.btnRefreshParameters.TabIndex = 3;
-            this.btnRefreshParameters.Text = "Refresh";
+            this.btnRefreshParameters.Text = UiText.Translate("Refresh");
             this.btnRefreshParameters.UseVisualStyleBackColor = true;
             // 
             // btnDiscardChanges
@@ -84,7 +85,7 @@
             this.btnDiscardChanges.Name = "btnDiscardChanges";
             this.btnDiscardChanges.Size = new System.Drawing.Size(145, 32);
             this.btnDiscardChanges.TabIndex = 2;
-            this.btnDiscardChanges.Text = "Discard all changes";
+            this.btnDiscardChanges.Text = UiText.Translate("Discard all changes");
             this.btnDiscardChanges.UseVisualStyleBackColor = true;
             // 
             // cbAutoWriteOnLeave
@@ -96,7 +97,7 @@
             this.cbAutoWriteOnLeave.Name = "cbAutoWriteOnLeave";
             this.cbAutoWriteOnLeave.Size = new System.Drawing.Size(125, 17);
             this.cbAutoWriteOnLeave.TabIndex = 1;
-            this.cbAutoWriteOnLeave.Text = "Auto write on leaving";
+            this.cbAutoWriteOnLeave.Text = UiText.Translate("Auto write on leaving");
             this.cbAutoWriteOnLeave.UseVisualStyleBackColor = true;
             // 
             // btnWrite
@@ -105,7 +106,7 @@
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(145, 32);
             this.btnWrite.TabIndex = 0;
-            this.btnWrite.Text = "Write customization";
+            this.btnWrite.Text = UiText.Translate("Write customization");
             this.btnWrite.UseVisualStyleBackColor = true;
             // 
             // ConfigOSD

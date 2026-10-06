@@ -17,7 +17,7 @@ namespace MissionPlanner.Controls
         private void Video_Load(object sender, EventArgs e)
         {
             CheckBox chk = new CheckBox();
-            chk.Text = "Display External";
+            chk.Text = UiText.Translate("Display External");
             flowLayoutPanel1.Controls.Add(chk);
 
             foreach (var zeroconfHost in ZeroConf.RtspHosts)

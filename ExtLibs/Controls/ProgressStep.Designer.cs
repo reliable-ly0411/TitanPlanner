@@ -1,4 +1,5 @@
-﻿namespace MissionPlanner.Controls
+﻿using MissionPlanner.Utilities;
+namespace MissionPlanner.Controls
 {
     partial class ProgressStep
     {
@@ -57,7 +58,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "PROGRESS... 20 of 20";
+            this.label1.Text = UiText.Translate("PROGRESS... 20 of 20");
             // 
             // ProgressStep
             // 

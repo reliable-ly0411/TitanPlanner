@@ -348,7 +348,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             try
             {
-                Process.Start(new ProcessStartInfo(Utilities.Update.ForkReleasePage ?? "https://github.com/reliable-ly0411/TitanPlanner/releases")
+                Process.Start(new ProcessStartInfo(Utilities.Update.ForkReleasePage ?? "https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases")
                 {
                     UseShellExecute = true
                 });

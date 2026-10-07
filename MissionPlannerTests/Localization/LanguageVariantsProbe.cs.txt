@@ -55,7 +55,7 @@ class SettingsUiProbe {
     languageSetting.SetValue(settings,null,new object[]{"language"});
     Check(((CultureInfo)localization.GetMethod("GetConfigLang").Invoke(null,null)).Name=="zh-CN","first launch should use enhanced Chinese");
     Type updater=main.GetType("MissionPlanner.Utilities.Update",true);
-    Check((string)updater.GetProperty("ForkReleasePage").GetValue(null,null)=="https://github.com/reliable-ly0411/TitanPlanner/releases","updater must use the fork release page");
+    Check((string)updater.GetProperty("ForkReleasePage").GetValue(null,null)=="https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases","updater must use the fork release page");
     MethodInfo setup=type.GetMethod("SetupLanguageSelector",BindingFlags.Instance|BindingFlags.NonPublic);
     foreach(string saved in new[]{"zh-CN","zh-Hans","en-US"}) {
      languageSetting.SetValue(settings,saved,new object[]{"language"});setup.Invoke(view,null);

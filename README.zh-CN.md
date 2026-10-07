@@ -1,4 +1,4 @@
-# TitanPlanner 中文双版本
+# TitanPlanner-zh-CN 中文双版本
 
 基于 Titan-Dynamics/TitanPlanner，在保留原项目许可和署名的基础上维护简体中文体验、Windows 构建及自动上游同步。见 [COPYING.txt](COPYING.txt)、[上游说明](README.md)。
 
@@ -13,7 +13,7 @@
 
 ## 获取和更新
 
-本仓库 [Releases](https://github.com/reliable-ly0411/TitanPlanner/releases) 提供通过自动测试的 Windows 便携预发布包。解压完整 ZIP 到新目录，运行 `MissionPlanner.exe`，保留全部中文卫星程序集及原生库。`SHA256SUMS` 用于核对下载完整性。
+本仓库 [Releases](https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases) 提供通过自动测试的 Windows 便携预发布包。解压完整 ZIP 到新目录，运行 `MissionPlanner.exe`，保留全部中文卫星程序集及原生库。`SHA256SUMS` 用于核对下载完整性。
 
 应用内更新入口也指向本仓库，不再用上游二进制覆盖中文版本。自动发布仍需真实飞控、飞行、高 DPI 与完整功能验收；不能把通过单元测试等同于飞行验证。
 
@@ -22,8 +22,8 @@
 需要 Git、独立 .NET 8 SDK；Python 静态校验需要 Python 3.12。无需 Visual Studio IDE。
 
 ```powershell
-git clone https://github.com/reliable-ly0411/TitanPlanner.git
-cd TitanPlanner
+git clone https://github.com/reliable-ly0411/TitanPlanner-zh-CN.git
+cd TitanPlanner-zh-CN
 git submodule update --init --recursive
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/localization/build_windows.ps1
 ```

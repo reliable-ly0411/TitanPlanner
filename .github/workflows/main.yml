@@ -103,6 +103,18 @@ jobs:
         env:
           BUILD_SHA: ${{ needs.prepare.outputs.sha }}
         run: python scripts/ci/package_windows.py "$env:RUNNER_TEMP\TitanPlanner-release" "$env:RUNNER_TEMP\release" "$env:BUILD_SHA"
+      - name: Build Chinese MSI from the verified ZIP payload
+        shell: pwsh
+        env:
+          BUILD_SHA: ${{ needs.prepare.outputs.sha }}
+        run: |
+          python scripts/ci/package_msi.py "$env:RUNNER_TEMP\release" "$env:BUILD_SHA" "$env:GITHUB_RUN_NUMBER" "$env:RUNNER_TEMP\msi-work"
+          if ($LASTEXITCODE) { throw 'MSI build failed' }
+      - name: Test MSI install, repair, uninstall and preservation of personal data
+        shell: pwsh
+        env:
+          BUILD_SHA: ${{ needs.prepare.outputs.sha }}
+        run: python scripts/ci/test_msi.py "$env:RUNNER_TEMP\release" "$env:BUILD_SHA" "$env:RUNNER_TEMP\test-results"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: windows-release

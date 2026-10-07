@@ -13,7 +13,12 @@
 
 ## 获取和更新
 
-本仓库 [Releases](https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases) 提供通过自动测试的 Windows 便携预发布包。解压完整 ZIP 到新目录，运行 `MissionPlanner.exe`，保留全部中文卫星程序集及原生库。`SHA256SUMS` 用于核对下载完整性。
+本仓库 [Releases](https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases) 提供同一构建的两种 Windows 预发布包：
+
+- **MSI 安装版**：适用于 64 位 Windows，安装到当前用户的 `%LOCALAPPDATA%\Programs\TitanPlanner-zh-CN`，并创建开始菜单入口；可通过系统“应用和功能”卸载，保留个人配置和日志。安装界面为简体中文，需要 .NET Framework 4.7.2 或更新版本。
+- **ZIP 便携版**：解压完整 ZIP 到新目录，运行 `MissionPlanner.exe`，保留全部中文卫星程序集及原生库。
+
+两种格式均包含原版中文和“中文(简体)2”。`SHA256SUMS` 用于核对下载完整性。
 
 应用内更新入口也指向本仓库，不再用上游二进制覆盖中文版本。自动发布仍需真实飞控、飞行、高 DPI 与完整功能验收；不能把通过单元测试等同于飞行验证。
 

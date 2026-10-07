@@ -2,6 +2,8 @@
 """Publish a complete verified terrain pack without changing the app's latest release."""
 import argparse
 import json
+import http.client
+from urllib.parse import quote
 import os
 from pathlib import Path
 import subprocess
@@ -62,13 +64,29 @@ def optional_api(endpoint):
     return None
 
 
-def find_release(repo, tag):
-    # The by-tag endpoint only returns published releases. Listing includes drafts.
-    pages = json.loads(gh('api', f'repos/{repo}/releases?per_page=100', '--paginate', '--slurp').stdout)
-    matches = [release for page in pages for release in page if release['tag_name'] == tag]
-    if len(matches) > 1:
-        raise ValueError('Multiple releases for the same tag')
-    return matches[0] if matches else None
+def state_path():
+    return Path(os.environ['TERRAIN_RELEASE_STATE'])
+
+
+def upload_asset(repo, release_id, path):
+    # Use the release ID, since draft tag URLs may use temporary untagged slugs.
+    connection = http.client.HTTPSConnection('uploads.github.com', timeout=600, blocksize=1024 * 1024)
+    endpoint = f'/repos/{repo}/releases/{release_id}/assets?name=' + quote(path.name)
+    try:
+        with path.open('rb') as body:
+            connection.request('POST', endpoint, body=body, headers={
+                'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                'User-Agent': 'TitanPlanner-terrain-packager/1.0',
+                'Content-Type': 'application/octet-stream',
+                'Content-Length': str(path.stat().st_size),
+                'Accept': 'application/vnd.github+json'})
+            response = connection.getresponse()
+            result = json.loads(response.read())
+            if response.status != 201:
+                raise RuntimeError(f'Asset upload HTTP {response.status}: {result.get("message")}')
+            return result
+    finally:
+        connection.close()
 
 
 def require_draft(release, sha):
@@ -80,8 +98,12 @@ def prepare():
     """Freeze the tag and verify release permissions before the long download."""
     config, _, repo, sha = release_context()
     endpoint = f'repos/{repo}'
-    release = find_release(repo, config['tag'])
-    if release:
+    release = None
+    if state_path().exists():
+        saved = json.loads(state_path().read_text())
+        if saved['tag'] != config['tag'] or saved['sha'] != sha:
+            raise ValueError('Saved release state does not match this build')
+        release = api(endpoint + '/releases/' + str(saved['id']))
         require_draft(release, sha)
     tag = optional_api(endpoint + '/git/ref/tags/' + config['tag'])
     if tag:
@@ -95,15 +117,13 @@ def prepare():
                        'name': config['title'], 'body': 'Preparing terrain data; not yet verified or published.',
                        'draft': True, 'prerelease': False, 'make_latest': 'false'})
     require_draft(release, sha)
-    # Exercise the exact lookup and upload paths now, before spending time downloading.
-    confirmed = find_release(repo, config['tag'])
-    if not confirmed or confirmed['id'] != release['id']:
-        raise ValueError('Created draft cannot be found by the publisher')
+    state_path().write_text(json.dumps({'id': release['id'], 'tag': config['tag'], 'sha': sha}))
+    confirmed = api(endpoint + '/releases/' + str(release['id']))
     require_draft(confirmed, sha)
     notes = Path('data/terrain/INSTALL.zh-CN.txt')
     assets = {a['name']: a for a in confirmed['assets']}
     if notes.name not in assets:
-        gh('release', 'upload', config['tag'], str(notes), '--repo', repo)
+        upload_asset(repo, release['id'], notes)
     confirmed = api(endpoint + '/releases/' + str(release['id']))
     uploaded = next(a for a in confirmed['assets'] if a['name'] == notes.name)
     if uploaded.get('digest') != 'sha256:' + sha256_file(notes) or uploaded['size'] != notes.stat().st_size:
@@ -117,9 +137,10 @@ def publish(root):
     if manifest['build_commit'] != sha:
         raise ValueError('Unexpected repository or build commit')
     endpoint = f'repos/{repo}/releases'
-    release = find_release(repo, config['tag'])
-    if not release:
-        raise ValueError('Prepared draft missing; run --prepare before downloading')
+    saved = json.loads(state_path().read_text())
+    if saved['tag'] != config['tag'] or saved['sha'] != sha:
+        raise ValueError('Saved release state does not match this build')
+    release = api(endpoint + '/' + str(saved['id']))
     require_draft(release, sha)
     notes = (f"官方来源：中国区 1 角秒（约 30 米）HGT 离线包，共 {len(selected)} 个图幅。\n\n"
              "下载全部 part*.zip，分别解压到同一个临时目录；按 INSTALL.zh-CN.txt 安装。每个 ZIP 都可独立解压。\n\n"
@@ -141,7 +162,7 @@ def publish(root):
             if assets[name].get('digest') != 'sha256:' + digest:
                 raise ValueError('Existing draft asset differs: ' + name)
             continue
-        gh('release', 'upload', config['tag'], str(root / name), '--repo', repo)
+        upload_asset(repo, release['id'], root / name)
         print('Uploaded ' + name, flush=True)
     release = api(endpoint + '/' + str(release['id']))
     assets = {a['name']: a for a in release['assets']}
@@ -152,7 +173,7 @@ def publish(root):
         if a['state'] != 'uploaded' or a['size'] != (root / name).stat().st_size or a.get('digest') != 'sha256:' + digest:
             raise ValueError('Remote asset size/SHA256 verification failed: ' + name)
     result = api(endpoint + '/' + str(release['id']), 'PATCH',
-                 {'draft': False, 'make_latest': 'false', 'body': notes})
+                 {'draft': False, 'make_latest': 'false', 'body': notes, 'tag_name': config['tag']})
     print('Published: ' + result['html_url'], flush=True)
 
 

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "tag": "terrain-cn30-20261007-r1",
+  "tag": "terrain-cn30-20261007-r2",
   "title": "中国区 30 米高程离线包 · 2026-10-07",
   "source_base": "https://terrain.ardupilot.org/SRTM1/",
   "coverage_basis": "MFE 中国区包的 1166 个 1° 图幅名称；仅采用其覆盖清单，不采用其高程值。并非按行政边界裁切。",
@@ -29,5 +29,5 @@
   "terms_url": "https://earth.jaxa.jp/en/data/policy/",
   "terrain_documentation": "https://ardupilot.org/plane/docs/common-terrain-following.html",
   "raw_values_modified": false,
-  "packaging_revision": 3
+  "packaging_revision": 4
 }

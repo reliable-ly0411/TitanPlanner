@@ -449,106 +449,61 @@ namespace MissionPlanner.Utilities
         static HttpClient client = new HttpClient();
         public static bool getFilefromNet(string url, string saveto, Action<int, string> status = null)
         {
+            string temporary = saveto + ".new";
             try
             {
-                lock (log)
-                    log.Info(url);
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("User-Agent", Settings.Instance.UserAgent);
-                client.Timeout = TimeSpan.FromSeconds(30);
-
-                // Get the response.
-                var response = client.GetAsync(url, completionOption: HttpCompletionOption.ResponseHeadersRead).Result;
-                // Display the status.
-                lock (log)
-                    log.Info(response.ReasonPhrase);
-                if (!response.IsSuccessStatusCode)
-                    return false;
-
-                if (File.Exists(saveto))
+                using (var downloadClient = new HttpClient())
                 {
-                    DateTime lastfilewrite = new FileInfo(saveto).LastWriteTime;
-                    DateTime lasthttpmod = response.Content.Headers.LastModified();
-
-                    if (lasthttpmod < lastfilewrite)
+                    downloadClient.DefaultRequestHeaders.Add("User-Agent", Settings.Instance.UserAgent);
+                    downloadClient.Timeout = TimeSpan.FromSeconds(30);
+                    using (var response = downloadClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).GetAwaiter().GetResult())
                     {
-                        if (response.Content.Headers.ContentLength() == new FileInfo(saveto).Length)
+                        if (!response.IsSuccessStatusCode) return false;
+                        long? length = response.Content.Headers.ContentLength;
+                        if (File.Exists(saveto) && length.HasValue &&
+                            response.Content.Headers.LastModified.HasValue &&
+                            response.Content.Headers.LastModified.Value.UtcDateTime <= File.GetLastWriteTimeUtc(saveto) &&
+                            new FileInfo(saveto).Length == length.Value) return true;
+
+                        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(saveto)));
+                        using (var input = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+                        using (var output = new FileStream(temporary, FileMode.Create))
                         {
-                            lock (log)
-                                log.Info("got LastModified " + saveto + " " + (response.Content.Headers).LastModified() +
-                                     " vs " + new FileInfo(saveto).LastWriteTime);
-                            return true;
+                            var buffer = new byte[81920];
+                            int count;
+                            long received = 0;
+                            var lastUpdate = DateTime.MinValue;
+                            // Chunked responses have no Content-Length; read until EOF.
+                            while ((count = input.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                output.Write(buffer, 0, count);
+                                received += count;
+                                if ((DateTime.UtcNow - lastUpdate).TotalSeconds >= 1)
+                                {
+                                    lastUpdate = DateTime.UtcNow;
+                                    status?.Invoke(length > 0 ? (int)Math.Min(100, received * 100.0 / length.Value) : 0,
+                                        "Downloading...");
+                                }
+                            }
+                            if (length.HasValue && received != length.Value)
+                                throw new IOException("Downloaded file size does not match Content-Length.");
                         }
                     }
                 }
-
-                // Get the stream containing content returned by the server.
-                Stream dataStream = response.Content.ReadAsStreamAsync().Result;
-
-                long bytes = response.Content.Headers.ContentLength();
-                long contlen = bytes;
-
-                byte[] buf1 = new byte[1024];
-
-                if (!Directory.Exists(Path.GetDirectoryName(saveto)))
-                    Directory.CreateDirectory(Path.GetDirectoryName(saveto));
-
-                FileStream fs = new FileStream(saveto + ".new", FileMode.Create);
-
-                DateTime lastupdate = DateTime.MinValue;
-                DateTime starttime = DateTime.Now;
-                int got = 0;
-
-                while (dataStream.CanRead && bytes > 0)
-                {
-                    int len = dataStream.Read(buf1, 0, buf1.Length);
-                    bytes -= len;
-                    got += len;
-                    fs.Write(buf1, 0, len);
-
-                    var elapsed = (DateTime.Now - starttime).TotalSeconds;
-                    var percent = ((got / (float)contlen) * 100.0f);
-                    if (lastupdate.Second != DateTime.Now.Second)
-                    {
-                        lastupdate = DateTime.Now;
-                        Console.WriteLine("{0} bps {1} {2}s {3}% of {4}     \r", got / elapsed, got, elapsed,
-                            percent, contlen);
-                        var timeleft = TimeSpan.FromSeconds(((elapsed / percent) * (100 - percent)));
-                        status?.Invoke((int)percent,
-                            "Downloading.. ETA: " +
-                            //DateTime.Now.AddSeconds(((elapsed / percent) * (100 - percent))).ToShortTimeString()
-                            formatTimeSpan(timeleft)
-                        );
-                    }
-                }
-
-                if (fs.Length != contlen)
-                {
-                    lock (log)
-                        log.Info("getFilefromNet(): " + "File size mismatch " + fs.Length + " vs " + contlen);
-                    fs.Close();
-                    dataStream.Close();
-                    return false;
-                }
-                else
-                {
-                    fs.Close();
-                    dataStream.Close();
-                }
-                
-                if (File.Exists(saveto))
-                {
-                    File.Delete(saveto);
-                }
-                File.Move(saveto + ".new", saveto);
-
+                if (File.Exists(saveto)) File.Replace(temporary, saveto, null);
+                else File.Move(temporary, saveto);
                 return true;
             }
             catch (Exception ex)
             {
-                lock (log)
-                    log.Info("getFilefromNet(): " + ex.ToString());
+                lock (log) log.Info("getFilefromNet(): " + ex);
                 return false;
+            }
+            finally
+            {
+                try { if (File.Exists(temporary)) File.Delete(temporary); }
+                catch (IOException) { }
+                catch (UnauthorizedAccessException) { }
             }
         }
 
@@ -676,11 +631,14 @@ namespace MissionPlanner.Utilities
                 if (fileSizeCache.ContainsKey(uri) && fileSizeCache[uri] > 0)
                     return fileSizeCache[uri];
 
-                var responce = client.GetAsync(uri);
-                var len = responce.GetAwaiter().GetResult().Content.Headers.ContentLength();
-                fileSizeCache[uri] = len;
-                responce.Result.Dispose();
-                return len;
+                // Read headers only: querying a large ZIP must not download its body.
+                using (var response = client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead).GetAwaiter().GetResult())
+                {
+                    response.EnsureSuccessStatusCode();
+                    var length = response.Content.Headers.ContentLength ?? -1;
+                    if (length > 0) fileSizeCache[uri] = length;
+                    return length;
+                }
             }
         }
 

@@ -16,7 +16,8 @@ namespace MissionPlanner.GCSViews.Tests
         [TestMethod()]
         public void MakeRequestTest()
         {
-            FlightPlanner flightPlanner = new FlightPlanner();
+            // MakeRequest has no instance state; avoid starting map/UI initialization in this HTTP test.
+            var flightPlanner = (FlightPlanner)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(typeof(FlightPlanner));
 
             var xmldoc = flightPlanner.MakeRequest("https://mesonet.agron.iastate.edu/cgi-bin/wms/iowa/rainfall.cgi?VERSION=1.1.1&REQUEST=GetCapabilities&SERVICE=WMS&");
 

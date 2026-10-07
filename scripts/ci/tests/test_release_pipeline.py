@@ -40,6 +40,14 @@ class PackageTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 package(source, Path(directory)/'output2', 'a'*40)
 
+    def test_audit_accepts_windows_and_cross_platform_encodings(self):
+        with tempfile.TemporaryDirectory() as directory:
+            audit = Path(directory)/'audit.json'
+            for encoding in ('utf-8-sig', 'utf-16'):
+                audit.write_text(json.dumps({'projects': [{'frameworks': []}]}), encoding=encoding)
+                result = subprocess.run([sys.executable, str(SCRIPTS/'check_audit.py'), str(audit)], capture_output=True)
+                self.assertEqual(0, result.returncode, result.stderr)
+
     def test_transitive_vulnerabilities_block_release(self):
         report={'projects':[{'frameworks':[{'transitivePackages':[{'id':'legacy','resolvedVersion':'1','vulnerabilities':[{'severity':'High','advisoryurl':'https://example.test/advisory'}]}]}]}]}
         self.assertEqual([('legacy','1','High','https://example.test/advisory')], findings(report))

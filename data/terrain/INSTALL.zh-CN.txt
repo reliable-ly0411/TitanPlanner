@@ -1,0 +1,50 @@
+中国区 30 米高程离线包（Mission Planner / TitanPlanner）
+
+数据源：https://terrain.ardupilot.org/SRTM1/
+格式：HGT，3601×3601，大端有符号 int16，单位米；1 角秒水平间距，通常称约 30 米。
+“30 米”不是垂直精度。数据验证和校验和不代替实地测量或飞行验收。
+
+覆盖范围
+本包按 MFE 中国区离线包的 1166 个图幅名称下载官方同名数据，不使用 MFE 的高程值。
+包含 1162 个官方可用图幅。官方缺少 N18E111、N20E108、N20E111、N27E122；
+旧 MFE 包的这四幅也全为 -9999，无有效高程。本包不以 0 米或插值伪造缺项。
+“完整”指覆盖清单中官方可用图幅已全部收录；不是行政边界裁切或全部海岛覆盖承诺。
+边界图幅包含周边区域。具体范围请查仓库 data/terrain/china-tiles.txt 和 manifest.json。
+
+安装到地面站
+1. 下载本次 Release 的全部 part*.zip、SHA256SUMS、manifest.json。
+   每个 ZIP 是独立压缩包，无须拼接。可在 Linux 用 sha256sum -c SHA256SUMS 校验；
+   Windows PowerShell 用 Get-FileHash -Algorithm SHA256 文件名，与 SHA256SUMS 对照。
+2. 将所有 ZIP 解压到同一个临时目录，合并其中的 srtm 文件夹。
+   HGT 文件总量约 28.1 GiB（30.1 GB）；请为解压文件和原有数据备份留足空间。
+3. 退出地面站。先备份现有 srtm 目录，再把本包 srtm 内的 HGT 复制到正在使用的缓存目录。
+   Windows 上游默认通常为 C:\ProgramData\Mission Planner\srtm。
+   TitanPlanner 或自定义版本应以实际 Settings.GetDataDirectory() 下的 srtm 为准，
+   不要仅凭程序安装位置判断。不要复制成 srtm\srtm 双层目录。
+   同名旧 90 米文件需要被本包 30 米文件替换；MP 不会仅因为联网就自动升级已有文件。
+4. 重启地面站，并在目标区域检查高程。已有 GeoTIFF / DTED 等本地覆盖数据可能优先使用，
+   因此屏幕显示的高程不一定来自本包。文件校验也不代表已证明运行中的数据选择。
+
+时间戳
+本包 HGT 的 ZIP 时间戳使用本次打包时间，HGT 原始字节不变。
+当前部分 MP / TitanPlanner 会清理时间戳早于 2026-03-01 的缓存文件，
+所以不能直接保留官方 ZIP 内可能较早的时间戳。
+manifest.json 单独保留每个下载响应的 Last-Modified；它不是测绘采集时间。
+
+飞控使用
+本包是地面站 HGT 缓存，不是可直接复制到 APM/TERRAIN 的 DAT 数据。
+飞控需要由地面站通过 TERRAIN_REQUEST / TERRAIN_DATA 生成并发送其所需网格。
+修改地面站缓存不会自动替换飞控 SD 卡里已有的 DAT。
+需要更新飞控已有缓存时，先备份，再按 ArduPilot 官方地形数据更新流程处理，
+重新加载航线并检查目标区域数据是否齐备。TERRAIN_SPACING=30 本身不会提高源数据精度。
+官方说明：https://ardupilot.org/plane/docs/common-terrain-following.html
+
+来源与许可
+ArduPilot 当前文档将此服务的数据归于 JAXA ALOS World 3D（AW3D30）。
+本次未独立鉴定每个图幅的上游 AW3D30 版本或补洞来源；SRTM1 是下载目录名称。
+Original data: JAXA ALOS World 3D (AW3D30), as attributed by ArduPilot.
+Distribution and HGT conversion: ArduPilot terrain service.
+Any supplementary source data retain their respective rights.
+数据使用条款：https://earth.jaxa.jp/en/data/policy/
+AW3D30 条款入口：https://www.eorc.jaxa.jp/ALOS/en/dataset/aw3d30/terms.htm
+数据保持其上游权利与条件，不因仓库软件许可而改变。商业使用条件请查阅上游条款。

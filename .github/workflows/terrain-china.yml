@@ -1,0 +1,35 @@
+name: Package China 30m terrain
+on:
+  push:
+    branches: [master]
+    paths:
+      - data/terrain/request.json
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: terrain-china-package
+  cancel-in-progress: false
+jobs:
+  package:
+    if: github.repository == 'reliable-ly0411/TitanPlanner-zh-CN' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            scripts/terrain
+            data/terrain
+          sparse-checkout-cone-mode: true
+      - name: Test rejection of damaged, wrong-resolution and incomplete data
+        run: python3 -m unittest discover -s scripts/terrain/tests -v
+      - name: Download, validate, package and round-trip verify all available tiles
+        run: python3 scripts/terrain/package.py --output "$RUNNER_TEMP/terrain-release" --workers 4
+      - name: Publish only after all assets and remote hashes are verified
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/terrain/publish.py "$RUNNER_TEMP/terrain-release"

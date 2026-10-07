@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "tag": "terrain-cn30-20261007",
+  "title": "中国区 30 米高程离线包 · 2026-10-07",
+  "source_base": "https://terrain.ardupilot.org/SRTM1/",
+  "coverage_basis": "MFE 中国区包的 1166 个 1° 图幅名称；仅采用其覆盖清单，不采用其高程值。并非按行政边界裁切。",
+  "requested_tiles": 1166,
+  "available_tiles": 1162,
+  "excluded": {
+    "N18E111": {
+      "reason": "Official SRTM1 URL returns HTTP 404; corresponding legacy MFE tile contains only -9999 (no valid elevations).",
+      "legacy_hgt_sha256": "e3f271702f2ea4a4e547a4e1b6d1d5f8122d9f28fa6ef0560501cd839421ef58"
+    },
+    "N20E108": {
+      "reason": "Official SRTM1 URL returns HTTP 404; corresponding legacy MFE tile contains only -9999 (no valid elevations).",
+      "legacy_hgt_sha256": "e3f271702f2ea4a4e547a4e1b6d1d5f8122d9f28fa6ef0560501cd839421ef58"
+    },
+    "N20E111": {
+      "reason": "Official SRTM1 URL returns HTTP 404; corresponding legacy MFE tile contains only -9999 (no valid elevations).",
+      "legacy_hgt_sha256": "e3f271702f2ea4a4e547a4e1b6d1d5f8122d9f28fa6ef0560501cd839421ef58"
+    },
+    "N27E122": {
+      "reason": "Official SRTM1 URL returns HTTP 404; corresponding legacy MFE tile contains only -9999 (no valid elevations).",
+      "legacy_hgt_sha256": "e3f271702f2ea4a4e547a4e1b6d1d5f8122d9f28fa6ef0560501cd839421ef58"
+    }
+  },
+  "upstream_description": "ArduPilot documentation identifies its current terrain data as JAXA ALOS derived; SRTM1 is the service directory name, not an independently verified upstream product version.",
+  "credit": "Original data: JAXA ALOS World 3D (AW3D30), as attributed by ArduPilot; distribution and HGT conversion: ArduPilot terrain service. Any supplementary source data retain their respective rights.",
+  "terms_url": "https://earth.jaxa.jp/en/data/policy/",
+  "terrain_documentation": "https://ardupilot.org/plane/docs/common-terrain-following.html",
+  "raw_values_modified": false
+}

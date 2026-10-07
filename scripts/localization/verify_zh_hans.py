@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """离线检查汉化词典、格式占位符、链接与生成资源。"""
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -33,22 +34,34 @@ def main():
         if not chinese.strip():
             errors.append(f'空译文：{english!r}')
     # 资源键使用稳定哈希，检查 .NET 不区分大小写的资源名规则。
-    resources = ROOT / 'ExtLibs/Utilities/Resources/UiText.zh-Hans.resx'
+    resources = ROOT / 'ExtLibs/Utilities/Resources/UiText.zh-CN.resx'
     names = [e.get('name').casefold() for e in ET.parse(resources).findall('data')]
     if len(names) != len(set(names)) or len(names) != len(entries):
         errors.append('卫星资源存在重复或缺失词条')
     # 验证所有中文 RESX 的 XML 结构，而非仅检查新增文件。
     count = 0
-    for path in ROOT.rglob('*.zh-Hans.resx'):
+    for path in ROOT.rglob('*.zh-CN.resx'):
         if 'mono' in path.parts or 'obj' in path.parts or 'bin' in path.parts:
             continue
         ET.parse(path)
         count += 1
+    # Original Chinese is frozen byte-for-byte to the pre-enhancement upstream.
+    baseline = json.loads((ROOT / 'localization/zh-Hans/original-resources.json').read_text())
+    actual = {p.relative_to(ROOT).as_posix() for p in ROOT.rglob('*.resx')
+              if p.name.lower().endswith('.zh-hans.resx') and not {'mono', 'obj', 'bin'}.intersection(p.parts)}
+    # Empty compatibility satellite replaces old enhanced satellites in incremental builds.
+    actual.discard('ExtLibs/Utilities/Resources/UiText.zh-Hans.resx')
+    if actual != set(baseline['sha256']):
+        errors.append('原版简体中文资源清单发生改变')
+    for name, expected in baseline['sha256'].items():
+        path = ROOT / name
+        if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            errors.append(f'原版简体中文资源被改动：{name}')
     if errors:
         raise SystemExit('\n'.join(errors))
     for script in ('build_ui_catalog.py', 'update_zh_hans.py'):
         subprocess.run([sys.executable, str(Path(__file__).with_name(script)), '--check'], check=True)
-    print(f'验证通过：{len(entries)} 条翻译，{count} 个简体中文资源文件；占位符和链接完整。')
+    print(f'验证通过：{len(entries)} 条翻译，{count} 个新版简体中文资源文件；原版资源、占位符和链接完整。')
 
 
 if __name__ == '__main__':

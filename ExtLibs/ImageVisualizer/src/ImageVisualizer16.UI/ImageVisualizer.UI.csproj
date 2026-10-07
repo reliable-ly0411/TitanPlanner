@@ -39,7 +39,7 @@
       <ExcludeAssets></ExcludeAssets>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
-      <Version>2.80.2</Version>
+      <Version>2.88.9</Version>
     </PackageReference>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>

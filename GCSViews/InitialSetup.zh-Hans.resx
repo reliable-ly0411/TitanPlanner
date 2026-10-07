@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -208,7 +208,4 @@
 <data name="backstageViewPageSerialInjectGPS.Text" xml:space="preserve">
     <value>差分定位</value>
   </data>
-  <data name="backstageViewPageInitialParams.Text" xml:space="preserve"><value>初始调参</value></data>
-  <data name="backstageViewPageinstfw.Text" xml:space="preserve"><value>安装固件</value></data>
-  <data name="backstageViewPageSerial.Text" xml:space="preserve"><value>串口</value></data>
 </root>

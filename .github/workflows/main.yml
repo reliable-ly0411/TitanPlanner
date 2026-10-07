@@ -1,133 +1,156 @@
-name: DotNet Build
+name: Windows tests, upstream sync and release
 on:
   push:
-    branches:
-      - development
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
+  schedule:
+    - cron: '17 3 * * *'
   workflow_dispatch:
-
 permissions:
-  contents: write
-
+  contents: read
+concurrency:
+  group: windows-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+  cancel-in-progress: false
 jobs:
-  build:
-    name: Build Release
-    runs-on: windows-latest
+  prepare:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      sha: ${{ steps.candidate.outputs.sha }}
+      base: ${{ steps.candidate.outputs.base }}
+      candidate: ${{ steps.candidate.outputs.candidate }}
+      changed: ${{ steps.candidate.outputs.changed }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.repository.default_branch || github.sha }}
+          fetch-depth: 0
+      - name: Prepare tested candidate without changing master
+        id: candidate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SHA: ${{ github.sha }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [[ "$EVENT_NAME" == pull_request ]]; then
+            {
+              echo "sha=$EVENT_SHA"
+              echo "base=$(git rev-parse HEAD)"
+              echo 'changed=false'
+            } >> "$GITHUB_OUTPUT"
+          else
+            python3 scripts/ci/upstream.py prepare --sync
+          fi
+  validate:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.x'
+      - name: Check both Chinese packs and automation invariants
+        run: |
+          python3 scripts/localization/verify_zh_hans.py
+          python3 -m unittest discover -s scripts/ci/tests -v
+          dotnet run --project MissionPlannerTests/Localization/Localization.csproj -c Release
+  windows:
+    needs: [prepare, validate]
+    runs-on: windows-2022
+    timeout-minutes: 45
     env:
-      IS_DEV: ${{ github.ref == 'refs/heads/development' }}
-      IS_MASTER: ${{ github.ref == 'refs/heads/master' }}
-      MSI_NAME: TitanPlanner.msi
-      ZIP_NAME: TitanPlanner.zip
-
+      CI: 'true'
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
+          ref: ${{ needs.prepare.outputs.sha }}
           submodules: true
-          fetch-depth: 10
-
-      - name: Build
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: '8.0.x'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Build Release using the independent SDK
+        shell: pwsh
+        run: ./scripts/localization/build_windows.ps1 -OutputDirectory "$env:RUNNER_TEMP\TitanPlanner-release"
+      - name: Run Windows regression tests and both Chinese interfaces
+        shell: pwsh
+        run: ./scripts/ci/test_windows.ps1 -BuildDirectory "$env:RUNNER_TEMP\TitanPlanner-release" -ResultsDirectory "$env:RUNNER_TEMP\test-results"
+      - name: Build Debug
+        shell: pwsh
+        run: ./scripts/localization/build_windows.ps1 -Configuration Debug -OutputDirectory "$env:RUNNER_TEMP\TitanPlanner-debug"
+      - name: Audit resolved dependencies
         shell: pwsh
         run: |
-          $msbuildPath = Split-Path (& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\Current\Bin\amd64\MSBuild.exe | Select-Object -First 1) -Parent
-          $env:PATH = $msbuildPath + ';' + $env:PATH
-          nuget locals all -clear
-          msbuild -v:m -restore -t:Build -p:Configuration=Release MissionPlanner.sln
-
-      - name: Cleanup
+          dotnet list MissionPlanner.csproj package --vulnerable --include-transitive --format json > "$env:RUNNER_TEMP\test-results\dependencies.json"
+          if ($LASTEXITCODE) { throw 'Dependency audit failed' }
+          python scripts/ci/check_audit.py "$env:RUNNER_TEMP\test-results\dependencies.json"
+      - name: Package and round-trip verify Windows ZIP
         shell: pwsh
-        run: |
-          cd bin\Release\net461
-          gci plugins | ForEach-Object { if (Test-Path $_.Name -PathType Leaf) { Write-Host "Remove" $_.FullName ; Remove-Item $_.FullName } else { Write-Host $_.Name } }
-          copy version.txt ..\..\..\
-          7z a -tzip ..\..\..\${{ env.ZIP_NAME }} *
-          cd ..
-          .\md5sum.exe net461 > ..\..\checksums.txt
-
-      - name: Create MSI
-        shell: pwsh
-        run: |
-          cd Msi
-          if (Test-Path installer.wxs) { Remove-Item installer.wxs }
-          & ".\net472\wix.exe" "..\bin\Release\net461"
-          & "$env:WIX\bin\candle.exe" installer.wxs -ext WiXNetFxExtension -ext WixDifxAppExtension -ext WixUIExtension.dll -ext WixUtilExtension -ext WixIisExtension
-          & "$env:WIX\bin\light.exe" installer.wixobj "$env:WIX\bin\difxapp_x86.wixlib" -sval -o ${{ env.MSI_NAME }} -ext WiXNetFxExtension -ext WixDifxAppExtension -ext WixUIExtension.dll -ext WixUtilExtension -ext WixIisExtension
-          Move-Item ${{ env.MSI_NAME }} ..\${{ env.MSI_NAME }}
-
-      - uses: actions/upload-artifact@v4
+        env:
+          BUILD_SHA: ${{ needs.prepare.outputs.sha }}
+        run: python scripts/ci/package_windows.py "$env:RUNNER_TEMP\TitanPlanner-release" "$env:RUNNER_TEMP\release" "$env:BUILD_SHA"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: MissionPlannerBeta
-          path: bin\Release\net461
-
-      - uses: actions/upload-artifact@v4
+          name: windows-release
+          path: ${{ runner.temp }}/release/*
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
         with:
-          name: MSI
-          path: ${{ env.MSI_NAME }}
-
-      - name: Get version from version.txt
-        id: version
-        if: ${{ env.IS_MASTER == 'true' }}
-        shell: pwsh
-        run: |
-          $version = Get-Content "version.txt" -Raw
-          $version = $version.Trim()
-          echo "VERSION=$version" >> $env:GITHUB_OUTPUT
-          echo "Found version: $version"
-
-      - uses: "marvinpinto/action-automatic-releases@v1.2.1"
-        if: ${{ env.IS_DEV == 'true' }}
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "development-build"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            ${{ env.ZIP_NAME }}
-            ${{ env.MSI_NAME }}
-            checksums.txt
-            version.txt
-            ChangeLog.txt
-
-      - uses: "marvinpinto/action-automatic-releases@v1.2.1"
-        if: ${{ env.IS_MASTER == 'true' }}
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "TitanPlanner-${{ steps.version.outputs.VERSION }}"
-          prerelease: false
-          title: "TitanPlanner ${{ steps.version.outputs.VERSION }}"
-          files: |
-            ${{ env.ZIP_NAME }}
-            ${{ env.MSI_NAME }}
-            checksums.txt
-            version.txt
-            ChangeLog.txt
-
-  buildDebug:
-    name: Build Debug
-    runs-on: windows-latest
-
+          name: test-results
+          path: ${{ runner.temp }}/test-results/
+          retention-days: 14
+  publish:
+    needs: [prepare, validate, windows]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          submodules: true
-          fetch-depth: 10
-
-      - name: Cache multiple paths
-        uses: actions/cache@v4
+          ref: ${{ needs.prepare.outputs.base }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
-          path: |
-            **/obj/**
-          key: ${{ runner.os }}-buildDebug
-
-      - name: Build
-        shell: pwsh
-        run: |
-          $msbuildPath = Split-Path (& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\Current\Bin\amd64\MSBuild.exe | Select-Object -First 1) -Parent
-          $env:PATH = $msbuildPath + ';' + $env:PATH
-          nuget locals all -clear
-          msbuild -v:m -restore -t:Build -p:Configuration=Debug MissionPlanner.sln
-
-      - name: Cleanup
-        shell: pwsh
-        run: |
-          cd bin\Debug\net461
-          gci plugins | ForEach-Object { if (Test-Path $_.Name -PathType Leaf) { Write-Host "Remove" $_.FullName ; Remove-Item $_.FullName } else { Write-Host $_.Name } }
+          name: windows-release
+          path: release
+      - name: Verify artifact provenance, promote tested commit and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_SHA: ${{ needs.prepare.outputs.sha }}
+          BASE_SHA: ${{ needs.prepare.outputs.base }}
+          CANDIDATE_BRANCH: ${{ needs.prepare.outputs.candidate }}
+        run: python3 scripts/ci/publish.py
+  review-failure:
+    needs: [prepare, validate, windows, publish]
+    if: always() && needs.prepare.outputs.changed == 'true' && (needs.validate.result == 'failure' || needs.windows.result == 'failure' || needs.publish.result == 'failure')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ needs.prepare.outputs.base }}
+          persist-credentials: false
+      - name: Keep failed update in a reviewable PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_BRANCH: ${{ needs.prepare.outputs.candidate }}
+        run: python3 scripts/ci/upstream.py propose --branch "$CANDIDATE_BRANCH"

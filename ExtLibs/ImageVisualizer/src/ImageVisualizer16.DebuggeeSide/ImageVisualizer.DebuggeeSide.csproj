@@ -30,7 +30,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.DebuggerVisualizers" Version="17.6.1032901" />
     <PackageReference Include="SkiaSharp">
-      <Version>2.80.2</Version>
+      <Version>2.88.9</Version>
     </PackageReference>
   </ItemGroup>
   

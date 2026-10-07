@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -209,11 +209,4 @@
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="BUT_reboot.Text" xml:space="preserve"><value>重启</value></data>
-  <data name="BUT_commitToFlash.Text" xml:space="preserve"><value>提交参数</value></data>
-  <data name="chk_modified.Text" xml:space="preserve"><value>已修改</value></data>
-  <data name="BUT_refreshTable.Text" xml:space="preserve"><value>刷新表格</value></data>
-  <data name="chk_none_default.Text" xml:space="preserve"><value>非默认值</value></data>
-  <data name="Default_value.HeaderText" xml:space="preserve"><value>默认</value></data>
-  <data name="Fav.HeaderText" xml:space="preserve"><value>收藏</value></data>
 </root>

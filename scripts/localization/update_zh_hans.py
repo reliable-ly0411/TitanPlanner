@@ -10,7 +10,7 @@ from xml.sax.saxutils import escape, quoteattr
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = ROOT / 'localization/zh-Hans/ui-translations.json'
 # 可替换为其他语言后缀，例如 zh-Hant；须同时提供对应语言词典。
-LANGUAGE = 'zh-Hans'
+LANGUAGE = 'zh-CN'
 DISPLAY_KEY = re.compile(r'\.(Text|ToolTip|ToolTipText|HeaderText|Title|Items\d*)$')
 
 

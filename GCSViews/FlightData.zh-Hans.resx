@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -606,69 +606,4 @@
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>1008, 462</value>
   </data>
-  <data name="startCameraToolStripMenuItem.Text" xml:space="preserve"><value>启动相机</value></data>
-  <data name="setGStreamerSourceToolStripMenuItem.Text" xml:space="preserve"><value>设置 GStreamer 视频源</value></data>
-  <data name="hereLinkVideoToolStripMenuItem.Text" xml:space="preserve"><value>HereLink 视频</value></data>
-  <data name="gStreamerStopToolStripMenuItem.Text" xml:space="preserve"><value>停止 GStreamer</value></data>
-  <data name="videoToolStripMenuItem.Text" xml:space="preserve"><value>视频</value></data>
-  <data name="swapWithMapToolStripMenuItem.Text" xml:space="preserve"><value>与地图交换</value></data>
-  <data name="groundColorToolStripMenuItem.Text" xml:space="preserve"><value>地面颜色</value></data>
-  <data name="setBatteryCellCountToolStripMenuItem.Text" xml:space="preserve"><value>电池单节电压</value></data>
-  <data name="showIconsToolStripMenuItem.Text" xml:space="preserve"><value>显示图标</value></data>
-  <data name="customizeToolStripMenuItem.Text" xml:space="preserve"><value>自定义</value></data>
-  <data name="multiLineToolStripMenuItem.Text" xml:space="preserve"><value>多行</value></data>
-  <data name="setViewCountToolStripMenuItem.Text" xml:space="preserve"><value>设置视图数量</value></data>
-  <data name="undockToolStripMenuItem.Text" xml:space="preserve"><value>弹出窗口</value></data>
-  <data name="BUT_SendMSG.Text" xml:space="preserve"><value>消息</value></data>
-  <data name="BUT_SendMSG.ToolTip" xml:space="preserve"><value>发送消息并保存在飞行器日志中</value></data>
-  <data name="BUT_abortland.Text" xml:space="preserve"><value>中止降落</value></data>
-  <data name="BUT_abortland.ToolTip" xml:space="preserve"><value>仅限固定翼</value></data>
-  <data name="CMB_setwp.Items" xml:space="preserve"><value>0（起飞点）</value></data>
-  <data name="BUT_Reboot.Text" xml:space="preserve"><value>重启</value></data>
-  <data name="tabParams.Text" xml:space="preserve"><value>参数</value></data>
-  <data name="tabVideo.Text" xml:space="preserve"><value>视频</value></data>
-  <data name="tabTuning.Text" xml:space="preserve"><value>调试</value></data>
-  <data name="tabInspector.Text" xml:space="preserve"><value>检查器</value></data>
-  <data name="myButton1.ToolTip" xml:space="preserve"><value>改变模式为手动/自稳</value></data>
-  <data name="myButton2.ToolTip" xml:space="preserve"><value>改变模式为返航</value></data>
-  <data name="myButton3.ToolTip" xml:space="preserve"><value>更改为自动模式</value></data>
-  <data name="fault_clb.Items" xml:space="preserve"><value>需要维护</value></data>
-  <data name="fault_clb.Items1" xml:space="preserve"><value>GPS 不可用</value></data>
-  <data name="fault_clb.Items2" xml:space="preserve"><value>GPS 未定位</value></data>
-  <data name="fault_clb.Items3" xml:space="preserve"><value>发射系统故障</value></data>
-  <data name="fault_clb.Items4" xml:space="preserve"><value>在地面</value></data>
-  <data name="XPDRConnect_btn.Text" xml:space="preserve"><value>连接应答机</value></data>
-  <data name="Squawk_label.Text" xml:space="preserve"><value>应答机编码</value></data>
-  <data name="FlightID_label.Text" xml:space="preserve"><value>航班标识</value></data>
-  <data name="IDENT_btn.Text" xml:space="preserve"><value>识别</value></data>
-  <data name="ALT_btn.Text" xml:space="preserve"><value>高度</value></data>
-  <data name="STBY_btn.Text" xml:space="preserve"><value>待机</value></data>
-  <data name="ON_btn.Text" xml:space="preserve"><value>开启</value></data>
-  <data name="Mode_clb.Items" xml:space="preserve"><value>模式 A</value></data>
-  <data name="Mode_clb.Items1" xml:space="preserve"><value>模式 C</value></data>
-  <data name="Mode_clb.Items2" xml:space="preserve"><value>模式 S</value></data>
-  <data name="Mode_clb.Items3" xml:space="preserve"><value>1090ES ADS-B 输出</value></data>
-  <data name="tabTransponder.Text" xml:space="preserve"><value>应答机</value></data>
-  <data name="tabAuxFunction.Text" xml:space="preserve"><value>辅助功能</value></data>
-  <data name="BUT_georefimage.Text" xml:space="preserve"><value>影像地理配准</value></data>
-  <data name="flyToCoordsToolStripMenuItem.Text" xml:space="preserve"><value>飞向坐标</value></data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve"><value>删除</value></data>
-  <data name="saveFileToolStripMenuItem.Text" xml:space="preserve"><value>保存文件</value></data>
-  <data name="loadFileToolStripMenuItem.Text" xml:space="preserve"><value>加载文件</value></data>
-  <data name="poiatcoordsToolStripMenuItem.Text" xml:space="preserve"><value>坐标</value></data>
-  <data name="addPoiToolStripMenuItem.Text" xml:space="preserve"><value>添加兴趣点</value></data>
-  <data name="PointCameraCoordsToolStripMenuItem1.Text" xml:space="preserve"><value>相机指向坐标</value></data>
-  <data name="setEKFHomeHereToolStripMenuItem.Text" xml:space="preserve"><value>在此设置 EKF 原点</value></data>
-  <data name="setHomeHereToolStripMenuItem1.Text" xml:space="preserve"><value>设置家在此</value></data>
-  <data name="takeOffToolStripMenuItem.Text" xml:space="preserve"><value>起飞</value></data>
-  <data name="onOffCameraOverlapToolStripMenuItem.Text" xml:space="preserve"><value>影像重叠率</value></data>
-  <data name="jumpToTagToolStripMenuItem.Text" xml:space="preserve"><value>跳转到标签</value></data>
-  <data name="gimbalVideoFullSizedToolStripMenuItem.Text" xml:space="preserve"><value>原始大小</value></data>
-  <data name="gimbalVideoMiniToolStripMenuItem.Text" xml:space="preserve"><value>小型</value></data>
-  <data name="gimbalVideoPopOutToolStripMenuItem.Text" xml:space="preserve"><value>弹出窗口</value></data>
-  <data name="gimbalVideoToolStripMenuItem.Text" xml:space="preserve"><value>云台视频</value></data>
-  <data name="but_disablejoystick.Text" xml:space="preserve"><value>禁用游戏杆</value></data>
-  <data name="lbl_sats.Text" xml:space="preserve"><value>卫星数：0</value></data>
-  <data name="CB_params.Text" xml:space="preserve"><value>参数</value></data>
-  <data name="CB_params.ToolTip" xml:space="preserve"><value>显示参数编辑器</value></data>
 </root>

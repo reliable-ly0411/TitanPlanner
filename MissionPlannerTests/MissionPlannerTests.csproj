@@ -3,8 +3,11 @@
     <TargetFramework>net472</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Localization\**" />
     <ProjectReference Include="..\ExtLibs\ArduPilot\MissionPlanner.ArduPilot.csproj" />
     <ProjectReference Include="..\ExtLibs\Controls\MissionPlanner.Controls.csproj" />
     <ProjectReference Include="..\ExtLibs\DroneCAN\DroneCAN.csproj" />
@@ -13,8 +16,8 @@
     <ProjectReference Include="..\MissionPlanner.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.TestPlatform">
-      <Version>17.3.2</Version>
+    <PackageReference Include="Microsoft.NET.Test.Sdk">
+      <Version>17.11.1</Version>
     </PackageReference>
     <PackageReference Include="MSTest.TestAdapter">
       <Version>2.2.10</Version>

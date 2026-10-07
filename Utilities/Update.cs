@@ -113,8 +113,27 @@ namespace MissionPlanner.Utilities
             }
         }
 
+        public static string ForkReleasePage => ConfigurationManager.AppSettings["ForkReleasePage"];
+
+        public static bool OpenForkReleases()
+        {
+            if (string.IsNullOrEmpty(ForkReleasePage))
+                return false;
+            var uri = new Uri(ForkReleasePage);
+            if (uri.Scheme != Uri.UriSchemeHttps)
+                throw new InvalidOperationException("Release page must use HTTPS");
+            Process.Start(new ProcessStartInfo(uri.AbsoluteUri) { UseShellExecute = true });
+            return true;
+        }
+
         public static void CheckForUpdate(bool NotifyNoUpdate = false)
         {
+            // This fork publishes complete, verified ZIPs. Never replace it with upstream binaries.
+            if (!string.IsNullOrEmpty(ForkReleasePage))
+            {
+                if (NotifyNoUpdate) OpenForkReleases();
+                return;
+            }
             var baseurl = ConfigurationManager.AppSettings["UpdateLocationVersion"];
 
             if (dobeta)
@@ -222,6 +241,7 @@ namespace MissionPlanner.Utilities
 
         public static void DoUpdate()
         {
+            if (OpenForkReleases()) return;
             if (Program.WindowsStoreApp)
             {
                 CustomMessageBox.Show(Strings.Not_available_when_used_as_a_windows_store_app);

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -138,14 +138,18 @@
   <data name="label6.Text" xml:space="preserve">
     <value>日志偏移</value>
   </data>
-  <data name="label7.Text" xml:space="preserve"><value>纵向视场</value></data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Dir fov</value>
+  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>高度</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>头</value>
   </data>
-  <data name="label8.Text" xml:space="preserve"><value>横向视场</value></data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Cross fov</value>
+  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>旋转</value>
   </data>
@@ -167,15 +171,4 @@
   <data name="BUT_estoffset.Text" xml:space="preserve">
     <value>估算便宜</value>
   </data>
-  <data name="RDIO_TimeOffset.Text" xml:space="preserve"><value>时间偏移</value></data>
-  <data name="RDIO_CAMMsgSynchro.Text" xml:space="preserve"><value>CAM 消息</value></data>
-  <data name="lbldrpstart.Text" xml:space="preserve"><value>在起点拍照</value></data>
-  <data name="chk_usegps2.Text" xml:space="preserve"><value>使用 GPS2</value></data>
-  <data name="label28.Text" xml:space="preserve"><value>相对高度基准</value></data>
-  <data name="CHECK_AMSLAlt_Use.Text" xml:space="preserve"><value>使用海拔高度</value></data>
-  <data name="label27.Text" xml:space="preserve"><value>快门延迟 (ms)</value></data>
-  <data name="chk_cammsg.Text" xml:space="preserve"><value>使用 CAM 消息</value></data>
-  <data name="RDIO_trigmsg.Text" xml:space="preserve"><value>触发消息</value></data>
-  <data name="chk_camusegpsalt.Text" xml:space="preserve"><value>使用 GPS 高度</value></data>
-  <data name="chk_trigusergpsalt.Text" xml:space="preserve"><value>使用 GPS 高度</value></data>
 </root>

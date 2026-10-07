@@ -20,7 +20,7 @@ internal static class Program
     {
         // UI 文化与数值文化必须分开；翻译不能改变参数值或协议格式。
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-        foreach (var language in new[] { "zh-Hans", "zh-CN", "zh-SG" })
+        foreach (var language in new[] { "zh-CN" })
         {
             CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(language);
             Equal("3D 地图设置", UiText.Translate("3D Map Settings"));
@@ -30,17 +30,23 @@ internal static class Program
             Equal("航迹方向：12.3°", UiText.Format($"Course: {12.34:0.0}°"));
             Equal("设置 MOT_SPIN_ARM 失败： ", UiText.Format($"Failed to set {"MOT_SPIN_ARM"}: "));
             Equal("MOT_SPIN_ARM", UiText.Translate("MOT_SPIN_ARM"));
+            Equal("连接与数据", UiText.Translate("Connection && Data"));
+            Equal("单位与测量", UiText.Translate("Units & Measurement"));
+            Equal("地图与显示", UiText.Translate("Map & Display"));
+            Equal("更新", UiText.Translate("Updates"));
+            Equal("紧急", UiText.Translate("Emergency"));
+            Equal("基础", UiText.Translate("Basic"));
             Equal("[untranslated]", UiText.Translate("[untranslated]"));
             Equal("0.125", 0.125.ToString(CultureInfo.InvariantCulture));
         }
         // 不重启进程切换语言，验证不复用上一次中文结果。
-        foreach (var language in new[] { "en-US", "de-DE", "zh-TW" })
+        foreach (var language in new[] { "zh-Hans", "zh-SG", "en-US", "de-DE", "zh-TW" })
         {
             CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(language);
             Equal("3D Map Settings", UiText.Translate("3D Map Settings"));
             Equal("Motor 4", UiText.Format($"Motor {4}"));
         }
-        CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("zh-Hans");
+        CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("zh-CN");
         // 逐条读取真实编译资源，检查换行、大小写键、中文编码及资源覆盖。
         var entries = new Dictionary<string, string>();
         foreach (var file in new[] { "ui-translations.json", "code-translations.json" })

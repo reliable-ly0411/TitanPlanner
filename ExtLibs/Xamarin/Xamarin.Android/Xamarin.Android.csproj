@@ -116,10 +116,10 @@
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
-      <Version>2.80.2</Version>
+      <Version>2.88.9</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views.Forms">
-      <Version>2.80.2</Version>
+      <Version>2.88.9</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Permissions">
       <Version>9.0.8</Version>

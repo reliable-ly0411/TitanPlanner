@@ -1,110 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -117,157 +59,109 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chk_rtcmmsg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 16</value>
-  </data>
-  <data name="chk_rtcmmsg.Text" xml:space="preserve">
-    <value>注入消息类型</value>
-  </data>
-  <data name="lbl_svin.ToolTip" xml:space="preserve">
-    <value>Survey in information
-Valid: is the survey in valid
-InProgress: are we currently surveying in our position
-Duration: the number of seconds we have surveyed in
-Obs: number of obsivation used in our survey in
-Acc: current accuracy of our survey in point
-</value>
-  </data>
-  <data name="chk_autoconfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
-  </data>
-  <data name="chk_autoconfig.Text" xml:space="preserve">
-    <value>自动配置接收器</value>
-  </data>
-  <data name="chk_autoconfig.ToolTip" xml:space="preserve">
-    <value>自动配置连接到所选端口的接收器以输出校正消息。</value>
-  </data>
-  <data name="groupBox_autoconfig.Text" xml:space="preserve">
-    <value>自动化配置</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chk_septentriogalileo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chk_septentriobeidou.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chk_septentriogps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Both accuracy and duration must be meet in order for the survey in to complete
-ie less than 2 m accuracy, and Greater than 60 seconds of observations</value>
-  </data>
-  <data name="label10.ToolTip" xml:space="preserve">
-    <value>Survey in information
-Valid: is the survey in valid
-InProgress: are we currently surveying in our position
-Duration: the number of seconds we have surveyed in
-Obs: number of obsivation used in our survey in
-Acc: current accuracy of our survey in point
-</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Survey in information
-Valid: is the survey in valid
-InProgress: are we currently surveying in our position
-Duration: the number of seconds we have surveyed in
-Obs: number of obsivation used in our survey in
-Acc: current accuracy of our survey in point
-</value>
-  </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value>Survey in information
-Valid: is the survey in valid
-InProgress: are we currently surveying in our position
-Duration: the number of seconds we have surveyed in
-Obs: number of obsivation used in our survey in
-Acc: current accuracy of our survey in point
-</value>
-  </data>
-  <data name="label8.ToolTip" xml:space="preserve">
-    <value>Survey in information
-Valid: is the survey in valid
-InProgress: are we currently surveying in our position
-Duration: the number of seconds we have surveyed in
-Obs: number of obsivation used in our survey in
-Acc: current accuracy of our survey in point
-</value>
-  </data>
-  <data name="chk_sendgga.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 16</value>
-  </data>
-  <data name="chk_sendgga.Text" xml:space="preserve">
-    <value>发送NTRIP GGA? (VRS/Smart)</value>
-  </data>
-  <data name="check_sendntripv1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 16</value>
-  </data>
-  <data name="check_sendntripv1.Text" xml:space="preserve">
-    <value>发送NTRIP v1.0 ?</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>传入速率</value>
-  </data>
-<data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-		<value>84, 12</value>
-</data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>输出速率</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 12</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>RTCM 基准站位置 </value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>RTCM消息ID</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>基准站</value>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>格洛纳斯</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>RTCM数据时效</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>伽利略</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>北斗</value>
-  </data>
-  <data name="labelbase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 16</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>链路状态</value>
-  </data>
-  <data name="BUT_connect.Text" xml:space="preserve">
-    <value>连接</value>
-  </data>
+    <data name="chk_rtcmmsg.Text" xml:space="preserve"><value>注入消息类型</value></data>
+  <data name="chk_rtcmmsg.ToolTip" xml:space="preserve"><value>这取决于飞控固件版本。如支持，请保持启用，因为新版消息对数据损坏的处理更好。</value></data>
+  <data name="lbl_svin.Text" xml:space="preserve"><value>测定基站位置</value></data>
+  <data name="lbl_svin.ToolTip" xml:space="preserve"><value>基站位置测定信息
+Valid：测定结果是否有效
+InProgress：是否正在测定位置
+Duration：已测定的秒数
+Obs：测定使用的观测次数
+Acc：当前测定位置的精度
+</value></data>
+  <data name="chk_autoconfig.Text" xml:space="preserve"><value>自动配置接收机</value></data>
+  <data name="chk_autoconfig.ToolTip" xml:space="preserve"><value>自动配置所选端口上的接收机，使其输出差分改正消息。</value></data>
+  <data name="label22.Text" xml:space="preserve"><value>连接后，接收机将开始“测定基站位置”，以确定精确的 GPS 位置。
+当 RTCM 基站位置不再变化时，测定完成。
+根据位置和信号情况，这可能需要几分钟。
+
+测定完成后即可使用。
+</value></data>
+  <data name="label21.Text" xml:space="preserve"><value>RTCM 卫星星座</value></data>
+  <data name="label21.ToolTip" xml:space="preserve"><value>选择接收机为哪些卫星星座输出改正数据。星座越多，数据速率越高。</value></data>
+  <data name="chk_septentriogalileo.Text" xml:space="preserve"><value>伽利略</value></data>
+  <data name="chk_septentriogalileo.ToolTip" xml:space="preserve"><value>切换伽利略 RTCM 消息输出。</value></data>
+  <data name="chk_septentriobeidou.Text" xml:space="preserve"><value>北斗</value></data>
+  <data name="chk_septentriobeidou.ToolTip" xml:space="preserve"><value>切换北斗 RTCM 消息输出。</value></data>
+  <data name="chk_septentrioglonass.ToolTip" xml:space="preserve"><value>切换 GLONASS RTCM 消息输出。</value></data>
+  <data name="chk_septentriogps.ToolTip" xml:space="preserve"><value>切换 GPS RTCM 消息输出。</value></data>
+  <data name="button_septentriortcminterval.Text" xml:space="preserve"><value>设置间隔</value></data>
+  <data name="label20.Text" xml:space="preserve"><value>RTCM 消息间隔 (s)</value></data>
+  <data name="label20.ToolTip" xml:space="preserve"><value>选择接收机输出 RTCM 消息的时间间隔。数值越小，数据速率越高。</value></data>
+  <data name="label19.Text" xml:space="preserve"><value>RTCM 消息量</value></data>
+  <data name="label19.ToolTip" xml:space="preserve"><value>选择 RTCM 消息的详细程度。数值越大，数据速率越高。</value></data>
+  <data name="cmb_septentriortcmamount.Items" xml:space="preserve"><value>精简</value></data>
+  <data name="cmb_septentriortcmamount.Items1" xml:space="preserve"><value>基本</value></data>
+  <data name="cmb_septentriortcmamount.Items2" xml:space="preserve"><value>完整</value></data>
+  <data name="chk_septentriofixedposition.Text" xml:space="preserve"><value>固定位置</value></data>
+  <data name="chk_septentriofixedposition.ToolTip" xml:space="preserve"><value>手动输入基站天线的固定位置，而非让接收机自动测定。这可以提高改正数据的精度。
+</value></data>
+  <data name="label14.Text" xml:space="preserve"><value>高度 (WGS84)</value></data>
+  <data name="label17.Text" xml:space="preserve"><value>经度 (WGS84)</value></data>
+  <data name="label18.Text" xml:space="preserve"><value>高度 (m)</value></data>
+  <data name="button_septentriosetposition.Text" xml:space="preserve"><value>设置位置</value></data>
+  <data name="but_restartsvin.Text" xml:space="preserve"><value>重新启动</value></data>
+  <data name="but_restartsvin.ToolTip" xml:space="preserve"><value>保存当前测定的基站位置</value></data>
+  <data name="chk_m8p_130p.ToolTip" xml:space="preserve"><value>如果基站和移动站均使用 u-blox 1.30 或更新固件，请勾选此项</value></data>
+  <data name="but_save_basepos.Text" xml:space="preserve"><value>保存当前位置</value></data>
+  <data name="but_save_basepos.ToolTip" xml:space="preserve"><value>保存当前测定的基站位置</value></data>
+  <data name="Lat.HeaderText" xml:space="preserve"><value>纬度/ECEF X</value></data>
+  <data name="Long.HeaderText" xml:space="preserve"><value>经度/ECEF Y</value></data>
+  <data name="Alt.HeaderText" xml:space="preserve"><value>高度/ECEF Z</value></data>
+  <data name="BaseName1.HeaderText" xml:space="preserve"><value>名称</value></data>
+  <data name="Use.HeaderText" xml:space="preserve"><value>使用</value></data>
+  <data name="Delete.HeaderText" xml:space="preserve"><value>删除</value></data>
+  <data name="label2.Text" xml:space="preserve"><value>时间 (s)</value></data>
+  <data name="txt_surveyinAcc.ToolTip" xml:space="preserve"><value>基站测定精度阈值：定位误差必须小于此值</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>基站测定精度 (m)</value></data>
+  <data name="label1.ToolTip" xml:space="preserve"><value>测定基站位置必须同时满足精度和时长条件。
+例如：定位误差小于 2 m，且观测时间超过 60 秒。</value></data>
+  <data name="txt_surveyinDur.ToolTip" xml:space="preserve"><value>基站测定最短时间：必须超过此值</value></data>
+  <data name="label10.Text" xml:space="preserve"><value>测定基站位置</value></data>
+  <data name="label10.ToolTip" xml:space="preserve"><value>基站位置测定信息
+Valid：测定结果是否有效
+InProgress：是否正在测定位置
+Duration：已测定的秒数
+Obs：测定使用的观测次数
+Acc：当前测定位置的精度
+</value></data>
+  <data name="label7.Text" xml:space="preserve"><value>测定基站位置</value></data>
+  <data name="label7.ToolTip" xml:space="preserve"><value>基站位置测定信息
+Valid：测定结果是否有效
+InProgress：是否正在测定位置
+Duration：已测定的秒数
+Obs：测定使用的观测次数
+Acc：当前测定位置的精度
+</value></data>
+  <data name="label9.Text" xml:space="preserve"><value>测定基站位置</value></data>
+  <data name="label9.ToolTip" xml:space="preserve"><value>基站位置测定信息
+Valid：测定结果是否有效
+InProgress：是否正在测定位置
+Duration：已测定的秒数
+Obs：测定使用的观测次数
+Acc：当前测定位置的精度
+</value></data>
+  <data name="label8.Text" xml:space="preserve"><value>测定基站位置</value></data>
+  <data name="label8.ToolTip" xml:space="preserve"><value>基站位置测定信息
+Valid：测定结果是否有效
+InProgress：是否正在测定位置
+Duration：已测定的秒数
+Obs：测定使用的观测次数
+Acc：当前测定位置的精度
+</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>测定基站位置</value></data>
+  <data name="groupBox_autoconfig.Text" xml:space="preserve"><value>自动配置选项</value></data>
+  <data name="chk_sendgga.Text" xml:space="preserve"><value>发送 NTRIP GGA？（VRS/Smart）</value></data>
+  <data name="chk_sendgga.ToolTip" xml:space="preserve"><value>这取决于飞控固件版本。如支持，请保持启用，因为新版消息对数据损坏的处理更好。</value></data>
+  <data name="check_sendntripv1.Text" xml:space="preserve"><value>使用 NTRIP 1.0 协议？</value></data>
+  <data name="check_sendntripv1.ToolTip" xml:space="preserve"><value>某些旧版 NTRIP 服务端（例如 RTKLIB）不支持 NTRIP 2.0 协议。勾选此项以使用 1.0 协议。</value></data>
+  <data name="label3.Text" xml:space="preserve"><value>输入数据速率</value></data>
+  <data name="label4.Text" xml:space="preserve"><value>输出数据速率</value></data>
+  <data name="label5.Text" xml:space="preserve"><value>RTCM 基站 </value></data>
+  <data name="label6.Text" xml:space="preserve"><value>已接收消息</value></data>
+  <data name="label11.Text" xml:space="preserve"><value>基站</value></data>
+  <data name="label16.Text" xml:space="preserve"><value>伽利略</value></data>
+  <data name="label15.Text" xml:space="preserve"><value>北斗</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>链路状态</value></data>
+  <data name="BUT_connect.Text" xml:space="preserve"><value>连接</value></data>
 </root>

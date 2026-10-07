@@ -92,7 +92,7 @@ namespace solo
                     if (!client.IsConnected)
                         throw new Exception("Failed to connect ssh");
                     
-                    using (ScpClient scpClient = new ScpClient(client.ConnectionInfo))
+                    using (ScpClient scpClient = new ScpClient(client.ConnectionInfo, Renci.SshNet.RemotePathTransformation.ShellQuote))
                     {
                         scpClient.Connect();
 
@@ -130,7 +130,7 @@ namespace solo
 
                     var retcode = client.RunCommand("rm -rf /firmware/loaded");
                     
-                    using (ScpClient scpClient = new ScpClient(client.ConnectionInfo))
+                    using (ScpClient scpClient = new ScpClient(client.ConnectionInfo, Renci.SshNet.RemotePathTransformation.ShellQuote))
                     {
                         scpClient.Connect();
 
@@ -195,7 +195,7 @@ namespace solo
                         client.RunCommand("rm -rf /log/updates && mkdir -p /log/updates");
                     }
 
-                    using (ScpClient scpClient = new ScpClient(client.ConnectionInfo))
+                    using (ScpClient scpClient = new ScpClient(client.ConnectionInfo, Renci.SshNet.RemotePathTransformation.ShellQuote))
                     {
                         scpClient.Connect();
 

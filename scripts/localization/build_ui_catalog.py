@@ -40,7 +40,7 @@ def main():
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
     entries = catalog()
-    for name, values in (('UiText.resx', {}), ('UiText.zh-Hans.resx', entries)):
+    for name, values in (('UiText.resx', {}), ('UiText.zh-Hans.resx', {}), ('UiText.zh-CN.resx', entries)):
         path = ROOT / 'ExtLibs/Utilities/Resources' / name
         expected = resource(values)
         if args.check:

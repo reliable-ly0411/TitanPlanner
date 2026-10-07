@@ -1,4 +1,4 @@
-> **简体中文补丁：** 本 fork 已补齐中文界面资源和动态显示文本。使用方法、构建说明及验证边界见 [README.zh-CN.md](README.zh-CN.md)。当前交付为源码补丁，完整 Windows GUI 验收尚未完成。
+> **中文双版本：** 保留“中文(简体)”并提供增强“中文(简体)2”。本仓库使用独立 .NET SDK 构建 Windows 程序，测试通过后自动发布；参见 [中文使用说明](README.zh-CN.md) 与 [上游同步及发布流程](AUTOMATION.zh-CN.md)。下文保留上游项目介绍。
 
 # Mission Planner - Titan Dynamics Edition
 

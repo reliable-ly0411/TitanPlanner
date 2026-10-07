@@ -170,7 +170,7 @@
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
-      <Version>2.80.2</Version>
+      <Version>2.88.9</Version>
     </PackageReference>
     <PackageReference Include="System.Resources.Extensions">
       <Version>4.6.0</Version>

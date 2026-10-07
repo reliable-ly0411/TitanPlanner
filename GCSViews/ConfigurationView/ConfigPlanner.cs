@@ -38,6 +38,18 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             CHK_startFullscreen.CheckedChanged += CHK_startFullscreen_CheckedChanged;
 
             InitializeComponent();
+            // Format display text only; SelectedItem remains the original enum.
+            CMB_Layout.Format += (sender, e) => e.Value = UiText.Translate(e.ListItem.ToString());
+            CMB_severity.Format += (sender, e) => e.Value = UiText.Translate(e.ListItem.ToString());
+            CMB_language.Format += (sender, e) =>
+            {
+                var culture = e.ListItem as CultureInfo;
+                if (culture != null)
+                    e.Value = culture.Name == "zh-CN" ? "中文(简体)2"
+                        : culture.Name == "zh-Hans" ? "中文(简体)"
+                        : culture.NativeName + " [" + culture.Name + "]";
+            };
+            CMB_language.DropDownWidth = 300;
             CMB_Layout.Items.Add(DisplayNames.Basic);
             CMB_Layout.Items.Add(DisplayNames.Advanced);
             CMB_Layout.Items.Add(DisplayNames.Custom);
@@ -74,8 +86,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 FlowDirection = FlowDirection.LeftToRight,
                 WrapContents = true,
                 Padding = new Padding(10),
-                Margin = new Padding(0),
-                MaximumSize = new Size(800, 0)
+                Margin = new Padding(0)
             };
             layoutRoot.SizeChanged += (s, e) => ResizeGroupBoxes();
 
@@ -88,6 +99,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             layoutRoot.Controls.Add(CreateUpdatesGroup());
             layoutRoot.Controls.Add(CreateConfigurationGroup());
 
+            PrepareLayoutControls(layoutRoot);
             Controls.Clear();
             Controls.Add(layoutRoot);
 
@@ -104,16 +116,39 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
 
             var width = layoutRoot.ClientSize.Width - layoutRoot.Padding.Horizontal;
-            var minGroupWidth = 380;
-            var columns = Math.Max(1, Math.Min(3, width / minGroupWidth));
-            var columnWidth = columns > 0 ? (width - ((columns - 1) * 10)) / columns : width;
+            if (width <= 0)
+                return;
+
+            var minGroupWidth = (int)Math.Ceiling(380 * layoutRoot.DeviceDpi / 96.0);
+            var margin = 10;
+            var columns = Math.Max(1, Math.Min(3, width / (minGroupWidth + margin)));
+            var columnWidth = Math.Max(1, width / columns - margin);
 
             foreach (Control child in layoutRoot.Controls)
             {
-                if (width > 0)
+                // Constrain AutoSize groups to their column, including both margins.
+                // On narrow windows allow a single column below the preferred width.
+                child.MinimumSize = Size.Empty;
+                child.MaximumSize = new Size(columnWidth, 0);
+                child.MinimumSize = new Size(columnWidth, 0);
+                child.Width = columnWidth;
+            }
+        }
+
+        private static void PrepareLayoutControls(Control parent)
+        {
+            foreach (Control child in parent.Controls)
+            {
+                if (child is Label || child is CheckBox || child is RadioButton)
+                    child.AutoSize = true;
+                if (child is Button button)
                 {
-                    child.Width = Math.Max(minGroupWidth, columnWidth);
+                    button.AutoSize = true;
+                    button.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 }
+                if (child is ComboBox || child is TextBox)
+                    child.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                PrepareLayoutControls(child);
             }
         }
 
@@ -124,7 +159,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 Padding = new Padding(10),
-                Text = title,
+                Text = UiText.Translate(title),
                 Margin = new Padding(5)
             };
         }
@@ -280,7 +315,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             var btnBetaUpdate = new MyButton
             {
-                Text = UiText.Translate("Update to Dev"),
+                Text = UiText.Translate("Download tested build"),
                 AutoSize = true
             };
             btnBetaUpdate.Click += BtnBetaUpdate_Click;
@@ -295,6 +330,16 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             lnkReleases.LinkClicked += LnkReleases_LinkClicked;
             table.Controls.Add(lnkReleases, 0, 2);
 
+            var updateNotice = new Label
+            {
+                AutoSize = true,
+                Text = UiText.Translate("Download updates from this fork to keep both Chinese language options. Extract the complete package to a new folder."),
+                Margin = new Padding(3, 8, 3, 3)
+            };
+            table.SizeChanged += (sender, e) => updateNotice.MaximumSize =
+                new Size(Math.Max(1, table.ClientSize.Width - updateNotice.Margin.Horizontal), 0);
+            table.Controls.Add(updateNotice, 0, 3);
+
             group.Controls.Add(table);
             return group;
         }
@@ -303,7 +348,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             try
             {
-                Process.Start(new ProcessStartInfo("https://github.com/Titan-Dynamics/TitanPlanner/releases")
+                Process.Start(new ProcessStartInfo(Utilities.Update.ForkReleasePage ?? "https://github.com/reliable-ly0411/TitanPlanner/releases")
                 {
                     UseShellExecute = true
                 });
@@ -543,36 +588,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 Settings.Instance["severity"] = CMB_severity.SelectedIndex.ToString();
             }
 
-            // setup language selection
-            var cultureCodes = new[]
-            {
-                "en-US", "zh-Hans", "zh-TW", "ru-RU", "Fr", "Pl", "it-IT", "es-ES", "de-DE", "ja-JP", "id-ID", "ko-KR",
-                "ar", "pt", "tr", "ru-KZ", "uk"
-            };
-
-            _languages = cultureCodes
-                .Select(CultureInfoEx.GetCultureInfo)
-                .Where(c => c != null)
-                .ToList();
-
-            CMB_language.DisplayMember = "DisplayName";
-            CMB_language.DataSource = _languages;
-            var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
-
-            for (var i = 0; i < _languages.Count; i++)
-            {
-                if (currentUiCulture.IsChildOf(_languages[i]))
-                {
-                    try
-                    {
-                        CMB_language.SelectedIndex = i;
-                    }
-                    catch
-                    {
-                    }
-                    break;
-                }
-            }
+            SetupLanguageSelector();
 
             // setup up camera button states
             if (MainV2.cam != null)
@@ -897,16 +913,66 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             Settings.Instance["severity"] = CMB_severity.SelectedIndex.ToString();
         }
 
+        private void SetupLanguageSelector()
+        {
+            // setup language selection
+            var cultureCodes = new[]
+            {
+                "en-US", "zh-Hans", "zh-CN", "zh-TW", "ru-RU", "Fr", "Pl", "it-IT", "es-ES", "de-DE", "ja-JP", "id-ID", "ko-KR",
+                "ar", "pt", "tr", "ru-KZ", "uk"
+            };
+
+            _languages = cultureCodes
+                .Select(CultureInfoEx.GetCultureInfo)
+                .Where(c => c != null)
+                .ToList();
+
+            CMB_language.DisplayMember = "NativeName";
+            CMB_language.DataSource = _languages;
+            var currentUiCulture = string.IsNullOrEmpty(Settings.Instance["language"])
+                ? Thread.CurrentThread.CurrentUICulture
+                : CultureInfoEx.GetCultureInfo(Settings.Instance["language"]) ?? Thread.CurrentThread.CurrentUICulture;
+
+            // Prefer the exact variant before its parent (zh-CN inherits zh-Hans).
+            CMB_language.SelectedItem = _languages.FirstOrDefault(c => c.Name == currentUiCulture.Name)
+                ?? _languages.FirstOrDefault(c => currentUiCulture.IsChildOf(c));
+
+        }
+
         private void CMB_language_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (startup)
+            var selectedCulture = CMB_language.SelectedItem as CultureInfo;
+            if (startup || selectedCulture == null || Settings.Instance["language"] == selectedCulture.Name)
                 return;
-            MainV2.instance.changelanguage((CultureInfo)CMB_language.SelectedItem);
 
-            MessageBox.Show(UiText.Translate("Please Restart the Planner"));
+            // Save the preference for the next launch. Keep this session's UI and
+            // vehicle connection intact instead of partially relocalizing and closing.
+            var previousLanguage = Settings.Instance["language"];
+            Settings.Instance["language"] = selectedCulture.Name;
+            try
+            {
+                Settings.Instance.Save();
+            }
+            catch (Exception ex)
+            {
+                Settings.Instance["language"] = previousLanguage;
+                startup = true;
+                try
+                {
+                    CMB_language.SelectedItem = _languages.FirstOrDefault(c => c.Name == previousLanguage)
+                        ?? _languages.FirstOrDefault(c => c.Name == Thread.CurrentThread.CurrentUICulture.Name)
+                        ?? _languages.FirstOrDefault(c => Thread.CurrentThread.CurrentUICulture.IsChildOf(c));
+                }
+                finally
+                {
+                    startup = false;
+                }
+                CustomMessageBox.Show(ex.Message, Strings.ERROR);
+                return;
+            }
 
-            MainV2.instance.Close();
-            //Application.Exit();
+            CustomMessageBox.Show(UiText.Translate(
+                "Language saved. It will take effect the next time you start TitanPlanner. You can continue working in this session."));
         }
 
         private void CMB_osdcolor_SelectedIndexChanged(object sender, EventArgs e)

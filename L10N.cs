@@ -19,9 +19,10 @@ namespace MissionPlanner
         public static CultureInfo GetConfigLang()
         {
             if (string.IsNullOrEmpty(Settings.Instance["language"]))
-                return CultureInfo.GetCultureInfo("zh-Hans");
+                return CultureInfo.GetCultureInfo("zh-CN");
             else
-                return CultureInfoEx.GetCultureInfo(Settings.Instance["language"]);
+                return CultureInfoEx.GetCultureInfo(Settings.Instance["language"])
+                    ?? CultureInfo.GetCultureInfo("zh-CN");
         }
     }
 }

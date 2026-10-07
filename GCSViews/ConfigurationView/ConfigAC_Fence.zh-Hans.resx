@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -160,5 +160,4 @@
   <data name="label1gftitle.Text" xml:space="preserve">
     <value>地理围栏</value>
   </data>
-  <data name="label8minalt.Text" xml:space="preserve"><value>最低高度</value></data>
 </root>

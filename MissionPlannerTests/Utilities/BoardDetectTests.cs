@@ -27,7 +27,9 @@ namespace MissionPlanner.Utilities.Tests
                 Assert.Fail();
         }
 
+        // Prompts for physical reconnection and probes serial ports; run with a real fixture.
         [TestMethod()]
+        [TestCategory("Hardware")]
         public void DetectBoardTestMany()
         {
             BoardDetect.boards ans;
@@ -132,7 +134,9 @@ namespace MissionPlanner.Utilities.Tests
                 Assert.Fail();
         }
 
+        // Prompts for physical reconnection and probes serial ports; run with a real fixture.
         [TestMethod()]
+        [TestCategory("Hardware")]
         public void DetectBoardTest3()
         {
             var ans = BoardDetect.DetectBoard("com1",
@@ -148,7 +152,9 @@ namespace MissionPlanner.Utilities.Tests
                 Assert.Fail();
         }
 
+        // Prompts for physical reconnection and probes serial ports; run with a real fixture.
         [TestMethod()]
+        [TestCategory("Hardware")]
         public void DetectBoardTest4()
         {
             var ans = BoardDetect.DetectBoard("com1",
@@ -175,11 +181,13 @@ namespace MissionPlanner.Utilities.Tests
                     new DeviceInfo() { board = "PX4 FMU v5.x", description = "", hardwareid = @"USB\VID_26AC&PID_0032", name = "" },
 
                 });
-            if (ans != BoardDetect.boards.chbootloader)
-                Assert.Fail();
+            // Legacy PX4 v5 descriptors have an explicit fmuv5 mapping.
+            Assert.AreEqual(BoardDetect.boards.fmuv5, ans);
         }
 
+        // Prompts for physical reconnection and probes serial ports; run with a real fixture.
         [TestMethod()]
+        [TestCategory("Hardware")]
         public void DetectBoardTest6()
         {
             var ans = BoardDetect.DetectBoard("com1",
@@ -219,7 +227,9 @@ namespace MissionPlanner.Utilities.Tests
                 Assert.Fail();
         }
 
+        // Prompts for physical reconnection and probes serial ports; run with a real fixture.
         [TestMethod()]
+        [TestCategory("Hardware")]
         public void DetectBoardTest8()
         {
             var ans = BoardDetect.DetectBoard("com1",

@@ -9,6 +9,7 @@
     <Compile Include="Program.cs.txt" Link="Program.cs" />
     <Compile Include="../../ExtLibs/Utilities/UiText.cs" Link="UiText.cs" />
     <EmbeddedResource Include="../../ExtLibs/Utilities/Resources/UiText.resx" Link="Resources/UiText.resx" />
+    <EmbeddedResource Include="../../ExtLibs/Utilities/Resources/UiText.zh-CN.resx" Link="Resources/UiText.zh-CN.resx" />
     <EmbeddedResource Include="../../ExtLibs/Utilities/Resources/UiText.zh-Hans.resx" Link="Resources/UiText.zh-Hans.resx" />
     <Content Include="../../localization/zh-Hans/*translations.json" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

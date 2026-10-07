@@ -1,12 +1,9 @@
 name: Android Build
-on: 
-    workflow_dispatch:
-    pull_request:
-    push:
-        branches:
-            - master
-        tags:
-            - beta
+# Legacy Xamarin targets require separate SDKs/signing keys and are not Windows release gates.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
 
 jobs:
   buildAAB:
@@ -14,11 +11,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           submodules: true
           fetch-depth: 10
-          
+
       - name: Install Android SDK Platform 33
         run: |
             gci
@@ -27,12 +24,12 @@ jobs:
             gci
             pwd
             cd latest
-            cd bin            
+            cd bin
             .\sdkmanager.bat --list
             .\sdkmanager.bat "platforms;android-33" "build-tools;31.0.0"
 
 
-          
+
       - name: Cache multiple paths
         uses: actions/cache@v4
         with:
@@ -52,22 +49,22 @@ jobs:
           $env:PATH = $msbuildPath + ';' + $env:PATH
           nuget locals all -clear
           $current = Get-Location
-          
+
           $days = [int]((New-TimeSpan -Start 2020-01-01 -End (Get-Date)).totaldays * 100)
-          
+
           $manifest = [xml](Get-Content -Path ExtLibs\Xamarin\Xamarin.Android\Properties\AndroidManifest.xml -Raw)
 
           $manifest.SelectNodes("manifest") | % { $_.versionCode = ""+$days }
           $manifest.SelectNodes("manifest") | % { $_.versionName = ""+$days }
-          
+
           $manifest.Save($current.Path + "\ExtLibs\Xamarin\Xamarin.Android\Properties\AndroidManifest.xml")
 
           choco install microsoft-openjdk --version=11.0.11.9
 
           msbuild -v:m -restore -t:SignAndroidPackage -p:Configuration=Release "ExtLibs\Xamarin\Xamarin.Android\Xamarin.Android.csproj"
-          
+
           del ExtLibs\Xamarin\Xamarin.Android\bin\Release\com.michaeloborne.MissionPlanner-Signed.aab
-          
+
           mkdir whatsnew
           git log --pretty=oneline --abbrev-commit -5 > whatsnew\whatsnew-en-US
           git log --pretty=oneline --abbrev-commit -5 > whatsnew\whatsnew-en-GB
@@ -105,11 +102,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           submodules: true
           fetch-depth: 10
-          
+
       - name: Install Android SDK Platform 33
         run: |
             gci
@@ -118,10 +115,10 @@ jobs:
             gci
             pwd
             cd latest
-            cd bin          
-            .\sdkmanager.bat --list  
+            cd bin
+            .\sdkmanager.bat --list
             .\sdkmanager.bat "platforms;android-33" "build-tools;31.0.0"
-          
+
       - name: Cache multiple paths
         uses: actions/cache@v4
         with:
@@ -140,28 +137,28 @@ jobs:
           $env:PATH = $msbuildPath + ';' + $env:PATH
           nuget locals all -clear
           $current = Get-Location
-          
+
           $days = [int]((New-TimeSpan -Start 2020-01-01 -End (Get-Date)).totaldays * 100)
-          
+
           $manifest = [xml](Get-Content -Path ExtLibs\Xamarin\Xamarin.Android\Properties\AndroidManifest.xml -Raw)
 
           $manifest.SelectNodes("manifest") | % { $_.versionCode = ""+$days }
           $manifest.SelectNodes("manifest") | % { $_.versionName = ""+$days }
-          
+
           $manifest.Save($current.Path + "\ExtLibs\Xamarin\Xamarin.Android\Properties\AndroidManifest.xml")
-          
+
           Set-Content -Path ExtLibs\Xamarin\Xamarin.Android\Xamarin.Android.csproj -Value (Get-Content -Path ExtLibs\Xamarin\Xamarin.Android\Xamarin.Android.csproj -Raw).Replace("<AndroidPackageFormat>aab</AndroidPackageFormat>","<AndroidPackageFormat>apk</AndroidPackageFormat>")
 
           Set-Content -Path ExtLibs\Xamarin\Xamarin.Android\Xamarin.Android.csproj -Value (Get-Content -Path ExtLibs\Xamarin\Xamarin.Android\Xamarin.Android.csproj -Raw).Replace("<AotAssemblies>true</AotAssemblies>","<AotAssemblies>false</AotAssemblies>")
 
           choco install microsoft-openjdk --version=11.0.11.9
-          
+
           msbuild -v:m -restore -t:SignAndroidPackage -p:Configuration=Release "ExtLibs\Xamarin\Xamarin.Android\Xamarin.Android.csproj"
-          
+
           del ExtLibs\Xamarin\Xamarin.Android\bin\Release\*-Signed.apk
-          
+
           $apks = Get-ChildItem -include *.apk -path ExtLibs\Xamarin\Xamarin.Android\bin\Release\ -Recurse
-          
+
           ForEach($i in $apks) {
             echo $i.FullName
             Move-Item -path $i.FullName temp.apk
@@ -186,7 +183,7 @@ jobs:
         with:
           name: com.michaeloborne.MissionPlanner.apk.zip
           path: ExtLibs\Xamarin\Xamarin.Android\bin\Release/${{ github.event_name == 'push' && '*-signed.apk' || '*.apk' }}
-          
+
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         if: ${{ github.event_name == 'push' }}
         with:
@@ -195,11 +192,3 @@ jobs:
           prerelease: true
           title: "Android Development Build"
           files: '**/*-signed.apk'
-
-
-
-
-
-
-
-

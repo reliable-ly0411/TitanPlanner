@@ -91,7 +91,7 @@
     <None Include="sn.snk" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.2" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.3" />
   </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>

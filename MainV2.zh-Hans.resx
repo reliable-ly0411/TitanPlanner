@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -129,7 +129,9 @@
   <data name="MenuInitConfig.ToolTipText" xml:space="preserve">
     <value>硬件配置</value>
   </data>
-  <data name="$this.Text" xml:space="preserve"><value>Mission Planner - 作者 Michael Oborne</value></data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Mission Planner - By Michael Oborne</value>
+  </data>
   <data name="MenuTerminal.Text" xml:space="preserve">
     <value>终端</value>
   </data>
@@ -175,8 +177,4 @@
   <data name="autoHideToolStripMenuItem.Text" xml:space="preserve">
     <value>自动隐藏</value>
   </data>
-  <data name="fullScreenToolStripMenuItem.Text" xml:space="preserve"><value>全屏</value></data>
-  <data name="readonlyToolStripMenuItem.Text" xml:space="preserve"><value>只读</value></data>
-  <data name="connectionOptionsToolStripMenuItem.Text" xml:space="preserve"><value>连接选项</value></data>
-  <data name="connectionListToolStripMenuItem.Text" xml:space="preserve"><value>连接列表</value></data>
 </root>

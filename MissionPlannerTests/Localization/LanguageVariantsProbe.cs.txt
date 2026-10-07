@@ -1,0 +1,109 @@
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
+class SettingsUiProbe {
+ static string root;
+ static int assertions;
+ static void Check(bool ok, string message) { assertions++; if(!ok) throw new Exception(message); }
+ static Control Find(Control c,string name) { if(c.Name==name)return c; foreach(Control child in c.Controls){Control found=Find(child,name);if(found!=null)return found;}return null; }
+ [STAThread] static int Main(string[] args) {
+  try {
+   Check(Environment.GetEnvironmentVariable("CI") == "true" || System.Diagnostics.Process.GetCurrentProcess().SessionId == 0,"Run this isolated UI probe through the Guest Agent, not on the active desktop.");
+   root=Path.GetFullPath(args[0]); string output=Path.GetFullPath(args[1]); Directory.CreateDirectory(output);
+   AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender,ResolveEventArgs e) {string p=Path.Combine(root,new AssemblyName(e.Name).Name+".dll");return File.Exists(p)?Assembly.LoadFrom(p):null;};
+   string culture=args.Length>2?args[2]:"zh-CN"; bool enhanced=culture=="zh-CN";
+   CultureInfo.CurrentUICulture=CultureInfo.GetCultureInfo(culture); CultureInfo.CurrentCulture=CultureInfo.InvariantCulture;
+   Application.EnableVisualStyles();
+   Assembly utils=Assembly.LoadFrom(Path.Combine(root,"MissionPlanner.Utilities.dll"));
+   utils.GetType("MissionPlanner.Utilities.Settings").GetField("CustomUserDataDirectory").SetValue(null,Path.Combine(output,"isolated-user-data"));
+   // Match Program's message-box event registration without displaying dialogs.
+   EventInfo notice=utils.GetType("System.CustomMessageBox").GetEvent("ShowEvent");
+   MethodInfo invoke=notice.EventHandlerType.GetMethod("Invoke");
+   var parameters=invoke.GetParameters().Select(p=>System.Linq.Expressions.Expression.Parameter(p.ParameterType,p.Name)).ToArray();
+   var ok=System.Linq.Expressions.Expression.Constant(Enum.ToObject(invoke.ReturnType,1),invoke.ReturnType);
+   notice.AddEventHandler(null,System.Linq.Expressions.Expression.Lambda(notice.EventHandlerType,ok,parameters).Compile());
+   Assembly main=Assembly.LoadFrom(Path.Combine(root,"MissionPlanner.exe"));
+   Type type=main.GetType("MissionPlanner.GCSViews.ConfigurationView.ConfigPlanner",true);
+   using(Form form=new Form()) using(Control view=(Control)Activator.CreateInstance(type)) {
+    form.Text="TitanPlanner settings rendering probe";form.AutoScaleMode=AutoScaleMode.None;view.Dock=DockStyle.Fill;form.Controls.Add(view);
+    form.Show();
+    FlowLayoutPanel layout=(FlowLayoutPanel)Find(view,"layoutRoot");
+    Check(layout!=null,"layout root missing");
+    string[] titles=enhanced ? new[]{"连接与数据","地图与显示","单位与测量","更新","配置"} : new[]{"Connection && Data","Map & Display","Units & Measurement","Updates","Configuration"};
+    foreach(string title in titles) Check(layout.Controls.Cast<Control>().Any(c=>c.Text==title),"untranslated group "+title);
+    Check(Find(view,"label102").Text==(enhanced?"姿态":"高度"),"Attitude must not mean altitude");
+    Check(Find(view,"chk_norcreceiver").Text==(enhanced?"无遥控接收机":"No RC Receiver"),"receiver option must not claim detection failure");
+    ComboBox modes=(ComboBox)Find(view,"CMB_Layout");
+    Check(modes.GetItemText(modes.Items[0])==(enhanced?"基础":"Basic"),"layout mode display");
+    Check(modes.Items[0].GetType().Name=="DisplayNames","layout enum value changed");
+    ComboBox severity=(ComboBox)Find(view,"CMB_severity");
+    Check(severity.GetItemText(severity.Items[4])==(enhanced?"警告":"Warning"),"warning display");
+    Check(severity.Items[4].ToString()=="Warning","severity enum changed");
+    ComboBox language=(ComboBox)Find(view,"CMB_language");
+    Type settingsType=utils.GetType("MissionPlanner.Utilities.Settings");
+    object settings=settingsType.GetProperty("Instance").GetValue(null,null);
+    var languageSetting=settingsType.GetProperty("Item",new[]{typeof(string)});
+    Type localization=main.GetType("MissionPlanner.L10N",true);
+    languageSetting.SetValue(settings,"invalid_@@culture",new object[]{"language"});
+    Check(((CultureInfo)localization.GetMethod("GetConfigLang").Invoke(null,null)).Name=="zh-CN","invalid saved culture should fall back safely");
+    languageSetting.SetValue(settings,null,new object[]{"language"});
+    Check(((CultureInfo)localization.GetMethod("GetConfigLang").Invoke(null,null)).Name=="zh-CN","first launch should use enhanced Chinese");
+    Type updater=main.GetType("MissionPlanner.Utilities.Update",true);
+    Check((string)updater.GetProperty("ForkReleasePage").GetValue(null,null)=="https://github.com/reliable-ly0411/TitanPlanner/releases","updater must use the fork release page");
+    MethodInfo setup=type.GetMethod("SetupLanguageSelector",BindingFlags.Instance|BindingFlags.NonPublic);
+    foreach(string saved in new[]{"zh-CN","zh-Hans","en-US"}) {
+     languageSetting.SetValue(settings,saved,new object[]{"language"});setup.Invoke(view,null);
+     Check(((CultureInfo)language.SelectedItem).Name==saved,"saved variant lost to parent: "+saved);
+    }
+    Check(language.Items.Cast<CultureInfo>().Count(c=>c.Name=="zh-CN")==1,"new language missing/duplicated");
+    Check(language.Items.Cast<CultureInfo>().Count(c=>c.Name=="zh-Hans")==1,"original language missing/duplicated");
+    Check(language.GetItemText(language.Items.Cast<CultureInfo>().Single(c=>c.Name=="zh-CN"))=="中文(简体)2","new label mismatch");
+    Check(language.GetItemText(language.Items.Cast<CultureInfo>().Single(c=>c.Name=="zh-Hans"))=="中文(简体)","original label mismatch");
+    languageSetting.SetValue(settings,culture,new object[]{"language"});setup.Invoke(view,null);
+    foreach(int width in new[]{640,1024,1600}) {
+     form.ClientSize=new Size(width,1000);form.PerformLayout();view.PerformLayout();Application.DoEvents();
+     foreach(Control group in layout.Controls) {
+      Console.WriteLine("width="+width+" group="+group.Text+" bounds="+group.Bounds);
+      Check(group.Right+group.Margin.Right<=layout.ClientSize.Width-layout.Padding.Right+1,"group clips horizontally at "+width+": "+group.Text);
+     }
+     if(width==1600) Check(layout.Controls.Cast<Control>().Select(c=>c.Left).Distinct().Count()==3,"wide screen should have three columns");
+     using(Bitmap image=new Bitmap(form.ClientSize.Width,form.ClientSize.Height)){view.DrawToBitmap(image,new Rectangle(Point.Empty,image.Size));image.Save(Path.Combine(output,"settings-"+width+".png"),ImageFormat.Png);}
+    }
+    // Exercise real selection events and persistence in this process's isolated
+    // settings directory; automatically dismiss only this probe's own dialogs.
+    var languages=language.Items.Cast<CultureInfo>().ToList();
+    type.GetField("startup",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(view,false);
+    using(var dismiss=new System.Windows.Forms.Timer()) {
+     dismiss.Interval=100;
+     dismiss.Tick+=delegate {foreach(Form dialog in Application.OpenForms.Cast<Form>().ToArray())if(dialog!=form){dialog.DialogResult=DialogResult.OK;dialog.Close();}};
+     dismiss.Start();language.SelectedItem=languages.Single(c=>c.Name=="en-US");dismiss.Stop();
+     Check(form.Visible&&!form.IsDisposed,"language change closed the current session");
+     Check(CultureInfo.CurrentUICulture.Name==culture,"language changed before restart");
+     string[] configs=Directory.GetFiles(Path.Combine(output,"isolated-user-data"),"config.xml",SearchOption.AllDirectories);
+     Check(configs.Length==1&&File.ReadAllText(configs[0]).Contains("<language>en-US</language>"),"language preference was not saved");
+     foreach(string saved in new[]{"zh-Hans","zh-CN","en-US"}) {
+      language.SelectedItem=languages.Single(c=>c.Name==saved);
+      Check(File.ReadAllText(configs[0]).Contains("<language>"+saved+"</language>"),"variant save failed: "+saved);
+     }
+     string blocked=Path.Combine(output,"not-a-directory");File.WriteAllText(blocked,"isolation test");
+     settingsType.GetField("CustomUserDataDirectory").SetValue(null,blocked);
+     dismiss.Start();language.SelectedItem=languages.Single(c=>c.Name=="zh-CN");dismiss.Stop();
+     Check(((CultureInfo)language.SelectedItem).Name=="en-US","failed save did not restore selection");
+     Check((string)settingsType.GetProperty("Item",new[]{typeof(string)}).GetValue(settings,new object[]{"language"})=="en-US","failed save did not restore preference");
+     languageSetting.SetValue(settings,null,new object[]{"language"});
+     language.SelectedItem=languages.Single(c=>c.Name==(culture=="zh-CN"?"zh-Hans":"zh-CN"));
+     Check(((CultureInfo)language.SelectedItem).Name==culture,"first-save failure lost exact current culture");
+     Check(string.IsNullOrEmpty((string)languageSetting.GetValue(settings,new object[]{"language"})),"first-save failure changed empty preference");
+    }
+    Console.WriteLine(culture+" Settings UI probe: "+assertions+" assertions passed.");form.Close();
+   }
+   return 0;
+  } catch(Exception e) {Console.WriteLine(e.ToString());return 1;}
+ }
+}

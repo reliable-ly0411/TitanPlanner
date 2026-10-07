@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -320,30 +320,4 @@
   <data name="BUT_videostart.Text" xml:space="preserve">
     <value>开始</value>
   </data>
-  <data name="chk_tfr.Text" xml:space="preserve"><value>临时飞行限制</value></data>
-  <data name="chk_temp.Text" xml:space="preserve"><value>测试界面</value></data>
-  <data name="chk_norcreceiver.Text" xml:space="preserve"><value>未检测到遥控接收机</value></data>
-  <data name="CHK_AutoParamCommit.Text" xml:space="preserve"><value>自动提交参数</value></data>
-  <data name="chk_shownofly.Text" xml:space="preserve"><value>禁飞区</value></data>
-  <data name="label6.Text" xml:space="preserve"><value>高度单位</value></data>
-  <data name="label7.Text" xml:space="preserve"><value>地面站 ID</value></data>
-  <data name="CHK_params_bg.Text" xml:space="preserve"><value>后台下载参数</value></data>
-  <data name="chk_slowMachine.Text" xml:space="preserve"><value>在低性能计算机上运行</value></data>
-  <data name="CHK_speechArmedOnly.Text" xml:space="preserve"><value>仅在解锁时</value></data>
-  <data name="label8.Text" xml:space="preserve"><value>注意：设置需要语音播报的最低严重级别</value></data>
-  <data name="label9.Text" xml:space="preserve"><value>非活动航空器</value></data>
-  <data name="chk_displaycog.Text" xml:space="preserve"><value>显示地面航迹方向</value></data>
-  <data name="label10.Text" xml:space="preserve"><value>飞行器图标</value></data>
-  <data name="chk_displayheading.Text" xml:space="preserve"><value>显示航向</value></data>
-  <data name="chk_displaynavbearing.Text" xml:space="preserve"><value>显示导航方位</value></data>
-  <data name="chk_displayradius.Text" xml:space="preserve"><value>显示转弯半径</value></data>
-  <data name="chk_displaytarget.Text" xml:space="preserve"><value>显示目标</value></data>
-  <data name="label11.Text" xml:space="preserve"><value>航线长度</value></data>
-  <data name="chk_displaytooltip.Text" xml:space="preserve"><value>显示工具提示</value></data>
-  <data name="label13.Text" xml:space="preserve"><value>地图访问模式</value></data>
-  <data name="BUT_mapCacheDir.Text" xml:space="preserve"><value>打开地图缓存</value></data>
-  <data name="CHK_rtsresetesp32.Text" xml:space="preserve"><value>禁用 ESP32 SerialUSB 的 RTS 复位</value></data>
-  <data name="CHK_speechadsb.Text" xml:space="preserve"><value>ADS-B 警报</value></data>
-  <data name="CHK_autoconnectusb.Text" xml:space="preserve"><value>USB 自动连接</value></data>
-  <data name="label14.Text" xml:space="preserve"><value>连接</value></data>
 </root>

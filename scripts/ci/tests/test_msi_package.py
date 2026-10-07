@@ -36,11 +36,11 @@ class MsiTests(unittest.TestCase):
     def test_both_assets_required_and_hashes_checked(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); sha = 'a'*40
-            names = artifact_names(sha)
+            names = artifact_names(sha, '1.3.83')
             (root/names[0]).write_bytes(b'zip')
-            with self.assertRaises(FileNotFoundError): write_manifest(root, sha)
+            with self.assertRaises(FileNotFoundError): write_manifest(root, sha, '1.3.83')
             (root/names[1]).write_bytes(b'msi')
-            write_manifest(root, sha)
+            write_manifest(root, sha, '1.3.83')
             self.assertEqual([root/name for name in names], verify_manifest(root, sha))
             (root/names[1]).write_bytes(b'bad')
             with self.assertRaises(ValueError): verify_manifest(root, sha)
@@ -49,10 +49,10 @@ class MsiTests(unittest.TestCase):
     def test_partial_release_and_path_injection_are_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); sha = 'a'*40
-            for name in artifact_names(sha): (root/name).write_bytes(b'payload')
-            write_manifest(root, sha)
+            for name in artifact_names(sha, '1.3.83'): (root/name).write_bytes(b'payload')
+            write_manifest(root, sha, '1.3.83')
             manifest = json.loads((root/'build-info.json').read_text())
             manifest['artifacts'][1]['name'] = '../outside.msi'
             (root/'build-info.json').write_text(json.dumps(manifest))
             with self.assertRaises(ValueError): verify_manifest(root, sha)
-            with self.assertRaises(ValueError): artifact_names('../bad')
+            with self.assertRaises(ValueError): artifact_names('../bad', '1.3.83')

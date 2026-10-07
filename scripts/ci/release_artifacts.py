@@ -3,27 +3,56 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import xml.etree.ElementTree as ET
 
 
-def artifact_names(sha):
+def validate_version(version):
+    if not isinstance(version, str) or not re.fullmatch(r'(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:\.(?:0|[1-9][0-9]*))?', version):
+        raise ValueError('Invalid application version')
+    return version
+
+
+def application_version(root=None):
+    root = Path(root) if root is not None else Path(__file__).resolve().parents[2]
+    values = ET.parse(root/'MissionPlanner.csproj').getroot().findall('./PropertyGroup/Version')
+    if len(values) != 1:
+        raise ValueError('Expected one application version in MissionPlanner.csproj')
+    version = validate_version(values[0].text)
+    assembly = (root/'Properties'/'AssemblyInfo.cs').read_text(encoding='utf-8-sig')
+    match = re.search(r'AssemblyFileVersion\("([0-9.]+)"\)', assembly)
+    def parts(value):
+        return tuple(int(n) for n in value.split('.')) + (0,) * (4-len(value.split('.')))
+    if not match or parts(validate_version(match[1])) != parts(version):
+        raise ValueError('Project version differs from AssemblyFileVersion; refusing misleading release names')
+    return version
+
+
+def artifact_names(sha, version):
     if not re.fullmatch(r'[0-9a-f]{40}', sha):
         raise ValueError('Invalid commit SHA')
-    return [f'TitanPlanner-zh2-{sha[:12]}-windows.{ext}' for ext in ('zip', 'msi')]
+    validate_version(version)
+    return [f'TitanPlanner-zh-CN-v{version}-{sha[:12]}-windows.{ext}' for ext in ('zip', 'msi')]
 
 
-def write_manifest(root, sha, **extra):
+def release_tag(sha, version):
+    artifact_names(sha, version)  # Validate both fields before using them in a tag.
+    return f'v{version}-zh2-{sha[:12]}'
+
+
+def write_manifest(root, sha, version, **extra):
     root = Path(root)
     entries = [{'name': name, 'sha256': hashlib.sha256((root/name).read_bytes()).hexdigest(),
-                'size': (root/name).stat().st_size} for name in artifact_names(sha)]
-    (root/'build-info.json').write_text(json.dumps({'commit': sha, 'artifacts': entries, **extra}, indent=2)+'\n', encoding='utf-8')
+                'size': (root/name).stat().st_size} for name in artifact_names(sha, version)]
+    (root/'build-info.json').write_text(json.dumps({'commit': sha, 'version': version, 'artifacts': entries, **extra}, indent=2)+'\n', encoding='utf-8')
     (root/'SHA256SUMS').write_text(''.join(f"{e['sha256']}  {e['name']}\n" for e in entries), encoding='ascii')
 
 
 def verify_manifest(root, sha):
     root = Path(root)
     data = json.loads((root/'build-info.json').read_text(encoding='utf-8'))
+    version = validate_version(data.get('version'))
     entries = data.get('artifacts', [])
-    if data['commit'] != sha or [e['name'] for e in entries] != artifact_names(sha):
+    if data['commit'] != sha or [e['name'] for e in entries] != artifact_names(sha, version):
         raise ValueError('Release must contain exactly the validated ZIP and MSI')
     for e in entries:
         path = root/e['name']

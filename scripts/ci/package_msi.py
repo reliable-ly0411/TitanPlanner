@@ -9,7 +9,7 @@ import subprocess
 import uuid
 import xml.etree.ElementTree as ET
 import zipfile
-from release_artifacts import artifact_names, write_manifest
+from release_artifacts import application_version, artifact_names, write_manifest
 
 NS = 'http://schemas.microsoft.com/wix/2006/wi'
 UPGRADE = uuid.UUID('bb2c699d-2579-4dd8-8d05-4fce1a09d78a')
@@ -91,7 +91,8 @@ def build(root, sha, run_number, work):
     root, work = Path(root).resolve(), Path(work).resolve()
     work.mkdir(parents=True, exist_ok=False)
     payload = work/'payload'
-    names = artifact_names(sha)
+    app_version = application_version()
+    names = artifact_names(sha, app_version)
     with zipfile.ZipFile(root/names[0]) as z:
         for name in z.namelist():
             p = PurePosixPath(name)
@@ -99,8 +100,8 @@ def build(root, sha, run_number, work):
                 raise ValueError('Unsafe ZIP path')
         z.extractall(payload)
     info = json.loads((payload/'BUILD-INFO.json').read_text(encoding='utf-8'))
-    if info['commit'] != sha:
-        raise ValueError('ZIP commit mismatch')
+    if info['commit'] != sha or info.get('version') != app_version:
+        raise ValueError('ZIP commit/version mismatch')
     for entry in info['files']:
         if hashlib.sha256((payload/entry['path']).read_bytes()).hexdigest() != entry['sha256']:
             raise ValueError('ZIP payload hash mismatch')
@@ -114,7 +115,7 @@ def build(root, sha, run_number, work):
     symbols = root/Path(names[1]).with_suffix('.wixpdb')
     if symbols.exists():
         symbols.replace(work/symbols.name)
-    write_manifest(root, sha, msi_version=version, file_count=len(info['files']))
+    write_manifest(root, sha, app_version, msi_version=version, file_count=len(info['files']))
     print(f'Built and validated MSI {names[1]} ({version}); payload shared with ZIP')
 
 

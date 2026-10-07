@@ -28,5 +28,6 @@
   "credit": "Original data: JAXA ALOS World 3D (AW3D30), as attributed by ArduPilot; distribution and HGT conversion: ArduPilot terrain service. Any supplementary source data retain their respective rights.",
   "terms_url": "https://earth.jaxa.jp/en/data/policy/",
   "terrain_documentation": "https://ardupilot.org/plane/docs/common-terrain-following.html",
-  "raw_values_modified": false
+  "raw_values_modified": false,
+  "packaging_revision": 2
 }

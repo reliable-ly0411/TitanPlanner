@@ -32,6 +32,6 @@ python3 scripts/terrain/package.py --output terrain-release --workers 4
 
 需下载约 8.7 GiB 上游 ZIP。打包按图幅流式处理，无须落盘完整 28.1 GiB HGT，但应给输出分包留至少 12 GiB 空间。输出目录须为空，不覆盖已有发布。
 
-工作流 `.github/workflows/terrain-china.yml` 在请求文件变更或手动运行时执行；无定时任务。下载、校验和回读验证全部成功才上传。发布前核对 GitHub 返回的每个资产大小与 SHA-256，不把地形数据设为程序的 Latest Release。以后生成新快照需先改 `request.json` 的唯一标签，已发布版本不覆盖。
+工作流 `.github/workflows/terrain-china.yml` 在请求文件变更或手动运行时执行；无定时任务。下载前先固定版本标签并创建 Release 草稿，提前确认权限；标签不随主分支移动。下载、校验和回读验证全部成功才上传。发布前核对 GitHub 返回的每个资产大小与 SHA-256，不把地形数据设为程序的 Latest Release。以后生成新快照需先改 `request.json` 的唯一标签，已发布版本不覆盖。
 
 这套检查证明下载与打包完整，不代表实地高程精度或真实飞控运行验证。HGT 与飞控的 DAT 缓存不同；安装与更新步骤见安装说明。

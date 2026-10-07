@@ -45,14 +45,60 @@ def validate_bundle(root, config, selected):
     return manifest, files
 
 
-def publish(root):
+def release_context():
     config, selected = read_plan('data/terrain/request.json', 'data/terrain/china-tiles.txt')
-    manifest, files = validate_bundle(root, config, selected)
     repo, sha = os.environ['GITHUB_REPOSITORY'], os.environ['GITHUB_SHA']
-    if repo != 'reliable-ly0411/TitanPlanner-zh-CN' or manifest['build_commit'] != sha:
+    if repo != 'reliable-ly0411/TitanPlanner-zh-CN':
+        raise ValueError('Unexpected repository')
+    return config, selected, repo, sha
+
+
+def optional_api(endpoint):
+    found = gh('api', endpoint, check=False)
+    if found.returncode == 0:
+        return json.loads(found.stdout)
+    if '404' not in found.stderr:
+        raise RuntimeError(found.stderr)
+    return None
+
+
+def require_draft(release, sha):
+    if not release['draft'] or release['target_commitish'] != sha:
+        raise ValueError('Existing release is published or belongs to another commit; refusing to overwrite')
+
+
+def prepare():
+    """Freeze the tag and verify release permissions before the long download."""
+    config, _, repo, sha = release_context()
+    endpoint = f'repos/{repo}'
+    release = optional_api(endpoint + '/releases/tags/' + config['tag'])
+    if release:
+        require_draft(release, sha)
+    tag = optional_api(endpoint + '/git/ref/tags/' + config['tag'])
+    if tag:
+        if tag['object']['type'] != 'commit' or tag['object']['sha'] != sha:
+            raise ValueError('Existing tag belongs to another commit; refusing to move it')
+    else:
+        api(endpoint + '/git/refs', 'POST', {'ref': 'refs/tags/' + config['tag'], 'sha': sha})
+    if not release:
+        release = api(endpoint + '/releases', 'POST',
+                      {'tag_name': config['tag'], 'target_commitish': sha,
+                       'name': config['title'], 'body': 'Preparing terrain data; not yet verified or published.',
+                       'draft': True, 'prerelease': False, 'make_latest': 'false'})
+    require_draft(release, sha)
+    print('Prepared draft: ' + release['html_url'], flush=True)
+
+
+def publish(root):
+    config, selected, repo, sha = release_context()
+    manifest, files = validate_bundle(root, config, selected)
+    if manifest['build_commit'] != sha:
         raise ValueError('Unexpected repository or build commit')
     endpoint = f'repos/{repo}/releases'
-    found = gh('api', endpoint + '/tags/' + config['tag'], check=False)
+    release = optional_api(endpoint + '/tags/' + config['tag'])
+    if not release:
+        raise ValueError('Prepared draft missing; run --prepare before downloading')
+    require_draft(release, sha)
     notes = (f"官方来源：中国区 1 角秒（约 30 米）HGT 离线包，共 {len(selected)} 个图幅。\n\n"
              "下载全部 part*.zip，分别解压到同一个临时目录；按 INSTALL.zh-CN.txt 安装。每个 ZIP 都可独立解压。\n\n"
              "覆盖按 MFE 中国区包的 1166 个图幅名称确定，仅复用覆盖清单，不含 MFE 高程值。"
@@ -65,16 +111,6 @@ def publish(root):
              "这是地形数据包，不是 TitanPlanner 程序更新；HGT 不能直接作为飞控 APM/TERRAIN 的 DAT 使用。"
              "校验通过证明传输和打包完整，不代表实地高程或飞行验证。\n\n"
              f"打包提交：`{sha}`\n快照开始时间：{manifest['snapshot_started_utc']}\n")
-    if found.returncode == 0:
-        release = json.loads(found.stdout)
-        if not release['draft'] or release['target_commitish'] != sha:
-            raise ValueError('Existing release is published or belongs to another commit; refusing to overwrite')
-    else:
-        if '404' not in found.stderr:
-            raise RuntimeError(found.stderr)
-        release = api(endpoint, 'POST', {'tag_name': config['tag'], 'target_commitish': sha,
-                                         'name': config['title'], 'body': notes, 'draft': True,
-                                         'prerelease': False, 'make_latest': 'false'})
     assets = {a['name']: a for a in release['assets']}
     if set(assets) - set(files):
         raise ValueError('Unexpected assets in existing draft; refusing to overwrite')
@@ -100,5 +136,12 @@ def publish(root):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('directory', type=Path)
-    publish(p.parse_args().directory)
+    p.add_argument('directory', type=Path, nargs='?')
+    p.add_argument('--prepare', action='store_true')
+    args = p.parse_args()
+    if args.prepare and args.directory is None:
+        prepare()
+    elif args.directory is not None and not args.prepare:
+        publish(args.directory)
+    else:
+        p.error('choose --prepare or a bundle directory')

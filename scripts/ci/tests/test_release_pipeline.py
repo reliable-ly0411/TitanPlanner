@@ -112,6 +112,12 @@ class UpstreamTests(unittest.TestCase):
         upstream.git('checkout','-B','master',base);self.fork_change('later.txt','user work')
         with self.assertRaises(RuntimeError):upstream.promote(base,candidate)
 
+    def test_validated_push_can_publish_without_overwriting_newer_master(self):
+        tested = self.fork_change()
+        latest = self.fork_change('later.txt', 'parallel user work')
+        upstream.promote(tested, tested)
+        self.assertEqual(latest, upstream.git('ls-remote', 'origin', 'refs/heads/master').split()[0])
+
     def test_upstream_cannot_replace_release_policy_automatically(self):
         self.add_upstream('.github/workflows/foreign.yml','policy change');base=self.fork_change()
         with patch.object(upstream,'proposal') as proposal:

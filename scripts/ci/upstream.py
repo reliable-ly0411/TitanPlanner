@@ -90,6 +90,11 @@ def promote(base, sha):
     current = git('rev-parse', 'FETCH_HEAD')
     if current == sha:
         return  # Safe retry after a release upload failure.
+    if base == sha and ancestor(sha, current):
+        # A push build already belongs to master. Publish its exact immutable
+        # tag without moving the branch, even if unrelated work arrived later.
+        print('Validated push commit is already in master history; retaining newer master')
+        return
     if current != base:
         raise RuntimeError('master advanced during validation; rerun against its new head')
     if not ancestor(base, sha):

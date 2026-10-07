@@ -32,8 +32,18 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/terrain/publish.py --prepare
       - name: Download, validate, package and round-trip verify all available tiles
+        id: bundle
         run: python3 scripts/terrain/package.py --output "$RUNNER_TEMP/terrain-release" --workers 4
       - name: Publish only after all assets and remote hashes are verified
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/terrain/publish.py "$RUNNER_TEMP/terrain-release"
+      - name: Preserve verified bundle if publishing fails
+        if: failure() && steps.bundle.outcome == 'success'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: verified-terrain-release
+          path: ${{ runner.temp }}/terrain-release/*
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error

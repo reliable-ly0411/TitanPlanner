@@ -62,6 +62,15 @@ def optional_api(endpoint):
     return None
 
 
+def find_release(repo, tag):
+    # The by-tag endpoint only returns published releases. Listing includes drafts.
+    pages = json.loads(gh('api', f'repos/{repo}/releases?per_page=100', '--paginate', '--slurp').stdout)
+    matches = [release for page in pages for release in page if release['tag_name'] == tag]
+    if len(matches) > 1:
+        raise ValueError('Multiple releases for the same tag')
+    return matches[0] if matches else None
+
+
 def require_draft(release, sha):
     if not release['draft'] or release['target_commitish'] != sha:
         raise ValueError('Existing release is published or belongs to another commit; refusing to overwrite')
@@ -71,7 +80,7 @@ def prepare():
     """Freeze the tag and verify release permissions before the long download."""
     config, _, repo, sha = release_context()
     endpoint = f'repos/{repo}'
-    release = optional_api(endpoint + '/releases/tags/' + config['tag'])
+    release = find_release(repo, config['tag'])
     if release:
         require_draft(release, sha)
     tag = optional_api(endpoint + '/git/ref/tags/' + config['tag'])
@@ -86,7 +95,20 @@ def prepare():
                        'name': config['title'], 'body': 'Preparing terrain data; not yet verified or published.',
                        'draft': True, 'prerelease': False, 'make_latest': 'false'})
     require_draft(release, sha)
-    print('Prepared draft: ' + release['html_url'], flush=True)
+    # Exercise the exact lookup and upload paths now, before spending time downloading.
+    confirmed = find_release(repo, config['tag'])
+    if not confirmed or confirmed['id'] != release['id']:
+        raise ValueError('Created draft cannot be found by the publisher')
+    require_draft(confirmed, sha)
+    notes = Path('data/terrain/INSTALL.zh-CN.txt')
+    assets = {a['name']: a for a in confirmed['assets']}
+    if notes.name not in assets:
+        gh('release', 'upload', config['tag'], str(notes), '--repo', repo)
+    confirmed = api(endpoint + '/releases/' + str(release['id']))
+    uploaded = next(a for a in confirmed['assets'] if a['name'] == notes.name)
+    if uploaded.get('digest') != 'sha256:' + sha256_file(notes) or uploaded['size'] != notes.stat().st_size:
+        raise ValueError('Preflight upload hash/size mismatch')
+    print('Prepared draft and verified test upload: ' + release['html_url'], flush=True)
 
 
 def publish(root):
@@ -95,7 +117,7 @@ def publish(root):
     if manifest['build_commit'] != sha:
         raise ValueError('Unexpected repository or build commit')
     endpoint = f'repos/{repo}/releases'
-    release = optional_api(endpoint + '/tags/' + config['tag'])
+    release = find_release(repo, config['tag'])
     if not release:
         raise ValueError('Prepared draft missing; run --prepare before downloading')
     require_draft(release, sha)

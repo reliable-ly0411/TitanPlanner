@@ -2,7 +2,7 @@
 
 从 [MP 官方地形服务](https://terrain.ardupilot.org/SRTM1/) 下载同名 HGT 原始文件，供 Mission Planner / TitanPlanner 离线使用。数据通过独立 Release 分发，仓库只存打包脚本、覆盖清单和说明。
 
-- 下载：[terrain-cn30-20261007](https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases/tag/terrain-cn30-20261007)
+- 下载：[terrain-cn30-20261007-r1](https://github.com/reliable-ly0411/TitanPlanner-zh-CN/releases/tag/terrain-cn30-20261007-r1)
 - 安装：[INSTALL.zh-CN.txt](INSTALL.zh-CN.txt)
 - 请求及来源：[request.json](request.json)
 - 覆盖：[china-tiles.txt](china-tiles.txt)

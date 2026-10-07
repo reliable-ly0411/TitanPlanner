@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """Publish only the exact artifact validated by this workflow; never replace a release."""
-import hashlib
-import json
 import os
 from pathlib import Path
 import re

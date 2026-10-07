@@ -78,6 +78,7 @@ def author(payload, sha, version):
     shortcut = add(app_menu, 'Component', Id='StartMenuShortcut', Guid=str(uuid.uuid5(UPGRADE, 'startmenu')), Win64='yes')
     add(shortcut, 'Shortcut', Id='Launch', Name='TitanPlanner-zh-CN', Target='[INSTALLFOLDER]MissionPlanner.exe', WorkingDirectory='INSTALLFOLDER', Icon='AppIcon')
     add(shortcut, 'RemoveFolder', Id='RemoveAppMenu', On='uninstall')
+    add(shortcut, 'RemoveFolder', Id='RemoveUserPrograms', Directory='UserPrograms', On='uninstall')
     add(shortcut, 'RegistryValue', Root='HKCU', Key=r'Software\TitanPlanner-zh-CN\Installer', Name='shortcut', Type='integer', Value='1', KeyPath='yes')
     add(feature, 'ComponentRef', Id='StartMenuShortcut')
     add(product, 'UIRef', Id='WixUI_Minimal')

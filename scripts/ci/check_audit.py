@@ -17,7 +17,8 @@ def findings(report):
 
 
 if __name__ == '__main__':
-    report = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8-sig'))
+    # Windows PowerShell 5 redirects as UTF-16; pwsh uses UTF-8.
+    report = json.loads(Path(sys.argv[1]).read_bytes())
     errors = report.get('problems', [])
     if errors or not report.get('projects'):
         raise SystemExit('Dependency audit is incomplete: ' + str(errors))

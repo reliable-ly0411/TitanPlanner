@@ -65,7 +65,7 @@ def optional_api(endpoint):
 
 
 def state_path():
-    return Path(os.environ['TERRAIN_RELEASE_STATE'])
+    return Path(os.environ['RUNNER_TEMP']) / 'terrain-release-state.json'
 
 
 def upload_asset(repo, release_id, path):

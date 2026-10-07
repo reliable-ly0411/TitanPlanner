@@ -15,8 +15,6 @@ jobs:
     if: github.repository == 'reliable-ly0411/TitanPlanner-zh-CN' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-24.04
     timeout-minutes: 180
-    env:
-      TERRAIN_RELEASE_STATE: ${{ runner.temp }}/terrain-release-state.json
     permissions:
       contents: write
     steps:

@@ -36,9 +36,12 @@ class PackageTests(unittest.TestCase):
                 self.assertIn('zh-Hans/MissionPlanner.resources.dll', z.namelist())
                 self.assertIn('zh-CN/MissionPlanner.resources.dll', z.namelist())
                 self.assertFalse(any('private' in f or f.startswith(('config', 'logs/', 'GMapCache/')) for f in z.namelist()))
-            (source/'DotNetZip.dll').write_bytes(b'old')
-            with self.assertRaises(ValueError):
-                package(source, Path(directory)/'output2', 'a'*40)
+            for stale in ('DotNetZip.dll', 'SixLabors.ImageSharp.dll'):
+                with self.subTest(assembly=stale):
+                    (source/stale).write_bytes(b'old')
+                    with self.assertRaises(ValueError):
+                        package(source, Path(directory)/'output2', 'a'*40)
+                    (source/stale).unlink()
 
     def test_audit_accepts_windows_and_cross_platform_encodings(self):
         with tempfile.TemporaryDirectory() as directory:

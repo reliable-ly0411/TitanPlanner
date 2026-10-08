@@ -35,9 +35,9 @@ def package(source, destination, sha, version=None):
                 continue
             if path.name.lower() in EXCLUDED_NAMES or path.name.lower().startswith('config_') or lower.endswith(('.log', '.tlog', '.binlog')):
                 continue
-            # Obsolete vulnerable ZIP assemblies must never survive incremental builds.
-            if path.name.lower() in {'dotnetzip.dll', 'ionic.zip.dll', 'ionic.zip.netstandard.dll'}:
-                raise ValueError('Stale vulnerable ZIP assembly in output: ' + str(relative))
+            # Removed vulnerable assemblies must never survive incremental builds.
+            if path.name.lower() in {'dotnetzip.dll', 'ionic.zip.dll', 'ionic.zip.netstandard.dll', 'sixlabors.imagesharp.dll'}:
+                raise ValueError('Stale vulnerable assembly in output: ' + str(relative))
             z.write(path, relative.as_posix())
             files.append({'path': relative.as_posix(), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
         z.writestr('BUILD-INFO.json', json.dumps({'commit': sha, 'version': version, 'languages': ['中文(简体)', '中文(简体)2'], 'files': files}, ensure_ascii=False, indent=2))
